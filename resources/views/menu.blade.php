@@ -17,9 +17,20 @@
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" href="{{ asset('assets/css/sidebar-menu.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/SimpleBar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/rt-plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- END: Theme CSS-->
     <script src="{{ asset('assets/js/settings.js') }}" sync></script>
+
+    <style>
+        .dashcode-data-table {
+            margin-left: 39px;
+            margin-right: 39px;
+        }
+        .td-table{
+            background-color: #e1e2e6;
+        }
+    </style>
 </head>
 
 <body class=" font-inter dashcode-app" id="body_class">
@@ -1961,7 +1972,7 @@
                                                             <span
                                                                 class="bg-secondary-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute
                 right-0 top-0"></span>
-                                                            <img src="assets/images/all-img/user.png" alt="user"
+                                                            <img src="{{ asset('assets/images/all-img/user.png')}}" alt="user"
                                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                                         </div>
                                                     </div>
@@ -1993,7 +2004,7 @@
                                                             <span
                                                                 class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute
                 right-0 top-0"></span>
-                                                            <img src="assets/images/all-img/user2.png" alt="user"
+                                                            <img src="{{ asset('assets/images/all-img/user2.png')}}" alt="user"
                                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                                         </div>
                                                     </div>
@@ -2021,7 +2032,7 @@
                                                             <span
                                                                 class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute
                 right-0 top-0"></span>
-                                                            <img src="assets/images/all-img/user3.png" alt="user"
+                                                            <img src="{{ asset('assets/images/all-img/user3.png')}}" alt="user"
                                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                                         </div>
                                                     </div>
@@ -2079,7 +2090,7 @@
                                                 <div class="flex ltr:text-left rtl:text-right">
                                                     <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                         <div class="h-8 w-8 bg-white rounded-full">
-                                                            <img src="assets/images/all-img/user.png" alt="user"
+                                                            <img src="{{ asset('assets/images/all-img/user.png')}}" alt="user"
                                                                 class="border-white block w-full h-full object-cover rounded-full border">
                                                         </div>
                                                     </div>
@@ -2103,7 +2114,7 @@
                                                 <div class="flex ltr:text-left rtl:text-right relative">
                                                     <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                         <div class="h-8 w-8 bg-white rounded-full">
-                                                            <img src="assets/images/all-img/user2.png" alt="user"
+                                                            <img src="{{ asset('assets/images/all-img/user2.png')}}" alt="user"
                                                                 class="border-transparent block w-full h-full object-cover rounded-full border">
                                                         </div>
                                                     </div>
@@ -2128,7 +2139,7 @@
                                             <div class="flex ltr:text-left rtl:text-right relative">
                                                 <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                     <div class="h-8 w-8 bg-white rounded-full">
-                                                        <img src="assets/images/all-img/user3.png" alt="user"
+                                                        <img src="{{ asset('assets/images/all-img/user3.png')}}" alt="user"
                                                             class="border-transparent block w-full h-full object-cover rounded-full border">
                                                     </div>
                                                 </div>
@@ -2148,7 +2159,7 @@
                                             <div class="flex ltr:text-left rtl:text-right relative">
                                                 <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                     <div class="h-8 w-8 bg-white rounded-full">
-                                                        <img src="assets/images/all-img/user4.png" alt="user"
+                                                        <img src="{{ asset('assets/images/all-img/user4.png')}}" alt="user"
                                                             class="border-transparent block w-full h-full object-cover rounded-full border">
                                                     </div>
                                                 </div>
@@ -2178,7 +2189,7 @@
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <div
                                             class="lg:h-8 lg:w-8 h-7 w-7 rounded-full flex-1 ltr:mr-[10px] rtl:ml-[10px]">
-                                            <img src="assets/images/all-img/user.png" alt="user"
+                                            <img src="{{ asset('assets/images/all-img/user.png')}}" alt="user"
                                                 class="block w-full h-full object-cover rounded-full">
                                         </div>
                                         <span
@@ -2372,7 +2383,7 @@
                     class="relative bg-white bg-no-repeat backdrop-filter backdrop-blur-[40px] rounded-full footer-bg dark:bg-slate-700
       h-[65px] w-[65px] z-[-1] -mt-[40px] flex justify-center items-center">
                     <div class="h-[50px] w-[50px] rounded-full relative left-[0px] hrefp-[0px] custom-dropshadow">
-                        <img src="assets/images/users/user-1.jpg" alt=""
+                        <img src="{{ asset('assets/images/users/user-1.jpg')}}" alt=""
                             class="w-full h-full rounded-full border-2 border-slate-100">
                     </div>
                 </a>
@@ -2404,10 +2415,13 @@
     <script src="{{ asset('assets/js/SimpleBar.js') }}"></script>
     <script src="{{ asset('assets/js/iconify.js') }}"></script>
     <!-- Jquery Plugins -->
-
+    <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
     <!-- app js -->
     <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+
+
+
 </body>
 
 </html>
