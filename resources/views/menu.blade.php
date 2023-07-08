@@ -2408,18 +2408,21 @@
         </div>
     </main>
     <!-- scripts -->
+
     <!-- Core Js -->
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
     <script src="{{ asset('assets/js/popper.js') }}"></script>
-    <script src="{{ asset('assets/js/tw-elements-1.0.0-alpha13.min.js') }}"></script>
     <script src="{{ asset('assets/js/SimpleBar.js') }}"></script>
+    
     <script src="{{ asset('assets/js/iconify.js') }}"></script>
     <!-- Jquery Plugins -->
-    <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
+    
+   
     <!-- app js -->
     <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-
+   
 
 
 </body>
