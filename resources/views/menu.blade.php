@@ -71,31 +71,18 @@
                     <li class="">
                         <a href="#" class="navItem">
                             <span class="flex items-center">
-                                <iconify-icon class=" nav-icon" icon="heroicons-outline:home"></iconify-icon>
-                                <span>Dashboard</span>
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
+                                <span>Seguridad</span>
                             </span>
                             <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
                         </a>
                         <ul class="sidebar-submenu">
                             <li>
-                                <a href="index.html">Analytics Dashboard</a>
+                                <a href="{{ url('seguridad/usuario') }}">Usuario</a>
                             </li>
                             <li>
-                                <a href="ecommerce-dashboard.html">Ecommerce Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="project-dashboard.html">Project Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="crm-dashboard.html">CRM Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="banking-dashboard.html">Banking Dashboard
-                                </a>
-                            </li>
+                                <a href="{{ url('seguridad/permission') }}">Permisos</a>
+                            </li>                         
                         </ul>
                     </li>
                     <!-- Apps Area -->

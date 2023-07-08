@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permission;
+use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PermissionController extends Controller
 {
@@ -36,7 +37,9 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $permission = Permission::create(['name' => $request->get('name')]);
+        alert()->success('El registro ha sido agregado correctamente');
+        return back();
     }
 
     /**
