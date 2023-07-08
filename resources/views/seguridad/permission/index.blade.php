@@ -1,5 +1,6 @@
 @extends ('menu')
 @section('contenido')
+
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <div class=" space-y-5">
@@ -20,30 +21,32 @@
                                 id="data-table">
                                 <thead class=" border-t border-slate-100 dark:border-slate-800">
                                     <tr class="td-table">
-                                        <th scope="col" class=" table-th ">Id</th>
-                                        <th scope="col" class=" table-th ">Descripción</th>
-                                        <th scope="col" class=" table-th ">Opciones</th>
+                                        <th scope="col" class="table-th" style="text-align: center">Id</th>
+                                        <th scope="col" class="table-th">Descripción</th>
+                                        <th scope="col" class="table-th" style="text-align: center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php($i = 1)
                                     @if ($permissions->count() > 0)
                                         @foreach ($permissions as $obj)
-                                            <tr class="table-td {{ $i % 2 == 0 ? 'td-table' : '' }}">
+                                            <tr class=" {{ $i % 2 == 0 ? 'td-table' : '' }}">
                                                 <td class="table-td " align="center">{{ $obj->id }}</td>
                                                 <td class="table-td ">{{ $obj->name }}</td>
-                                                <td class="table-td " align="center">                                                    
-                                                    <a href="{{ url('seguridad/permission') }}/{{ $obj->id }}/edit"
-                                                        class="on-default edit-row">
-                                                        <iconify-icon icon="mdi:pencil-box" style="color: #1769aa;" width="40"></iconify-icon></a>
+                                                <td class="table-td " align="center">
+                                                    <iconify-icon icon="mdi:pencil-box"
+                                                        onclick="modal_edit({{ $obj->id }},'{{ $obj->name }}')"
+                                                        style="color: #1769aa;" width="40"></iconify-icon>
 
-                                                    &nbsp;&nbsp;<a href=""
-                                                        data-target="#modal-delete-{{ $obj->id }}"
-                                                        data-toggle="modal"><iconify-icon icon="mdi:trash" style="color: #1769aa;" width="40"></iconify-icon></a>
+                                                    &nbsp;&nbsp;
+                                                        <iconify-icon data-bs-toggle="modal" data-bs-target="#modal-delete-{{ $obj->id }}" icon="mdi:trash" style="color: #1769aa;"
+                                                            width="40"></iconify-icon>
+                                                   
 
                                                 </td>
                                             </tr>
                                             @php($i++)
+                                            @include('seguridad.permission.modal')
                                         @endforeach
                                     @endif
 
@@ -68,7 +71,7 @@
                             <div
                                 class="flex items-center justify-between p-5 border-b rounded-t dark:border-slate-600 bg-black-500">
                                 <h3 class="text-xl font-medium text-white dark:text-white capitalize">
-                                    Default Modal
+                                    Nuevo permiso
                                 </h3>
                                 <button type="button"
                                     class="text-slate-400 bg-transparent hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center
@@ -103,5 +106,64 @@
             </div>
         </div>
     </div>
+    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        id="usuario_edit_modal" tabindex="-1" aria-labelledby="usuario_edit_modal" aria-hidden="true">
+        <div class="modal-dialog relative w-auto pointer-events-none">
+            <div
+                class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding
+        rounded-md outline-none text-current">
+                <div class="relative bg-white rounded-lg shadow dark:bg-slate-700">
+                    <!-- Modal header -->
+
+                    <form action="{{ url('seguridad/permission/update_permission') }}" method="POST" class="forms-sample">
+                        @csrf
+                        <div
+                            class="flex items-center justify-between p-5 border-b rounded-t dark:border-slate-600 bg-black-500">
+                            <h3 class="text-xl font-medium text-white dark:text-white capitalize">
+                                Editar permiso
+                            </h3>
+                            <button type="button"
+                                class="text-slate-400 bg-transparent hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center
+                    dark:hover:bg-slate-600 dark:hover:text-white"
+                                data-bs-dismiss="modal">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="#ffffff" viewbox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
+                            11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Nuevo permiso</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-4">
+                            <div class="input-area">
+                                <label for="name" class="form-label">Permiso</label>
+                                <input type="hidden" class="form-control" required id="id" name="id">
+                                <input type="text" class="form-control" required id="name" name="name">
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div
+                            class="flex items-center justify-end p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
+                            <button type="submit"
+                                class="btn inline-flex justify-center text-white bg-black-500">Aceptar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}" sync></script>
+    <script type="text/javascript">
+        function modal_edit(id, name) {
+            //alert(id);
+            document.getElementById('id').value = id;
+            document.getElementById('name').value = name;
+            $('#usuario_edit_modal').modal('show');
+        };
+    </script>
 
 @endsection

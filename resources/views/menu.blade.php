@@ -29,6 +29,9 @@
         }
         .td-table{
             background-color: #e1e2e6;
+        } 
+        .table-td{
+            text-transform: none;
         }
     </style>
 </head>

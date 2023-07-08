@@ -37,3 +37,4 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/test', [HomeController::class, 'test'])->name('test');
 
 Route::resource('seguridad/permission', PermissionController::class);
+Route::post('seguridad/permission/update_permission', [PermissionController::class,'update_permission']);

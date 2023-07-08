@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission as ModelsPermission;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -19,14 +20,16 @@ class PermissionController extends Controller
         return view('seguridad.permission.index', compact('permissions'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+   
+    
+    public function update_permission(Request $request)
     {
-        //
+        $permission = ModelsPermission::findOrFail($request->id);
+        $permission->name = $request->name;
+        $permission->update();
+
+        alert()->success('El registro ha sido modificado correctamente');
+        return back();
     }
 
     /**
@@ -84,6 +87,9 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission = ModelsPermission::findOrFail($id);
+        $permission->delete();
+        alert()->error('El registro ha sido eliminado correctamente');
+        return back();
     }
 }
