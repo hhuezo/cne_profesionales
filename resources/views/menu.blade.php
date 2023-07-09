@@ -421,25 +421,7 @@
                     <!-- Icons -->
                     <li class="">
                 </ul>
-                <!-- Upgrade Your Business Plan Card Start -->
-                <div class="bg-slate-900 mb-10 mt-24 p-4 relative text-center rounded-2xl text-white"
-                    id="sidebar_bottom_wizard">
-                    <img src="{{ asset('assets/images/svg/rabit.svg') }}" alt=""
-                        class="mx-auto relative -mt-[73px]">
-                    <div class="max-w-[160px] mx-auto mt-6">
-                        <div class="widget-title font-Inter mb-1">Unlimited Access</div>
-                        <div class="text-xs font-light font-Inter">
-                            Upgrade your system to business plan
-                        </div>
-                    </div>
-                    <div class="mt-6">
-                        <button
-                            class="bg-white hover:bg-opacity-80 text-slate-900 text-sm font-Inter rounded-md w-full block py-2 font-medium">
-                            Upgrade
-                        </button>
-                    </div>
-                </div>
-                <!-- Upgrade Your Business Plan Card Start -->
+           
             </div>
         </div>
         <!-- End: Sidebar -->
