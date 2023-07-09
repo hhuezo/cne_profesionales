@@ -21,19 +21,17 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- END: Theme CSS-->
     <script src="{{ asset('assets/js/settings.js') }}" sync></script>
+    <script src="{{ asset('assets/js/iconify-icon.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}" sync></script>
+    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
 
-    <style>
-        .dashcode-data-table {
-            margin-left: 39px;
-            margin-right: 39px;
-        }
-        .td-table{
-            background-color: #e1e2e6;
-        } 
-        .table-td{
-            text-transform: none;
-        }
-    </style>
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 </head>
 
 <body class=" font-inter dashcode-app" id="body_class">
@@ -82,6 +80,9 @@
                         <ul class="sidebar-submenu">
                             <li>
                                 <a href="{{ url('seguridad/usuario') }}">Usuario</a>
+                            </li>
+                            <li>
+                                <a href="{{ url('seguridad/role') }}">Rol</a>
                             </li>
                             <li>
                                 <a href="{{ url('seguridad/permission') }}">Permisos</a>
