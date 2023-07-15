@@ -25,7 +25,7 @@ class Perfil extends Model
         'Telefono',
         'UsuarioIngreso',
         'FechaIngreso',
-        'Activo',
+        'NivelVerificacion',
         'Certificador',
         'TipoOcupacionCertificada',
         'NumeroCertificacion',

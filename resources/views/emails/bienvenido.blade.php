@@ -4,7 +4,7 @@
     <title>Hola</title>
 </head>
 <body>
-    <h2>Estimado,</h2>
+    <h3>Estimado,</h3>
     <p>{{ $content }}</p>
     <br>
     <p>Atentamente,</p>

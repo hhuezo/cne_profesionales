@@ -179,6 +179,7 @@ return [
 
         Spatie\Permission\PermissionServiceProvider::class,
 
+
     ],
 
     /*
@@ -195,5 +196,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // ...
     ])->toArray(),
+
+
 
 ];

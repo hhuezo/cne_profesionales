@@ -33,6 +33,7 @@ class HomeController extends Controller
         $municipios = Municipio::where('Activo', 1)->get();
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
+        //dd(session('perfil'),session('pais'),$paises);
 
         return view('home', compact('paises', 'departamentos', 'municipios', 'entidades', 'tipos_certificados'));
     }

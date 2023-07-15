@@ -81,7 +81,7 @@ class RegisterController extends Controller
             'last_name' => $data['Apellido'],
             'email' => $data['Email'],
             'password' => Hash::make($data['Password']),
-            'active' => 0,
+            'active' => 1,
         ]);
 
         $perfil = new Perfil();
@@ -95,7 +95,7 @@ class RegisterController extends Controller
         $perfil->Municipio = $data['Municipio'];
         $perfil->Direccion = $data['Direccion'];
         $perfil->Telefono = $data['Telefono'];
-        $perfil->Activo = 0;
+        $perfil->NivelVerificacion = 0;
         $perfil->Certificador = $data['EntidadCertificadora'];
         $perfil->TipoOcupacionCertificada = $data['TipoCertificado'];
         $perfil->NumeroCertificacion = $data['NumeroCertificacion'];

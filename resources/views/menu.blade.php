@@ -1956,7 +1956,7 @@
                         <div class="transition-all duration-150 container-fluid" id="page_layout">
                             <div id="content_layout">
                                 @yield('contenido')
-
+                                @include('sweetalert::alert')
                             </div>
                         </div>
                     </div>

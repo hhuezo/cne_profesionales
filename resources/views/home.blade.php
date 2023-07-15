@@ -3,9 +3,8 @@
     @php
         //dd(auth()->user()->name,session('perfil')->Dui,auth()->user(),session('perfil'));
     @endphp
-    @if (auth()->user()->active == 0)
-        @if (session('perfil')->Activo == 0)
-            <!-- Light / Bold Headings -->
+    @if (isset(session('perfil')->NivelVerificacion))
+        @if (session('perfil')->NivelVerificacion == 0)
             <div class="card ">
                 <div class="card-body flex flex-col p-6">
                     <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
@@ -34,7 +33,7 @@
                         </p>
                     </div>
                 </div>
-            @elseif (session('perfil')->Activo == 1)
+            @elseif (session('perfil')->NivelVerificacion == 1)
                 <div class="card">
                     <header class=" card-header noborder">
                         <h4 class="card-title">Actualizar Datos
@@ -46,7 +45,8 @@
                             <span class="  col-span-4 hidden"></span>
                             <div class="inline-block min-w-full align-middle">
                                 <div class="overflow-hidden ">
-                                    <form method="POST" action="{{ route('register') }}">
+                                    <form method="post" action="{{ route('usuarios.update', auth()->user()->id) }}">
+                                        @method('PUT')
                                         @csrf
 
                                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
@@ -231,24 +231,6 @@
                         </div>
                     </div>
                 </div>
-            @elseif (session('perfil')->Activo == 2)
-                <div class="card ">
-                    <div class="card-body flex flex-col p-6">
-                        <header
-                            class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
-                            <div class="flex-1">
-                                <div class="card-title text-slate-900 dark:text-white">¡Perfil verificado!
-                                </div>
-                            </div>
-                        </header>
-                        <div class="card-text h-full">
-                            <p style="text-align: justify" class="text-sm font-Inter text-slate-600 dark:text-slate-300">
-                                Nos complace informarte que tu perfil ha sido verificado exitosamente. Ahora puedes
-                                disfrutar de todas las funcionalidades y beneficios de nuestra plataforma. ¡Gracias por tu
-                                paciencia y colaboración!
-                            </p>
-                        </div>
-                    </div>
         @endif
     @endif
 @endsection

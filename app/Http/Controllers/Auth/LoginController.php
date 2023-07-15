@@ -45,7 +45,7 @@ class LoginController extends Controller
 
         $user->load('perfil');
         session(['perfil' => $user->perfil]);
-        if ($user->active == 0) {
+        if (isset(session('perfil')->NivelVerificacion) && session('perfil')->NivelVerificacion == 1) {
             $municipio = Municipio::find(session('perfil')->Municipio);
             session(['departamento' => $municipio->departamento]);
             session(['pais' => session('departamento')->pais]);
