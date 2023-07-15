@@ -1,4 +1,4 @@
-<?php /*@extends('layouts.app') 
+<?php /*@extends('layouts.app')
 @section('content')
 
     <div class="container">
@@ -119,67 +119,113 @@
                                     <div class="card-title text-slate-900 dark:text-white">Registro</div>
                                 </div>
                             </header>
-                            <form class="space-y-4">
+                            <form method="POST" action="{{ route('register') }}">
+                            @csrf
+
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                     <div class="input-area relative">
-                                        <label for="largeInput" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control">
+                                        <label for="Nombre" class="form-label">Nombre</label>
+                                        <input type="text"  name="Nombre" id="Nombre" class="form-control">
                                     </div>
                                     <div class="input-area relative">
-                                        <label for="largeInput" class="form-label">Apellido</label>
-                                        <input type="email" class="form-control">
+                                        <label for="Apellido" class="form-label">Apellido</label>
+                                        <input type="text" name="Apellido" id="Apellido" class="form-control">
                                     </div>
                                     <div class="input-area relative">
-                                        <label for="largeInput" class="form-label">Email</label>
-                                        <input type="tel" class="form-control">
+                                        <label for="Email" class="form-label">Email</label>
+                                        <input type="email" name="Email" id="Email" class="form-control">
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="Dui" class="form-label">Dui</label>
+                                        <input type="text" name="Dui" id="Dui" class="form-control">
                                     </div>
                                     <div class="input-area relative">
                                         <label for="largeInput" class="form-label">Password</label>
-                                        <input type="password" class="form-control">
+                                        <input type="password" name="Password" id="Password" class="form-control">
                                     </div>
                                     <div class="input-area">
-                                        <label for="select" class="form-label">Profesión u oficio</label>
-                                        <select id="select" class="form-control">
-                                            <option value="option1" class="dark:bg-slate-700">Ingeniero</option>
-                                            <option value="option2" class="dark:bg-slate-700">Country 2</option>
-                                            <option value="option3" class="dark:bg-slate-700">Country 3</option>
-                                            <option value="option4" class="dark:bg-slate-700">Country 4</option>
+                                        <label for="Profesion" class="form-label">Profesión u oficio</label>
+                                        <select name="Profesion" id="Profesion" class="form-control">
+                                            <option value="Ingeniero" class="dark:bg-slate-700">Ingeniero</option>
+                                            <option value="Profesión 2" class="dark:bg-slate-700">Profesión 2</option>
+                                            <option value="Profesión 3" class="dark:bg-slate-700">Profesión 3</option>
+                                            <option value="Profesión 4" class="dark:bg-slate-700">Profesión 4</option>
                                         </select>
                                     </div>
                                     <div class="input-area relative">
-                                        <label for="largeInput" class="form-label">Nacionalidad</label>
-                                        <select id="select" class="form-control">
-                                            <option value="option1" class="dark:bg-slate-700">El salvador</option>
-                                            <option value="option2" class="dark:bg-slate-700">Country 2</option>
-                                            <option value="option3" class="dark:bg-slate-700">Country 3</option>
-                                            <option value="option4" class="dark:bg-slate-700">Country 4</option>
+                                        <label for="Nacionalidad" class="form-label">Nacionalidad</label>
+                                        <select name="Nacionalidad" id="Nacionalidad" class="form-control">
+                                            <option value="Salvadoreño" class="dark:bg-slate-700">Salvadoreño</option>
+                                            <option value="Panameño" class="dark:bg-slate-700">Panameño</option>
+                                            <option value="Nacionalidad 3" class="dark:bg-slate-700">Nacionalidad 3</option>
+                                            <option value="Nacionalidad 4" class="dark:bg-slate-700">Nacionalidad 4</option>
                                         </select>
                                     </div>
                                     <div class="input-area relative">
-                                        <label for="largeInput" class="form-label">Dirección</label>
-                                        <input type="password" class="form-control">
+                                        <label for="Direccion" class="form-label">Dirección</label>
+                                        <input type="text" name="Direccion" id="Direccion" class="form-control">
                                     </div>
                                     <div class="input-area relative">
-                                        <label for="largeInput" class="form-label">Municipio</label>
-                                        <select id="select" class="form-control">
-                                            <option value="option1" class="dark:bg-slate-700">San salvador</option>
-                                            <option value="option2" class="dark:bg-slate-700">Country 2</option>
-                                            <option value="option3" class="dark:bg-slate-700">Country 3</option>
-                                            <option value="option4" class="dark:bg-slate-700">Country 4</option>
+                                        <label for="Pais" class="form-label">Pais</label>
+                                        <select name="Pais" id="Pais" class="form-control">
+                                            @foreach ($paises as $obj)
+                                            <option value="{{$obj->Id}}" class="dark:bg-slate-700" {{ old('Pais') == $obj->Id ? 'selected' : '' }}>{{$obj->Nombre}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="input-area relative">
-                                        <label for="largeInput" class="form-label">Telefono</label>
-                                        <input type="password" class="form-control">
+                                        <label for="Departamento" class="form-label">Departamento</label>
+                                        <select name="Departamento" id="Departamento" class="form-control">
+                                            @foreach ($departamentos as $obj)
+                                            <option value="{{$obj->Id}}" class="dark:bg-slate-700" {{ old('Departamento') == $obj->Id ? 'selected' : '' }}>{{$obj->Nombre}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                  
-                                  
+                                    <div class="input-area relative">
+                                        <label for="Municipio" class="form-label">Municipio</label>
+                                        <select name="Municipio" id="Municipio" class="form-control">
+                                            @foreach ($municipios as $obj)
+                                            <option value="{{$obj->Id}}" class="dark:bg-slate-700" {{ old('Municipio') == $obj->Id ? 'selected' : '' }}>{{$obj->Nombre}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="Telefono" class="form-label">Telefono</label>
+                                        <input type="tel" name="Telefono" id="Telefono" class="form-control">
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="EntidadCertificadora" class="form-label">Entidad Certificadora</label>
+                                        <select name="EntidadCertificadora" id="EntidadCertificadora" class="form-control">
+                                            @foreach ($entidades as $obj)
+                                            <option value="{{$obj->Id}}" class="dark:bg-slate-700" {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>{{$obj->Nombre}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="TipoCertificado" class="form-label">Tipo Certificado</label>
+                                        <select name="TipoCertificado" id="TipoCertificado" class="form-control">
+                                            @foreach ($tipos_certificados as $obj)
+                                            <option value="{{$obj->Id}}" class="dark:bg-slate-700" {{ old('TipoCertificado') == $obj->Id ? 'selected' : '' }}>{{$obj->Descripcion}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="NumeroCertificacion" class="form-label">Numero de Certificación</label>
+                                        <input type="text" name="NumeroCertificacion" id="NumeroCertificacion" class="form-control">
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="VigenciaCertificacion" class="form-label">Vigencia de la Certificación</label>
+                                        <input type="date" name="VigenciaCertificacion" id="VigenciaCertificacion" class="form-control">
+                                    </div>
+
+
                                 </div>
+                                <br>
                                 <div style="text-align: right;">
-                                    <button class="btn inline-flex justify-center btn-dark">Registrar</button>
+                                    <button type="submit" class="btn inline-flex justify-center btn-dark">Registrar</button>
                                 </div>
-                                
-                                
+
+
                             </form>
                         </div>
                     </div>

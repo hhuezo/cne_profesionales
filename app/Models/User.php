@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\catalogo\Perfil;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,6 +12,8 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
+    public $timestamps = true;
+
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
 
@@ -21,8 +24,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
         'email',
         'password',
+        'active',
     ];
 
     /**
@@ -43,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function perfil()
+    {
+        return $this->hasOne(Perfil::class, 'Usuario');
+    }
 }
