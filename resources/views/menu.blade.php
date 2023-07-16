@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>Dashcode - HTML Template</title>
+    <title>CNE</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo/favicon.svg') }}">
     <!-- BEGIN: Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +47,7 @@
                     <img src="{{ asset('assets/images/logo/logo-c.svg') }}" class="black_logo" alt="logo">
                     <img src="{{ asset('assets/images/logo/logo-c-white.svg') }}" class="white_logo" alt="logo">
                     <span
-                        class="ltr:ml-3 rtl:mr-3 text-xl font-Inter font-bold text-slate-900 dark:text-white">DashCode</span>
+                        class="ltr:ml-3 rtl:mr-3 text-xl font-Inter font-bold text-slate-900 dark:text-white">CNE</span>
                 </a>
                 <!-- Sidebar Type Button -->
                 <div id="sidebar_type" class="cursor-pointer text-slate-900 dark:text-white text-lg">
@@ -67,10 +67,11 @@
             </div>
             <div class="sidebar-menus bg-white dark:bg-slate-800 py-2 px-4 h-[calc(100%-80px)] overflow-y-auto z-50"
                 id="sidebar_menus">
+            @if (auth()->user()->name=='Administrador')
                 <ul class="sidebar-menu">
-                    <li class="sidebar-menu-title">MENU</li>
+                    <li class="sidebar-menu-title">Usuarios</li>
                     <li class="">
-                        <a href="#" class="navItem">
+                        <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                             <span class="flex items-center">
                                 <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
                                 <span>Seguridad</span>
@@ -417,6 +418,7 @@
                                 <span>Map</span>
                             </span>
                         </a>
+
                     </li>
                     <!-- Icons -->
                     <li class="">
@@ -2165,9 +2167,12 @@
                                             <img src="{{ asset('assets/images/all-img/user.png')}}" alt="user"
                                                 class="block w-full h-full object-cover rounded-full">
                                         </div>
+                                        @php
+                                            //dd(session()->all(),auth()->user())
+                                        @endphp
                                         <span
-                                            class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">Albert
-                                            Flores</span>
+                                            class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">{{auth()->user()->email}}
+                                        </span>
                                         <svg class="w-[16px] h-[16px] dark:text-white hidden lg:inline-block text-base inline-block ml-[10px] rtl:mr-[10px]"
                                             aria-hidden="true" fill="none" stroke="currentColor"
                                             viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -2300,12 +2305,7 @@
                         <div class="transition-all duration-150 container-fluid" id="page_layout">
                             <div id="content_layout">
                                 @yield('contenido')
-
-
-
-
-
-
+                                @include('sweetalert::alert')
                             </div>
                         </div>
                     </div>
@@ -2320,12 +2320,12 @@
                         <div class="text-center ltr:md:text-start rtl:md:text-right text-sm">
                             COPYRIGHT ©
                             <span id="thisYear"></span>
-                            DashCode, All rights Reserved
+                            CNE, All rights Reserved
                         </div>
                         <div class="ltr:md:text-right rtl:md:text-end text-center text-sm">
                             Hand-crafted &amp; Made by
                             <a href="https://codeshaper.net" target="_blank" class="text-primary-500 font-semibold">
-                                Codeshaper
+                                CNE
                             </a>
                         </div>
                     </div>
