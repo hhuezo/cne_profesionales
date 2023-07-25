@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>CNE</title>
+    <title>DGEHM</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo/favicon.svg') }}">
     <!-- BEGIN: Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,7 +35,7 @@
                     <img src="{{ asset('assets/images/logo/logo-c.svg') }}" class="black_logo" alt="logo">
                     <img src="{{ asset('assets/images/logo/logo-c-white.svg') }}" class="white_logo" alt="logo">
                     <span
-                        class="ltr:ml-3 rtl:mr-3 text-xl font-Inter font-bold text-slate-900 dark:text-white">CNE</span>
+                        class="ltr:ml-3 rtl:mr-3 text-xl font-Inter font-bold text-slate-900 dark:text-white">DGEHM</span>
                 </a>
                 <!-- Sidebar Type Button -->
                 <div id="sidebar_type" class="cursor-pointer text-slate-900 dark:text-white text-lg">
@@ -1971,12 +1971,12 @@
                         <div class="text-center ltr:md:text-start rtl:md:text-right text-sm">
                             COPYRIGHT ©
                             <span id="thisYear"></span>
-                            CNE, All rights Reserved
+                            DGEHM, All rights Reserved
                         </div>
                         <div class="ltr:md:text-right rtl:md:text-end text-center text-sm">
                             Hand-crafted &amp; Made by
                             <a href="https://codeshaper.net" target="_blank" class="text-primary-500 font-semibold">
-                                CNE
+                                DGEHM
                             </a>
                         </div>
                     </div>
