@@ -7,6 +7,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\WelcomeController;
 
+use App\Http\Controllers\seguridad\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,9 @@ Route::resource('seguridad/usuario', UsuarioController::class);
 Route::resource('seguridad/role', RoleController::class);
 Route::post('seguridad/role/unlink_permission', [RoleController::class,'unlink_permission']);
 Route::post('seguridad/role/link_permission', [RoleController::class,'link_permission']);
+//usuarios
+Route::resource('seguridad/usuarios', UserController::class);
+Route::get('seguridad/usuarios/verificarUsuario/{id}',[UserController::class, 'verificarUsuario'])->name('usuarios.verificarUsuario');
+Route::post('seguridad/usuarios/usuarioVerificado/{id}',[UserController::class, 'usuarioVerificado'])->name('usuarios.usuarioVerificado');
+
+

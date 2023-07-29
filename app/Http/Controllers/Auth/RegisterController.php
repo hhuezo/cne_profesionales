@@ -3,10 +3,21 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use App\Mail\VerificacionMail;
+use App\Models\catalogo\Departamento;
+use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\Municipio;
+use App\Models\catalogo\Pais;
+use App\Models\catalogo\Perfil;
+use App\Models\catalogo\TipoCertificado;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -20,7 +31,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -64,10 +75,83 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+
+        $usuario = User::create([
+            'name' => $data['Nombre'],
+            'last_name' => $data['Apellido'],
+            'email' => $data['Email'],
+            'password' => Hash::make($data['Password']),
+            'active' => 1,
         ]);
+
+        $perfil = new Perfil();
+        // Set the values from the validated data
+        $perfil->Usuario = $usuario->id;
+        $perfil->Dui = $data['Dui'];
+        //$perfil->DuiURL = $data ['DuiURL'];
+        $perfil->Profesion = $data['Profesion'];
+        //$perfil->TituloURL = $data['TituloURL'];
+        $perfil->Nacionalidad = $data['Nacionalidad'];
+        $perfil->Municipio = $data['Municipio'];
+        $perfil->Direccion = $data['Direccion'];
+        $perfil->Telefono = $data['Telefono'];
+        $perfil->NivelVerificacion = 0;
+        $perfil->Certificador = $data['EntidadCertificadora'];
+        $perfil->TipoOcupacionCertificada = $data['TipoCertificado'];
+        $perfil->NumeroCertificacion = $data['NumeroCertificacion'];
+        //$perfil->LicenciaURL = $data['LicenciaURL'];
+        $perfil->VigenciaCertificacion = $data['VigenciaCertificacion'];
+
+        $perfil->save();
+
+        return $usuario;
+
     }
+
+    public function showRegistrationForm()
+    {
+        $paises = Pais::where('Activo', 1)->get();
+        $departamentos = Departamento::get();
+        $municipios = Municipio::where('Activo', 1)->get();
+        $entidades = EntidadCertificadora::get();
+        $tipos_certificados = TipoCertificado::get();
+
+        return view('auth.register', compact('paises', 'departamentos', 'municipios', 'entidades', 'tipos_certificados'));
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function register(Request $request)
+    {
+
+        //$this->validator($request->all())->validate();
+        event(new Registered($user = $this->create($request->all())));
+        $this->guard()->login($user);
+
+        $subject = 'Registro pendiente de verificación';
+        $content = 'Le informamos que su cuenta ha sido registrada exitosamente en nuestro sistema. Sin embargo, aún falta la verificación por parte de uno de nuestros administradores. Pronto recibirá un correo electrónico con instrucciones adicionales. Agradecemos su paciencia y comprensión.';
+        $recipientEmail = $request->Email;
+        Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
+
+        if ($response = $this->registered($request, $user)) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+        ? new JsonResponse([], 201)
+        : redirect($this->redirectPath());
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        $user->load('perfil');
+        session(['perfil' => $user->perfil]);
+
+        return redirect()->intended($this->redirectPath());
+    }
+
 }
