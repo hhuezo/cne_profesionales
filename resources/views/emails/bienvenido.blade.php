@@ -9,6 +9,6 @@
     <br>
     <p>Atentamente,</p>
     <br>
-    <p>El equipo de DGEHM</p>
+    <p>El equipo de CNE</p>
 </body>
 </html>
