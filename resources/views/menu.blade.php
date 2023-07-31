@@ -71,11 +71,11 @@
                 <ul class="sidebar-menu">
                     <li class="sidebar-menu-title">Usuarios</li>
                     <li class="">
-                        <a href="{{ url('seguridad/usuarios') }}" class="navItem">
+                        <a href="#" class="navItem">
                             <span class="flex items-center">
                                 <iconify-icon class=" nav-icon" icon="heroicons-outline:user-group"></iconify-icon>
-                                <span>Verificar Usuarios</span>
-                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
+                                {{-- <span>Verificar Usuarios</span>
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
                                 <span>Seguridad</span>
                             </span>
                             <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
@@ -89,16 +89,26 @@
                             </li>
                             <li>
                                 <a href="{{ url('seguridad/permission') }}">Permisos</a>
-                            </li>                         
+                            </li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="{{ url('seguridad/usuarios') }}" class="navItem">
+                            <span class="flex items-center">
+
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
+                                <span>Verificar Usuarios</span>
+                            </span>
+                        </a>
                     </li>
                     <!-- Apps Area -->
                     <li class="sidebar-menu-title">APPS</li>
                     <li>
-                        <a href="chat.html" class="navItem">
+                        <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                             <span class="flex items-center">
-                                <iconify-icon class="nav-icon" icon="heroicons-outline:chat"></iconify-icon>
-                                <span>Chat</span>
+
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
+                                <span>Verificar Usuarios</span>
                             </span>
                         </a>
                     </li>
@@ -432,7 +442,7 @@
 
                 <!-- Upgrade Your Business Plan Card Start -->
 =======
-           
+
 >>>>>>> 8eed61c68ec0dbe751ea7db0d57c64bffbb617ee
             </div>
         </div>
@@ -2397,15 +2407,15 @@
     <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
     <script src="{{ asset('assets/js/popper.js') }}"></script>
     <script src="{{ asset('assets/js/SimpleBar.js') }}"></script>
-    
+
     <script src="{{ asset('assets/js/iconify.js') }}"></script>
     <!-- Jquery Plugins -->
-    
-   
+
+
     <!-- app js -->
     <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-   
+
 
 
 </body>

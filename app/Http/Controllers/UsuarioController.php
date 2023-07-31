@@ -31,7 +31,7 @@ class UsuarioController extends Controller
         //
     }
 
-r
+
     public function edit($id)
     {
         //
