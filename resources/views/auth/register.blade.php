@@ -142,13 +142,19 @@
                                         <input type="email" name="Email" id="Email" class="form-control">
                                     </div>
                                     <div class="input-area relative">
-                                        <label for="Dui" class="form-label">Dui</label>
-                                        <input type="text" name="Dui" id="Dui" class="form-control">
-                                    </div>
-                                    <div class="input-area relative">
                                         <label for="largeInput" class="form-label">Password</label>
                                         <input type="password" name="Password" id="Password" class="form-control">
                                     </div>
+                                    <div class="input-area relative">
+                                        <label for="Dui" class="form-label">DUI</label>
+                                        <input type="text" name="Dui" id="Dui" class="form-control">
+                                    </div>
+
+                                    <div class="input-area relative">
+                                        <label for="Dui" class="form-label">Adjuntar DUI</label>
+                                        <input type="file" name="DuiURL"  class="form-control">
+                                    </div>
+
                                     <div class="input-area">
                                         <label for="Profesion" class="form-label">Profesión u oficio</label>
                                         <select name="Profesion" id="Profesion" class="form-control">
@@ -157,6 +163,10 @@
                                             <option value="Profesión 3" class="dark:bg-slate-700">Profesión 3</option>
                                             <option value="Profesión 4" class="dark:bg-slate-700">Profesión 4</option>
                                         </select>
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="Dui" class="form-label">Adjuntar titulo</label>
+                                        <input type="file" name="DuiURL"  class="form-control">
                                     </div>
                                     <div class="input-area relative">
                                         <label for="Nacionalidad" class="form-label">Nacionalidad</label>

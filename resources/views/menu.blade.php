@@ -102,7 +102,7 @@
                         </a>
                     </li>
                     <!-- Apps Area -->
-                    <li class="sidebar-menu-title">APPS</li>
+                    {{-- <li class="sidebar-menu-title">APPS</li>
                     <li>
                         <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                             <span class="flex items-center">
@@ -161,9 +161,9 @@
                                 <a href="project-details.html">Project Details</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <!-- Pages Area -->
-                    <li class="sidebar-menu-title">PAGES</li>
+                    {{-- <li class="sidebar-menu-title">PAGES</li>
                     <!-- Authentication -->
                     <li class="">
                         <a href="javascript:void(0)" class="navItem">
@@ -270,9 +270,9 @@
                                 <a href="statistics-widgets.html">Statistic</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <!-- Components -->
-                    <li>
+                    {{-- <li>
                         <a href="javascript:void(0)" class="navItem">
                             <span class="flex items-center">
                                 <iconify-icon class=" nav-icon" icon="heroicons-outline:collection"></iconify-icon>
@@ -403,9 +403,9 @@
                                 <a href="advance-table.html">Advanced table</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <!-- Charts -->
-                    <li class="">
+                    {{-- <li class="">
                         <a href="javascript:void(0)" class="navItem">
                             <span class="flex items-center">
                                 <iconify-icon class=" nav-icon" icon="heroicons-outline:chart-bar"></iconify-icon>
@@ -433,17 +433,13 @@
 
                     </li>
                     <!-- Icons -->
-                    <li class="">
+                    <li class=""> --}}
                 </ul>
-<<<<<<< HEAD
             @endif
 
                 <!-- Upgrade Your Business Plan Card Start -->
 
                 <!-- Upgrade Your Business Plan Card Start -->
-=======
-
->>>>>>> 8eed61c68ec0dbe751ea7db0d57c64bffbb617ee
             </div>
         </div>
         <!-- End: Sidebar -->
