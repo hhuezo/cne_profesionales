@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>CNE</title>
+    <title>DGEHM</title>
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo/favicon.svg') }}">
     <!-- BEGIN: Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +32,12 @@
             $('#myTable').DataTable();
         });
     </script>
+
+    <style>
+        .card-title{
+            text-transform: none;
+        }
+    </style>
 </head>
 
 <body class=" font-inter dashcode-app" id="body_class">
@@ -47,7 +53,7 @@
                     <img src="{{ asset('assets/images/logo/logo-c.svg') }}" class="black_logo" alt="logo">
                     <img src="{{ asset('assets/images/logo/logo-c-white.svg') }}" class="white_logo" alt="logo">
                     <span
-                        class="ltr:ml-3 rtl:mr-3 text-xl font-Inter font-bold text-slate-900 dark:text-white">CNE</span>
+                        class="ltr:ml-3 rtl:mr-3 text-xl font-Inter font-bold text-slate-900 dark:text-white">DGEHM</span>
                 </a>
                 <!-- Sidebar Type Button -->
                 <div id="sidebar_type" class="cursor-pointer text-slate-900 dark:text-white text-lg">
@@ -813,7 +819,7 @@
                                                         <iconify-icon icon=heroicons-outline:chat
                                                             class="leading-[1] text-base"> </iconify-icon>
                                                         <span class="leading-[1]">
-                                                            Chat
+                                                            ChatAA
                                                         </span>
                                                     </div>
                                                 </a>
@@ -2202,13 +2208,11 @@
       overflow-hidden">
                                         <ul class="py-1 text-sm text-slate-800 dark:text-slate-200">
                                             <li>
-                                                <a href="index.html"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
+                                                <a href="{{url('seguridad/perfil')}}" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
                                                     <iconify-icon icon="heroicons-outline:user"
                                                         class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
                                                     </iconify-icon>
-                                                    <span class="font-Inter">Dashboard</span>
+                                                    <span class="font-Inter">Perfil</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -2336,12 +2340,12 @@
                         <div class="text-center ltr:md:text-start rtl:md:text-right text-sm">
                             COPYRIGHT ©
                             <span id="thisYear"></span>
-                            CNE, All rights Reserved
+                            DGEHM, All rights Reserved
                         </div>
                         <div class="ltr:md:text-right rtl:md:text-end text-center text-sm">
                             Hand-crafted &amp; Made by
                             <a href="https://codeshaper.net" target="_blank" class="text-primary-500 font-semibold">
-                                CNE
+                                DGEHM
                             </a>
                         </div>
                     </div>
