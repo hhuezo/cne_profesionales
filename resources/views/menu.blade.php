@@ -107,6 +107,24 @@
                             </span>
                         </a>
                     </li>
+
+                    <li class="">
+                        <a href="#" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list"> </iconify-icon>
+                                {{-- <span>Verificar Usuarios</span>
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
+                                <span>Catalogos</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="{{ url('catalogo/tipo_certificado') }}">Tipos certificado</a>
+                            </li>
+
+                        </ul>
+                    </li>
                     <!-- Apps Area -->
                     {{-- <li class="sidebar-menu-title">APPS</li>
                     <li>

@@ -9,8 +9,9 @@
             <header class=" card-header noborder">
                 <h4 class="card-title">Tipos de certificado
                 </h4>
-                <button class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#usuario_create_modal">Nuevo</button>
+                <a href="{{url('catalogo/tipo_certificado/create')}}">
+                <button class="btn btn-outline-dark">Nuevo</button>
+                </a>
             </header>
             <div class="card">
                 <div style=" margin-left:20px; margin-right:20px; ">
@@ -35,16 +36,16 @@
                                                 <td>{{ $obj->Descripcion }}</td>
                                                 <td>{{ $obj->Alcance }}</td>
                                                 <td align="center">
-                                                    <iconify-icon icon="mdi:pencil-box"
-                                                        onclick="modal_edit({{ $obj->Id }},'{{ $obj->name }}')"
-                                                        style="color: #1769aa;" width="40"></iconify-icon>
-
+                                                    <a href="{{url('catalogo/tipo_certificado')}}/{{$obj->Id}}/edit">
+                                                    <iconify-icon icon="mdi:pencil-box" style="color: #475569;" width="40"></iconify-icon>
+                                                    </a>
                                                     &nbsp;&nbsp;
                                                     <iconify-icon data-bs-toggle="modal"
-                                                        data-bs-target="#modal-delete-{{ $obj->id }}" icon="mdi:trash"
-                                                        style="color: #1769aa;" width="40"></iconify-icon>
+                                                        data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
+                                                        style="color: #475569;" width="40"></iconify-icon>
                                                 </td>
                                             </tr>
+                                            @include('catalogo.tipo_certificado.modal')
                                         @endforeach
                                     @endif
 

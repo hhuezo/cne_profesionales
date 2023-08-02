@@ -26,18 +26,28 @@ class TipoCertificadoController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogo.tipo_certificado.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'Descripcion.required' => 'La descripción es requerida',
+            'Alcance.required' => 'El alcance es requerido',
+        ];
+
+        $request->validate([
+            'Descripcion' => 'required',
+            'Alcance' => 'required',
+        ], $messages);
+
+        $tipo_certificado = new TipoCertificado();
+        $tipo_certificado->Descripcion = $request->Descripcion;
+        $tipo_certificado->Alcance = $request->Alcance;
+        $tipo_certificado->save();
+        alert()->success('El registro ha sido creado correctamente');
+        return back();
     }
 
     /**
@@ -59,7 +69,7 @@ class TipoCertificadoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('catalogo.tipo_certificado.edit', ['tipo_certificado' => TipoCertificado::findOrFail($id)]);
     }
 
     /**
@@ -71,7 +81,22 @@ class TipoCertificadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'Descripcion.required' => 'La descripción es requerida',
+            'Alcance.required' => 'El alcance es requerido',
+        ];
+
+        $request->validate([
+            'Descripcion' => 'required',
+            'Alcance' => 'required',
+        ], $messages);
+
+        $tipo_certificado = TipoCertificado::findOrFail($id);
+        $tipo_certificado->Descripcion = $request->Descripcion;
+        $tipo_certificado->Alcance = $request->Alcance;
+        $tipo_certificado->save();
+        alert()->success('El registro ha sido modificado correctamente');
+        return back();
     }
 
     /**
@@ -82,6 +107,9 @@ class TipoCertificadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tipo_certificado = TipoCertificado::findOrFail($id);
+        $tipo_certificado->delete();
+        alert()->info('El registro ha sido eliminado correctamente');
+        return back();
     }
 }
