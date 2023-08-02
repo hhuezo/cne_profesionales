@@ -9,6 +9,7 @@ use App\Models\catalogo\Municipio;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PerfilController extends Controller
@@ -46,7 +47,36 @@ class PerfilController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'name.required' => 'El nombre es requerido',
+            'last_name.required' => 'El apellido es requerido',
+        ];
+
+        $request->validate([
+            'name' => 'required',
+            'last_name' => 'required',
+            'last_name' => 'required',
+        ], $messages);
+
+
+        $perfil = Perfil::findOrFail($id);
+        $perfil->Dui = $request->Dui;
+        $perfil->Profesion = $request->Profesion;
+        $perfil->Nacionalidad = $request->Nacionalidad;
+        $perfil->Direccion = $request->Direccion;
+        $perfil->Pais = $request->Pais;
+        //$perfil->Departamento = $request->Departamento;
+        $perfil->Municipio = $request->Municipio;
+        $perfil->Telefono = $request->Telefono;
+        $perfil->TipoCertificado = $request->TipoCertificado;
+        $perfil->NumeroCertificacion = $request->NumeroCertificacion;
+        $perfil->update();
+
+        $user = User::findOrFail($perfil->Usuario);
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->update();
+        return back();
     }
 
     public function destroy($id)

@@ -34,9 +34,10 @@
     </script>
 
     <style>
-        .card-title{
+        .card-title,.form-label{
             text-transform: none;
         }
+
     </style>
 </head>
 
@@ -75,7 +76,7 @@
                 id="sidebar_menus">
             @if (auth()->user()->name=='Administrador')
                 <ul class="sidebar-menu">
-                    <li class="sidebar-menu-title">Usuarios</li>
+                    {{-- <li class="sidebar-menu-title">Usuarios</li> --}}
                     <li class="">
                         <a href="#" class="navItem">
                             <span class="flex items-center">
