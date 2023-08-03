@@ -15,7 +15,8 @@
                                 </div>
 
                             </header>
-                            <form method="POST" action="{{ route('perfil.update', $perfil->Id) }}">
+                            <form method="POST" action="{{ route('perfil.update', $perfil->Id) }}"
+                                enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
 
@@ -47,12 +48,24 @@
                                         <input type="text" name="Dui" value="{{ $perfil->Dui }}"
                                             class="form-control">
                                     </div>
+                                    @if ($perfil->DuiURL)
+                                        <div class="input-area">
+                                            <label for="Dui" class="form-label">Adjuntar DUI</label>
+                                            <div class="relative">
+                                                <input type="file" name="DuiURL"  class="form-control !pr-12">
+                                                <button
+                                                    class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
+                                                   <a href=""> <iconify-icon icon="heroicons-solid:eye"></iconify-icon></a>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="input-area relative">
+                                            <label for="Dui" class="form-label">Adjuntar DUI</label>
+                                            <input type="file" name="DuiURL" value="{{ $perfil->DuiURL }}"  class="form-control">
+                                        </div>
+                                    @endif
 
-                                    <div class="input-area relative">
-                                        <label for="Dui" class="form-label">Adjuntar DUI</label>
-                                        <input type="file" name="DuiURL" value="{{ $perfil->DuiURL }}"
-                                            class="form-control">
-                                    </div>
 
                                     <div class="input-area">
                                         <label for="Profesion" class="form-label">Profesión u oficio</label>
@@ -61,7 +74,7 @@
                                     </div>
                                     <div class="input-area relative">
                                         <label for="Dui" class="form-label">Adjuntar titulo</label>
-                                        <input type="file" name="DuiURL" value="{{ $perfil->DuiURL }}"
+                                        <input type="file" name="TituloURL" value="{{ $perfil->TituloURL }}"
                                             class="form-control">
                                     </div>
                                     <div class="input-area relative">

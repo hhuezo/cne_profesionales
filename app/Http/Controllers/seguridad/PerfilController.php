@@ -11,6 +11,7 @@ use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Exception;
 
 class PerfilController extends Controller
 {
@@ -59,6 +60,8 @@ class PerfilController extends Controller
         ], $messages);
 
 
+
+
         $perfil = Perfil::findOrFail($id);
         $perfil->Dui = $request->Dui;
         $perfil->Profesion = $request->Profesion;
@@ -70,6 +73,42 @@ class PerfilController extends Controller
         $perfil->Telefono = $request->Telefono;
         $perfil->TipoCertificado = $request->TipoCertificado;
         $perfil->NumeroCertificacion = $request->NumeroCertificacion;
+
+
+        if ($request->DuiURL) {
+            try {
+                unlink(public_path("docs/") . $perfil->DuiURL);
+            } catch (Exception $e) {
+                //return $e->getMessage();
+            }
+        }
+
+
+        if ($request->TituloURL) {
+            try {
+                unlink(public_path("docs/") . $perfil->TituloURL);
+            } catch (Exception $e) {
+                //return $e->getMessage();
+            }
+        }
+
+        if ($request->file('DuiURL')) {
+            $file = $request->file('DuiURL');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $perfil->DuiURL = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+
+        if ($request->file('TituloURL')) {
+            $file = $request->file('TituloURL');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $perfil->TituloURL = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+
+
         $perfil->update();
 
         $user = User::findOrFail($perfil->Usuario);
