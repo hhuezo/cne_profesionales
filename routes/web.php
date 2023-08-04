@@ -49,7 +49,12 @@ Route::resource('seguridad/role', RoleController::class);
 Route::post('seguridad/role/unlink_permission', [RoleController::class,'unlink_permission']);
 Route::post('seguridad/role/link_permission', [RoleController::class,'link_permission']);
 
+Route::get('seguridad/perfil/get_municipio/{id}', [PerfilController::class,'get_municipio']);
+Route::get('seguridad/perfil/get_distrito/{id}', [PerfilController::class,'get_distrito']);
+Route::get('seguridad/perfil/cambio_clave', [PerfilController::class,'cambio_clave']);
+Route::post('seguridad/perfil/cambio_clave_store', [PerfilController::class,'cambio_clave_store']);
 Route::resource('seguridad/perfil', PerfilController::class);
+
 
 
 //usuarios

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\seguridad;
 
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Departamento;
+use App\Models\catalogo\Distrito;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Municipio;
 use App\Models\catalogo\Pais;
@@ -12,6 +13,7 @@ use App\Models\catalogo\TipoCertificado;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class PerfilController extends Controller
 {
@@ -36,9 +38,44 @@ class PerfilController extends Controller
         //
     }
 
-    public function show($id)
+    public function cambio_clave()
     {
-        //
+        return view('seguridad.perfil.cambio_clave');
+    }
+
+    public function cambio_clave_store(Request $request)
+    {
+
+
+        $messages = [
+            'password.required' => 'La contraseña es requerida',
+            'password.confirmed' => 'Las claves no coinciden',
+            'password.min' => 'Las claves debe tener al menos 8 caracteres',
+        ];
+
+        $request->validate([
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], $messages);
+    
+        $user = User::findOrFail(auth()->user()->id);
+        $user->password = Hash::make($request->password);
+        $user->update();
+        alert()->success('La clave ha sido actualizada correctamente');
+        return back();
+
+    }
+
+    
+
+    public function get_municipio($id)
+    {
+        return Municipio::where('Departamento','=',$id)->get();
+    }
+
+
+    public function get_distrito($id)
+    {
+        return Distrito::where('Municipio','=',$id)->get();
     }
 
     public function edit($id)
@@ -68,7 +105,7 @@ class PerfilController extends Controller
         $perfil->Nacionalidad = $request->Nacionalidad;
         $perfil->Direccion = $request->Direccion;
         $perfil->Pais = $request->Pais;
-        //$perfil->Departamento = $request->Departamento;
+        $perfil->Distrito = $request->Distrito;
         $perfil->Municipio = $request->Municipio;
         $perfil->Telefono = $request->Telefono;
         $perfil->TipoCertificado = $request->TipoCertificado;
@@ -106,8 +143,6 @@ class PerfilController extends Controller
             $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
             $perfil->TituloURL = $id_file . ' ' . $file->getClientOriginalName();
         }
-
-
 
         $perfil->update();
 

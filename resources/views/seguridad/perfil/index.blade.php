@@ -52,17 +52,20 @@
                                         <div class="input-area">
                                             <label for="Dui" class="form-label">Adjuntar DUI</label>
                                             <div class="relative">
-                                                <input type="file" name="DuiURL"  class="form-control !pr-12">
-                                                <button
-                                                    class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
-                                                   <a href=""> <iconify-icon icon="heroicons-solid:eye"></iconify-icon></a>
-                                                </button>
+                                                <input type="file" name="DuiURL" class="form-control !pr-12">
+                                                <a href="{{ url('docs') }}/{{ $perfil->DuiURL }}" target="_blank">
+                                                    <button
+                                                        class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
+                                                        <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
+                                                    </button>
+                                                </a>
                                             </div>
                                         </div>
                                     @else
                                         <div class="input-area relative">
                                             <label for="Dui" class="form-label">Adjuntar DUI</label>
-                                            <input type="file" name="DuiURL" value="{{ $perfil->DuiURL }}"  class="form-control">
+                                            <input type="file" name="DuiURL" value="{{ $perfil->DuiURL }}"
+                                                class="form-control">
                                         </div>
                                     @endif
 
@@ -72,11 +75,31 @@
                                         <input type="text" class="form-control" value="{{ $perfil->Profesion }}"
                                             name="Profesion">
                                     </div>
-                                    <div class="input-area relative">
-                                        <label for="Dui" class="form-label">Adjuntar titulo</label>
-                                        <input type="file" name="TituloURL" value="{{ $perfil->TituloURL }}"
-                                            class="form-control">
-                                    </div>
+
+
+
+                                    @if ($perfil->TituloURL)
+                                        <div class="input-area">
+                                            <label for="Dui" class="form-label">Adjuntar DUI</label>
+                                            <div class="relative">
+                                                <input type="file" name="TituloURL" class="form-control !pr-12">
+                                                <a href="{{ url('docs') }}/{{ $perfil->TituloURL }}" target="_blank">
+                                                    <button
+                                                        class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
+                                                        <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="input-area relative">
+                                            <label for="Dui" class="form-label">Adjuntar titulo</label>
+                                            <input type="file" name="TituloURL" value="{{ $perfil->TituloURL }}"
+                                                class="form-control">
+                                        </div>
+                                    @endif
+
+
                                     <div class="input-area relative">
                                         <label for="Nacionalidad" class="form-label">Nacionalidad</label>
                                         <input type="text" name="Nacionalidad" value="{{ $perfil->Nacionalidad }}"
@@ -98,11 +121,27 @@
                                         </select>
                                     </div>
                                     <div class="input-area relative">
+                                        <label for="Telefono" class="form-label">Telefono</label>
+                                        <input type="tel" name="Telefono" value="{{ $perfil->Telefono }}"
+                                            class="form-control">
+                                    </div>
+                                    <div class="input-area relative">
                                         <label for="Departamento" class="form-label">Departamento</label>
                                         <select name="Departamento" id="Departamento" class="form-control">
                                             @foreach ($departamentos as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
                                                     {{ old('Departamento') == $obj->Id ? 'selected' : '' }}>
+                                                    {{ $obj->Nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="input-area relative">
+                                        <label for="EntidadCertificadora" class="form-label">Entidad certificadora</label>
+                                        <select name="EntidadCertificadora" id="EntidadCertificadora"
+                                            class="form-control">
+                                            @foreach ($entidades as $obj)
+                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
+                                                    {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
@@ -117,22 +156,21 @@
                                             @endforeach
                                         </select>
                                     </div>
+
                                     <div class="input-area relative">
-                                        <label for="Telefono" class="form-label">Telefono</label>
-                                        <input type="tel" name="Telefono" value="{{ $perfil->Telefono }}"
-                                            class="form-control">
+                                        <label for="NumeroCertificacion" class="form-label">Numero de
+                                            certificación</label>
+                                        <input type="text" name="NumeroCertificacion"
+                                            value="{{ $perfil->NumeroCertificacion }}" class="form-control">
                                     </div>
+
                                     <div class="input-area relative">
-                                        <label for="EntidadCertificadora" class="form-label">Entidad certificadora</label>
-                                        <select name="EntidadCertificadora" id="EntidadCertificadora"
-                                            class="form-control">
-                                            @foreach ($entidades as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Nombre }}</option>
-                                            @endforeach
+                                        <label for="Municipio" class="form-label">Distrito</label>
+                                        <select name="Distrito" id="Distrito" required class="form-control">                                          
                                         </select>
                                     </div>
+                                 
+                               
                                     <div class="input-area relative">
                                         <label for="TipoCertificado" class="form-label">Tipo certificado</label>
                                         <select name="TipoCertificado" id="TipoCertificado" class="form-control">
@@ -143,12 +181,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="input-area relative">
-                                        <label for="NumeroCertificacion" class="form-label">Numero de
-                                            certificación</label>
-                                        <input type="text" name="NumeroCertificacion"
-                                            value="{{ $perfil->NumeroCertificacion }}" class="form-control">
-                                    </div>
+                              
                                     <div class="input-area relative">
                                         <label for="VigenciaCertificacion" class="form-label">Vigencia de la
                                             certificación</label>
@@ -175,4 +208,36 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() { //alert('');
+    });
+
+        //combo para Departamento
+        $("#Departamento").change(function() {
+            var Departamento = $(this).val();
+            $.get("{{ url('seguridad/perfil/get_municipio') }}" + '/' + Departamento, function(data) {
+                //console.log(data);
+                var _select = '<option value="1">Seleccione</option>'
+                for (var i = 0; i < data.length; i++)
+                    _select += '<option value="' + data[i].Id + '"  >' + data[i].Nombre +
+                    '</option>';
+
+                $("#Municipio").html(_select);
+            });
+        });
+
+         //combo para municipios
+         $("#Municipio").change(function() {
+            var Municipio = $(this).val();
+            $.get("{{ url('seguridad/perfil/get_distrito') }}" + '/' + Municipio, function(data) {
+                //console.log(data);
+                var _select = '<option value="1">Seleccione</option>'
+                for (var i = 0; i < data.length; i++)
+                    _select += '<option value="' + data[i].Id + '"  >' + data[i].Nombre +
+                    '</option>';
+
+                $("#Distrito").html(_select);
+            });
+        });
+    </script>
 @endsection
