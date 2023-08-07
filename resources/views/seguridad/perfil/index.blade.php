@@ -53,10 +53,11 @@
                                             <label for="Dui" class="form-label">Adjuntar DUI</label>
                                             <div class="relative">
                                                 <input type="file" name="DuiURL"  class="form-control !pr-12">
+                                                <a href="">
                                                 <button
                                                     class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
                                                    <a href=""> <iconify-icon icon="heroicons-solid:eye"></iconify-icon></a>
-                                                </button>
+                                                </button></a>
                                             </div>
                                         </div>
                                     @else
