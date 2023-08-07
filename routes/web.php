@@ -4,6 +4,7 @@ use App\Http\Controllers\catalogo\TipoCertificadoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\registro\ProyectoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\seguridad\PerfilController;
 use App\Http\Controllers\UsuarioController;
@@ -63,6 +64,8 @@ Route::get('seguridad/usuarios/verificarUsuario/{id}',[UserController::class, 'v
 Route::post('seguridad/usuarios/usuarioVerificado/{id}',[UserController::class, 'usuarioVerificado'])->name('usuarios.usuarioVerificado');
 
 
+//proyectos
+Route::resource('registro/proyecto', ProyectoController::class);
 
 
 //catalogos
