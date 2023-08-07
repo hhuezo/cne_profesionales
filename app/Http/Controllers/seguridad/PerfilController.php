@@ -22,10 +22,20 @@ class PerfilController extends Controller
         $perfil = Perfil::with('usuario')->where('Usuario', '=', auth()->user()->id)->first();
         $paises = Pais::where('Activo', 1)->get();
         $departamentos = Departamento::get();
-        $municipios = Municipio::where('Activo', 1)->get();
+        if ($perfil->municipio) {
+            $municipios = Municipio::where('Activo', 1)->where('Departamento', '=', $perfil->municipio->Departamento)->get();
+        } else {
+            $municipios = Municipio::where('Activo', 1)->where('Departamento', '=', 1)->get();
+        }
+
+        if ($perfil->distrito) {
+            $distritos = Distrito::where('Municipio', '=', $perfil->distrito->Municipio)->get();
+        } else {
+            $distritos = Distrito::where('Municipio', '=', 1)->get();
+        }
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
-        return view('seguridad.perfil.index', compact('perfil', 'paises', 'departamentos', 'municipios', 'entidades', 'tipos_certificados'));
+        return view('seguridad.perfil.index', compact('perfil', 'paises', 'departamentos', 'municipios', 'distritos', 'entidades', 'tipos_certificados'));
     }
 
     public function create()
@@ -56,26 +66,25 @@ class PerfilController extends Controller
         $request->validate([
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ], $messages);
-    
+
         $user = User::findOrFail(auth()->user()->id);
         $user->password = Hash::make($request->password);
         $user->update();
         alert()->success('La clave ha sido actualizada correctamente');
         return back();
-
     }
 
-    
+
 
     public function get_municipio($id)
     {
-        return Municipio::where('Departamento','=',$id)->get();
+        return Municipio::where('Departamento', '=', $id)->get();
     }
 
 
     public function get_distrito($id)
     {
-        return Distrito::where('Municipio','=',$id)->get();
+        return Distrito::where('Municipio', '=', $id)->get();
     }
 
     public function edit($id)

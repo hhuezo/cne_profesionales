@@ -22,6 +22,7 @@ class Perfil extends Model
         'TituloURL',
         'Nacionalidad',
         'Municipio',
+        'Distrito',
         'Direccion',
         'Telefono',
         'UsuarioIngreso',
@@ -44,6 +45,11 @@ class Perfil extends Model
     public function municipio()
     {
         return $this->belongsTo(Municipio::class, 'Municipio', 'Id');
+    }
+
+    public function distrito()
+    {
+        return $this->belongsTo(Distrito::class, 'Distrito', 'Id');
     }
 
     public function usuarioIngreso()

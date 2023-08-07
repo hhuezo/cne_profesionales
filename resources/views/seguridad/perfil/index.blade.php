@@ -54,7 +54,7 @@
                                             <div class="relative">
                                                 <input type="file" name="DuiURL" class="form-control !pr-12">
                                                 <a href="{{ url('docs') }}/{{ $perfil->DuiURL }}" target="_blank">
-                                                    <button
+                                                    <button type="button"
                                                         class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
                                                         <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
                                                     </button>
@@ -84,7 +84,7 @@
                                             <div class="relative">
                                                 <input type="file" name="TituloURL" class="form-control !pr-12">
                                                 <a href="{{ url('docs') }}/{{ $perfil->TituloURL }}" target="_blank">
-                                                    <button
+                                                    <button type="button"
                                                         class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
                                                         <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
                                                     </button>
@@ -128,11 +128,20 @@
                                     <div class="input-area relative">
                                         <label for="Departamento" class="form-label">Departamento</label>
                                         <select name="Departamento" id="Departamento" class="form-control">
-                                            @foreach ($departamentos as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('Departamento') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Nombre }}</option>
-                                            @endforeach
+                                            @if ($perfil->municipio)
+                                                @foreach ($departamentos as $obj)
+                                                    <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
+                                                        {{ $perfil->municipio->Departamento == $obj->Id ? 'selected' : '' }}>
+                                                        {{ $obj->Nombre }}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach ($departamentos as $obj)
+                                                    <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
+                                                        {{ old('Departamento') == $obj->Id ? 'selected' : '' }}>
+                                                        {{ $obj->Nombre }}</option>
+                                                @endforeach
+                                            @endif
+
                                         </select>
                                     </div>
                                     <div class="input-area relative">
@@ -149,11 +158,19 @@
                                     <div class="input-area relative">
                                         <label for="Municipio" class="form-label">Municipio</label>
                                         <select name="Municipio" id="Municipio" class="form-control">
-                                            @foreach ($municipios as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('Municipio') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Nombre }}</option>
-                                            @endforeach
+                                            @if ($perfil->municipio)
+                                                @foreach ($municipios as $obj)
+                                                    <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
+                                                        {{ $perfil->Municipio == $obj->Id ? 'selected' : '' }}>
+                                                        {{ $obj->Nombre }}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach ($municipios as $obj)
+                                                    <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
+                                                        {{ old('Municipio') == $obj->Id ? 'selected' : '' }}>
+                                                        {{ $obj->Nombre }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
 
@@ -167,6 +184,19 @@
                                     <div class="input-area relative">
                                         <label for="Municipio" class="form-label">Distrito</label>
                                         <select name="Distrito" id="Distrito" required class="form-control">
+                                            @if ($perfil->distrito)
+                                                @foreach ($distritos as $obj)
+                                                    <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
+                                                        {{ $perfil->Distrito == $obj->Id ? 'selected' : '' }}>
+                                                        {{ $obj->Nombre }}</option>
+                                                @endforeach
+                                            @else
+                                                @foreach ($municipios as $obj)
+                                                    <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
+                                                        {{ old('Distrito') == $obj->Id ? 'selected' : '' }}>
+                                                        {{ $obj->Nombre }}</option>
+                                                @endforeach
+                                            @endif
                                         </select>
                                     </div>
 
@@ -210,7 +240,7 @@
     </div>
     <script type="text/javascript">
         $(document).ready(function() { //alert('');
-    });
+        });
 
         //combo para Departamento
         $("#Departamento").change(function() {
@@ -226,8 +256,8 @@
             });
         });
 
-         //combo para municipios
-         $("#Municipio").change(function() {
+        //combo para municipios
+        $("#Municipio").change(function() {
             var Municipio = $(this).val();
             $.get("{{ url('seguridad/perfil/get_distrito') }}" + '/' + Municipio, function(data) {
                 //console.log(data);
