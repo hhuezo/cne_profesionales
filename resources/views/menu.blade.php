@@ -72,11 +72,11 @@
                 class="nav_shadow h-[60px] absolute top-[80px] nav-shadow z-[1] w-full transition-all duration-200 pointer-events-none
       opacity-0">
             </div>
-            <div class="sidebar-menus bg-white dark:bg-slate-800 py-2 px-4 h-[calc(100%-80px)] overflow-y-auto z-50"
-                id="sidebar_menus">
-                @if (auth()->user()->name == 'Administrador')
+            <div class="sidebar-menus bg-white dark:bg-slate-800 py-2 px-4 h-[calc(100%-80px)] overflow-y-auto z-50" id="sidebar_menus">
+               
                     <ul class="sidebar-menu">
                         {{-- <li class="sidebar-menu-title">Usuarios</li> --}}
+                        @if (auth()->user()->name == 'Administrador')
                         <li class="">
                             <a href="#" class="navItem">
                                 <span class="flex items-center">
@@ -127,6 +127,17 @@
 
                             </ul>
                         </li>
+                        @else
+                        <li>
+                            <a href="{{ url('registro/proyecto') }}" class="navItem">
+                                <span class="flex items-center">
+        
+                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
+                                    <span>Proyectos</span>
+                                </span>
+                            </a>
+                        </li>
+                        @endif
                         <!-- Apps Area -->
                         {{-- <li class="sidebar-menu-title">APPS</li>
                     <li>
@@ -461,8 +472,9 @@
                     <!-- Icons -->
                     <li class=""> --}}
                     </ul>
-                @endif
+               
 
+               
                 <!-- Upgrade Your Business Plan Card Start -->
 
                 <!-- Upgrade Your Business Plan Card Start -->
