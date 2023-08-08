@@ -9,7 +9,7 @@
             <header class=" card-header noborder">
                 <h4 class="card-title">Proyectos
                 </h4>
-                <a href="{{url('registro/proyecto/create')}}">
+                <a href="{{url('registro/certificacion/create')}}">
                 <button class="btn btn-outline-dark">Nuevo</button>
                 </a>
             </header>
@@ -29,8 +29,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($proyectos->count() > 0)
-                                        @foreach ($proyectos as $obj)
+                                    @if ($certificaciones->count() > 0)
+                                        @foreach ($certificaciones as $obj)
                                             <tr>
                                                 <td align="center">{{ $obj->Id }}</td>
                                                 <td>{{ $obj->Descripcion }}</td>
@@ -45,7 +45,7 @@
                                                         style="color: #475569;" width="40"></iconify-icon>
                                                 </td>
                                             </tr>
-                                            @include('registro.proyecto.modal')
+                                            @include('registro.certificacion.modal')
                                         @endforeach
                                     @endif
 

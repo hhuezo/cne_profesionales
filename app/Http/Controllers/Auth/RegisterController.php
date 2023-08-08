@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Mail\VerificacionMail;
 use App\Models\catalogo\Departamento;
+use App\Models\catalogo\Distrito;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Municipio;
 use App\Models\catalogo\Pais;
@@ -60,11 +61,28 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'password.required' => 'La contraseña es requerida',
+            'email.unique' => 'El correo ya existe en la base de datos',
+            'password.min' => 'Las claves debe tener al menos 8 caracteres',
+            'name.required' => 'El nombre es requerido',
+            'last_name.required' => 'El apellido es requerido',
+            'Nacionalidad.required' => 'La nacionalidad es requerida',
+            'Direccion.required' => 'El dirección es requerida',
+            'Profesion.required' => 'El profesión es requerida',
+            'Dui.required' => 'El DUI es requerido',
+        ];
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'password' => ['required', 'string', 'min:8'], //, 'confirmed'
+            'Nacionalidad' => ['required'],
+            'Direccion' => ['required'],
+            'Profesion' => ['required'],
+            'Dui' => ['required'],
+        ] ,$messages);
     }
 
     /**
@@ -76,31 +94,34 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        $this->validator($data)->validate();
+
         $usuario = User::create([
-            'name' => $data['Nombre'],
-            'last_name' => $data['Apellido'],
-            'email' => $data['Email'],
-            'password' => Hash::make($data['Password']),
+            'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
             'active' => 1,
         ]);
 
         $perfil = new Perfil();
         // Set the values from the validated data
         $perfil->Usuario = $usuario->id;
-        $perfil->Dui = $data['Dui'];
-        //$perfil->DuiURL = $data ['DuiURL'];
-        $perfil->Profesion = $data['Profesion'];
-        //$perfil->TituloURL = $data['TituloURL'];
         $perfil->Nacionalidad = $data['Nacionalidad'];
+        $perfil->Dui = $data['Dui'];
+        $perfil->Pais = $data ['Pais'];
+        $perfil->Profesion = $data['Profesion'];
         $perfil->Municipio = $data['Municipio'];
+        $perfil->Distrito = $data['Distrito'];
+        //$perfil->TituloURL = $data['TituloURL'];
         $perfil->Direccion = $data['Direccion'];
         $perfil->Telefono = $data['Telefono'];
         $perfil->NivelVerificacion = 0;
-        $perfil->Certificador = $data['EntidadCertificadora'];
-        $perfil->TipoOcupacionCertificada = $data['TipoCertificado'];
-        $perfil->NumeroCertificacion = $data['NumeroCertificacion'];
-        //$perfil->LicenciaURL = $data['LicenciaURL'];
-        $perfil->VigenciaCertificacion = $data['VigenciaCertificacion'];
+        //$perfil->Certificador = $data['EntidadCertificadora'];
+        //$perfil->TipoOcupacionCertificada = $data['TipoCertificado'];
+        //$perfil->NumeroCertificacion = $data['NumeroCertificacion'];
+
+        //$perfil->VigenciaCertificacion = $data['VigenciaCertificacion'];
 
         $perfil->save();
 
@@ -112,11 +133,12 @@ class RegisterController extends Controller
     {
         $paises = Pais::where('Activo', 1)->get();
         $departamentos = Departamento::get();
-        $municipios = Municipio::where('Activo', 1)->get();
+        $municipios = Municipio::where('Activo', '=',1)->where('Departamento','=', 1)->get();
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
+        $distritos = Distrito::where('Municipio', '=', 1)->get();
 
-        return view('auth.register', compact('paises', 'departamentos', 'municipios', 'entidades', 'tipos_certificados'));
+        return view('auth.register', compact('paises', 'departamentos', 'municipios','distritos', 'entidades', 'tipos_certificados'));
     }
 
     /**

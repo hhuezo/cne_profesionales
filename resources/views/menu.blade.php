@@ -73,7 +73,7 @@
       opacity-0">
             </div>
             <div class="sidebar-menus bg-white dark:bg-slate-800 py-2 px-4 h-[calc(100%-80px)] overflow-y-auto z-50" id="sidebar_menus">
-               
+
                     <ul class="sidebar-menu">
                         {{-- <li class="sidebar-menu-title">Usuarios</li> --}}
                         @if (auth()->user()->name == 'Administrador')
@@ -129,11 +129,11 @@
                         </li>
                         @else
                         <li>
-                            <a href="{{ url('registro/proyecto') }}" class="navItem">
+                            <a href="{{ url('registro/certificacion') }}" class="navItem">
                                 <span class="flex items-center">
-        
+
                                     <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
-                                    <span>Proyectos</span>
+                                    <span>Certificacion</span>
                                 </span>
                             </a>
                         </li>
@@ -472,9 +472,9 @@
                     <!-- Icons -->
                     <li class=""> --}}
                     </ul>
-               
 
-               
+
+
                 <!-- Upgrade Your Business Plan Card Start -->
 
                 <!-- Upgrade Your Business Plan Card Start -->
@@ -2226,7 +2226,7 @@
                                             <li>
                                                 <a href="{{ url('seguridad/perfil/cambio_clave') }}"
                                                     class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
-                                                    <iconify-icon icon="mdi:password-outline" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>                                                    
+                                                    <iconify-icon icon="mdi:password-outline" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
                                                     <span class="font-Inter">Cambio de contraseña</span>
                                                 </a>
                                             </li>

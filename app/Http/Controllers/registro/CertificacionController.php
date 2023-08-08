@@ -4,52 +4,47 @@ namespace App\Http\Controllers\registro;
 
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Pais;
-use App\Models\registro\Proyecto;
+use App\Models\registro\Certificacion;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class ProyectoController extends Controller
+class CertificacionController extends Controller
 {
     public function index()
     {
-        $proyectos = Proyecto::get();
-        return view('registro.proyecto.index', compact('proyectos'));
+        $certificaciones = Certificacion::get();
+        return view('registro.certificacion.index', compact('certificaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $paises = Pais::get();
-        return view('registro.proyecto.create', compact('paises'));
+        return view('registro.certificacion.create', compact('paises'));
     }
 
     public function store(Request $request)
     {
         $user = User::findOrFail(auth()->user()->id);
         $perfil = $user->perfil->first();
-        $proyecto = new Proyecto();
+        $certificacion = new Certificacion();
 
         if ($request->file('Archivo')) {
             $file = $request->file('Archivo');
             $id_file = uniqid();
             $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
-            $proyecto->Archivo = $id_file . ' ' . $file->getClientOriginalName();
+            $certificacion->Archivo = $id_file . ' ' . $file->getClientOriginalName();
         }
-        $proyecto->Descripcion = $request->Descripcion;
-        $proyecto->TipoTecnologia = $request->TipoTecnologia;
-        $proyecto->Sector = $request->Sector;
-        $proyecto->Activo = 1;
-        $proyecto->Perfil =  $perfil->Id;
-        $proyecto->UsuarioIngreso = $user->id;
-        $proyecto->FechaInicio = $request->FechaInicio;
-        $proyecto->FechaFinalizacion = $request->FechaFinalizacion;
-        $proyecto->Pais = $request->Pais;
-        $proyecto->RecomendacionContratista = $request->RecomendacionContratista;
-        $proyecto->save();
+        $certificacion->Descripcion = $request->Descripcion;
+        $certificacion->TipoTecnologia = $request->TipoTecnologia;
+        $certificacion->Sector = $request->Sector;
+        $certificacion->Activo = 1;
+        $certificacion->Perfil =  $perfil->Id;
+        $certificacion->UsuarioIngreso = $user->id;
+        $certificacion->FechaInicio = $request->FechaInicio;
+        $certificacion->FechaFinalizacion = $request->FechaFinalizacion;
+        $certificacion->Pais = $request->Pais;
+        $certificacion->RecomendacionContratista = $request->RecomendacionContratista;
+        $certificacion->save();
 
         alert()->success('El registro ha sido creado correctamente');
         return back();

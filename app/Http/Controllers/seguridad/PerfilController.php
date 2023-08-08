@@ -59,7 +59,7 @@ class PerfilController extends Controller
 
         $messages = [
             'password.required' => 'La contraseña es requerida',
-            'password.confirmed' => 'Las claves no coinciden',
+            //'password.confirmed' => 'Las claves no coinciden',
             'password.min' => 'Las claves debe tener al menos 8 caracteres',
         ];
 

@@ -8,9 +8,9 @@
                 <div class="card-body flex flex-col p-6">
                     <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                         <div class="flex-1">
-                            <div class="card-title text-slate-900 dark:text-white">Proyecto
+                            <div class="card-title text-slate-900 dark:text-white">Certificación
 
-                                <a href="{{ url('registro/proyecto') }}">
+                                <a href="{{ url('registro/certificacion') }}">
                                     <button class="btn btn-dark btn-sm float-right">
                                         <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
                                         </iconify-icon>

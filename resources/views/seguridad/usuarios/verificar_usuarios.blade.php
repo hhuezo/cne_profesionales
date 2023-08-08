@@ -184,7 +184,7 @@
                     <br>
                     <div style="text-align: right;">
                         <button type="submit" name="estado" value="1"
-                            class="btn inline-flex justify-center btn-warning">Mandar observaciones</button>
+                            class="btn inline-flex justify-center btn-warning">Enviar observaciones</button>
                         <button type="submit" name="estado" value="2"
                             class="btn inline-flex justify-center btn-success">Verificar</button>
                     </div>
