@@ -156,7 +156,8 @@ class RegisterController extends Controller
 
         $subject = 'Registro pendiente de verificación';
         $content = 'Le informamos que su cuenta ha sido registrada exitosamente en nuestro sistema. Sin embargo, aún falta la verificación por parte de uno de nuestros administradores. Pronto recibirá un correo electrónico con instrucciones adicionales. Agradecemos su paciencia y comprensión.';
-        $recipientEmail = $request->Email;
+        $recipientEmail = $request->email;
+       // dd($recipientEmail);
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
 
         if ($response = $this->registered($request, $user)) {

@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Alert;
+use App\Models\catalogo\Distrito;
 
 class UserController extends Controller
 {
@@ -28,11 +29,14 @@ class UserController extends Controller
 
     public function verificarUsuario($id)
     {
-        $usuario = User::where('id', $id)->first();
-        $municipio = Municipio::find($usuario->perfil->Municipio);
+        $usuario = User::findOrFail($id);
+        //dd($usuario->perfil->municipio->Id);
+        /*$municipio = Municipio::find($usuario->perfil->Municipio);
         $departamento = $municipio->departamento;
-        $pais = $departamento->pais;
+        $distritos = Distrito::where('Municipio','=',$usuario->perfil->Municipio)->get();
+        $pais = $departamento->pais;*/
 
+        $distritos = Distrito::where('Municipio','=',$usuario->perfil->Municipio)->get();
         $paises = Pais::where('Activo', 1)->get();
         $departamentos = Departamento::get();
         $municipios = Municipio::where('Activo', 1)->get();
@@ -40,7 +44,7 @@ class UserController extends Controller
         $tipos_certificados = TipoCertificado::get();
         //dd($usuario->perfil->Direccion);
 
-        return view('seguridad.usuarios.verificar_usuarios', compact('usuario', 'municipio', 'departamento', 'pais', 'paises', 'departamentos', 'municipios', 'entidades', 'tipos_certificados'));
+        return view('seguridad.usuarios.verificar_usuarios', compact('usuario', 'paises', 'departamentos', 'municipios','distritos', 'entidades', 'tipos_certificados'));
 
     }
 
@@ -85,17 +89,13 @@ class UserController extends Controller
         $perfil->Municipio = $request->input('Municipio');
         $perfil->Direccion = $request->input('Direccion');
         $perfil->Telefono = $request->input('Telefono');
-        //$perfil->UsuarioIngreso = $request->input('UsuarioIngreso');
-        //$perfil->FechaIngreso = $request->input('FechaIngreso');
+        $perfil->Distrito = $request->input('Distrito');
+        $perfil->Pais = $request->input('Pais');
         //if (auth()->user()->can('perfil_sin_verificar')) {
         $perfil->NivelVerificacion = 0;
         session('perfil')->NivelVerificacion=0;
         //}
-        $perfil->Certificador = $request->input('EntidadCertificadora');
-        $perfil->TipoOcupacionCertificada = $request->input('TipoCertificado');
-        $perfil->NumeroCertificacion = $request->input('NumeroCertificacion');
-        //$perfil->LicenciaURL = $request->input('LicenciaURL');
-        $perfil->VigenciaCertificacion = $request->input('VigenciaCertificacion');
+      
 
         $perfil->update();
         Alert::success('Actualización', 'Sus datos han sido actualizados.');

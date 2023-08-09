@@ -20,8 +20,8 @@ class RolesAndPermissions extends Seeder
     {
         
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-           // create permissions
-        /*Permission::create( ['name' => 'create roles'] );
+           //create permissions
+        Permission::create( ['name' => 'create roles'] );
         Permission::create( ['name' => 'read roles'] );
         Permission::create( ['name' => 'edit roles'] );
         Permission::create( ['name' => 'delete roles'] );
@@ -43,6 +43,6 @@ class RolesAndPermissions extends Seeder
 
         $user = User::findOrFail(1);
 
-        $user->assignRole('administrador');*/
+        $user->assignRole('administrador');
     }
 }

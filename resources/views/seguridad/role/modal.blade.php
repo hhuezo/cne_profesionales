@@ -30,7 +30,7 @@
                     <!-- Modal body -->
                     <div class="p-6 space-y-4">
                         <h6 class="text-base text-slate-900 dark:text-white leading-6">
-                            <input type="hidden" name="role_id" value="{{ $role->id }}">
+                            <input type="hidden" name="role_id" value="{{ $obj->id }}">
                             <input type="hidden" name="permission_id" value="{{ $obj->id }}">
                             Confirme si desea Eliminar el Registro
                         </h6>

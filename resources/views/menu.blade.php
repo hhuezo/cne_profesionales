@@ -72,17 +72,15 @@
                 class="nav_shadow h-[60px] absolute top-[80px] nav-shadow z-[1] w-full transition-all duration-200 pointer-events-none
       opacity-0">
             </div>
-            <div class="sidebar-menus bg-white dark:bg-slate-800 py-2 px-4 h-[calc(100%-80px)] overflow-y-auto z-50" id="sidebar_menus">
+            <div class="sidebar-menus bg-white dark:bg-slate-800 py-2 px-4 h-[calc(100%-80px)] overflow-y-auto z-50"
+                id="sidebar_menus">
 
-                    <ul class="sidebar-menu">
-                        {{-- <li class="sidebar-menu-title">Usuarios</li> --}}
-                        @if (auth()->user()->name == 'Administrador')
+                <ul class="sidebar-menu">
+                    @can('edit users')
                         <li class="">
                             <a href="#" class="navItem">
                                 <span class="flex items-center">
                                     <iconify-icon class=" nav-icon" icon="heroicons-outline:user-group"></iconify-icon>
-                                    {{-- <span>Verificar Usuarios</span>
-                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
                                     <span>Seguridad</span>
                                 </span>
                                 <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
@@ -108,7 +106,11 @@
                                 </span>
                             </a>
                         </li>
+                    @endcan
 
+
+
+                    @can('read catalogos')
                         <li class="">
                             <a href="#" class="navItem">
                                 <span class="flex items-center">
@@ -127,7 +129,9 @@
 
                             </ul>
                         </li>
-                        @else
+                    @endcan
+
+                    @can('create certificacion')
                         <li>
                             <a href="{{ url('registro/certificacion') }}" class="navItem">
                                 <span class="flex items-center">
@@ -137,9 +141,9 @@
                                 </span>
                             </a>
                         </li>
-                        @endif
-                        <!-- Apps Area -->
-                        {{-- <li class="sidebar-menu-title">APPS</li>
+                    @endcan
+                    <!-- Apps Area -->
+                    {{-- <li class="sidebar-menu-title">APPS</li>
                     <li>
                         <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                             <span class="flex items-center">
@@ -199,8 +203,8 @@
                             </li>
                         </ul>
                     </li> --}}
-                        <!-- Pages Area -->
-                        {{-- <li class="sidebar-menu-title">PAGES</li>
+                    <!-- Pages Area -->
+                    {{-- <li class="sidebar-menu-title">PAGES</li>
                     <!-- Authentication -->
                     <li class="">
                         <a href="javascript:void(0)" class="navItem">
@@ -308,8 +312,8 @@
                             </li>
                         </ul>
                     </li> --}}
-                        <!-- Components -->
-                        {{-- <li>
+                    <!-- Components -->
+                    {{-- <li>
                         <a href="javascript:void(0)" class="navItem">
                             <span class="flex items-center">
                                 <iconify-icon class=" nav-icon" icon="heroicons-outline:collection"></iconify-icon>
@@ -441,8 +445,8 @@
                             </li>
                         </ul>
                     </li> --}}
-                        <!-- Charts -->
-                        {{-- <li class="">
+                    <!-- Charts -->
+                    {{-- <li class="">
                         <a href="javascript:void(0)" class="navItem">
                             <span class="flex items-center">
                                 <iconify-icon class=" nav-icon" icon="heroicons-outline:chart-bar"></iconify-icon>
@@ -471,7 +475,7 @@
                     </li>
                     <!-- Icons -->
                     <li class=""> --}}
-                    </ul>
+                </ul>
 
 
 
@@ -2226,7 +2230,8 @@
                                             <li>
                                                 <a href="{{ url('seguridad/perfil/cambio_clave') }}"
                                                     class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
-                                                    <iconify-icon icon="mdi:password-outline" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
+                                                    <iconify-icon icon="mdi:password-outline"
+                                                        class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
                                                     <span class="font-Inter">Cambio de contraseña</span>
                                                 </a>
                                             </li>
