@@ -43,11 +43,20 @@ class RolesAndPermissions extends Seeder
 
         $user = User::findOrFail(1);
 
-        $user->assignRole('administrador');*/
+        $user->assignRole('administrador');
 
         $role = Role::create( ['name' => 'administrador local'] );
 
         $role = Role::create( ['name' => 'solicitante'] );
+
+
+        Permission::create( ['name' => 'create certificacion'] );
+        Permission::create( ['name' => 'read certificacion'] );
+        Permission::create( ['name' => 'edit certificacion'] );
+        Permission::create( ['name' => 'delete certificacion'] );
+
+        $role = Role::findOrFail(1);
+        $role->givePermissionTo( Permission::all() );*/
     }
     
 }
