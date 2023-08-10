@@ -7,10 +7,11 @@
     <div class=" space-y-5">
         <div class="card">
             <header class=" card-header noborder">
-                <h4 class="card-title">Listado de permisos
+                <h4 class="card-title">Listado de usuarios
                 </h4>
-                <button class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#usuario_create_modal">Nuevo</button>
+                <a href="{{url('seguridad/usuario/create')}}">
+                <button class="btn btn-outline-dark" >Nuevo</button>
+                </a>
             </header>
             <div class="card">
                 <div style=" margin-left:20px; margin-right:20px; ">
@@ -22,16 +23,18 @@
                                 <thead>
                                     <tr class="td-table">
                                         <th style="text-align: center">Id</th>
-                                        <th>Descripción</th>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
                                         <th style="text-align: center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($permissions->count() > 0)
-                                        @foreach ($permissions as $obj)
+                                    @if ($usuarios->count() > 0)
+                                        @foreach ($usuarios as $obj)
                                             <tr>
                                                 <td align="center">{{ $obj->id }}</td>
-                                                <td>{{ $obj->name }}</td>
+                                                <td>{{ $obj->name }} {{ $obj->last_name }}</td>
+                                                <td>{{ $obj->email }}</td>
                                                 <td align="center">
                                                     <iconify-icon icon="mdi:pencil-box"
                                                         onclick="modal_edit({{ $obj->id }},'{{ $obj->name }}')"

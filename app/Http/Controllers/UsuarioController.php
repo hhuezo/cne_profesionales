@@ -12,7 +12,7 @@ class UsuarioController extends Controller
     {
         $usuarios = User::get();
 
-        return view('seguridad.permission.index', compact('permissions'));
+        return view('seguridad.permission.index', compact('usuarios'));
     }
 
     public function create()
