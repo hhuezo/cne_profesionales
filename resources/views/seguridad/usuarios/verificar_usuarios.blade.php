@@ -81,13 +81,13 @@
                         </div>
                         <div class="input-area relative">
                             <label for="Municipio" class="form-label">Municipio</label> 
-                            {{$usuario->perfil->Municipio}}
+                    
                             <select  name="Municipio" id="Municipio" class="form-control">
                       
                                 @foreach ($municipios as $obj)
                                     @if ($usuario->perfil->Municipio == $obj->Id)
                                         <option class="dark:bg-slate-700" value="{{ $obj->Id }}" selected>
-                                            {{ $obj->Nombre }} {{ $obj->Id }}</option>
+                                            {{ $obj->Nombre }} </option>
                                     @else
                                         <option class="dark:bg-slate-700" value="{{ $obj->Id }}">
                                             {{ $obj->Nombre }}</option>

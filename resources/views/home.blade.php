@@ -141,7 +141,7 @@
 
                                             <div class="input-area relative">
                                                 <label for="Municipio" class="form-label">Distrito</label>
-                                                <select name="Municipio" id="Municipio" class="form-control">
+                                                <select name="Distrito" id="Distrito" class="form-control">
                                                    
                                                     @foreach ($distritos as $obj)
                                                         @if ($usuario->perfil->Distrito == $obj->Id)

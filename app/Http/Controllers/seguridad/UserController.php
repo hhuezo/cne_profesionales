@@ -55,6 +55,8 @@ class UserController extends Controller
         $usuario->perfil->NivelVerificacion = $request->input('estado');
         $usuario->perfil->update();
 
+        $usuario->assignRole('solicitante');
+
         if ($usuario->perfil->NivelVerificacion == 1) {
             $subject = 'Necesitas actualizar tu información';
         } else {

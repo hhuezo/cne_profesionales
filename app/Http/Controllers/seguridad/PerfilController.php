@@ -59,7 +59,7 @@ class PerfilController extends Controller
 
         $messages = [
             'password.required' => 'La contraseña es requerida',
-            //'password.confirmed' => 'Las claves no coinciden',
+            'password.confirmed' => 'Las claves no coinciden',
             'password.min' => 'Las claves debe tener al menos 8 caracteres',
         ];
 
@@ -117,8 +117,8 @@ class PerfilController extends Controller
         $perfil->Distrito = $request->Distrito;
         $perfil->Municipio = $request->Municipio;
         $perfil->Telefono = $request->Telefono;
-        $perfil->TipoCertificado = $request->TipoCertificado;
-        $perfil->NumeroCertificacion = $request->NumeroCertificacion;
+        //$perfil->TipoCertificado = $request->TipoCertificado;
+        //$perfil->NumeroCertificacion = $request->NumeroCertificacion;
 
 
         if ($request->DuiURL) {
@@ -159,6 +159,7 @@ class PerfilController extends Controller
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->update();
+        alert()->success('La información ha sido actualizada correctamente');
         return back();
     }
 

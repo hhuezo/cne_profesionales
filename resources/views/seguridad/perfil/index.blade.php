@@ -144,17 +144,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="input-area relative">
-                                        <label for="EntidadCertificadora" class="form-label">Entidad certificadora</label>
-                                        <select name="EntidadCertificadora" id="EntidadCertificadora"
-                                            class="form-control">
-                                            @foreach ($entidades as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
+                                
                                     <div class="input-area relative">
                                         <label for="Municipio" class="form-label">Municipio</label>
                                         <select name="Municipio" id="Municipio" class="form-control">
@@ -174,12 +164,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="input-area relative">
-                                        <label for="NumeroCertificacion" class="form-label">Numero de
-                                            certificación</label>
-                                        <input type="text" name="NumeroCertificacion"
-                                            value="{{ $perfil->NumeroCertificacion }}" class="form-control">
-                                    </div>
+                                  
 
                                     <div class="input-area relative">
                                         <label for="Municipio" class="form-label">Distrito</label>
@@ -200,24 +185,6 @@
                                         </select>
                                     </div>
 
-
-                                    <div class="input-area relative">
-                                        <label for="TipoCertificado" class="form-label">Tipo certificado</label>
-                                        <select name="TipoCertificado" id="TipoCertificado" class="form-control">
-                                            @foreach ($tipos_certificados as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('TipoCertificado') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Descripcion }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="input-area relative">
-                                        <label for="VigenciaCertificacion" class="form-label">Vigencia de la
-                                            certificación</label>
-                                        <input type="date" name="VigenciaCertificacion"
-                                            value="{{ $perfil->VigenciaCertificacion }}" class="form-control">
-                                    </div>
 
 
                                 </div>
