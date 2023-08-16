@@ -132,7 +132,8 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $paises = Pais::where('Activo', 1)->get();
-        $departamentos = Departamento::get();
+        //dd($pais[0]->Id);
+        $departamentos = Departamento::where('Pais','=',$paises[0]->Id)->get();
         $municipios = Municipio::where('Activo', '=',1)->where('Departamento','=', 1)->get();
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();

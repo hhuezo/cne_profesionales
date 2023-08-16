@@ -103,6 +103,7 @@
                     </div>
                     <div class="text-center 2xl:mb-10 mb-5">
                         <h4 class="font-medium">Iniciar sesión</h4>
+                        <h3>{{ $codigoPais }}</h3>
                         <div class="text-slate-500 dark:text-slate-400 text-base">
                             Inicie sesión con su cuenta
                         </div>
@@ -113,6 +114,7 @@
                         <div class="fromGroup">
                             <label class="block capitalize form-label">Correo electrónico</label>
                             <div class="relative ">
+                                <input type="hidden" name="codigoPais" value="{{  $codigoPais }}" readonly />
                                 <input type="email" name="email" id="email"
                                     class="form-control py-2 @error('email') is-invalid @enderror" required autocomplete>
                                 @error('email')
@@ -198,7 +200,7 @@
                         </a>
                     </div>
 
-                  
+
                 </div>
                 </div>
             </div>

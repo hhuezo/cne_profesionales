@@ -29,7 +29,12 @@ Route::get('/', function () {
 });*/
 
 Route::get('/', [WelcomeController::class, 'index']);
-Route::get('select_pais/{id}', [WelcomeController::class, 'show']);
+//Route::get('select_pais/{id}', [WelcomeController::class, 'show']);
+//Route::get('login', [WelcomeController::class, 'show']);
+
+Route::get('login', [Auth\LoginController::class, 'showLoginForm']);
+Route::post('login', [Auth\Logincontroller::class, 'login']);
+
 
 Route::get('/proyectos', function () {
     return view('proyectos');
