@@ -103,7 +103,7 @@
                     </div>
                     <div class="text-center 2xl:mb-10 mb-5">
                         <h4 class="font-medium">Iniciar sesión</h4>
-                        <h3>{{ $codigoPais }}</h3>
+               
                         <div class="text-slate-500 dark:text-slate-400 text-base">
                             Inicie sesión con su cuenta
                         </div>

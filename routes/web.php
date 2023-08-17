@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\catalogo\TipoCertificadoController;
+use App\Http\Controllers\ConfiguracionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
@@ -42,11 +43,17 @@ Route::get('/proyectos', function () {
 
 //Route::get('/', [HomeController::class, 'index']);
 
+
+
+
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/test', [HomeController::class, 'test'])->name('test');
+
+
+
 
 Route::resource('seguridad/permission', PermissionController::class);
 Route::post('seguridad/permission/update_permission', [PermissionController::class,'update_permission']);
@@ -69,8 +76,20 @@ Route::get('seguridad/usuarios/verificarUsuario/{id}',[UserController::class, 'v
 Route::post('seguridad/usuarios/usuarioVerificado/{id}',[UserController::class, 'usuarioVerificado'])->name('usuarios.usuarioVerificado');
 
 
+
+
+
+
 //proyectos
 Route::resource('registro/certificacion', CertificacionController::class);
+
+
+
+//configuracion
+
+Route::get('configuracion/pais', [ConfiguracionController::class, 'pais']);
+Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update']);
+
 
 
 //catalogos

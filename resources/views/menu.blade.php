@@ -106,6 +106,25 @@
                                 </span>
                             </a>
                         </li>
+
+                        <li class="">
+                            <a href="#" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="grommet-icons:document-config" style="color: white;"></iconify-icon>
+                                    {{-- <span>Verificar Usuarios</span>
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
+                                    <span>Configuración</span>
+                                </span>
+                                
+                                <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="{{ url('configuracion/pais') }}">País</a>
+                                </li>
+
+                            </ul>
+                        </li>
                     @endcan
 
 
