@@ -42,14 +42,11 @@ class Perfil extends Model
         return $this->belongsTo(User::class, 'Usuario', 'id');
     }
 
-    public function municipio()
-    {
-        return $this->belongsTo(Municipio::class, 'Municipio', 'Id');
-    }
+
 
     public function distrito()
     {
-        return $this->belongsTo(Distrito::class, 'Distrito', 'Id');
+        return $this->belongsTo(DistritoCorregimiento::class, 'Distrito', 'Id');
     }
 
     public function usuarioIngreso()

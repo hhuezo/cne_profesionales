@@ -144,8 +144,6 @@
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                     <div class="input-area relative">
                                         <label for="Nombre" class="form-label">Nombre</label>
-                                        <input type="text" name="codigoPais" id="codigoPais"
-                                            value="{{ $paises[0]->Id }}">
                                         <input type="text" name="name" value="{{ old('name') }}" required
                                             class="form-control">
                                     </div>
@@ -170,7 +168,7 @@
                                         <label for="Nacionalidad" class="form-label">Nacionalidad</label>
 
 
-                                        @if ($paises[0]->Id == '130')
+                                        @if ($configuracion->Pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <input type="text" name="Nacionalidad"
                                                 value="{{ 'Salvadoreño(a)', old('Nacionalidad') }}" required
@@ -181,18 +179,10 @@
                                                 class="form-control">
                                         @endif
 
-                                        {{-- <select name="Nacionalidad" id="Nacionalidad" class="form-control">
-                                            <option value="Salvadoreño" class="dark:bg-slate-700">Salvadoreño</option>
-                                            <option value="Panameño" class="dark:bg-slate-700">Panameño</option>
-                                            <option value="Nacionalidad 3" class="dark:bg-slate-700">Nacionalidad 3
-                                            </option>
-                                            <option value="Nacionalidad 4" class="dark:bg-slate-700">Nacionalidad 4
-                                            </option>
-                                        </select> --}}
                                     </div>
 
                                     <div class="input-area relative">
-                                        @if ($paises[0]->Id == '130')
+                                        @if ($configuracion->Pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Dui" class="form-label">DUI</label>
                                             <span id="codigoProvincia"></span>
@@ -208,28 +198,6 @@
 
                                     </div>
 
-                                    <div class="input-area relative">
-                                        <label for="Pais" class="form-label">Pais</label>
-                                        <select name="Pais" id="Pais" class="form-control">
-                                            @foreach ($paises as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('Pais') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Nombre }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-
-
-                                    {{--
-                                    <div class="input-area relative">
-                                        <label for="Dui" class="form-label">Adjuntar DUI</label>
-                                        <input type="file" name="DuiURL" class="form-control">
-                                    </div> --}}
-
-
-
 
                                     <div class="input-area">
                                         <label for="Profesion" class="form-label">Profesión u oficio</label>
@@ -238,7 +206,7 @@
                                     </div>
 
                                     <div class="input-area relative">
-                                        @if ($paises[0]->Id == '130')
+                                        @if ($configuracion->Pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Departamento" class="form-label">Departamento</label>
                                         @else
@@ -247,7 +215,7 @@
 
                                         <select name="Departamento" id="Departamento" class="form-control">
                                             <option value="0">Seleccione</option>
-                                            @foreach ($departamentos as $obj)
+                                            @foreach ($departamento_provincia as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
                                                     {{ old('Departamento') == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Codigo }}-{{ $obj->Nombre }}</option>
@@ -264,7 +232,7 @@
 
 
                                     <div class="input-area relative">
-                                        @if ($paises[0]->Id == '130')
+                                        @if ($configuracion->Pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Municipio" class="form-label">Municipio</label>
                                         @else
@@ -272,7 +240,7 @@
                                         @endif
                                         <select name="Municipio" id="Municipio" class="form-control">
                                             <option value="0">Seleccione</option>
-                                            @foreach ($municipios as $obj)
+                                            @foreach ($municipio_distrito as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
                                                     {{ old('Municipio') == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Nombre }}</option>
@@ -286,13 +254,9 @@
                                         <input type="tel" name="Telefono" id="Telefono"
                                             value="{{ old('Telefono') }}" class="form-control">
                                     </div>
-                                    {{-- <div class="input-area relative">
-                                        <label for="Dui" class="form-label">Adjuntar titulo</label>
-                                        <input type="file" name="DuiURL" class="form-control">
-                                    </div> --}}
 
                                     <div class="input-area relative">
-                                        @if ($paises[0]->Id == '130')
+                                        @if ($configuracion->Pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Distrito" class="form-label">Distrito</label>
                                         @else
@@ -301,51 +265,13 @@
 
                                         <select name="Distrito" id="Distrito" required class="form-control">
                                             <option value="0">Seleccione</option>
-                                            @foreach ($distritos as $obj)
+                                            @foreach ($distrito_corregimiento as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
                                                     {{ old('Distrito') == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-
-
-
-
-                                    {{--  <div class="input-area relative">
-                                        <label for="EntidadCertificadora" class="form-label">Entidad
-                                            Certificadora</label>
-                                        <select name="EntidadCertificadora" id="EntidadCertificadora"
-                                            class="form-control">
-                                            @foreach ($entidades as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Nombre }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                     <div class="input-area relative">
-                                        <label for="TipoCertificado" class="form-label">Tipo Certificado</label>
-                                        <select name="TipoCertificado" id="TipoCertificado" class="form-control">
-                                            @foreach ($tipos_certificados as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('TipoCertificado') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Descripcion }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                   <div class="input-area relative">
-                                        <label for="NumeroCertificacion" class="form-label">Numero de
-                                            Certificación</label>
-                                        <input type="text" name="NumeroCertificacion" id="NumeroCertificacion"
-                                            class="form-control">
-                                    </div>
-                                    <div class="input-area relative">
-                                        <label for="VigenciaCertificacion" class="form-label">Vigencia de la
-                                            Certificación</label>
-                                        <input type="date" name="VigenciaCertificacion" id="VigenciaCertificacion"
-                                            class="form-control">
-                                    </div> --}}
 
 
                                 </div>
@@ -386,7 +312,7 @@
             $("#Departamento").change(function() {
                 // var para la Departamento
                 const Departamento = $(this).val();
-                const DepartamentoText = $( "#Departamento option:selected" ).text();
+                const DepartamentoText = $("#Departamento option:selected").text();
 
                 const myArray = DepartamentoText.split("-");
                 const codigoProvincia = myArray[0].trim();
@@ -411,7 +337,7 @@
                     $("#Telefono").inputmask("9999-9999");
                 } else {
 
-                    $("#Dui").inputmask(codigoProvincia+"9-999-9999");
+                    $("#Dui").inputmask(codigoProvincia + "9-999-9999");
                     // if (Departamento == 26 || Departamento == 25 || Departamento == 28 || Departamento == 23){
                     //     //Codigo de provincia de panama de dos digitos
                     //     $("#Dui").inputmask("12-999-9999");

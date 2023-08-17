@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VerificacionMail;
-use App\Models\catalogo\Departamento;
+use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\Distrito;
+use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
-use App\Models\catalogo\Municipio;
+use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
+use App\Models\configuracion\ConfiguracionPais;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -93,7 +95,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
+  
         $this->validator($data)->validate();
 
         $usuario = User::create([
@@ -109,10 +111,10 @@ class RegisterController extends Controller
         $perfil->Usuario = $usuario->id;
         $perfil->Nacionalidad = $data['Nacionalidad'];
         $perfil->Dui = $data['Dui'];
-        $perfil->Pais = $data ['Pais'];
+        //$perfil->Pais = $data ['Pais'];
         $perfil->Profesion = $data['Profesion'];
-        $perfil->Municipio = $data['Municipio'];
-        $perfil->Distrito = $data['Distrito'];
+        //$perfil->Municipio = $data['Municipio'];
+        $perfil->DistritoCorregimiento = $data['Distrito'];
         //$perfil->TituloURL = $data['TituloURL'];
         $perfil->Direccion = $data['Direccion'];
         $perfil->Telefono = $data['Telefono'];
@@ -131,15 +133,23 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $paises = Pais::where('Activo', 1)->get();
-        //dd($pais[0]->Id);
-        $departamentos = Departamento::where('Pais','=',$paises[0]->Id)->get();
-        $municipios = Municipio::where('Activo', '=',1)->where('Departamento','=', 1)->get();
+        $configuracion = ConfiguracionPais::first();
+
+        $departamento_provincia = DepartamentoProvincia::where('Pais','=',$configuracion->Pais)->get();
+        if($configuracion->Pais == 130)
+        {
+            $municipio_distrito = MunicipioDistrito::where('Activo', '=',1)->where('DepartamentoProvincia','=', 1)->get();
+            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito','=', 1)->get();
+        }
+        else{
+            $municipio_distrito = MunicipioDistrito::where('Activo', '=',1)->where('DepartamentoProvincia','=', 15)->get();
+            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito','=', 45)->get();
+        }
+
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
-        $distritos = Distrito::where('Municipio', '=', 1)->get();
-
-        return view('auth.register', compact('paises', 'departamentos', 'municipios','distritos', 'entidades', 'tipos_certificados'));
+      
+        return view('auth.register', compact ('configuracion','departamento_provincia', 'municipio_distrito','distrito_corregimiento', 'entidades', 'tipos_certificados'));
     }
 
     /**

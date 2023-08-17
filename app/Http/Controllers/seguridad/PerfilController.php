@@ -5,8 +5,10 @@ namespace App\Http\Controllers\seguridad;
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Departamento;
 use App\Models\catalogo\Distrito;
+use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Municipio;
+use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
@@ -78,13 +80,13 @@ class PerfilController extends Controller
 
     public function get_municipio($id)
     {
-        return Municipio::where('Departamento', '=', $id)->get();
+        return MunicipioDistrito::where('DepartamentoProvincia', '=', $id)->get();
     }
 
 
     public function get_distrito($id)
     {
-        return Distrito::where('Municipio', '=', $id)->get();
+        return DistritoCorregimiento::where('MunicipioDistrito', '=', $id)->get();
     }
 
     public function edit($id)

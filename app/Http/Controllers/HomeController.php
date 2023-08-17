@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\catalogo\Departamento;
-use App\Models\catalogo\Distrito;
-use App\Models\catalogo\EntidadCertificadora;
-use App\Models\catalogo\Municipio;
+
+use App\Models\catalogo\DepartamentoProvincia;
+use App\Models\catalogo\DistritoCorregimiento;
+
+use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
-use App\Models\catalogo\TipoCertificado;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -30,13 +29,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+        
         $usuario = User::findOrFail(auth()->user()->id);
-
+   
         if ($usuario->perfil) {
             $paises = Pais::where('Activo', 1)->get();
-            $departamentos = Departamento::get();
-            $municipios = Municipio::where('Activo', 1)->get();
-            $distritos = Distrito::where('Municipio', '=', $usuario->perfil->Municipio)->get();
+            $distrito_corregimiento = DistritoCorregimiento::findOrFail($usuario->perfil->DistritoCorregimiento);
+
+            $distritos = DistritoCorregimiento::where('MunicipioDistrito', '=', $usuario->perfil->Municipio)->get();
+            $departamentos = DepartamentoProvincia::get();
+            $municipios = MunicipioDistrito::where('Activo', 1)->get();
+            
 
 
             return view('home', compact(
