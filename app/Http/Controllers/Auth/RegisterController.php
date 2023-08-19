@@ -135,7 +135,7 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
 
-        Mail::to('hulexgsa@gmail.com')->send(new SendMail("hola"));
+        //Mail::to('hulexgsa@gmail.com')->send(new SendMail("hola"));
 
 
         $configuracion = ConfiguracionPais::first();
