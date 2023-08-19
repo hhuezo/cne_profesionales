@@ -57,6 +57,9 @@ Route::get('/test', [HomeController::class, 'test'])->name('test');
 
 Route::resource('seguridad/permission', PermissionController::class);
 Route::post('seguridad/permission/update_permission', [PermissionController::class,'update_permission']);
+
+Route::post('seguridad/usuario/link_role', [UsuarioController::class,'link_role']);
+Route::post('seguridad/usuario/unlink_role', [UsuarioController::class,'unlink_role']);
 Route::resource('seguridad/usuario', UsuarioController::class);
 Route::resource('seguridad/role', RoleController::class);
 Route::post('seguridad/role/unlink_permission', [RoleController::class,'unlink_permission']);

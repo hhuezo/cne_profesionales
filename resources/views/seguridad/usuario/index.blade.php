@@ -7,10 +7,11 @@
     <div class=" space-y-5">
         <div class="card">
             <header class=" card-header noborder">
-                <h4 class="card-title">Listado de permisos
+                <h4 class="card-title">Listado de usuarios
                 </h4>
-                <button class="btn btn-outline-primary" data-bs-toggle="modal"
-                    data-bs-target="#permiso_modal">Nuevo</button>
+                <a href="{{url('seguridad/usuario/create')}}">
+                <button class="btn btn-outline-dark" >Nuevo</button>
+                </a>
             </header>
             <div class="card">
                 <div style=" margin-left:20px; margin-right:20px; ">
@@ -22,18 +23,20 @@
                                 <thead>
                                     <tr class="td-table">
                                         <th style="text-align: center">Id</th>
-                                        <th>Permiso</th>
-                                        
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Rol</th>
                                         <th style="text-align: center">Opciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($permissions)
-                                        @foreach ($permissions as $obj)
+                                    @if ($usuarios)
+                                        @foreach ($usuarios as $obj)
                                             <tr>
                                                 <td align="center">{{ $obj->id }}</td>
-                                                <td>{{ $obj->name }} </td>
-                                               
+                                                <td>{{ $obj->name }} {{ $obj->last_name }}</td>
+                                                <td>{{ $obj->email }}</td>
+                                                <td>{{ $obj->roles }}</td>
                                                 <td align="center">
                                                     <iconify-icon icon="mdi:pencil-box"
                                                         onclick="modal_edit({{ $obj->id }},'{{ $obj->name }}')"
@@ -58,7 +61,7 @@
         </div>
 
         <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-            id="permiso_modal" tabindex="-1" aria-labelledby="permiso_modal" aria-hidden="true">
+            id="usuario_create_modal" tabindex="-1" aria-labelledby="usuario_create_modal" aria-hidden="true">
             <div class="modal-dialog relative w-auto pointer-events-none">
                 <div
                     class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding
