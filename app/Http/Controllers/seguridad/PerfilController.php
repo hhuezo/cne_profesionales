@@ -4,6 +4,7 @@ namespace App\Http\Controllers\seguridad;
 
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Departamento;
+use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\Distrito;
 use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
@@ -12,6 +13,7 @@ use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
+use App\Models\configuracion\ConfiguracionPais;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Exception;
@@ -22,22 +24,27 @@ class PerfilController extends Controller
     public function index()
     {
         $perfil = Perfil::with('usuario')->where('Usuario', '=', auth()->user()->id)->first();
-        $paises = Pais::where('Activo', 1)->get();
-        $departamentos = Departamento::get();
-        if ($perfil->municipio) {
-            $municipios = Municipio::where('Activo', 1)->where('Departamento', '=', $perfil->municipio->Departamento)->get();
+        
+        $configuracion = ConfiguracionPais::first();
+        $pais = Pais::findOrFail($configuracion->Pais);
+        $departamento_provincia = DepartamentoProvincia::where('Pais', '=', $configuracion->Pais)->get();
+        if ($perfil->DistritoCorregimiento) {
+            $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito', '=', $perfil->distrito_corregimiento->MunicipioDistrito)->get();
+            $municipios_distritos = MunicipioDistrito::where('Activo', 1)->where('DepartamentoProvincia','=',$perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia)->get();
         } else {
-            $municipios = Municipio::where('Activo', 1)->where('Departamento', '=', 1)->get();
+            if ($configuracion->Pais == 130) {
+                $municipios_distritos = MunicipioDistrito::where('Activo', '=', 1)->where('DepartamentoProvincia', '=', 1)->get();
+                $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito', '=', 1)->get();
+            } else {
+                $municipios_distritos = MunicipioDistrito::where('Activo', '=', 1)->where('DepartamentoProvincia', '=', 15)->get();
+                $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito', '=', 45)->get();
+            }
         }
 
-        if ($perfil->distrito) {
-            $distritos = Distrito::where('Municipio', '=', $perfil->distrito->Municipio)->get();
-        } else {
-            $distritos = Distrito::where('Municipio', '=', 1)->get();
-        }
+      
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
-        return view('seguridad.perfil.index', compact('perfil', 'paises', 'departamentos', 'municipios', 'distritos', 'entidades', 'tipos_certificados'));
+        return view('seguridad.perfil.index', compact('perfil', 'pais', 'departamento_provincia', 'municipios_distritos', 'distritos_corregimientos', 'entidades', 'tipos_certificados'));
     }
 
     public function create()
@@ -113,11 +120,11 @@ class PerfilController extends Controller
         $perfil = Perfil::findOrFail($id);
         $perfil->Dui = $request->Dui;
         $perfil->Profesion = $request->Profesion;
-        $perfil->Nacionalidad = $request->Nacionalidad;
+        //$perfil->Nacionalidad = $request->Nacionalidad;
         $perfil->Direccion = $request->Direccion;
-        $perfil->Pais = $request->Pais;
-        $perfil->Distrito = $request->Distrito;
-        $perfil->Municipio = $request->Municipio;
+        //$perfil->Pais = $request->Pais;
+        $perfil->DistritoCorregimiento = $request->Distrito;
+        //$perfil->Municipio = $request->Municipio;
         $perfil->Telefono = $request->Telefono;
         //$perfil->TipoCertificado = $request->TipoCertificado;
         //$perfil->NumeroCertificacion = $request->NumeroCertificacion;
