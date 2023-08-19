@@ -36,16 +36,8 @@
                                                         <iconify-icon icon="mdi:pencil-box" style="color: #1769aa;"
                                                             width="40"></iconify-icon>
                                                     </a>
-
-                                                    &nbsp;&nbsp;
-
-
-                                                    <iconify-icon data-bs-toggle="modal"
-                                                        data-bs-target="#modal-delete-{{ $obj->id }}" icon="mdi:trash"
-                                                        style="color: #1769aa;" width="40"></iconify-icon>
                                                 </td>
                                             </tr>
-                                            @include('seguridad.role.modal')
                                         @endforeach
                                     @endif
 
