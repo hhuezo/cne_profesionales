@@ -10,7 +10,7 @@
                 <h4 class="card-title">Proyectos
                 </h4>
                 <a href="{{url('registro/certificacion/create')}}">
-                <button class="btn btn-outline-dark">Nuevo</button>
+                <button class="btn btn-dark">Nuevo</button>
                 </a>
             </header>
             <div class="card">

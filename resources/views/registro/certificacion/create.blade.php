@@ -38,26 +38,40 @@
                                             <br>
                                         @endif
 
-                                        <form method="POST" action="{{ url('registro/proyecto') }}"
-                                            enctype="multipart/form-data">
+                                        <form method="POST" action="{{ url('registro/certificacion') }}" enctype="multipart/form-data">
                                             @csrf
-
-
 
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                                 <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Descipción</label>
+                                                    <label for="Descipcion" class="form-label">Descripción</label>
                                                     <textarea class="form-control" name="Descripcion"></textarea>
                                                 </div>
                                                 <div class="input-area relative">
-                                                    <label for="Apellido" class="form-label">Tipo de técnologia</label>
+                                                    <label for="TipoTecnologia" class="form-label">Tipo de tecnología</label>
                                                     <textarea class="form-control" name="TipoTecnologia"></textarea>
+                                                </div>
+
+                                                <div class="input-area relative">
+                                                    <label for="Numero" class="form-label">Número</label>
+                                                    <input type="text" name="Numero" class="form-control">
                                                 </div>
 
 
                                                 <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Sector</label>
+                                                    <label for="Sector" class="form-label">Sector</label>
                                                     <input type="text" name="Sector" class="form-control">
+                                                </div>
+
+
+
+                                                <div class="input-area relative">
+                                                    <label for="FechaEmision" class="form-label">Fecha de emisión</label>
+                                                    <input type="date" name="FechaEmision" class="form-control">
+                                                </div>
+
+                                                <div class="input-area relative">
+                                                    <label for="Nombre" class="form-label">Fecha de vencimiento</label>
+                                                    <input type="date" name="FechaVencimiento" class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
@@ -65,23 +79,23 @@
                                                     <input type="file" name="Archivo" class="form-control">
                                                 </div>
 
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Fecha de inicio</label>
-                                                    <input type="date" name="FechaInicio" class="form-control">
-                                                </div>
+                                              
 
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Fecha de finalización</label>
-                                                    <input type="date" name="FechaFinalizacion" class="form-control">
-                                                </div>
-
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">País</label>
-                                                    <select name="Pais" class="form-control select2">
-                                                        @foreach ($paises as $obj)
-                                                            <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
-                                                        @endforeach
-                                                    </select>
+                                                <div class="input-area">
+                                                    <label for="Nombre" class="form-label">Entidad certificadora</label>
+                                                    <div class="relative">
+                                                        <select name="EntidadCertificadora"
+                                                            class="form-control !pr-12 select2">
+                                                            @foreach ($entidades as $obj)
+                                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        <button type="button"
+                                                            class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
+                                                            <iconify-icon icon="ph:plus-fill" style="color: #0f172a;" width="32"></iconify-icon>
+                                                        </button>
+                                                    </div>
                                                 </div>
 
                                                 <div class="input-area relative">

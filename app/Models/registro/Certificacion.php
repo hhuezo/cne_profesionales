@@ -2,6 +2,7 @@
 
 namespace App\Models\registro;
 
+use App\Models\catalogo\EstadoCertificacion;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,18 +16,13 @@ class Certificacion extends Model
 
     protected $fillable = [
         'Descripcion',
-        'TipoTecnologia',
-        'Sector',
-        'Archivo',
-        'Activo',
         'Perfil',
-        'UsuarioIngreso',
-        'FechaIngreso',
-        'FechaInicio',
-        'FechaFinalizacion',
-        'Pais',
-        'RecomendacionContratista',
-        'ImagenUrl',
+        'FechaCreacion',
+        'UsuarioCreacion',
+        'Estado',
+        'Administrador',
+        'FechaActualizacion',
+        'UsuarioActualizacion',
     ];
 
     public function perfil()
@@ -34,13 +30,19 @@ class Certificacion extends Model
         return $this->belongsTo(Perfil::class, 'Perfil', 'Id');
     }
 
-    public function usuarioIngreso()
+    public function estado()
     {
-        return $this->belongsTo(User::class, 'UsuarioIngreso', 'id');
+        return $this->belongsTo(EstadoCertificacion::class, 'Estado', 'Id');
     }
 
-    public function pais()
+    public function usuario_ingreso()
     {
-        return $this->belongsTo(Pais::class, 'Pais', 'Id');
+        return $this->belongsTo(User::class, 'UsuarioCreacion', 'id');
     }
+
+    public function usuario_update()
+    {
+        return $this->belongsTo(User::class, 'UsuarioActualizacion', 'id');
+    }
+
 }
