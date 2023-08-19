@@ -38,9 +38,10 @@
                                                 <td>{{ $obj->email }}</td>
                                                 <td>{{ $obj->roles }}</td>
                                                 <td align="center">
+                                                    <a href="{{url('seguridad/usuario')}}/{{$obj->id}}/edit">
                                                     <iconify-icon icon="mdi:pencil-box"
-                                                        onclick="modal_edit({{ $obj->id }},'{{ $obj->name }}')"
                                                         style="color: #1769aa;" width="40"></iconify-icon>
+                                                    </a>
 
                                                     &nbsp;&nbsp;
                                                     <iconify-icon data-bs-toggle="modal"
