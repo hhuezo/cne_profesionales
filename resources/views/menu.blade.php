@@ -37,7 +37,7 @@
         .card-title,
         .form-label {
             text-transform: none;
-        }
+        }        
     </style>
 </head>
 

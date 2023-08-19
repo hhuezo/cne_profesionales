@@ -2,7 +2,7 @@
 @section('contenido')
     <div class="card">
         <header class=" card-header noborder">
-            <h4 class="card-title">Usuarios Sin Verificar
+            <h4 class="card-title">Usuarios sin verificar
             </h4>
         </header>
         <div class="card-body px-6 pb-6">

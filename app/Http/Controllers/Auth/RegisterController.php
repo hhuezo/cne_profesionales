@@ -6,11 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Mail\SendMail;
 use App\Mail\VerificacionMail;
 use App\Models\catalogo\DepartamentoProvincia;
-use App\Models\catalogo\Distrito;
 use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\MunicipioDistrito;
-use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\configuracion\ConfiguracionPais;
@@ -108,24 +106,15 @@ class RegisterController extends Controller
         ]);
 
         $perfil = new Perfil();
-        // Set the values from the validated data
         $perfil->Usuario = $usuario->id;
         $perfil->Nacionalidad = $data['Nacionalidad'];
         $perfil->Dui = $data['Dui'];
-        //$perfil->Pais = $data ['Pais'];
         $perfil->Profesion = $data['Profesion'];
-        //$perfil->Municipio = $data['Municipio'];
         $perfil->DistritoCorregimiento = $data['Distrito'];
-        //$perfil->TituloURL = $data['TituloURL'];
         $perfil->Direccion = $data['Direccion'];
         $perfil->Telefono = $data['Telefono'];
         $perfil->NivelVerificacion = 0;
-        //$perfil->Certificador = $data['EntidadCertificadora'];
-        //$perfil->TipoOcupacionCertificada = $data['TipoCertificado'];
-        //$perfil->NumeroCertificacion = $data['NumeroCertificacion'];
-
-        //$perfil->VigenciaCertificacion = $data['VigenciaCertificacion'];
-
+ 
         $perfil->save();
 
         return $usuario;
@@ -134,9 +123,6 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-
-        //Mail::to('hulexgsa@gmail.com')->send(new SendMail("hola"));
-
 
         $configuracion = ConfiguracionPais::first();
 

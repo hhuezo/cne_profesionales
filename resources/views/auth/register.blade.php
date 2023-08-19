@@ -218,7 +218,7 @@
                                             @foreach ($departamento_provincia as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
                                                     {{ old('Departamento') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Codigo }}-{{ $obj->Nombre }}</option>
+                                                    {{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
