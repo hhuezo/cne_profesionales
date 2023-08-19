@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMail;
 use App\Mail\VerificacionMail;
 use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\Distrito;
@@ -133,6 +134,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
+
+        Mail::to('hulexgsa@gmail.com')->send(new SendMail("hola"));
+
+
         $configuracion = ConfiguracionPais::first();
 
         $departamento_provincia = DepartamentoProvincia::where('Pais','=',$configuracion->Pais)->get();
