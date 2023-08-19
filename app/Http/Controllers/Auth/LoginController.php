@@ -76,8 +76,7 @@ class LoginController extends Controller
 
 
     public function showLoginForm(){
-        $codigoPais = Pais::where('Activo', '=', 1)->get()->first()->Id;
-        return view('auth.login', compact('codigoPais'));
+        return view('auth.login');
     }
 
 
