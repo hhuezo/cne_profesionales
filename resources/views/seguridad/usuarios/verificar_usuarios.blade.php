@@ -30,7 +30,7 @@
                         </div>
                         <div class="input-area relative">
                             <label for="Nacionalidad" class="form-label">Nacionalidad</label>
-                            <input type="text" name="Nacionalidad" value="{{ $usuario->perfil->Nacionalidad }}" required
+                            <input type="text" name="Nacionalidad" value="{{ $usuario->perfil->Nacionalidad }}" disabled
                                 class="form-control">
                         </div>
                         <div class="input-area relative">
@@ -52,24 +52,14 @@
                         </div>
                         <div class="input-area relative">
                             <label for="Pais" class="form-label">Pais</label>
-                            <select disabled name="Pais" id="Pais" class="form-control">
-                                @foreach ($paises as $obj)
-                                    @if ($usuario->perfil->Pais == $obj->Id)
-                                        <option class="dark:bg-slate-700" value="{{ $obj->Id }}" selected>
-                                            {{ $obj->Nombre }}</option>
-                                    @else
-                                        <option class="dark:bg-slate-700" value="{{ $obj->Id }}">
-                                            {{ $obj->Nombre }}</option>
-                                    @endif
-                                @endforeach
-                            </select>
+                            <input type="text" value="{{$pais->Nombre}}" class="form-control" disabled>
                         </div>
                         <div class="input-area relative">
                             <label for="Departamento" class="form-label">Departamento</label>
                             <select disabled name="Departamento" id="Departamento" class="form-control">
                                 {{$usuario->perfil->Id }}
-                                @foreach ($departamentos as $obj)
-                                    @if ($usuario->perfil->municipio->Departamento == $obj->Id)
+                                @foreach ($departamentos_provincia as $obj)
+                                    @if ($usuario->perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia == $obj->Id)
                                         <option class="dark:bg-slate-700" value="{{ $obj->Id }}" selected>
                                             {{ $obj->Nombre }}</option>
                                     @else
@@ -82,10 +72,10 @@
                         <div class="input-area relative">
                             <label for="Municipio" class="form-label">Municipio</label> 
                     
-                            <select  name="Municipio" id="Municipio" class="form-control">
+                            <select  name="Municipio" id="Municipio" class="form-control" disabled>
                       
-                                @foreach ($municipios as $obj)
-                                    @if ($usuario->perfil->Municipio == $obj->Id)
+                                @foreach ($municipios_distritos as $obj)
+                                    @if ($usuario->perfil->distrito_corregimiento->MunicipioDistrito == $obj->Id)
                                         <option class="dark:bg-slate-700" value="{{ $obj->Id }}" selected>
                                             {{ $obj->Nombre }} </option>
                                     @else
@@ -98,8 +88,8 @@
                         <div class="input-area relative">
                             <label for="EntidadCertificadora" class="form-label">Distrito</label>
                             <select disabled name="Distrito"  class="form-control">
-                                @foreach ($distritos as $obj)
-                                    @if ($usuario->perfil->Distrito == $obj->Id)
+                                @foreach ($distritos_corregimientos as $obj)
+                                    @if ($usuario->perfil->DistritoCorregimiento == $obj->Id)
                                         <option class="dark:bg-slate-700" value="{{ $obj->Id }}" selected>
                                             {{ $obj->Nombre }}</option>
                                     @else

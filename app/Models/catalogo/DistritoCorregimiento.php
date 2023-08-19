@@ -18,4 +18,9 @@ class DistritoCorregimiento extends Model
         'MunicipioDistrito',
         'TipoUbicacion',
     ];
+
+    public function municipio_distrito()
+    {
+        return $this->belongsTo(MunicipioDistrito::class, 'MunicipioDistrito', 'Id');
+    }
 }

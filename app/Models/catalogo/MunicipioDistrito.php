@@ -17,4 +17,9 @@ class MunicipioDistrito extends Model
         'DepartamentoProvincia',
         'TipoUbicacion',
     ];
+
+    public function departamento_provincia()
+    {
+        return $this->belongsTo(DepartamentoProvincia::class, 'DepartamentoProvincia', 'Id');
+    }
 }

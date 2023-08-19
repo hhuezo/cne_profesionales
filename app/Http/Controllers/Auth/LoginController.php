@@ -43,13 +43,13 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-
         $user->load('perfil');
         session(['perfil' => $user->perfil]);
+      
         if (isset(session('perfil')->NivelVerificacion) && session('perfil')->NivelVerificacion == 1) {
-            $municipio = Municipio::find(session('perfil')->Municipio);
+            /*$municipio = Municipio::find(session('perfil')->Municipio);
             session(['departamento' => $municipio->departamento]);
-            session(['pais' => session('departamento')->pais]);
+            session(['pais' => session('departamento')->pais]);*/
             //dd(session('departamento')->Id,session('pais')->Id);
         }
         return redirect()->intended($this->redirectPath());

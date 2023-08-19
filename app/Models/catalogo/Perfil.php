@@ -44,9 +44,9 @@ class Perfil extends Model
 
 
 
-    public function distrito()
+    public function distrito_corregimiento()
     {
-        return $this->belongsTo(DistritoCorregimiento::class, 'Distrito', 'Id');
+        return $this->belongsTo(DistritoCorregimiento::class, 'DistritoCorregimiento', 'Id');
     }
 
     public function usuarioIngreso()

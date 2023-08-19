@@ -33,21 +33,22 @@ class HomeController extends Controller
         $usuario = User::findOrFail(auth()->user()->id);
    
         if ($usuario->perfil) {
-            $paises = Pais::where('Activo', 1)->get();
+            $pais = Pais::findOrFail($usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais);
             $distrito_corregimiento = DistritoCorregimiento::findOrFail($usuario->perfil->DistritoCorregimiento);
 
-            $distritos = DistritoCorregimiento::where('MunicipioDistrito', '=', $usuario->perfil->Municipio)->get();
-            $departamentos = DepartamentoProvincia::get();
-            $municipios = MunicipioDistrito::where('Activo', 1)->get();
+            $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito','=',$usuario->perfil->distrito_corregimiento->MunicipioDistrito)->get();
+            $municipios_distritos = MunicipioDistrito::where('Activo', 1)->where('DepartamentoProvincia','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia)->get();
+            $departamentos_provincia= DepartamentoProvincia::where('Pais','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais)->get();
+     
             
 
 
             return view('home', compact(
                 'usuario',
-                'paises',
-                'departamentos',
-                'municipios',
-                'distritos'
+                'pais',
+                'departamentos_provincia',
+                'municipios_distritos',
+                'distritos_corregimientos'
             ));
         }
         else{
