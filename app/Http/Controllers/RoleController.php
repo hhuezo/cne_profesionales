@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission as ModelsPermission;
 use Spatie\Permission\Models\Role as ModelsRole;
 
 class RoleController extends Controller
@@ -43,7 +44,8 @@ class RoleController extends Controller
     public function link_permission(Request $request)
     {
         $role = ModelsRole::findOrFail($request->role_id);
-        $permission = Permission::findOrFail($request->permission_id);
+        $permission = ModelsPermission::findOrFail($request->permission_id);
+        //dd($permission->name);
         $role->givePermissionTo($permission->name);
         alert()->success('El registro ha sido eliminado correctamente');
         return back();
@@ -51,8 +53,9 @@ class RoleController extends Controller
 
     public function unlink_permission(Request $request)
     {
+        
         $role = ModelsRole::findOrFail($request->role_id);
-        $permission = Permission::findOrFail($request->permission_id);
+        $permission = ModelsPermission::findOrFail($request->permission_id);
         $role->revokePermissionTo($permission->name);
         alert()->error('El registro ha sido eliminado correctamente');
         return back();
