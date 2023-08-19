@@ -15,7 +15,8 @@
                                 </div>
 
                             </header>
-                            <form method="POST" action="{{ route('usuario.store') }}">
+                            <form method="POST" action="{{ route('usuario.update', $user->id) }}">
+                                @method('PUT')
                                 @csrf
 
                                 @if (count($errors) > 0)
@@ -47,10 +48,6 @@
                                     </div>
 
 
-
-
-
-
                                     <div class="input-area relative">
                                         <label for="Nacionalidad" class="form-label">Correo</label>
                                         <input type="email" name="email" value="{{ $user->email }}" required
@@ -58,7 +55,7 @@
                                     </div>
                                     <div class="input-area relative">
                                         <label for="Direccion" class="form-label">Contraseña</label>
-                                        <input type="password" name="password" value="" required class="form-control">
+                                        <input type="password" name="password" value="" class="form-control">
                                     </div>
 
 
@@ -115,7 +112,7 @@
                                                         <tr>
                                                             <td>{{ $obj->name }} </td>
 
-                                                            <td align="center">                                                               
+                                                            <td align="center">
                                                                 <iconify-icon data-bs-toggle="modal"
                                                                     data-bs-target="#modal-delete-{{ $obj->id }}"
                                                                     icon="mdi:trash" style="color: #1769aa;"

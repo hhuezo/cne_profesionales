@@ -57,7 +57,7 @@ class UsuarioController extends Controller
         return redirect('seguridad/usuario/' . $user->id . '/edit');
     }
 
- 
+
 
     public function edit($id)
     {
@@ -65,33 +65,31 @@ class UsuarioController extends Controller
         $roles = Role::get();
         $roles_actuales = $user->user_has_role;
 
-        return view('seguridad.usuario.edit', compact('user','roles','roles_actuales'));
- 
+        return view('seguridad.usuario.edit', compact('user', 'roles', 'roles_actuales'));
     }
 
     public function link_role(Request $request)
-    {   
-        
-        $user = User::findOrFail($request->users_id);       
+    {
+
+        $user = User::findOrFail($request->users_id);
         $role = Role::findOrFail($request->role);
 
-        if($user->hasRole($role->name))
-        {
+        if ($user->hasRole($role->name)) {
             alert()->error('El rol ya esta registrado');
             return back();
         }
-      
+
         $user->assignRole($role->name);
         alert()->success('El registro ha sido creado correctamente');
         return back();
     }
 
     public function unlink_role(Request $request)
-    {   
-        
-        $user = User::findOrFail($request->users_id);       
+    {
+
+        $user = User::findOrFail($request->users_id);
         $role = Role::findOrFail($request->role);
-      
+
         $user->removeRole($role->name);
         alert()->info('El registro ha sido eliminado correctamente');
         return back();
@@ -99,7 +97,48 @@ class UsuarioController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'password.required' => 'La contraseña es requerida',
+            'email.unique' => 'El correo ya existe en la base de datos',
+            'password.min' => 'Las claves debe tener al menos 8 caracteres',
+            'name.required' => 'El nombre es requerido',
+            'last_name.required' => 'El apellido es requerido',
+        ];
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            //, ', 'unique:users''      
+
+        ], $messages);
+
+        $count = User::where('email', '=', $request->email)->where('id', '<>', $id)->count();
+
+        if ($count > 0) {
+            $request->validate([
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            ], $messages);
+        }
+
+        $user = User::findOrFail($id);
+
+        if ($request->password != '') {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8'],
+            ], $messages);
+
+            $user->password = Hash::make($request->password);
+        }
+
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+
+        $user->update();
+
+        alert()->success('El registro ha sido actualizado correctamente');
+        return back();
     }
 
     public function destroy($id)
