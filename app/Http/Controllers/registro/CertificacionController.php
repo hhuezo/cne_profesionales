@@ -196,7 +196,7 @@ class CertificacionController extends Controller
         return back();
     }
 
-    public function destroy($id)
+    public function show($id)
     {
         //
     }

@@ -150,7 +150,7 @@
                         </li>
                     @endcan
 
-                    @can('create certificacion')
+                    @can('read certificacion')
                         <li>
                             <a href="{{ url('registro/certificacion') }}" class="navItem">
                                 <span class="flex items-center">
