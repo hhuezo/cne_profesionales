@@ -85,6 +85,7 @@ Route::post('seguridad/usuarios/usuarioVerificado/{id}',[UserController::class, 
 
 //proyectos
 Route::post('registro/certificacion/send', [CertificacionController::class, 'send']);
+Route::post('registro/certificacion/asignar', [CertificacionController::class, 'asignar']);
 Route::resource('registro/certificacion', CertificacionController::class);
 
 

@@ -7,6 +7,7 @@ use App\Mail\VerificacionMail;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\registro\Certificacion;
 use App\Models\registro\CertificacionDetalle;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -16,7 +17,15 @@ class CertificacionController extends Controller
 {
     public function index()
     {
-        $certificaciones = Certificacion::get();
+        $user = User::findOrFail(auth()->user()->id);
+        //admin
+        if ($user->hasRole('administrador')) {
+            $certificaciones = Certificacion::get();
+        } else if ($user->hasRole('administrador local')) {
+            $certificaciones = Certificacion::where('Administrador', '=', auth()->user()->id)->get();
+        } else {
+            $certificaciones = Certificacion::where('Perfil', '=', $user->perfil->Id)->get();
+        }
         return view('registro.certificacion.index', compact('certificaciones'));
     }
 
@@ -80,10 +89,10 @@ class CertificacionController extends Controller
         $detalle->FechaVencimiento = $request->FechaVencimiento;
         $detalle->EntidadCertificadora = $request->EntidadCertificadora;
         $detalle->RecomendacionContratista = $request->RecomendacionContratista;
-        $detalle->UsuarioIngreso = $user->id;    
+        $detalle->UsuarioIngreso = $user->id;
         $detalle->FechaCreacion = $time->toDateTimeString();
         $detalle->Estado = 1;
-        
+
         $detalle->save();
 
         alert()->success('El registro ha sido creado correctamente');
@@ -104,30 +113,36 @@ class CertificacionController extends Controller
 
         alert()->success('El registro ha sido enviado correctamente');
         return back();
-
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
+    public function asignar(Request $request)
+    {
+        $certificacion = Certificacion::findOrFail($request->Certificacion);
+        $certificacion->Administrador = $request->Administrador;
+        $certificacion->update();
+        $user = User::findOrFail($request->Administrador);
+
+        $content = "Una certificación ha sido asignada favor consultar en los registros";
+        $recipientEmail = $user->email;
+        Mail::to($recipientEmail)->send(new VerificacionMail("Certificación asignada", $content));
+
+        alert()->success('El registro ha sido asignado correctamente');
+        return back();
+    }
+
     public function edit($id)
     {
         $entidades  = EntidadCertificadora::get();
         $certificacion = Certificacion::findOrFail($id);
-        $detalles = CertificacionDetalle::where('Certificacion','=',$id)->get();
-        return view('registro.certificacion.edit', compact('certificacion','detalles','entidades'));
+        $detalles = CertificacionDetalle::where('Certificacion', '=', $id)->get();
+
+        //listar admin locales
+        $role = Role::findOrFail(2);
+        $adminitradores_locales = $role->user_has_role;
+        return view('registro.certificacion.edit', compact('certificacion', 'detalles', 'entidades', 'adminitradores_locales'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
 
@@ -172,22 +187,15 @@ class CertificacionController extends Controller
         $detalle->FechaVencimiento = $request->FechaVencimiento;
         $detalle->EntidadCertificadora = $request->EntidadCertificadora;
         $detalle->RecomendacionContratista = $request->RecomendacionContratista;
-        $detalle->UsuarioIngreso = auth()->user()->id;    
+        $detalle->UsuarioIngreso = auth()->user()->id;
         $detalle->Estado = 1;
-        
+
         $detalle->save();
-        
+
         alert()->success('El registro ha sido creado correctamente');
         return back();
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
