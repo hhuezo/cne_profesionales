@@ -3,6 +3,7 @@
 namespace App\Models\registro;
 
 use App\Models\catalogo\EstadoCertificacion;
+use App\Models\catalogo\Perfil;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

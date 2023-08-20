@@ -7,10 +7,10 @@
     <div class=" space-y-5">
         <div class="card">
             <header class=" card-header noborder">
-                <h4 class="card-title">Proyectos
+                <h4 class="card-title">Certificaciones
                 </h4>
-                <a href="{{url('registro/certificacion/create')}}">
-                <button class="btn btn-dark">Nuevo</button>
+                <a href="{{ url('registro/certificacion/create') }}">
+                    <button class="btn btn-dark">Nuevo</button>
                 </a>
             </header>
             <div class="card">
@@ -22,9 +22,11 @@
                             <table id="myTable" class="display" cellspacing="0" width="100%">
                                 <thead>
                                     <tr class="td-table">
-                                        <th style="text-align: center">Id</th>
+                                        <th style="text-align: center">Fecha</th>
+                                        <th style="text-align: center">Solicitante</th>
+                                        <th style="text-align: center">Número documento</th>
                                         <th>Descripción</th>
-                                        <th>Alcance</th>
+                                        <th>Estado</th>
                                         <th style="text-align: center">Opciones</th>
                                     </tr>
                                 </thead>
@@ -32,14 +34,27 @@
                                     @if ($certificaciones->count() > 0)
                                         @foreach ($certificaciones as $obj)
                                             <tr>
-                                                <td align="center">{{ $obj->Id }}</td>
+                                                @if ($obj->FechaCreacion)
+                                                    <td>{{ date('d/m/Y', strtotime($obj->FechaCreacion)) }}</td>
+                                                @else
+                                                    <td></td>
+                                                @endif
+
+                                                <td>{{ $obj->perfil->usuario->name }} {{ $obj->perfil->usuario->last_name }}
+                                                </td>
+                                                <td align="center">{{ $obj->perfil->Dui }}</td>
                                                 <td>{{ $obj->Descripcion }}</td>
-                                                <td>{{ $obj->Alcance }}</td>
+                                                @if ($obj->Estado)
+                                                    <td align="center">{{ $obj->estado->Nombre }}</td>
+                                                @else
+                                                    <td></td>
+                                                @endif
                                                 <td align="center">
-                                                    <a href="{{url('registro/certificacion')}}/{{$obj->Id}}/edit">
-                                                    <iconify-icon icon="mdi:pencil-box" style="color: #475569;" width="40"></iconify-icon>
+                                                    <a href="{{ url('registro/certificacion') }}/{{ $obj->Id }}/edit">
+                                                        <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
+                                                            width="40"></iconify-icon>
                                                     </a>
-                                                   
+
                                                 </td>
                                             </tr>
                                             @include('registro.certificacion.modal')
@@ -152,7 +167,7 @@
         </div>
     </div> --}}
 
-{{--
+        {{--
         <script type="text/javascript">
             function modal_edit(id, name) {
                 //alert(id);

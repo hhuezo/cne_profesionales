@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\registro;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerificacionMail;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\registro\Certificacion;
 use App\Models\registro\CertificacionDetalle;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class CertificacionController extends Controller
 {
@@ -75,7 +77,7 @@ class CertificacionController extends Controller
         $detalle->Sector = $request->Sector;
         $detalle->Numero = $request->Numero;
         $detalle->FechaEmision = $request->FechaEmision;
-        $detalle->FechaVencimiento = $request->FechaFinalizacion;
+        $detalle->FechaVencimiento = $request->FechaVencimiento;
         $detalle->EntidadCertificadora = $request->EntidadCertificadora;
         $detalle->RecomendacionContratista = $request->RecomendacionContratista;
         $detalle->UsuarioIngreso = $user->id;    
@@ -89,9 +91,20 @@ class CertificacionController extends Controller
     }
 
 
-    public function show($id)
+    public function send(Request $request)
     {
-        //
+        $certificacion = Certificacion::findOrFail($request->Certificacion);
+        $certificacion->Estado = 2;
+        $certificacion->update();
+
+        $content = "La certificación ha sido enviada para la aprobación de parte de los administradores";
+        $recipientEmail = auth()->user()->email;
+        //$recipientEmail = "hulexgsa@gmail.com";
+        Mail::to($recipientEmail)->send(new VerificacionMail("Certificación enviada", $content));
+
+        alert()->success('El registro ha sido enviado correctamente');
+        return back();
+
     }
 
     /**
@@ -117,6 +130,31 @@ class CertificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+        $messages = [
+            'Descripcion.required' => 'La descripción es requerida',
+            'TipoTecnologia.required' => 'El tipo de tecnología es requerida',
+            'Sector.required' => 'El sector es requerido',
+            'Numero.required' => 'El número de certificación es requerido',
+            'FechaEmision.required' => 'La fecha de emisión es requerida',
+            'FechaVencimiento.required' => 'La fecha de vencimiento es requerida',
+            'EntidadCertificadora.required' => 'La entidad certificadora es requerida',
+            'RecomendacionContratista.required' => 'La recomendación del contratista es requerida',
+        ];
+
+        $request->validate([
+            'Descripcion' => 'required',
+            'TipoTecnologia' => 'required',
+            'Sector' => 'required',
+            'Numero' => 'required',
+            'FechaEmision' => 'required',
+            'FechaVencimiento' => 'required',
+            'EntidadCertificadora' => 'required',
+            'RecomendacionContratista' => 'required',
+        ], $messages);
+
+
         $detalle = new CertificacionDetalle();
 
         if ($request->file('Archivo')) {
@@ -131,7 +169,7 @@ class CertificacionController extends Controller
         $detalle->Sector = $request->Sector;
         $detalle->Numero = $request->Numero;
         $detalle->FechaEmision = $request->FechaEmision;
-        $detalle->FechaVencimiento = $request->FechaFinalizacion;
+        $detalle->FechaVencimiento = $request->FechaVencimiento;
         $detalle->EntidadCertificadora = $request->EntidadCertificadora;
         $detalle->RecomendacionContratista = $request->RecomendacionContratista;
         $detalle->UsuarioIngreso = auth()->user()->id;    

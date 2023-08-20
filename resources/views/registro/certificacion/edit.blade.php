@@ -42,10 +42,13 @@
                                     </button>
                                 </a>
                                 &nbsp;&nbsp;Certificación
+                                @if ($certificacion->Estado == 1)
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-send"
+                                        class="btn btn-dark btn-sm float-right">
+                                        Enviar
+                                    </button>
+                                @endif
 
-                                <button class="btn btn-dark btn-sm float-right">
-                                    Enviar 
-                                </button>
 
                             </div>
                         </div>
@@ -69,7 +72,8 @@
                                             <br>
                                         @endif
                                         <form method="POST"
-                                            action="{{ route('certificacion.update', $certificacion->Id) }}">
+                                            action="{{ route('certificacion.update', $certificacion->Id) }}"
+                                            enctype="multipart/form-data">
                                             @method('PUT')
                                             @csrf
 
@@ -83,49 +87,53 @@
                                                 <div class="input-area relative">
                                                     <label for="TipoTecnologia" class="form-label">Tipo de
                                                         tecnología</label>
-                                                    <textarea class="form-control" name="TipoTecnologia"></textarea>
+                                                    <textarea class="form-control" name="TipoTecnologia" required>{{ old('TipoTecnologia') }}</textarea>
                                                 </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Numero" class="form-label">Número</label>
-                                                    <input type="text" name="Numero" class="form-control">
+                                                    <input type="text" name="Numero" value="{{ old('Numero') }}"
+                                                        required class="form-control">
                                                 </div>
 
 
                                                 <div class="input-area relative">
                                                     <label for="Sector" class="form-label">Sector</label>
-                                                    <input type="text" name="Sector" class="form-control">
+                                                    <input type="text" name="Sector" value="{{ old('Sector') }}"
+                                                        required class="form-control">
                                                 </div>
 
 
 
                                                 <div class="input-area relative">
-                                                    <label for="FechaEmision" class="form-label">Fecha de
-                                                        emisión</label>
-                                                    <input type="date" name="FechaEmision" class="form-control">
+                                                    <label for="FechaEmision" class="form-label">Fecha de emisión</label>
+                                                    <input type="date" name="FechaEmision"
+                                                        value="{{ old('FechaEmision') }}" required class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Fecha de
-                                                        vencimiento</label>
-                                                    <input type="date" name="FechaVencimiento" class="form-control">
+                                                    <label for="Nombre" class="form-label">Fecha de vencimiento</label>
+                                                    <input type="date" name="FechaVencimiento"
+                                                        value="{{ old('FechaVencimiento') }}" required class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Documento</label>
-                                                    <input type="file" name="Archivo" class="form-control">
+                                                    <input type="file" name="Archivo" value="{{ old('Archivo') }}"
+                                                        required class="form-control">
                                                 </div>
 
 
 
                                                 <div class="input-area">
-                                                    <label for="Nombre" class="form-label">Entidad
-                                                        certificadora</label>
+                                                    <label for="Nombre" class="form-label">Entidad certificadora</label>
                                                     <div class="relative">
-                                                        <select name="EntidadCertificadora"
+                                                        <select name="EntidadCertificadora" required
                                                             class="form-control !pr-12 select2">
                                                             @foreach ($entidades as $obj)
-                                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}
+                                                                <option value="{{ $obj->Id }}"
+                                                                    {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
+                                                                    {{ $obj->Nombre }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -140,12 +148,14 @@
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Recomendación
                                                         contratista</label>
-                                                    <textarea class="form-control" name="RecomendacionContratista"></textarea>
+                                                    <textarea name="RecomendacionContratista" required class="form-control">{{ old('RecomendacionContratista') }}</textarea>
                                                 </div>
                                             </div>
                                             <div style="text-align: right;">
-                                                <button type="submit" style="margin-right: 18px"
-                                                    class="btn btn-dark">Agregar</button>
+                                                @if ($certificacion->Estado == 1)
+                                                    <button type="submit" style="margin-right: 18px"
+                                                        class="btn btn-dark">Agregar</button>
+                                                @endif
                                             </div>
                                     </div>
                                     </form>
@@ -177,29 +187,62 @@
                                         <tr>
                                             <th style="text-align: center">Id</th>
                                             <th>Descripción</th>
-                                            <th>Alcance</th>
+                                            <th>Número</th>
+                                            <th>Sector</th>
+                                            <th>Fecha emisión</th>
+                                            <th>Fecha vencimiento</th>
+                                            <th>Estado</th>
                                             <th style="text-align: center">Opciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($detalles->count() > 0)
+                                            @php($i = 1)
                                             @foreach ($detalles as $obj)
                                                 <tr>
-                                                    <td align="center">{{ $obj->Id }}</td>
+                                                    <td align="center">{{ $i }}</td>
                                                     <td>{{ $obj->Descripcion }}</td>
-                                                    <td>{{ $obj->Alcance }}</td>
+                                                    <td>{{ $obj->Numero }}</td>
+                                                    <td>{{ $obj->Sector }}</td>
+                                                    @if ($obj->FechaEmision)
+                                                        <td>{{ date('d/m/Y', strtotime($obj->FechaEmision)) }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
+
+                                                    @if ($obj->FechaVencimiento)
+                                                        <td>{{ date('d/m/Y', strtotime($obj->FechaVencimiento)) }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
+
+                                                    @if ($obj->estado)
+                                                        <td>{{ $obj->estado->Nombre }}</td>
+                                                    @else
+                                                        <td></td>
+                                                    @endif
                                                     <td align="center">
-                                                        <a href="{{ url('registro/proyecto') }}/{{ $obj->Id }}/edit">
+                                                        @if ($certificacion->Estado == 1)
+                                                            <a
+                                                                href="{{ url('registro/proyecto') }}/{{ $obj->Id }}/edit">
+                                                                <iconify-icon icon="mdi:pencil-box"
+                                                                    style="color: #475569;" width="40"></iconify-icon>
+                                                            </a>
+                                                            &nbsp;&nbsp;
+                                                            <iconify-icon data-bs-toggle="modal"
+                                                                data-bs-target="#modal-delete-{{ $obj->Id }}"
+                                                                icon="mdi:trash" style="color: #475569;"
+                                                                width="40"></iconify-icon>
+                                                        @else
                                                             <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
                                                                 width="40"></iconify-icon>
-                                                        </a>
-                                                        &nbsp;&nbsp;
-                                                        <iconify-icon data-bs-toggle="modal"
-                                                            data-bs-target="#modal-delete-{{ $obj->Id }}"
-                                                            icon="mdi:trash" style="color: #475569;"
-                                                            width="40"></iconify-icon>
+                                                            &nbsp;&nbsp;
+                                                            <iconify-icon data-bs-toggle="modal" icon="mdi:trash" style="color: #475569;"
+                                                                width="40"></iconify-icon>
+                                                        @endif
                                                     </td>
                                                 </tr>
+                                                @php($i++)
                                             @endforeach
                                         @endif
 
@@ -217,6 +260,57 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        aria-hidden="true" role="dialog" tabindex="-1" id="modal-send">
+
+        <form method="POST" action="{{ url('registro/certificacion/send') }}">
+            @csrf
+            <div class="modal-dialog relative w-auto pointer-events-none">
+                <div
+                    class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding
+                              rounded-md outline-none text-current">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-slate-700">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-center justify-between p-5 border-b rounded-t dark:border-slate-600 bg-black-500">
+                            <h3 class="text-base font-medium text-white dark:text-white capitalize">
+                                Enviar
+                            </h3>
+                            <button type="button"
+                                class="text-slate-400 bg-transparent hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center
+                                          dark:hover:bg-slate-600 dark:hover:text-white"
+                                data-bs-dismiss="modal">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="#ffffff" viewbox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
+                                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-4">
+                            <h6 class="text-base text-slate-900 dark:text-white leading-6">
+                                Confirme si desea enviar a aprobación
+                            </h6>
+                            <input type="hidden" name="Certificacion" value="{{ $certificacion->Id }}">
+
+                        </div>
+                        <!-- Modal footer -->
+                        <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
+                            <button type="submit"
+                                class="btn inline-flex justify-center text-white bg-black-500 float-right"
+                                style="margin-bottom: 15px">Accept</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
     </div>
 
 
