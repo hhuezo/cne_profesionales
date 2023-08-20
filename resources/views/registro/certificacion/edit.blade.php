@@ -22,7 +22,7 @@
     </script>
 
     <style>
-        .dataTables_info{
+        .dataTables_info {
             display: none;
         }
     </style>
@@ -34,14 +34,19 @@
                 <div class="card-body flex flex-col p-6">
                     <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                         <div class="flex-1">
-                            <div class="card-title text-slate-900 dark:text-white">Certificación
-
+                            <div class="card-title text-slate-900 dark:text-white">
                                 <a href="{{ url('registro/certificacion') }}">
-                                    <button class="btn btn-dark btn-sm float-right">
+                                    <button class="btn btn-dark btn-sm">
                                         <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
                                         </iconify-icon>
                                     </button>
                                 </a>
+                                &nbsp;&nbsp;Certificación
+
+                                <button class="btn btn-dark btn-sm float-right">
+                                    Enviar 
+                                </button>
+
                             </div>
                         </div>
                     </header>
@@ -71,10 +76,8 @@
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
 
                                                 <div class="input-area relative">
-                                                    <label for="largeInput" class="form-label">Descripción</label>
-                                                    <input type="text" name="Descripcion"
-                                                        value="{{ $certificacion->Descripcion }}" required
-                                                        class="form-control">
+                                                    <label for="TipoTecnologia" class="form-label">Descripción</label>
+                                                    <textarea class="form-control" readonly name="Descripcion">{{ $certificacion->Descripcion }}</textarea>
                                                 </div>
 
                                                 <div class="input-area relative">
@@ -159,7 +162,7 @@
 
                     <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                         <div class="flex-1">
-                            <div class="card-title text-slate-900 dark:text-white">Detalle                                
+                            <div class="card-title text-slate-900 dark:text-white">Detalle
                             </div>
                         </div>
                     </header>

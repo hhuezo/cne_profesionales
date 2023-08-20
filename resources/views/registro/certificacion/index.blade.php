@@ -36,13 +36,10 @@
                                                 <td>{{ $obj->Descripcion }}</td>
                                                 <td>{{ $obj->Alcance }}</td>
                                                 <td align="center">
-                                                    <a href="{{url('registro/proyecto')}}/{{$obj->Id}}/edit">
+                                                    <a href="{{url('registro/certificacion')}}/{{$obj->Id}}/edit">
                                                     <iconify-icon icon="mdi:pencil-box" style="color: #475569;" width="40"></iconify-icon>
                                                     </a>
-                                                    &nbsp;&nbsp;
-                                                    <iconify-icon data-bs-toggle="modal"
-                                                        data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
-                                                        style="color: #475569;" width="40"></iconify-icon>
+                                                   
                                                 </td>
                                             </tr>
                                             @include('registro.certificacion.modal')
