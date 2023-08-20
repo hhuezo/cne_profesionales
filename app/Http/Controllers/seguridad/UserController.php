@@ -4,9 +4,7 @@ namespace App\Http\Controllers\seguridad;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VerificacionMail;
-use App\Models\catalogo\Departamento;
 use App\Models\catalogo\EntidadCertificadora;
-use App\Models\catalogo\Municipio;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\User;
@@ -26,19 +24,13 @@ class UserController extends Controller
         $usuarios_sin_verificar = User::where('active', 1)->whereHas('perfil', function ($query) {
             $query->where('NivelVerificacion', 0);
         })->get();
-        //dd($usuarios_sin_verificar[0]->perfil);
+
         return view('seguridad.usuarios.index', compact('usuarios_sin_verificar'));
     }
 
     public function verificarUsuario($id)
     {
         $usuario = User::findOrFail($id);
-        //dd($usuario->perfil->municipio->Id);
-        /*$municipio = Municipio::find($usuario->perfil->Municipio);
-        $departamento = $municipio->departamento;
-        $distritos = Distrito::where('Municipio','=',$usuario->perfil->Municipio)->get();
-        $pais = $departamento->pais;*/
-
 
         $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito','=',$usuario->perfil->distrito_corregimiento->MunicipioDistrito)->get();
 

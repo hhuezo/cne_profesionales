@@ -145,7 +145,7 @@
                                             </div>
                                             <div style="text-align: right;">
                                                 <button type="submit" style="margin-right: 18px"
-                                                    class="btn btn-dark">Aceptar</button>
+                                                    class="btn btn-dark">Agregar</button>
                                             </div>
                                     </div>
                                     </form>

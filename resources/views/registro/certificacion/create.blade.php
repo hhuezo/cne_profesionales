@@ -44,39 +44,39 @@
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                                 <div class="input-area relative">
                                                     <label for="Descipcion" class="form-label">Descripción</label>
-                                                    <textarea class="form-control" name="Descripcion"></textarea>
+                                                    <textarea class="form-control" name="Descripcion" required>{{old('Descripcion')}}</textarea>
                                                 </div>
                                                 <div class="input-area relative">
                                                     <label for="TipoTecnologia" class="form-label">Tipo de tecnología</label>
-                                                    <textarea class="form-control" name="TipoTecnologia"></textarea>
+                                                    <textarea class="form-control" name="TipoTecnologia" required>{{old('TipoTecnologia')}}</textarea>
                                                 </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Numero" class="form-label">Número</label>
-                                                    <input type="text" name="Numero" class="form-control">
+                                                    <input type="text" name="Numero" value="{{old('Numero')}}" required class="form-control">
                                                 </div>
 
 
                                                 <div class="input-area relative">
                                                     <label for="Sector" class="form-label">Sector</label>
-                                                    <input type="text" name="Sector" class="form-control">
+                                                    <input type="text" name="Sector" value="{{old('Sector')}}" required class="form-control">
                                                 </div>
 
 
 
                                                 <div class="input-area relative">
                                                     <label for="FechaEmision" class="form-label">Fecha de emisión</label>
-                                                    <input type="date" name="FechaEmision" class="form-control">
+                                                    <input type="date" name="FechaEmision" value="{{old('FechaEmision')}}" required class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Fecha de vencimiento</label>
-                                                    <input type="date" name="FechaVencimiento" class="form-control">
+                                                    <input type="date" name="FechaVencimiento" value="{{old('FechaVencimiento')}}" required class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Documento</label>
-                                                    <input type="file" name="Archivo" class="form-control">
+                                                    <input type="file" name="Archivo" value="{{old('Archivo')}}" required class="form-control">
                                                 </div>
 
                                               
@@ -84,10 +84,9 @@
                                                 <div class="input-area">
                                                     <label for="Nombre" class="form-label">Entidad certificadora</label>
                                                     <div class="relative">
-                                                        <select name="EntidadCertificadora"
-                                                            class="form-control !pr-12 select2">
+                                                        <select name="EntidadCertificadora" required class="form-control !pr-12 select2">
                                                             @foreach ($entidades as $obj)
-                                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}
+                                                                <option value="{{ $obj->Id }}" {{ old('EntidadCertificadora') == $obj->Id  ? 'selected' : '' }}>{{ $obj->Nombre }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
@@ -101,7 +100,7 @@
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Recomendación
                                                         contratista</label>
-                                                    <textarea class="form-control" name="RecomendacionContratista"></textarea>
+                                                    <textarea  name="RecomendacionContratista" required class="form-control">{{old('RecomendacionContratista')}}</textarea>
                                                 </div>
                                             </div>
                                             <br>

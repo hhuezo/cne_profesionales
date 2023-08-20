@@ -120,16 +120,9 @@ class PerfilController extends Controller
         $perfil = Perfil::findOrFail($id);
         $perfil->Dui = $request->Dui;
         $perfil->Profesion = $request->Profesion;
-        //$perfil->Nacionalidad = $request->Nacionalidad;
         $perfil->Direccion = $request->Direccion;
-        //$perfil->Pais = $request->Pais;
         $perfil->DistritoCorregimiento = $request->Distrito;
-        //$perfil->Municipio = $request->Municipio;
         $perfil->Telefono = $request->Telefono;
-        //$perfil->TipoCertificado = $request->TipoCertificado;
-        //$perfil->NumeroCertificacion = $request->NumeroCertificacion;
-
-
         if ($request->DuiURL) {
             try {
                 unlink(public_path("docs/") . $perfil->DuiURL);
