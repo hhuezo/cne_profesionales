@@ -2,6 +2,7 @@
 
 namespace App\Models\registro;
 
+use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\EstadoCertificacionDetalle;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -39,5 +40,10 @@ class CertificacionDetalle extends Model
     public function estado()
     {
         return $this->belongsTo(EstadoCertificacionDetalle::class, 'Estado', 'Id');
+    }
+
+    public function entidad()
+    {
+        return $this->belongsTo(EntidadCertificadora::class, 'EntidadCertificadora', 'Id');
     }
 }

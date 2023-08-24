@@ -50,10 +50,20 @@
                                                     <td></td>
                                                 @endif
                                                 <td align="center">
+                                                    @can('edit certificacion')
                                                     <a href="{{ url('registro/certificacion') }}/{{ $obj->Id }}/edit">
                                                         <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
                                                             width="40"></iconify-icon>
                                                     </a>
+                                                    @endcan
+                                                   
+
+                                                    @can('show certificacion')
+                                                    <a href="{{ url('registro/certificacion') }}/{{ $obj->Id }}">
+                                                        <iconify-icon icon="mdi:eye" style="color: #475569;" width="40"></iconify-icon>
+                                                    </a>
+                                                    @endcan
+                                                   
 
                                                 </td>
                                             </tr>

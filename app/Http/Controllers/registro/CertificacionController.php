@@ -199,6 +199,9 @@ class CertificacionController extends Controller
 
     public function show($id)
     {
-        //
+        $certificacion = Certificacion::findOrFail($id);
+        $detalles = CertificacionDetalle::where('Certificacion','=',$id)->get();
+
+        return view('registro.certificacion.show', compact('certificacion','detalles'));
     }
 }
