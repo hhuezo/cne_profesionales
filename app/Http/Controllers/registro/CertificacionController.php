@@ -5,6 +5,7 @@ namespace App\Http\Controllers\registro;
 use App\Http\Controllers\Controller;
 use App\Mail\VerificacionMail;
 use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\Perfil;
 use App\Models\registro\Certificacion;
 use App\Models\registro\CertificacionDetalle;
 use App\Models\Role;
@@ -61,7 +62,7 @@ class CertificacionController extends Controller
 
 
         $user = User::findOrFail(auth()->user()->id);
-        $perfil = $user->perfil->first();
+        $perfil = Perfil::where('Usuario','=',auth()->user()->id)->first();
         $time = Carbon::now('America/El_Salvador');
 
         $certificacion = new Certificacion();
