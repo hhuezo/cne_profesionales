@@ -165,9 +165,16 @@
 
 
                                     <div class="input-area relative">
-                                        <label for="Nacionalidad" class="form-label">Nacionalidad</label>
+                                        <label for="Nacionalidad" class="form-label">Pais de origen</label>
 
+                                        <select name="Nacionalidad" class="form-control select2">
+                                            @foreach ($paises as $obj)
+                                            <option value="{{$obj->Id}}"  {{$configuracion->Pais == $obj->Id ? 'selected':''}}  >{{$obj->Nombre}}</option>
+                                            @endforeach
+                                            
+                                        </select>
 
+                                        {{-- 
                                         @if ($configuracion->Pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <input type="text" name="Nacionalidad"
@@ -177,8 +184,7 @@
                                             <input type="text" name="Nacionalidad"
                                                 value="{{ 'Panameño(a)', old('Nacionalidad') }}" required
                                                 class="form-control">
-                                        @endif
-
+                                        @endif--}}
                                     </div>
 
                                     <div class="input-area relative">
@@ -201,8 +207,8 @@
 
                                     <div class="input-area">
                                         <label for="Profesion" class="form-label">Profesión u oficio</label>
-                                        <input type="text" name="Profesion" value="{{ old('Profesion') }}"
-                                            required class="form-control">
+                                        <input type="text" name="Profesion" value="{{ old('Profesion') }}" required
+                                            class="form-control">
                                     </div>
 
                                     <div class="input-area relative">

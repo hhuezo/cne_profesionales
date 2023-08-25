@@ -9,6 +9,7 @@ use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\MunicipioDistrito;
+use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\configuracion\ConfiguracionPais;
@@ -139,8 +140,11 @@ class RegisterController extends Controller
 
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
+
+        $paises = Pais::get();
       
-        return view('auth.register', compact ('configuracion','departamento_provincia', 'municipio_distrito','distrito_corregimiento', 'entidades', 'tipos_certificados'));
+        return view('auth.register', compact ('configuracion','departamento_provincia', 'municipio_distrito',
+        'distrito_corregimiento', 'entidades', 'tipos_certificados','paises'));
     }
 
     /**
