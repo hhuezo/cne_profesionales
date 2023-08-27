@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\registro\CertificacionController;
+use App\Http\Controllers\registro\ProyectoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\seguridad\PerfilController;
 use App\Http\Controllers\UsuarioController;
@@ -87,6 +88,7 @@ Route::post('seguridad/usuarios/usuarioVerificado/{id}',[UserController::class, 
 Route::post('registro/certificacion/send', [CertificacionController::class, 'send']);
 Route::post('registro/certificacion/asignar', [CertificacionController::class, 'asignar']);
 Route::resource('registro/certificacion', CertificacionController::class);
+Route::resource('registro/proyecto', ProyectoController::class);
 
 
 

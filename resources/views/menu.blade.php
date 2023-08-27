@@ -160,6 +160,15 @@
                                 </span>
                             </a>
                         </li>
+
+                        <li>
+                            <a href="{{ url('registro/proyecto') }}" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="material-symbols:add-notes" style="color: white;"></iconify-icon>
+                                    <span>Proyectos</span>
+                                </span>
+                            </a>
+                        </li>
                     @endcan
                     <!-- Apps Area -->
                     {{-- <li class="sidebar-menu-title">APPS</li>
