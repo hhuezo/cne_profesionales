@@ -38,70 +38,71 @@
                                             <br>
                                         @endif
 
-                                        <form method="POST" action="{{ url('registro/certificacion') }}" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ url('registro/certificacion') }}"
+                                            enctype="multipart/form-data">
                                             @csrf
 
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                                 <div class="input-area relative">
                                                     <label for="Descipcion" class="form-label">Descripción</label>
-                                                    <textarea class="form-control" name="Descripcion" required>{{old('Descripcion')}}</textarea>
+                                                    <textarea class="form-control" name="Descripcion" required>{{ old('Descripcion') }}</textarea>
                                                 </div>
                                                 <div class="input-area relative">
-                                                    <label for="TipoTecnologia" class="form-label">Tipo de tecnología</label>
-                                                    <textarea class="form-control" name="TipoTecnologia" required>{{old('TipoTecnologia')}}</textarea>
+                                                    <label for="Alcance" class="form-label">Alcance</label>
+                                                    <textarea class="form-control" name="Alcance" required>{{ old('Alcance') }}</textarea>
                                                 </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Numero" class="form-label">Número</label>
-                                                    <input type="text" name="Numero" value="{{old('Numero')}}" required class="form-control">
+                                                    <input type="text" name="Numero" value="{{ old('Numero') }}"
+                                                        required class="form-control">
                                                 </div>
 
 
-                                                <div class="input-area relative">
-                                                    <label for="Sector" class="form-label">Sector</label>
-                                                    <input type="text" name="Sector" value="{{old('Sector')}}" required class="form-control">
+                                                <div class="input-area">
+                                                    <label for="Nombre" class="form-label">Tipo certificado</label>
+                                                    <select name="TipoCertificado" required
+                                                        class="form-control !pr-12 select2">
+                                                        @foreach ($tipo_certificados as $obj)
+                                                            <option value="{{ $obj->Id }}"
+                                                                {{ old('TipoCertificado') == $obj->Id ? 'selected' : '' }}>
+                                                                {{ $obj->Descripcion }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
                                                 </div>
 
 
+                                                <div class="input-area">
+                                                    <label for="Nombre" class="form-label">Entidad certificadora</label>
+                                                    <select name="EntidadCertificadora" id="EntidadCertificadora" required
+                                                        class="form-control !pr-12 select2">                                                        
+                                                        @foreach ($entidades as $obj)
+                                                            <option value="{{ $obj->Id }}"
+                                                                {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
+                                                                {{ $obj->Nombre }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
 
-                                                <div class="input-area relative">
-                                                    <label for="FechaEmision" class="form-label">Fecha de emisión</label>
-                                                    <input type="date" name="FechaEmision" value="{{old('FechaEmision')}}" required class="form-control">
+                                                <div class="input-area relative" id="otra_entidad">
+                                                    <label for="Nombre" class="form-label">Otra entidad
+                                                        certificadora</label>
+                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required value="{{ old('OtraEntidad') }}"
+                                                        required class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Fecha de vencimiento</label>
-                                                    <input type="date" name="FechaVencimiento" value="{{old('FechaVencimiento')}}" required class="form-control">
+                                                    <input type="date" name="FechaVencimiento" min="{{ date('Y-m-d') }}"
+                                                        value="{{ old('FechaVencimiento') }}" required
+                                                        class="form-control">
                                                 </div>
 
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Documento</label>
-                                                    <input type="file" name="Archivo" value="{{old('Archivo')}}" required class="form-control">
-                                                </div>
 
-                                              
 
-                                                <div class="input-area">
-                                                    <label for="Nombre" class="form-label">Entidad certificadora</label>
-                                                    <div class="relative">
-                                                        <select name="EntidadCertificadora" required class="form-control !pr-12 select2">
-                                                            @foreach ($entidades as $obj)
-                                                                <option value="{{ $obj->Id }}" {{ old('EntidadCertificadora') == $obj->Id  ? 'selected' : '' }}>{{ $obj->Nombre }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                        <button type="button"
-                                                            class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
-                                                            <iconify-icon icon="ph:plus-fill" style="color: #0f172a;" width="32"></iconify-icon>
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Recomendación
-                                                        contratista</label>
-                                                    <textarea  name="RecomendacionContratista" required class="form-control">{{old('RecomendacionContratista')}}</textarea>
-                                                </div>
                                             </div>
                                             <br>
                                             <div style="text-align: right;">
@@ -132,5 +133,22 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#EntidadCertificadora").change(function() {               
+                if($(this).val() == 1)
+                {
+                    $("#otra_entidad").css("display", "block");
+                    $("#OtraEntidad").attr("required", true);
+                }
+                else{
+                    $("#otra_entidad").css("display", "none");
+                    $("#OtraEntidad").attr("required", false);
+                }
+                $("#OtraEntidad").val("");
+            });
+        });
+    </script>
 
 @endsection
