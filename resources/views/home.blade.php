@@ -65,28 +65,46 @@
                                                 <input type="email" name="Email" id="Email"
                                                     value="{{ $usuario->email }}" class="form-control">
                                             </div>
-                                            <div class="input-area relative">
+                                            {{-- <div class="input-area relative">
                                                 <label for="Dui" class="form-label">Dui</label>
                                                 <input type="text" name="Dui" value="{{ $usuario->perfil->Dui }}"
                                                     class="form-control">
-                                            </div>
+                                            </div> --}}
 
                                             <div class="input-area relative">
-                                                <label for="Nacionalidad" class="form-label">Nacionalidad</label>
-                                                <input type="text" name="Nacionalidad"
-                                                    value="{{ $usuario->perfil->Nacionalidad }}" class="form-control">
+                                                <label for="Nacionalidad" class="form-label">Pais de origen</label>
+        
+                                                <select name="Nacionalidad" class="form-control select2">
+                                                    @foreach ($paises as $obj)
+                                                        <option value="{{ $obj->Id }}"
+                                                            {{ $usuario->perfil->Nacionalidad == $obj->Id ? 'selected' : '' }}>
+                                                            {{ $obj->Nombre }}</option>
+                                                    @endforeach
+        
+                                                </select>
+        
                                             </div>
 
                                             <div class="input-area">
                                                 <label for="Profesion" class="form-label">Profesión u oficio</label>
-                                                <input type="text" name="Profesion"
-                                                    value="{{ $usuario->perfil->Profesion }}" class="form-control">
+                                                <select class="form-control" name="Profesion" id="Profesion">
+                                                    <option value="0">Seleccione</option>
+                                                    @foreach ($profesiones as $obj)
+                                                        <option value="{{ $obj->Id }}"  {{ $usuario->perfil->Profesion == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-
+                               
+                                            <div class="input-area relative" id="otra_profesion" style="display: none">
+                                                <label for="Telefono" class="form-label">Otra profesión</label>
+                                                <input type="text" name="OtraProfesion" id="OtraProfesion"
+                                                    value="{{ $usuario->perfil->OtraProfesion }}" class="form-control">
+                                            </div>
+{{-- 
                                             <div class="input-area relative">
                                                 <label for="Pais" class="form-label">Pais</label>
                                                 <input type="text" value="{{$pais->Nombre}}" class="form-control" disabled>
-                                            </div>
+                                            </div> --}}
                                             <div class="input-area relative">
                                                 <label for="Direccion" class="form-label">Dirección</label>
                                                 <input type="text" name="Direccion" id="Direccion"
@@ -167,9 +185,12 @@
         @endif
     @endif
 
+
+    <!-- scripts -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-
+            validar();
             $("#Departamento").change(function() {
                 // var para la Departamento
                 var Departamento = $(this).val();
@@ -205,6 +226,20 @@
                 });
             });
 
+            $("#Profesion").change(function() {
+                validar();
+            });
+
         });
+
+        function validar (){
+            if ($("#Profesion").val() == 1) {
+                $("#otra_profesion").css("display", "block");
+                $("#OtraProfesion").attr("required", true);
+            } else {
+                $("#otra_profesion").css("display", "none");
+                $("#OtraProfesion").attr("required", false);
+            }
+        };
     </script>
 @endsection

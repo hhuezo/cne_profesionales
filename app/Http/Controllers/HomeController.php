@@ -8,6 +8,7 @@ use App\Models\catalogo\DistritoCorregimiento;
 
 use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
+use App\Models\catalogo\Profesion;
 use App\Models\User;
 
 class HomeController extends Controller
@@ -40,7 +41,8 @@ class HomeController extends Controller
             $municipios_distritos = MunicipioDistrito::where('Activo', 1)->where('DepartamentoProvincia','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia)->get();
             $departamentos_provincia= DepartamentoProvincia::where('Pais','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais)->get();
      
-            
+            $paises = Pais::get();
+            $profesiones = Profesion::get();
 
 
             return view('home', compact(
@@ -48,7 +50,7 @@ class HomeController extends Controller
                 'pais',
                 'departamentos_provincia',
                 'municipios_distritos',
-                'distritos_corregimientos'
+                'distritos_corregimientos','paises','profesiones'
             ));
         }
         else{

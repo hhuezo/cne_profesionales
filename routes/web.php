@@ -31,7 +31,7 @@ Route::get('/', function () {
 });*/
 
 Route::get('/', [WelcomeController::class, 'index']);
-//Route::get('select_pais/{id}', [WelcomeController::class, 'show']);
+Route::get('select_pais/{id}', [WelcomeController::class, 'show']);
 //Route::get('login', [WelcomeController::class, 'show']);
 
 Route::get('login', [Auth\LoginController::class, 'showLoginForm']);
@@ -78,6 +78,7 @@ Route::resource('seguridad/perfil', PerfilController::class);
 Route::resource('seguridad/usuarios', UserController::class);
 Route::get('seguridad/usuarios/verificarUsuario/{id}',[UserController::class, 'verificarUsuario'])->name('usuarios.verificarUsuario');
 Route::post('seguridad/usuarios/usuarioVerificado/{id}',[UserController::class, 'usuarioVerificado'])->name('usuarios.usuarioVerificado');
+Route::post('seguridad/usuarios/add_profesion',[UserController::class, 'add_profesion']);
 
 
 

@@ -11,6 +11,7 @@ use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
+use App\Models\catalogo\Profesion;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\configuracion\ConfiguracionPais;
 use App\Models\User;
@@ -21,6 +22,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -83,7 +85,7 @@ class RegisterController extends Controller
             'Nacionalidad' => ['required'],
             'Direccion' => ['required'],
             'Profesion' => ['required'],
-            'Dui' => ['required'],
+            //'Dui' => ['required'],
         ] ,$messages);
     }
 
@@ -108,8 +110,9 @@ class RegisterController extends Controller
 
         $perfil = new Perfil();
         $perfil->Usuario = $usuario->id;
+        $perfil->Pais = $data['Pais'];
         $perfil->Nacionalidad = $data['Nacionalidad'];
-        $perfil->Dui = $data['Dui'];
+        $perfil->OtraProfesion = $data['OtraProfesion'];
         $perfil->Profesion = $data['Profesion'];
         $perfil->DistritoCorregimiento = $data['Distrito'];
         $perfil->Direccion = $data['Direccion'];
@@ -125,10 +128,13 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
 
-        $configuracion = ConfiguracionPais::first();
+        if(!session('id_pais'))
+        {
+            return Redirect::to('/');
+        }        
 
-        $departamento_provincia = DepartamentoProvincia::where('Pais','=',$configuracion->Pais)->get();
-        if($configuracion->Pais == 130)
+        $departamento_provincia = DepartamentoProvincia::where('Pais','=',session('id_pais'))->get();
+        if(session('id_pais') == 130)
         {
             $municipio_distrito = MunicipioDistrito::where('Activo', '=',1)->where('DepartamentoProvincia','=', 1)->get();
             $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito','=', 1)->get();
@@ -140,11 +146,12 @@ class RegisterController extends Controller
 
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
+        $profesiones = Profesion::where('Activo','=',1)->get();
 
         $paises = Pais::get();
       
-        return view('auth.register', compact ('configuracion','departamento_provincia', 'municipio_distrito',
-        'distrito_corregimiento', 'entidades', 'tipos_certificados','paises'));
+        return view('auth.register', compact ('departamento_provincia', 'municipio_distrito',
+        'distrito_corregimiento', 'entidades', 'tipos_certificados','paises','profesiones'));
     }
 
     /**

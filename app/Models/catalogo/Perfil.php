@@ -68,4 +68,9 @@ class Perfil extends Model
     {
         return $this->belongsTo(Pais::class, 'Pais', 'Id');
     }
+
+    public function profesion()
+    {
+        return $this->belongsTo(Profesion::class, 'Profesion', 'Id');
+    }
 }

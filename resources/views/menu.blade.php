@@ -35,7 +35,7 @@
 
     <style>
         .card-title,
-        .form-label {
+        .form-label, .table-td  {
             text-transform: none;
         }        
     </style>

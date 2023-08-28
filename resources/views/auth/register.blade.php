@@ -102,7 +102,12 @@
     <script src="assets/js/settings.js" sync></script>
     <!-- END : Theme Config js-->
 
-
+    <style>
+        .card-title,
+        .form-label {
+            text-transform: none;
+        }        
+    </style>
 </head>
 
 <body class=" font-inter skin-default">
@@ -169,50 +174,22 @@
 
                                         <select name="Nacionalidad" class="form-control select2">
                                             @foreach ($paises as $obj)
-                                            <option value="{{$obj->Id}}"  {{$configuracion->Pais == $obj->Id ? 'selected':''}}  >{{$obj->Nombre}}</option>
+                                                <option value="{{ $obj->Id }}"
+                                                    {{ session('id_pais') == $obj->Id ? 'selected' : '' }}>
+                                                    {{ $obj->Nombre }}</option>
                                             @endforeach
-                                            
+
                                         </select>
 
-                                        {{-- 
-                                        @if ($configuracion->Pais == '130')
-                                            <!-- 130 El Salvador 137 Panama-->
-                                            <input type="text" name="Nacionalidad"
-                                                value="{{ 'Salvadoreño(a)', old('Nacionalidad') }}" required
-                                                class="form-control">
-                                        @else
-                                            <input type="text" name="Nacionalidad"
-                                                value="{{ 'Panameño(a)', old('Nacionalidad') }}" required
-                                                class="form-control">
-                                        @endif--}}
                                     </div>
+
+                          
+
+
+
 
                                     <div class="input-area relative">
-                                        @if ($configuracion->Pais == '130')
-                                            <!-- 130 El Salvador 137 Panama-->
-                                            <label for="Dui" class="form-label">DUI</label>
-                                            <span id="codigoProvincia"></span>
-                                            <input type="text" name="Dui" id="Dui"
-                                                value="{{ old('Dui') }}" required class="form-control">
-                                        @else
-                                            <label for="Dui" class="form-label">CIP</label>
-                                            <span id="codigoProvincia"></span>
-                                            <input type="text" name="Dui" id="Dui"
-                                                value="{{ old('Dui') }}" required class="form-control">
-                                        @endif
-
-
-                                    </div>
-
-
-                                    <div class="input-area">
-                                        <label for="Profesion" class="form-label">Profesión u oficio</label>
-                                        <input type="text" name="Profesion" value="{{ old('Profesion') }}" required
-                                            class="form-control">
-                                    </div>
-
-                                    <div class="input-area relative">
-                                        @if ($configuracion->Pais == '130')
+                                        @if (session('id_pais') == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Departamento" class="form-label">Departamento</label>
                                         @else
@@ -238,7 +215,7 @@
 
 
                                     <div class="input-area relative">
-                                        @if ($configuracion->Pais == '130')
+                                        @if (session('id_pais') == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Municipio" class="form-label">Municipio</label>
                                         @else
@@ -262,7 +239,7 @@
                                     </div>
 
                                     <div class="input-area relative">
-                                        @if ($configuracion->Pais == '130')
+                                        @if (session('id_pais') == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Distrito" class="form-label">Distrito</label>
                                         @else
@@ -277,6 +254,22 @@
                                                     {{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+
+                                    <div class="input-area">
+                                        <label for="Profesion" class="form-label">Profesión u oficio</label>
+                                        <select class="form-control" name="Profesion" id="Profesion">
+                                            <option value="0">Seleccione</option>
+                                            @foreach ($profesiones as $obj)
+                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="input-area relative" id="otra_profesion" style="display: none">
+                                        <label for="Telefono" class="form-label">Otra profesión</label>
+                                        <input type="text" name="OtraProfesion" id="OtraProfesion"
+                                            value="{{ old('OtraProfesion') }}" class="form-control">
                                     </div>
 
 
@@ -309,8 +302,6 @@
     <script src="assets/js/rt-plugins.js"></script>
     <script src="assets/js/app.js"></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -380,13 +371,20 @@
 
 
 
+        });
 
-
-
+        $("#Profesion").change(function() {
+            if ($(this).val() == 1) {
+                $("#otra_profesion").css("display", "block");
+                $("#OtraProfesion").attr("required", true);
+            } else {
+                $("#otra_profesion").css("display", "none");
+                $("#OtraProfesion").attr("required", false);
+            }
+            $("#OtraProfesion").val("");
         });
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
 </body>
 
 </html>

@@ -16,6 +16,8 @@ use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\Distrito;
 use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\MunicipioDistrito;
+use App\Models\catalogo\Perfil;
+use App\Models\catalogo\Profesion;
 
 class UserController extends Controller
 {
@@ -40,8 +42,9 @@ class UserController extends Controller
         $pais = Pais::findOrFail($usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais);
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
+        $profesiones = Profesion::where('Activo','=',1)->get();
         return view('seguridad.usuarios.verificar_usuarios', compact('usuario', 'pais', 'departamentos_provincia',
-         'municipios_distritos','distritos_corregimientos', 'entidades', 'tipos_certificados'));
+         'municipios_distritos','distritos_corregimientos', 'entidades', 'tipos_certificados','profesiones'));
 
     }
 
@@ -80,7 +83,7 @@ class UserController extends Controller
 
         $perfil = $user->perfil;
 
-        $perfil->Dui = $request->input('Dui');
+        //$perfil->Dui = $request->input('Dui');
         //$perfil->DuiURL = $request->input('DuiURL');
         $perfil->Profesion = $request->input('Profesion');
         //$perfil->TituloURL = $request->input('TituloURL');
@@ -88,7 +91,7 @@ class UserController extends Controller
         $perfil->Direccion = $request->input('Direccion');
         $perfil->Telefono = $request->input('Telefono');
         $perfil->DistritoCorregimiento = $request->input('Distrito');
-       // $perfil->Pais = $request->input('Pais');
+        $perfil->OtraProfesion = $request->input('OtraProfesion');
         //if (auth()->user()->can('perfil_sin_verificar')) {
         $perfil->NivelVerificacion = 0;
         session('perfil')->NivelVerificacion=0;
@@ -103,5 +106,21 @@ class UserController extends Controller
         $recipientEmail = $request->Email;
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
         return back();
+    }
+
+    public function add_profesion(Request $request)
+    {
+
+        $profesion = new Profesion();
+        $profesion->Nombre = $request->Nombre;
+        $profesion->save();
+
+        $perfil = Perfil::findOrFail($request->Perfil);
+        $perfil->Profesion = $profesion->Id;
+        $perfil->save();
+
+        alert()->success('La profesión ha sido agregada correctamente');
+        return back(); 
+
     }
 }

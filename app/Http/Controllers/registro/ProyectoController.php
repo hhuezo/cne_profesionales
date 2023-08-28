@@ -15,7 +15,8 @@ class ProyectoController extends Controller
 {
     public function index()
     {
-        $proyectos = Proyecto::get();
+        $perfil = Perfil::where('Usuario','=',auth()->user()->id)->first();
+        $proyectos = Proyecto::where('Perfil','=',$perfil->Id)->get();
         return view('registro.proyecto.index', compact('proyectos'));
     }
 

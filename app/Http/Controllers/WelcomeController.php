@@ -32,9 +32,9 @@ class WelcomeController extends Controller
 
     public function show($id)
     {
-        //session(['id_pais' => $id]);
+        session(['id_pais' => $id]);
         $pais = Pais::where('Activo', '=', 1)->get();
-        return view('login', compact('pais'));
+        return view('welcome', compact('pais'));
         //return redirect('login');
     }
 

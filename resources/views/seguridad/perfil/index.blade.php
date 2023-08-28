@@ -44,8 +44,8 @@
                                     </div>
 
                                     <div class="input-area relative">
-                                        <label for="Dui" class="form-label">DUI</label>
-                                        <input type="text" name="Dui" value="{{ $perfil->Dui }}"
+                                        <label for="Dui" class="form-label">Numero documento</label>
+                                        <input type="text" name="NumeroDocumento" value="{{ $perfil->NumeroDocumento }}"
                                             class="form-control">
                                     </div>
                                     @if ($perfil->DuiURL)
