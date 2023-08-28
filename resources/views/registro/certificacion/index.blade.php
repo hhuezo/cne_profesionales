@@ -42,7 +42,7 @@
 
                                                 <td>{{ $obj->perfil->usuario->name }} {{ $obj->perfil->usuario->last_name }}
                                                 </td>
-                                                <td align="center">{{ $obj->perfil->Dui }}</td>
+                                                <td align="center">{{ $obj->perfil->NumeroDocumento }}</td>
                                                 <td>{{ $obj->Descripcion }}</td>
                                                 @if ($obj->Estado)
                                                     <td align="center">{{ $obj->estado->Nombre }}</td>

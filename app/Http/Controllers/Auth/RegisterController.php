@@ -110,7 +110,7 @@ class RegisterController extends Controller
 
         $perfil = new Perfil();
         $perfil->Usuario = $usuario->id;
-        $perfil->Pais = $data['Pais'];
+        $perfil->Pais = session('id_pais');
         $perfil->Nacionalidad = $data['Nacionalidad'];
         $perfil->OtraProfesion = $data['OtraProfesion'];
         $perfil->Profesion = $data['Profesion'];

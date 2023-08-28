@@ -193,50 +193,37 @@ class CertificacionController extends Controller
 
         $messages = [
             'Descripcion.required' => 'La descripción es requerida',
-            'TipoTecnologia.required' => 'El tipo de tecnología es requerida',
-            'Sector.required' => 'El sector es requerido',
+            'Alcance.required' => 'El tipo de tecnología es requerida',
             'Numero.required' => 'El número de certificación es requerido',
-            'FechaEmision.required' => 'La fecha de emisión es requerida',
+            'TipoCertificado.required' => 'El tipo de certificado es requerido',
             'FechaVencimiento.required' => 'La fecha de vencimiento es requerida',
             'EntidadCertificadora.required' => 'La entidad certificadora es requerida',
             'RecomendacionContratista.required' => 'La recomendación del contratista es requerida',
+            'OtraEntidad.required' => 'La otra entidad es requerida',
         ];
 
         $request->validate([
             'Descripcion' => 'required',
-            'TipoTecnologia' => 'required',
-            'Sector' => 'required',
+            'Alcance' => 'required',
             'Numero' => 'required',
-            'FechaEmision' => 'required',
+            'TipoCertificado' => 'required',
             'FechaVencimiento' => 'required',
             'EntidadCertificadora' => 'required',
-            'RecomendacionContratista' => 'required',
         ], $messages);
 
 
-        $detalle = new CertificacionDetalle();
+        $certificacion = Certificacion::findOrFail($id);
+        $certificacion->Descripcion = $request->Descripcion;
+        $certificacion->Alcance = $request->Alcance;
+        $certificacion->TipoCertificado = $request->TipoCertificado;
+        $certificacion->Numero = $request->Numero;
+        $certificacion->FechaVencimiento = $request->FechaVencimiento;
+        $certificacion->EntidadCertificadora = $request->EntidadCertificadora;
+        $certificacion->OtraEntidad = $request->OtraEntidad;
 
-        if ($request->file('Archivo')) {
-            $file = $request->file('Archivo');
-            $id_file = uniqid();
-            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
-            $detalle->Archivo = $id_file . ' ' . $file->getClientOriginalName();
-        }
-        $detalle->Descripcion = $request->Descripcion;
-        $detalle->Certificacion =  $id;
-        $detalle->TipoTecnologia = $request->TipoTecnologia;
-        $detalle->Sector = $request->Sector;
-        $detalle->Numero = $request->Numero;
-        $detalle->FechaEmision = $request->FechaEmision;
-        $detalle->FechaVencimiento = $request->FechaVencimiento;
-        $detalle->EntidadCertificadora = $request->EntidadCertificadora;
-        $detalle->RecomendacionContratista = $request->RecomendacionContratista;
-        $detalle->UsuarioIngreso = auth()->user()->id;
-        $detalle->Estado = 1;
+        $certificacion->save();    
 
-        $detalle->save();
-
-        alert()->success('El registro ha sido creado correctamente');
+        alert()->success('El registro ha sido modificado correctamente');
         return back();
     }
 

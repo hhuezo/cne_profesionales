@@ -107,12 +107,11 @@
                             </a>
                         </li>
 
-                        <li class="">
+                        {{-- <li class="">
                             <a href="#" class="navItem">
                                 <span class="flex items-center">
                                     <iconify-icon class=" nav-icon" icon="grommet-icons:document-config" style="color: white;"></iconify-icon>
-                                    {{-- <span>Verificar Usuarios</span>
-                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
+                                   
                                     <span>Configuración</span>
                                 </span>
                                 
@@ -124,7 +123,7 @@
                                </li>
 
                             </ul>
-                        </li>
+                        </li> --}}
                     @endcan
 
 

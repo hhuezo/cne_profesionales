@@ -11,18 +11,18 @@
                             <div class="card-title text-slate-900 dark:text-white">
                                 Certificación
                                 @can('enviar certificacion')
-                                    @if ($certificacion->Estado == 1)
+                                    @if ($certificacion->Estado == 1 || $certificacion->Estado == 3)
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-send"
                                             class="btn btn-dark btn-sm float-right">
                                             Enviar
                                         </button>
                                     @else
-                                    <a href="{{ url('registro/certificacion') }}">
-                                        <button class="btn btn-dark btn-sm float-right">
-                                            <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
-                                            </iconify-icon>
-                                        </button>
-                                    </a>
+                                        <a href="{{ url('registro/certificacion') }}">
+                                            <button class="btn btn-dark btn-sm float-right">
+                                                <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
+                                                </iconify-icon>
+                                            </button>
+                                        </a>
                                     @endif
                                 @endcan
 
@@ -54,9 +54,10 @@
                                             </div>
                                             <br>
                                         @endif
-
-                                        <form method="POST" action="{{ url('registro/certificacion') }}"
+                                        <form method="POST"
+                                            action="{{ route('certificacion.update', $certificacion->Id) }}"
                                             enctype="multipart/form-data">
+                                            @method('PUT')
                                             @csrf
 
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">

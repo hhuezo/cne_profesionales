@@ -209,18 +209,18 @@
                                                         </div>
 
                                                         <div class="input-area relative">
-                                                            <label for="Dui" class="form-label">DUI</label>
+                                                            <label for="Dui" class="form-label">Número documento</label>
                                                             <input type="text" name="Dui"
-                                                                value="{{ $perfil->Dui }}" disabled
+                                                                value="{{ $perfil->NumeroDocumento }}" disabled
                                                                 class="form-control">
                                                         </div>
-                                                        @if ($perfil->DuiURL)
+                                                        @if ($perfil->DocumentoURL)
                                                             <div class="input-area">
-                                                                <label for="Dui" class="form-label">Documento</label>
+                                                                <label for="Dui" class="form-label">Archivo documento</label>
                                                                 <div class="relative">
                                                                     <input type="file" name="DuiURL"
                                                                         class="form-control !pr-12" disabled>
-                                                                    <a href="{{ url('docs') }}/{{ $perfil->DuiURL }}"
+                                                                    <a href="{{ url('docs') }}/{{ $perfil->DocumentoURL }}"
                                                                         target="_blank">
                                                                         <button type="button"
                                                                             class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
@@ -232,7 +232,7 @@
                                                             </div>
                                                         @else
                                                             <div class="input-area relative">
-                                                                <label for="Dui" class="form-label">Documento</label>
+                                                                <label for="Dui" class="form-label">Archivo documento</label>
                                                                 <input type="file" name="DuiURL"
                                                                     value="{{ $perfil->DuiURL }}" disabled
                                                                     class="form-control">
@@ -244,7 +244,7 @@
                                                             <label for="Profesion" class="form-label">Profesión u
                                                                 oficio</label>
                                                             <input type="text" class="form-control"
-                                                                value="{{ $perfil->Profesion }}" disabled
+                                                                value="{{ $perfil->profesion->Nombre }}" disabled
                                                                 name="Profesion">
                                                         </div>
 
@@ -252,8 +252,7 @@
 
                                                         @if ($perfil->TituloURL)
                                                             <div class="input-area">
-                                                                <label for="Dui" class="form-label">Adjuntar
-                                                                    DUI</label>
+                                                                <label for="Dui" class="form-label">Archivo título</label>
                                                                 <div class="relative">
                                                                     <input type="file" name="TituloURL"
                                                                         class="form-control !pr-12" disabled>
@@ -269,8 +268,7 @@
                                                             </div>
                                                         @else
                                                             <div class="input-area relative">
-                                                                <label for="Dui" class="form-label">Adjuntar
-                                                                    titulo</label>
+                                                                <label for="Dui" class="form-label">Archivo título</label>
                                                                 <input type="file" name="TituloURL"
                                                                     value="{{ $perfil->TituloURL }}" disabled
                                                                     class="form-control">
@@ -282,7 +280,7 @@
                                                             <label for="Nacionalidad"
                                                                 class="form-label">Nacionalidad</label>
                                                             <input type="text" name="Nacionalidad"
-                                                                value="{{ $perfil->Nacionalidad }}" disabled
+                                                                value="{{ $perfil->nacionalidad->Nombre }}" disabled
                                                                 class="form-control">
                                                         </div>
                                                         <div class="input-area relative">

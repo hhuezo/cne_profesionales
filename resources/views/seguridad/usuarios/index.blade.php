@@ -23,7 +23,7 @@
                                     </th>
 
                                     <th scope="col" class=" table-th ">
-                                        Nacionalidad
+                                        País de origen
                                     </th>
 
                                     <th scope="col" class=" table-th ">
@@ -42,7 +42,7 @@
                                     <tr>
                                         <td class="table-td">{{$obj->email}}</td>
                                         <td class="table-td ">{{$obj->name.' '.$obj->last_name}}</td>
-                                        <td class="table-td ">{{$obj->perfil->Nacionalidad}}</td>
+                                        <td class="table-td ">{{$obj->perfil->nacionalidad->Nombre}}</td>
                                         @if ($obj->perfil->profesion)
                                         <td class="table-td ">{{$obj->perfil->profesion->Nombre}}</td>
                                         @else
