@@ -103,29 +103,29 @@ class PerfilController extends Controller
 
     public function update(Request $request, $id)
     {
-        $messages = [
-            'name.required' => 'El nombre es requerido',
-            'last_name.required' => 'El apellido es requerido',
-        ];
+        // $messages = [
+        //     'name.required' => 'El nombre es requerido',
+        //     'last_name.required' => 'El apellido es requerido',
+        // ];
 
-        $request->validate([
-            'name' => 'required',
-            'last_name' => 'required',
-            'last_name' => 'required',
-        ], $messages);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'last_name' => 'required',
+        //     'last_name' => 'required',
+        // ], $messages);
 
 
 
 
         $perfil = Perfil::findOrFail($id);
-        $perfil->Dui = $request->Dui;
-        $perfil->Profesion = $request->Profesion;
-        $perfil->Direccion = $request->Direccion;
-        $perfil->DistritoCorregimiento = $request->Distrito;
-        $perfil->Telefono = $request->Telefono;
-        if ($request->DuiURL) {
+        $perfil->NumeroDocumento = $request->NumeroDocumento;
+        // $perfil->Profesion = $request->Profesion;
+        // $perfil->Direccion = $request->Direccion;
+        // $perfil->DistritoCorregimiento = $request->Distrito;
+        // $perfil->Telefono = $request->Telefono;
+        if ($request->DocumentoURL) {
             try {
-                unlink(public_path("docs/") . $perfil->DuiURL);
+                unlink(public_path("docs/") . $perfil->DocumentoURL);
             } catch (Exception $e) {
                 //return $e->getMessage();
             }
@@ -140,11 +140,11 @@ class PerfilController extends Controller
             }
         }
 
-        if ($request->file('DuiURL')) {
-            $file = $request->file('DuiURL');
+        if ($request->file('DocumentoURL')) {
+            $file = $request->file('DocumentoURL');
             $id_file = uniqid();
             $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
-            $perfil->DuiURL = $id_file . ' ' . $file->getClientOriginalName();
+            $perfil->DocumentoURL = $id_file . ' ' . $file->getClientOriginalName();
         }
 
 
@@ -157,10 +157,10 @@ class PerfilController extends Controller
 
         $perfil->update();
 
-        $user = User::findOrFail($perfil->Usuario);
-        $user->name = $request->name;
-        $user->last_name = $request->last_name;
-        $user->update();
+        // $user = User::findOrFail($perfil->Usuario);
+        // $user->name = $request->name;
+        // $user->last_name = $request->last_name;
+        // $user->update();
         alert()->success('La información ha sido actualizada correctamente');
         return back();
     }
