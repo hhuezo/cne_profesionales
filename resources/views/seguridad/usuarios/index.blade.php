@@ -56,12 +56,12 @@
                                                 <a href="{{ route('usuarios.verificarUsuario', ['id' => $obj->id]) }}"><button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:eye"></iconify-icon>
                                                 </button></a>
-                                                <button class="action-btn" type="button">
+                                                {{-- <button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                 </button>
                                                 <button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:trash"></iconify-icon>
-                                                </button>
+                                                </button> --}}
                                             </div>
                                         </td>
                                     </tr>

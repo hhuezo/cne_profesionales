@@ -30,7 +30,7 @@
                         </div>
                         <div class="input-area relative">
                             <label for="Nacionalidad" class="form-label">Nacionalidad</label>
-                            <input type="text" name="Nacionalidad" value="{{ $usuario->perfil->Nacionalidad }}" disabled
+                            <input type="text" name="Nacionalidad" value="{{ $usuario->perfil->nacionalidad->Nombre }}" disabled
                                 class="form-control">
                         </div>
 
