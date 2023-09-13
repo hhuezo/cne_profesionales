@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models\catalogo;
+namespace App\Models\registro;
 
+use App\Models\catalogo\Pais;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -17,9 +17,28 @@
     <!-- BEGIN: Theme CSS-->
     <link rel="stylesheet" href="{{ asset('assets/css/sidebar-menu.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/SimpleBar.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/rt-plugins.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- END: Theme CSS-->
     <script src="{{ asset('assets/js/settings.js') }}" sync></script>
+    <script src="{{ asset('assets/js/iconify-icon.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.dataTables.min.css') }}">
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}" sync></script>
+    <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+    <style>
+        .card-title,
+        .form-label, .table-td  {
+            text-transform: none;
+        }        
+    </style>
 </head>
 
 <body class=" font-inter dashcode-app" id="body_class">
@@ -55,22 +74,444 @@
             </div>
             <div class="sidebar-menus bg-white dark:bg-slate-800 py-2 px-4 h-[calc(100%-80px)] overflow-y-auto z-50"
                 id="sidebar_menus">
-            @if (auth()->user()->name=='Administrador')
+
                 <ul class="sidebar-menu">
-                    <li class="sidebar-menu-title">Usuarios</li>
-                    <li class="">
+                    @can('edit users')
+                        <li class="">
+                            <a href="#" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:user-group"></iconify-icon>
+                                    <span>Seguridad</span>
+                                </span>
+                                <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="{{ url('seguridad/usuario') }}">Usuario</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('seguridad/role') }}">Rol</a>
+                                </li>
+                                <li>
+                                    <a href="{{ url('seguridad/permission') }}">Permisos</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="{{ url('seguridad/usuarios') }}" class="navItem">
+                                <span class="flex items-center">
+
+                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
+                                    <span>Verificar Usuarios</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        {{-- <li class="">
+                            <a href="#" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="grommet-icons:document-config" style="color: white;"></iconify-icon>
+                                   
+                                    <span>Configuración</span>
+                                </span>
+                                
+                                <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="{{ url('configuracion/pais') }}">País</a>
+                               </li>
+
+                            </ul>
+                        </li> --}}
+                    @endcan
+
+
+
+                    @can('read catalogos')
+                        <li class="">
+                            <a href="#" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list">
+                                    </iconify-icon>
+                                    {{-- <span>Verificar Usuarios</span>
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
+                                    <span>Catalogos</span>
+                                </span>
+                                <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="{{ url('catalogo/tipo_certificado') }}">Tipos certificado</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    @endcan
+
+                    @can('read certificacion')
+                        <li>
+                            <a href="{{ url('registro/certificacion') }}" class="navItem">
+                                <span class="flex items-center">
+
+                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
+                                    <span>Certificacion</span>
+                                </span>
+                            </a>
+                        </li>
+
+                     
+                    @endcan
+
+
+                    @can('read proyecto')
+                    <li>
+                        <a href="{{ url('registro/proyecto') }}" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="material-symbols:add-notes" style="color: white;"></iconify-icon>
+                                <span>Proyectos</span>
+                            </span>
+                        </a>
+                    </li>
+                    @endcan
+
+
+                    <!-- Apps Area -->
+                    {{-- <li class="sidebar-menu-title">APPS</li>
+                    <li>
                         <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                             <span class="flex items-center">
-                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user-group"></iconify-icon>
+
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
                                 <span>Verificar Usuarios</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="email.html" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:mail"></iconify-icon>
+                                <span>Email</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="kanban.html" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:view-boards"></iconify-icon>
+                                <span>Kanban</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="calander.html" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:calendar"></iconify-icon>
+                                <span>Calander</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="todo.html" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-check">
+                                </iconify-icon>
+                                <span>Todo</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:document"></iconify-icon>
+                                <span>Projects</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="project.html">Projects</a>
+                            </li>
+                            <li>
+                                <a href="project-details.html">Project Details</a>
+                            </li>
+                        </ul>
+                    </li> --}}
+                    <!-- Pages Area -->
+                    {{-- <li class="sidebar-menu-title">PAGES</li>
+                    <!-- Authentication -->
+                    <li class="">
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:lock-closed"></iconify-icon>
+                                <span>Authentication</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="signin-one.html">Signin One</a>
+                            </li>
+                            <li>
+                                <a href="signin-two.html">Signin Two</a>
+                            </li>
+                            <li>
+                                <a href="signin-three.html">Signin Three</a>
+                            </li>
+                            <li>
+                                <a href="signup-one.html">Signup One</a>
+                            </li>
+                            <li>
+                                <a href="signup-two.html">Signup Two</a>
+                            </li>
+                            <li>
+                                <a href="signup-three.html">Signup Three</a>
+                            </li>
+                            <li>
+                                <a href="forget-password-one.html">Forget Password One</a>
+                            </li>
+                            <li>
+                                <a href="forget-password-two.html">Forget Password Two</a>
+                            </li>
+                            <li>
+                                <a href="forget-password-three.html">Forget Password Three</a>
+                            </li>
+                            <li>
+                                <a href="lock-screen-one.html">Lock Screen One</a>
+                            </li>
+                            <li>
+                                <a href="lock-screen-two.html">Lock Screen Two</a>
+                            </li>
+                            <li>
+                                <a href="lock-screen-three.html">Lock Screen Three</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Utility -->
+                    <li class="">
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:view-boards"></iconify-icon>
+                                <span>Utility</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="invoice.html">Invoice</a>
+                            </li>
+                            <li>
+                                <a href="pricing.html">Pricing</a>
+                            </li>
+                            <li>
+                                <a href="blog.html">Blog</a>
+                            </li>
+                            <li>
+                                <a href="blank-page.html">Blank Page</a>
+                            </li>
+                            <li>
+                                <a href="settings.html">Settings</a>
+                            </li>
+                            <li>
+                                <a href="profile.html">Profile</a>
+                            </li>
+                            <li>
+                                <a href="404.html">404 Page</a>
+                            </li>
+                            <li>
+                                <a href="comming-soon.html">Coming Soon</a>
+                            </li>
+                            <li>
+                                <a href="under-maintanance.html">Under Maintanance</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Elements Area -->
+                    <li class="sidebar-menu-title">ELEMENTS</li>
+                    <!-- Widgets -->
+                    <li class="">
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:view-grid-add"></iconify-icon>
+                                <span>Widgets</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="basic-widgets.html">Basic</a>
+                            </li>
+                            <li>
+                                <a href="statistics-widgets.html">Statistic</a>
+                            </li>
+                        </ul>
+                    </li> --}}
+                    <!-- Components -->
+                    {{-- <li>
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:collection"></iconify-icon>
+                                <span>Components</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="typography.html">Typography</a>
+                            </li>
+                            <li>
+                                <a href="colors.html">Colors</a>
+                            </li>
+                            <li>
+                                <a href="alert.html">Alert</a>
+                            </li>
+                            <li>
+                                <a href="buttons.html">Button</a>
+                            </li>
+                            <li>
+                                <a href="card.html">Card</a>
+                            </li>
+                            <li>
+                                <a href="carousel.html">Carousel</a>
+                            </li>
+                            <li>
+                                <a href="dropdown.html">Dropdown</a>
+                            </li>
+                            <li>
+                                <a href="image.html">Image</a>
+                            </li>
+                            <li>
+                                <a href="modal.html">Modal</a>
+                            </li>
+                            <li>
+                                <a href="progressbar.html">Progress bar</a>
+                            </li>
+                            <li>
+                                <a href="placeholder.html">Placeholder</a>
+                            </li>
+                            <li>
+                                <a href="tab-accordion.html">Tab & Accordion</a>
+                            </li>
+                            <li>
+                                <a href="badges.html">Badges</a>
+                            </li>
+                            <li>
+                                <a href="pagination.html">Pagination</a>
+                            </li>
+                            <li>
+                                <a href="video.html">Video</a>
+                            </li>
+                            <li>
+                                <a href="tooltip-popover.html">Tooltip & Popover</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Forms -->
+                    <li class="">
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list">
+                                </iconify-icon>
+                                <span>Forms</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="input.html">Input</a>
+                            </li>
+                            <li>
+                                <a href="input-group.html">Input group</a>
+                            </li>
+                            <li>
+                                <a href="input-layout.html">Input layout</a>
+                            </li>
+                            <li>
+                                <a href="form-validation.html">Form validation</a>
+                            </li>
+                            <li>
+                                <a href="wizard.html">Wizard</a>
+                            </li>
+                            <li>
+                                <a href="input-mask.html">Input mask</a>
+                            </li>
+                            <li>
+                                <a href="file-input.html">File input</a>
+                            </li>
+                            <li>
+                                <a href="form-repeater.html">Form repeater</a>
+                            </li>
+                            <li>
+                                <a href="textarea.html">Textarea</a>
+                            </li>
+                            <li>
+                                <a href="checkbox.html">Checkbox</a>
+                            </li>
+                            <li>
+                                <a href="radio.html">Radio button</a>
+                            </li>
+                            <li>
+                                <a href="switch.html">Switch</a>
+                            </li>
+                            <li>
+                                <a href="select.html">Select</a>
+                            </li>
+                            <li>
+                                <a href="date-picker.html">Date time picker</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Tables -->
+                    <li class="">
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:table"></iconify-icon>
+                                <span>Tables</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="basic-table.html">Basic table</a>
+                            </li>
+                            <li>
+                                <a href="advance-table.html">Advanced table</a>
+                            </li>
+                        </ul>
+                    </li> --}}
+                    <!-- Charts -->
+                    {{-- <li class="">
+                        <a href="javascript:void(0)" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:chart-bar"></iconify-icon>
+                                <span>Chart</span>
+                            </span>
+                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                        </a>
+                        <ul class="sidebar-submenu">
+                            <li>
+                                <a href="apex-chart.html">Apex chart</a>
+                            </li>
+                            <li>
+                                <a href="chartjs.html">Chart js</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Map -->
+                    <li class="">
+                        <a href="map.html" class="navItem">
+                            <span class="flex items-center">
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:map"></iconify-icon>
+                                <span>Map</span>
                             </span>
                         </a>
 
                     </li>
                     <!-- Icons -->
-                    <li class="">
+                    <li class=""> --}}
                 </ul>
-            @endif
+
+
 
                 <!-- Upgrade Your Business Plan Card Start -->
 
@@ -83,7 +524,7 @@
 
         <!-- BEGIN: Settings -->
         <!-- Settings Toggle Button -->
-        <button
+        <button style="display:none"
             class="fixed ltr:md:right-[-29px] ltr:right-0 rtl:left-0 rtl:md:left-[-29px] top-1/2 z-[888] translate-y-1/2 bg-slate-800 text-slate-50 dark:bg-slate-700 dark:text-slate-300 cursor-pointer transform rotate-90 flex items-center text-sm font-medium px-2 py-2 shadow-deep ltr:rounded-b rtl:rounded-t"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">
             <iconify-icon class="text-slate-50 text-lg animate-spin" icon="material-symbols:settings-outline-rounded">
@@ -267,8 +708,7 @@
                                         icon="heroicons-outline:menu-alt-3"></iconify-icon>
                                 </button>
                                 <button
-                                    class="flex items-center xl:text-sm text-lg xl:text-slate-400 text-slate-800 dark:text-slate-300 px-1
-        rtl:space-x-reverse search-modal"
+                                    class="flex items-center xl:text-sm text-lg xl:text-slate-400 text-slate-800 dark:text-slate-300 px-1 rtl:space-x-reverse search-modal"
                                     data-bs-toggle="modal" data-bs-target="#searchModal">
                                     <iconify-icon icon="heroicons-outline:search"></iconify-icon>
                                     <span class="xl:inline-block hidden ml-3">Search...
@@ -307,9 +747,7 @@
                             <div class="main-menu">
                                 <ul>
 
-                                    <li class="
-             menu-item-has-children
-              ">
+                                    <li class="menu-item-has-children">
                                         <!--  Single menu -->
 
                                         <!-- has dropdown -->
@@ -412,9 +850,7 @@
 
                                     </li>
 
-                                    <li class="
-             menu-item-has-children
-              ">
+                                    <li class="menu-item-has-children">
                                         <!--  Single menu -->
 
                                         <!-- has dropdown -->
@@ -448,7 +884,7 @@
                                                         <iconify-icon icon=heroicons-outline:chat
                                                             class="leading-[1] text-base"> </iconify-icon>
                                                         <span class="leading-[1]">
-                                                            Chat
+                                                            ChatAA
                                                         </span>
                                                     </div>
                                                 </a>
@@ -531,9 +967,7 @@
 
                                     </li>
 
-                                    <li class="
-              menu-item-has-children has-megamenu
-            ">
+                                    <li class="menu-item-has-children has-megamenu">
                                         <!--  Single menu -->
 
                                         <!-- has dropdown -->
@@ -1324,9 +1758,7 @@
 
                                     </li>
 
-                                    <li class="
-             menu-item-has-children
-              ">
+                                    <li class="menu-item-has-children">
                                         <!--  Single menu -->
 
                                         <!-- has dropdown -->
@@ -1387,9 +1819,7 @@
 
                                     </li>
 
-                                    <li class="
-             menu-item-has-children
-              ">
+                                    <li class="menu-item-has-children">
                                         <!--  Single menu -->
 
                                         <!-- has dropdown -->
@@ -1502,8 +1932,7 @@
 
                                 <div class="relative">
                                     <button
-                                        class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center
-            inline-flex items-center"
+                                        class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center inline-flex items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <iconify-icon icon="circle-flags:uk" class="mr-0 md:mr-2 rtl:ml-2 text-xl">
                                         </iconify-icon>
@@ -1513,8 +1942,7 @@
                                     </button>
                                     <!-- Language Dropdown menu -->
                                     <div
-                                        class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-900 !top-[25px] rounded-md
-            overflow-hidden">
+                                        class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-900 !top-[25px] rounded-md overflow-hidden">
                                         <ul class="py-1 text-sm text-slate-800 dark:text-slate-200">
                                             <li>
                                                 <a href="#"
@@ -1555,8 +1983,7 @@
                                 <!-- BEGIN: gray-scale Dropdown -->
                                 <div>
                                     <button id="grayScale"
-                                        class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
-            rounded-full text-[20px] flex flex-col items-center justify-center">
+                                        class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center">
                                         <iconify-icon class="text-slate-800 dark:text-white text-xl"
                                             icon="mdi:paint-outline"></iconify-icon>
                                     </button>
@@ -1567,20 +1994,17 @@
                                 <!-- Mail Dropdown -->
                                 <div class="relative md:block hidden">
                                     <button
-                                        class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
-      rounded-full text-[20px] flex flex-col items-center justify-center"
+                                        class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer  rounded-full text-[20px] flex flex-col items-center justify-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <iconify-icon class="text-slate-800 dark:text-white text-xl"
                                             icon="heroicons-outline:mail"></iconify-icon>
                                         <span
-                                            class="absolute -right-1 lg:top-0 -top-[6px] h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center
-        justify-center rounded-full text-white z-[45]">
+                                            class="absolute -right-1 lg:top-0 -top-[6px] h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center justify-center rounded-full text-white z-[45]">
                                             10</span>
                                     </button>
                                     <!-- Mail Dropdown -->
                                     <div
-                                        class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 dark:divide-slate-700 shadow w-[335px]
-      dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md overflow-hidden lrt:origin-top-right rtl:origin-top-left">
+                                        class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 dark:divide-slate-700 shadow w-[335px] dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md overflow-hidden lrt:origin-top-right rtl:origin-top-left">
                                         <div class="flex items-center justify-between py-4 px-4">
                                             <h3 class="text-sm font-Inter font-medium text-slate-700 dark:text-white">
                                                 Messages</h3>
@@ -1596,16 +2020,15 @@
                                                         <div
                                                             class="h-8 w-8 bg-white dark:bg-slate-700 rounded-full relative">
                                                             <span
-                                                                class="bg-secondary-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute
-                right-0 top-0"></span>
-                                                            <img src="assets/images/all-img/user.png" alt="user"
+                                                                class="bg-secondary-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute right-0 top-0"></span>
+                                                            <img src="{{ asset('assets/images/all-img/user.png') }}"
+                                                                alt="user"
                                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                                         </div>
                                                     </div>
                                                     <div class="flex-1">
                                                         <a href="#"
-                                                            class="text-slate-800 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute
-                before:top-0 before:left-0">
+                                                            class="text-slate-800 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute  before:top-0 before:left-0">
                                                             Wade Warren</a>
                                                         <div
                                                             class="text-xs hover:text-[#68768A] text-slate-600 dark:text-slate-300 mb-1">
@@ -1628,16 +2051,15 @@
                                                         <div
                                                             class="h-8 w-8 bg-white dark:bg-slate-700 rounded-full relative">
                                                             <span
-                                                                class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute
-                right-0 top-0"></span>
-                                                            <img src="assets/images/all-img/user2.png" alt="user"
+                                                                class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute right-0 top-0"></span>
+                                                            <img src="{{ asset('assets/images/all-img/user2.png') }}"
+                                                                alt="user"
                                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                                         </div>
                                                     </div>
                                                     <div class="flex-1">
                                                         <a href="#"
-                                                            class="text-slate-800 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute
-                before:top-0 before:left-0">
+                                                            class="text-slate-800 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute before:top-0 before:left-0">
                                                             Savannah Nguyen</a>
                                                         <div
                                                             class="text-xs hover:text-[#68768A] text-slate-600 dark:text-slate-300 mb-1">
@@ -1656,16 +2078,15 @@
                                                         <div
                                                             class="h-8 w-8 bg-white dark:bg-slate-700 rounded-full relative">
                                                             <span
-                                                                class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute
-                right-0 top-0"></span>
-                                                            <img src="assets/images/all-img/user3.png" alt="user"
+                                                                class="bg-green-500 w-[10px] h-[10px] rounded-full border border-white dark:border-slate-700 inline-block absolute right-0 top-0"></span>
+                                                            <img src="{{ asset('assets/images/all-img/user3.png') }}"
+                                                                alt="user"
                                                                 class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
                                                         </div>
                                                     </div>
                                                     <div class="flex-1">
                                                         <a href="#"
-                                                            class="text-slate-800 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute
-                before:top-0 before:left-0">
+                                                            class="text-slate-800 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute before:top-0 before:left-0">
                                                             Ralph Edwards</a>
                                                         <div
                                                             class="text-xs hover:text-[#68768A] text-slate-600 dark:text-slate-300 mb-1">
@@ -1690,20 +2111,17 @@
                                 <!-- Notifications Dropdown area -->
                                 <div class="relative md:block hidden">
                                     <button
-                                        class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
-      rounded-full text-[20px] flex flex-col items-center justify-center"
+                                        class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <iconify-icon class="animate-tada text-slate-800 dark:text-white text-xl"
                                             icon="heroicons-outline:bell"></iconify-icon>
                                         <span
-                                            class="absolute -right-1 lg:top-0 -top-[6px] h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center
-        justify-center rounded-full text-white z-[99]">
+                                            class="absolute -right-1 lg:top-0 -top-[6px] h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center  justify-center rounded-full text-white z-[99]">
                                             4</span>
                                     </button>
                                     <!-- Notifications Dropdown -->
                                     <div
-                                        class="dropdown-menu z-10 hidden bg-white shadow w-[335px]
-      dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md overflow-hidden lrt:origin-top-right rtl:origin-top-left">
+                                        class="dropdown-menu z-10 hidden bg-white shadow w-[335px] dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md overflow-hidden lrt:origin-top-right rtl:origin-top-left">
                                         <div class="flex items-center justify-between py-4 px-4">
                                             <h3 class="text-sm font-Inter font-medium text-slate-700 dark:text-white">
                                                 Notifications</h3>
@@ -1716,14 +2134,14 @@
                                                 <div class="flex ltr:text-left rtl:text-right">
                                                     <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                         <div class="h-8 w-8 bg-white rounded-full">
-                                                            <img src="assets/images/all-img/user.png" alt="user"
+                                                            <img src="{{ asset('assets/images/all-img/user.png') }}"
+                                                                alt="user"
                                                                 class="border-white block w-full h-full object-cover rounded-full border">
                                                         </div>
                                                     </div>
                                                     <div class="flex-1">
                                                         <a href="#"
-                                                            class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute
-                before:top-0 before:left-0">
+                                                            class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute before:top-0 before:left-0">
                                                             Your order is placed</a>
                                                         <div
                                                             class="text-slate-500 dark:text-slate-200 text-xs leading-4">
@@ -1740,14 +2158,14 @@
                                                 <div class="flex ltr:text-left rtl:text-right relative">
                                                     <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                         <div class="h-8 w-8 bg-white rounded-full">
-                                                            <img src="assets/images/all-img/user2.png" alt="user"
+                                                            <img src="{{ asset('assets/images/all-img/user2.png') }}"
+                                                                alt="user"
                                                                 class="border-transparent block w-full h-full object-cover rounded-full border">
                                                         </div>
                                                     </div>
                                                     <div class="flex-1">
                                                         <a href="#"
-                                                            class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute
-                before:top-0 before:left-0">
+                                                            class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute  before:top-0 before:left-0">
                                                             Congratulations Darlene 🎉</a>
                                                         <div
                                                             class="text-slate-600 dark:text-slate-300 text-xs leading-4">
@@ -1765,14 +2183,14 @@
                                             <div class="flex ltr:text-left rtl:text-right relative">
                                                 <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                     <div class="h-8 w-8 bg-white rounded-full">
-                                                        <img src="assets/images/all-img/user3.png" alt="user"
+                                                        <img src="{{ asset('assets/images/all-img/user3.png') }}"
+                                                            alt="user"
                                                             class="border-transparent block w-full h-full object-cover rounded-full border">
                                                     </div>
                                                 </div>
                                                 <div class="flex-1">
                                                     <a href="#"
-                                                        class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute
-              before:top-0 before:left-0">
+                                                        class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute  before:top-0 before:left-0">
                                                         Revised Order 👋</a>
                                                     <div class="text-slate-600 dark:text-slate-300 text-xs leading-4">
                                                         Won the monthly best seller badge</div>
@@ -1785,14 +2203,14 @@
                                             <div class="flex ltr:text-left rtl:text-right relative">
                                                 <div class="flex-none ltr:mr-3 rtl:ml-3">
                                                     <div class="h-8 w-8 bg-white rounded-full">
-                                                        <img src="assets/images/all-img/user4.png" alt="user"
+                                                        <img src="{{ asset('assets/images/all-img/user4.png') }}"
+                                                            alt="user"
                                                             class="border-transparent block w-full h-full object-cover rounded-full border">
                                                     </div>
                                                 </div>
                                                 <div class="flex-1">
                                                     <a href="#"
-                                                        class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute
-              before:top-0 before:left-0">
+                                                        class="text-slate-600 dark:text-slate-300 text-sm font-medium mb-1 before:w-full before:h-full before:absolute   before:top-0 before:left-0">
                                                         Brooklyn Simmons</a>
                                                     <div class="text-slate-600 dark:text-slate-300 text-xs leading-4">
                                                         Added you to Top Secret Project group...</div>
@@ -1810,19 +2228,18 @@
                                 <!-- Profile DropDown Area -->
                                 <div class="md:block hidden w-full">
                                     <button
-                                        class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center
-      inline-flex items-center"
+                                        class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center  inline-flex items-center"
                                         type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <div
                                             class="lg:h-8 lg:w-8 h-7 w-7 rounded-full flex-1 ltr:mr-[10px] rtl:ml-[10px]">
-                                            <img src="assets/images/all-img/user.png" alt="user"
+                                            <img src="{{ asset('assets/images/all-img/user.png') }}" alt="user"
                                                 class="block w-full h-full object-cover rounded-full">
                                         </div>
                                         @php
                                             //dd(session()->all(),auth()->user())
                                         @endphp
                                         <span
-                                            class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">{{auth()->user()->email}}
+                                            class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">{{ auth()->user()->email }}
                                         </span>
                                         <svg class="w-[16px] h-[16px] dark:text-white hidden lg:inline-block text-base inline-block ml-[10px] rtl:mr-[10px]"
                                             aria-hidden="true" fill="none" stroke="currentColor"
@@ -1833,33 +2250,32 @@
                                     </button>
                                     <!-- Dropdown menu -->
                                     <div
-                                        class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md
-      overflow-hidden">
+                                        class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md    overflow-hidden">
                                         <ul class="py-1 text-sm text-slate-800 dark:text-slate-200">
-                                            <li>
-                                                <a href="index.html"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
+                                            @can('edit perfil')
+                                                   <li>
+                                                <a href="{{ url('seguridad/perfil') }}"
+                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
                                                     <iconify-icon icon="heroicons-outline:user"
                                                         class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
                                                     </iconify-icon>
-                                                    <span class="font-Inter">Dashboard</span>
+                                                    <span class="font-Inter">Perfil</span>
                                                 </a>
                                             </li>
+                                            @endcan
+                                         @can('edit password')
                                             <li>
-                                                <a href="chat.html"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
-                                                    <iconify-icon icon="heroicons-outline:chat"
-                                                        class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
-                                                    </iconify-icon>
-                                                    <span class="font-Inter">Chat</span>
+                                                <a href="{{ url('seguridad/perfil/cambio_clave') }}"
+                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
+                                                    <iconify-icon icon="mdi:password-outline"
+                                                        class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
+                                                    <span class="font-Inter">Cambio de contraseña</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            @endcan
+                                          {{--  <li>
                                                 <a href="email.html"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
+                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600  dark:text-white font-normal">
                                                     <iconify-icon icon="heroicons-outline:mail"
                                                         class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
                                                     </iconify-icon>
@@ -1868,8 +2284,7 @@
                                             </li>
                                             <li>
                                                 <a href="todo.html"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
+                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600  dark:text-white font-normal">
                                                     <iconify-icon icon="heroicons-outline:clipboard-check"
                                                         class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
                                                     </iconify-icon>
@@ -1878,8 +2293,7 @@
                                             </li>
                                             <li>
                                                 <a href="settings.html"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
+                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600  dark:text-white font-normal">
                                                     <iconify-icon icon="heroicons-outline:cog"
                                                         class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
                                                     </iconify-icon>
@@ -1888,15 +2302,14 @@
                                             </li>
                                             <li>
                                                 <a href="pricing.html"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
+                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
                                                     <iconify-icon icon="heroicons-outline:credit-card"
                                                         class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
                                                     </iconify-icon>
                                                     <span class="font-Inter">Price</span>
                                                 </a>
                                             </li>
-                                            <li>
+                                            <li>--}} 
                                                 <a class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
                                                     dark:text-white font-normal"
                                                     href="{{ route('logout') }}"
@@ -1905,7 +2318,7 @@
                                                     <iconify-icon icon="heroicons-outline:login"
                                                         class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
                                                     </iconify-icon>
-                                                    <span class="font-Inter">Logout</span>
+                                                    <span class="font-Inter">Cerrar sesión</span>
                                                 </a>
 
                                             </li>
@@ -1984,17 +2397,14 @@
             </footer>
             <!-- END: Footer For Desktop and tab -->
             <div
-                class="bg-white bg-no-repeat custom-dropshadow footer-bg dark:bg-slate-700 flex justify-around items-center
-    backdrop-filter backdrop-blur-[40px] fixed left-0 bottom-0 w-full z-[9999] bothrefm-0 py-[12px] px-4 md:hidden">
+                class="bg-white bg-no-repeat custom-dropshadow footer-bg dark:bg-slate-700 flex justify-around items-center backdrop-filter backdrop-blur-[40px] fixed left-0 bottom-0 w-full z-[9999] bothrefm-0 py-[12px] px-4 md:hidden">
                 <a href="chat.html">
                     <div>
                         <span
-                            class="relative cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center mb-1 dark:text-white
-          text-slate-900 ">
+                            class="relative cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center mb-1 dark:text-white text-slate-900 ">
                             <iconify-icon icon="heroicons-outline:mail"></iconify-icon>
                             <span
-                                class="absolute right-[5px] lg:hrefp-0 -hrefp-2 h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center
-            justify-center rounded-full text-white z-[99]">
+                                class="absolute right-[5px] lg:hrefp-0 -hrefp-2 h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center justify-center rounded-full text-white z-[99]">
                                 10
                             </span>
                         </span>
@@ -2004,22 +2414,19 @@
                     </div>
                 </a>
                 <a href="profile.html"
-                    class="relative bg-white bg-no-repeat backdrop-filter backdrop-blur-[40px] rounded-full footer-bg dark:bg-slate-700
-      h-[65px] w-[65px] z-[-1] -mt-[40px] flex justify-center items-center">
+                    class="relative bg-white bg-no-repeat backdrop-filter backdrop-blur-[40px] rounded-full footer-bg dark:bg-slate-700  h-[65px] w-[65px] z-[-1] -mt-[40px] flex justify-center items-center">
                     <div class="h-[50px] w-[50px] rounded-full relative left-[0px] hrefp-[0px] custom-dropshadow">
-                        <img src="assets/images/users/user-1.jpg" alt=""
+                        <img src="{{ asset('assets/images/users/user-1.jpg') }}" alt=""
                             class="w-full h-full rounded-full border-2 border-slate-100">
                     </div>
                 </a>
                 <a href="#">
                     <div>
                         <span
-                            class=" relative cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center mb-1 dark:text-white
-          text-slate-900">
+                            class=" relative cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center mb-1 dark:text-white text-slate-900">
                             <iconify-icon icon="heroicons-outline:bell"></iconify-icon>
                             <span
-                                class="absolute right-[17px] lg:hrefp-0 -hrefp-2 h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center
-            justify-center rounded-full text-white z-[99]">
+                                class="absolute right-[17px] lg:hrefp-0 -hrefp-2 h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center justify-center rounded-full text-white z-[99]">
                                 2
                             </span>
                         </span>
@@ -2032,17 +2439,23 @@
         </div>
     </main>
     <!-- scripts -->
+
     <!-- Core Js -->
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
     <script src="{{ asset('assets/js/popper.js') }}"></script>
-    <script src="{{ asset('assets/js/tw-elements-1.0.0-alpha13.min.js') }}"></script>
     <script src="{{ asset('assets/js/SimpleBar.js') }}"></script>
+
     <script src="{{ asset('assets/js/iconify.js') }}"></script>
     <!-- Jquery Plugins -->
+
 
     <!-- app js -->
     <script src="{{ asset('assets/js/sidebar-menu.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
+
+
+
 </body>
 
 </html>

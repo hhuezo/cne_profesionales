@@ -5,22 +5,21 @@ namespace App\Models\catalogo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Departamento extends Model
+class MunicipioDistrito extends Model
 {
     use HasFactory;
-
-    protected $table = 'departamento';
+    protected $table = 'municipio_distrito';
     protected $primaryKey = 'Id';
     public $timestamps = false;
 
     protected $fillable = [
         'Nombre',
-        'Pais',
-        'Provincia',
+        'DepartamentoProvincia',
+        'TipoUbicacion',
     ];
 
-    public function pais()
+    public function departamento_provincia()
     {
-        return $this->belongsTo(Pais::class, 'Pais', 'Id');
+        return $this->belongsTo(DepartamentoProvincia::class, 'DepartamentoProvincia', 'Id');
     }
 }

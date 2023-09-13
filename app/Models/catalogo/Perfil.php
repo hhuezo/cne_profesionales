@@ -2,6 +2,8 @@
 
 namespace App\Models\catalogo;
 
+use App\Models\Pais;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +22,7 @@ class Perfil extends Model
         'Profesion',
         'TituloURL',
         'Nacionalidad',
-        'Municipio',
+        'DistritoCorregimiento',
         'Direccion',
         'Telefono',
         'UsuarioIngreso',
@@ -40,9 +42,11 @@ class Perfil extends Model
         return $this->belongsTo(User::class, 'Usuario', 'id');
     }
 
-    public function municipio()
+
+
+    public function distrito_corregimiento()
     {
-        return $this->belongsTo(Municipio::class, 'Municipio', 'Id');
+        return $this->belongsTo(DistritoCorregimiento::class, 'DistritoCorregimiento', 'Id');
     }
 
     public function usuarioIngreso()
@@ -58,5 +62,20 @@ class Perfil extends Model
     public function tipoOcupacionCertificada()
     {
         return $this->belongsTo(TipoCertificado::class, 'TipoOcupacionCertificada', 'Id');
+    }
+
+    public function pais()
+    {
+        return $this->belongsTo(Pais::class, 'Pais', 'Id');
+    }
+
+    public function profesion()
+    {
+        return $this->belongsTo(Profesion::class, 'Profesion', 'Id');
+    }
+
+    public function nacionalidad()
+    {
+        return $this->belongsTo(Pais::class, 'Nacionalidad', 'Id');
     }
 }

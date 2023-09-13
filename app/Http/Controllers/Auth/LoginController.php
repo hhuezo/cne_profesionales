@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Municipio;
+use App\Models\catalogo\Pais;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller
 {
@@ -42,13 +44,13 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-
         $user->load('perfil');
         session(['perfil' => $user->perfil]);
+      
         if (isset(session('perfil')->NivelVerificacion) && session('perfil')->NivelVerificacion == 1) {
-            $municipio = Municipio::find(session('perfil')->Municipio);
+            /*$municipio = Municipio::find(session('perfil')->Municipio);
             session(['departamento' => $municipio->departamento]);
-            session(['pais' => session('departamento')->pais]);
+            session(['pais' => session('departamento')->pais]);*/
             //dd(session('departamento')->Id,session('pais')->Id);
         }
         return redirect()->intended($this->redirectPath());
@@ -70,4 +72,19 @@ class LoginController extends Controller
             ? new JsonResponse([], 204)
             : redirect('/login');
     }
+
+
+
+
+    public function showLoginForm(){
+        if(!session('id_pais'))
+        {
+            return Redirect::to('/');
+        }
+        return view('auth.login');
+    }
+
+
+
+
 }
