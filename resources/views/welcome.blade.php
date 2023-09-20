@@ -33,7 +33,7 @@
 
 <body>
   <!-- ======= Top Bar ======= -->
-  <section id="topbar" class="bg-black d-flex align-items-center py-4">
+  <section id="topbar" class="page d-flex align-items-center py-4">
     <div class="container d-flex justify-content-center justify-content-md-between">
       <div class="row w-100 text-white ps-5 py-3">
         <div class="col d-flex align-items-center">
