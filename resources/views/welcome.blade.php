@@ -121,6 +121,47 @@
     <a href="#" class=""><img src="img/image18.png" alt=""></a>
   </div>
 </body>
+<footer id="footer">
+  <div class="footer-top page text-white">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+        <img src="img/Logo_Gobierno.svg" class="img-fluid" alt=""><br>
+          <a href="https://maps.app.goo.gl/mnZjopCXPKfLNTYC9" class="text-white"><p>
+          Alameda Manuel Enrique Araujo 5500<br> San Salvador<br>
+            El Salvador <br><br></a>
+            <strong>Telefono:</strong> +503 0000-0000<br>
+            <strong>Correo:</strong> info@example.com<br>
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Enlaces Utiles</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Documentos</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Formularios</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Horarios</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Entidades</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links text-white">
+          <h4>Redes Sociales</h4>
+          <p>Lorem Ipsum</p>
+          <div class="social-links mt-3">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</footer><!-- End Footer -->
 
 </html>
 <style>
