@@ -106,28 +106,102 @@
 
             <nav id="navbar" class="navbar">
                 <ul class="text-center">
-                    <li><a class="scrollto" href="#hero">Inicio</a></li>
-                    <li><a class="scrollto" href="#about">Registros</a></li>
-                    <li><a class="scrollto" href="#services">Documentos Tecnicos</a></li>
-                    <li><a class="scrollto " href="#portfolio">Contactenos</a></li>
-                    <li><a class="scrollto" href="#team">Team</a></li>
-                    <li class="dropdown"><a href="#"><span>Drop Down</span> <i
-                                class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="#"><span>Inicio</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Drop Down 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
+                            <li class="dropdown"><a href="#"><span>Proceso de certificación</span> <i
                                         class="bi bi-chevron-right"></i></a>
                                 <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
+                                    <li><a href="{{ url('inicio/flujo.html') }}">Flujo del proceso o pasos</a></li>
+                                    <li><a href="#">Requisito para la certificación</a></li>
+                                    <li><a href="#">Perfil del profesional</a></li>
+                                    <li><a href="#">Contenido formativo</a></li>
+                                    <li><a href="#">Unidades formativas</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
+                            <li class="dropdown"><a href="#">Organismos certificadores <i
+                                        class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">n1</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a class="scrollto" href="#">Registros<i
+                                class="bi bi-chevron-right"></i></a>
+                        <ul>
+                            <li class="dropdown"><a href="#"><span>Instrucciones para el registro de
+                                        certif.</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li>
+                                    <li><a href="#">Flujo del proceso o pasos</a>
+                                    </li>
+                                    <li>
+                                    <li><a href="#">Requisitos para el registro</a>
+                                    </li>
+                                    <li>
+                                    <li><a href="#">Registro de proyectos</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#">Directorio especialista certificados<i
+                                        class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Registro de usuario de consulta</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">Documentos técnicos<i class="bi bi-chevron-right"></i></a>
+                        <ul>
+                            <li class="dropdown"><a href="">Marco normatico<i
+                                        class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="">Leyes</a></li>
+                                    <li><a href="">Reglamentos ténicos</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="">PRESENTACIONES<i
+                                        class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="">n1</a></li>
+                                    <li><a href="">n2</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="">Manuales<i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="">n1</a></li>
+                                    <li><a href="">n2</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="">Encuestas de consumo e.<i
+                                        class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="">Sectorial</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="">Estudios <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="">Alumbrado público</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#"><span>Contactenos</span> <i
+                                class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li class="dropdown"><a href="#"><span>Consulta de procesos</span> <i
+                                        class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Ingresar campos</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown"><a href="#"><span>Preguntas frecuente</span> <i
+                                        class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Ingresar campos</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -144,7 +218,6 @@
     <div class="footer-top page text-white">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-3 col-md-6 footer-contact">
                     <img src="img/Logo_Gobierno.svg" class="img-fluid" alt=""><br>
                     <a href="https://maps.app.goo.gl/mnZjopCXPKfLNTYC9" class="text-white">
@@ -181,6 +254,7 @@
 
             </div>
         </div>
+
     </div>
 </footer><!-- End Footer -->
 
@@ -215,7 +289,7 @@
         flex-wrap: wrap;
     }
 
-    .sticky-header {
+    HEAD .sticky-header {
         position: sticky;
         top: 0;
         /* Cambia esto al color de fondo que desees */

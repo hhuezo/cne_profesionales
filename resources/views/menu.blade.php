@@ -35,9 +35,10 @@
 
     <style>
         .card-title,
-        .form-label, .table-td  {
+        .form-label,
+        .table-td {
             text-transform: none;
-        }        
+        }
     </style>
 </head>
 
@@ -159,20 +160,19 @@
                                 </span>
                             </a>
                         </li>
-
-                     
                     @endcan
 
 
                     @can('read proyecto')
-                    <li>
-                        <a href="{{ url('registro/proyecto') }}" class="navItem">
-                            <span class="flex items-center">
-                                <iconify-icon class=" nav-icon" icon="material-symbols:add-notes" style="color: white;"></iconify-icon>
-                                <span>Proyectos</span>
-                            </span>
-                        </a>
-                    </li>
+                        <li>
+                            <a href="{{ url('registro/proyecto') }}" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="material-symbols:add-notes"
+                                        style="color: white;"></iconify-icon>
+                                    <span>Proyectos</span>
+                                </span>
+                            </a>
+                        </li>
                     @endcan
 
 
@@ -2253,27 +2253,27 @@
                                         class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md    overflow-hidden">
                                         <ul class="py-1 text-sm text-slate-800 dark:text-slate-200">
                                             @can('edit perfil')
-                                                   <li>
-                                                <a href="{{ url('seguridad/perfil') }}"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
-                                                    <iconify-icon icon="heroicons-outline:user"
-                                                        class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
-                                                    </iconify-icon>
-                                                    <span class="font-Inter">Perfil</span>
-                                                </a>
-                                            </li>
+                                                <li>
+                                                    <a href="{{ url('seguridad/perfil') }}"
+                                                        class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
+                                                        <iconify-icon icon="heroicons-outline:user"
+                                                            class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
+                                                        </iconify-icon>
+                                                        <span class="font-Inter">Perfil</span>
+                                                    </a>
+                                                </li>
                                             @endcan
-                                         @can('edit password')
-                                            <li>
-                                                <a href="{{ url('seguridad/perfil/cambio_clave') }}"
-                                                    class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
-                                                    <iconify-icon icon="mdi:password-outline"
-                                                        class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
-                                                    <span class="font-Inter">Cambio de contraseña</span>
-                                                </a>
-                                            </li>
+                                            @can('edit password')
+                                                <li>
+                                                    <a href="{{ url('seguridad/perfil/cambio_clave') }}"
+                                                        class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600 dark:text-white font-normal">
+                                                        <iconify-icon icon="mdi:password-outline"
+                                                            class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
+                                                        <span class="font-Inter">Cambio de contraseña</span>
+                                                    </a>
+                                                </li>
                                             @endcan
-                                          {{--  <li>
+                                            {{--  <li>
                                                 <a href="email.html"
                                                     class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600  dark:text-white font-normal">
                                                     <iconify-icon icon="heroicons-outline:mail"
@@ -2309,17 +2309,17 @@
                                                     <span class="font-Inter">Price</span>
                                                 </a>
                                             </li>
-                                            <li>--}} 
-                                                <a class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
+                                            <li> --}}
+                                            <a class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
                                                     dark:text-white font-normal"
-                                                    href="{{ route('logout') }}"
-                                                    onclick="event.preventDefault();
+                                                href="{{ route('logout') }}"
+                                                onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                                    <iconify-icon icon="heroicons-outline:login"
-                                                        class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
-                                                    </iconify-icon>
-                                                    <span class="font-Inter">Cerrar sesión</span>
-                                                </a>
+                                                <iconify-icon icon="heroicons-outline:login"
+                                                    class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1">
+                                                </iconify-icon>
+                                                <span class="font-Inter">Cerrar sesión</span>
+                                            </a>
 
                                             </li>
 

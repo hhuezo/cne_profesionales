@@ -5,6 +5,8 @@ use App\Http\Controllers\ConfiguracionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\publico\DirectorioController;
+use App\Http\Controllers\publico\MenuController;
 use App\Http\Controllers\registro\CertificacionController;
 use App\Http\Controllers\registro\ProyectoController;
 use App\Http\Controllers\RoleController;
@@ -57,28 +59,36 @@ Route::get('/test', [HomeController::class, 'test'])->name('test');
 
 
 Route::resource('seguridad/permission', PermissionController::class);
-Route::post('seguridad/permission/update_permission', [PermissionController::class,'update_permission']);
+Route::post('seguridad/permission/update_permission', [PermissionController::class, 'update_permission']);
 
-Route::post('seguridad/usuario/link_role', [UsuarioController::class,'link_role']);
-Route::post('seguridad/usuario/unlink_role', [UsuarioController::class,'unlink_role']);
+Route::post('seguridad/usuario/link_role', [UsuarioController::class, 'link_role']);
+Route::post('seguridad/usuario/unlink_role', [UsuarioController::class, 'unlink_role']);
 Route::resource('seguridad/usuario', UsuarioController::class);
 Route::resource('seguridad/role', RoleController::class);
-Route::post('seguridad/role/unlink_permission', [RoleController::class,'unlink_permission']);
-Route::post('seguridad/role/link_permission', [RoleController::class,'link_permission']);
+Route::post('seguridad/role/unlink_permission', [RoleController::class, 'unlink_permission']);
+Route::post('seguridad/role/link_permission', [RoleController::class, 'link_permission']);
 
-Route::get('seguridad/perfil/get_municipio/{id}', [PerfilController::class,'get_municipio']);
-Route::get('seguridad/perfil/get_distrito/{id}', [PerfilController::class,'get_distrito']);
-Route::get('seguridad/perfil/cambio_clave', [PerfilController::class,'cambio_clave']);
-Route::post('seguridad/perfil/cambio_clave_store', [PerfilController::class,'cambio_clave_store']);
+Route::get('seguridad/perfil/get_municipio/{id}', [PerfilController::class, 'get_municipio']);
+Route::get('seguridad/perfil/get_distrito/{id}', [PerfilController::class, 'get_distrito']);
+Route::get('seguridad/perfil/cambio_clave', [PerfilController::class, 'cambio_clave']);
+Route::post('seguridad/perfil/cambio_clave_store', [PerfilController::class, 'cambio_clave_store']);
 Route::resource('seguridad/perfil', PerfilController::class);
 
 
 
 //usuarios
 Route::resource('seguridad/usuarios', UserController::class);
-Route::get('seguridad/usuarios/verificarUsuario/{id}',[UserController::class, 'verificarUsuario'])->name('usuarios.verificarUsuario');
-Route::post('seguridad/usuarios/usuarioVerificado/{id}',[UserController::class, 'usuarioVerificado'])->name('usuarios.usuarioVerificado');
-Route::post('seguridad/usuarios/add_profesion',[UserController::class, 'add_profesion']);
+Route::get('seguridad/usuarios/verificarUsuario/{id}', [UserController::class, 'verificarUsuario'])->name('usuarios.verificarUsuario');
+Route::post('seguridad/usuarios/usuarioVerificado/{id}', [UserController::class, 'usuarioVerificado'])->name('usuarios.usuarioVerificado');
+Route::post('seguridad/usuarios/add_profesion', [UserController::class, 'add_profesion']);
+
+
+//acceso publico
+Route::get('publico/menu_inicio', [MenuController::class, 'menu_inicio']);
+
+
+
+Route::resource('publico/directorio', DirectorioController::class);
 
 
 
