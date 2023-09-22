@@ -10,6 +10,6 @@ class MenuController extends Controller
     public function menu_inicio()
     {
 
-        return view('publico.inicio');
+        return view('inicio.flujo');
     }
 }

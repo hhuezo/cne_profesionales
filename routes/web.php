@@ -84,11 +84,15 @@ Route::post('seguridad/usuarios/add_profesion', [UserController::class, 'add_pro
 
 
 //acceso publico
-Route::get('publico/menu_inicio', [MenuController::class, 'menu_inicio']);
-
+Route::get('publico/menu_flujo', [MenuController::class, 'menu_flujo']);
+Route::get('publico/menu_requisitos', [MenuController::class, 'menu_requisitos']);
+Route::get('publico/menu_perfil', [MenuController::class, 'menu_perfil']);
+Route::get('publico/menu_contenido_formativo', [MenuController::class, 'menu_contenido_formativo']);
+Route::get('publico/menu_unidades_formativas', [MenuController::class, 'menu_unidades_formativas']);
 
 
 Route::resource('publico/directorio', DirectorioController::class);
+
 
 
 
