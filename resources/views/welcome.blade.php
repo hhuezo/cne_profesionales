@@ -136,20 +136,23 @@
                                         certif.</span> <i class="bi bi-chevron-right"></i></a>
                                 <ul>
                                     <li>
-                                    <li><a href="#">Flujo del proceso o pasos</a>
+                                    <li><a href="{{ url('publico/menu_flujo_proceso') }}">Flujo del proceso o pasos</a>
                                     </li>
                                     <li>
-                                    <li><a href="#">Requisitos para el registro</a>
+                                    <li><a href="{{ url('publico/menu_requisito_registro') }}">Requisitos para el
+                                            registro</a>
                                     </li>
                                     <li>
-                                    <li><a href="#">Registro de proyectos</a>
+                                    <li><a href="{{ url('publico/menu_requisito_proyectos') }}">Registro de
+                                            proyectos</a>
                                     </li>
                                 </ul>
                             </li>
                             <li class="dropdown"><a href="#">Directorio especialista certificados<i
                                         class="bi bi-chevron-right"></i></a>
                                 <ul>
-                                    <li><a href="#">Registro de usuario de consulta</a>
+                                    <li><a href="{{ url('publico/menu_usuario_consulta') }}">Registro de usuario de
+                                            consulta</a>
                                     </li>
                                 </ul>
                             </li>

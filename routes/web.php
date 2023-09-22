@@ -90,6 +90,10 @@ Route::get('publico/menu_perfil', [MenuController::class, 'menu_perfil']);
 Route::get('publico/menu_contenido_formativo', [MenuController::class, 'menu_contenido_formativo']);
 Route::get('publico/menu_unidades_formativas', [MenuController::class, 'menu_unidades_formativas']);
 
+Route::get('publico/menu_flujo_proceso', [MenuController::class, 'menu_flujo_proceso']);
+Route::get('publico/menu_requisito_registro', [MenuController::class, 'menu_requisito_registro']);
+Route::get('publico/menu_requisito_proyectos', [MenuController::class, 'menu_requisito_proyectos']);
+Route::get('publico/menu_usuario_consulta', [MenuController::class, 'menu_usuario_consulta']);
 
 Route::resource('publico/directorio', DirectorioController::class);
 
