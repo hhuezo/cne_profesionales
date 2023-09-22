@@ -26,15 +26,15 @@
         rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="assets/aos/aos.css" rel="stylesheet">
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link href="assets/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="assets/glightbox/css/glightbox.min.css" rel="stylesheet">
-    <link href="assets/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="{{ asset( 'assets/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset( 'assets/bootstrap/css/bootstrap.min.css') }} " rel="stylesheet">
+    <link href="{{ asset( 'assets/bootstrap-icons/bootstrap-icons.css' ) }}" rel="stylesheet">
+    <link href="{{ asset( 'assets/boxicons/css/boxicons.min.css' ) }}" rel="stylesheet">
+    <link href="{{ asset('assets/glightbox/css/glightbox.min.css' )}}" rel="stylesheet">
+    <link href="{{ asset( 'assets/swiper/swiper-bundle.min.css' )}}" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="assets/css/style.css" rel="stylesheet">
+    <link href="{{ asset( 'assets/css/style.css' ) }}" rel="stylesheet">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
         <div class="container d-flex justify-content-center justify-content-md-between">
             <div class="row w-100 text-white ps-5 py-3">
                 <div class="col d-flex align-items-center">
-                    <div><span class="bass">{{ $fecha }}</span></div>
+                    <div><span class="bass">Viernes 22 de Septiembre de 2023</span></div>
                 </div>
                 <div class="col text-center">
                     <a href="{{ url('login') }}">
@@ -91,10 +91,10 @@
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between py-4">
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="#" class="logo logos"><img src="img/Para_web.png" alt=""></a>
-            <a href="#" class="logo logos"><img src="img/image15.jpeg" alt=""></a>
-            <a href="#" class="logo logos"><img src="img/image16.jpeg" alt=""></a>
-            <a href="#" class="logo logos"><img src="img/image17.png" alt=""></a>
+            <a href="#" class="logo logos"><img src="{{ asset( 'img/Para_web.png' ) }}" alt=""></a>
+            <a href="#" class="logo logos"><img src="{{ asset( 'img/image15.jpeg' ) }}" alt=""></a>
+            <a href="#" class="logo logos"><img src="{{ asset( 'img/image16.jpeg' ) }}" alt=""></a>
+            <a href="#" class="logo logos"><img src="{{ asset( 'img/image17.png' ) }}" alt=""></a>
         </div>
     </header><!-- End Header -->
     <header id="header" class="d-flex align-items-center page sticky-header">
@@ -217,7 +217,7 @@
         </div>
     </header><!-- End Header -->
     <div class="container d-flex align-items-center justify-content-center p-4">
-        <a href="#" class=""><img src="img/image18.png" alt=""></a>
+        <a href="#" class=""><img src="{{ asset( 'img/image18.png' ) }}" alt=""></a>
     </div>
 </body>
 <footer id="footer">
@@ -225,7 +225,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 footer-contact">
-                    <img src="img/Logo_Gobierno.svg" class="img-fluid" alt=""><br>
+                    <img src="{{ asset( 'img/Logo_Gobierno.svg' ) }}" class="img-fluid" alt=""><br><br><br>
                     <a href="https://maps.app.goo.gl/mnZjopCXPKfLNTYC9" class="text-white">
                         <p>
                             Alameda Manuel Enrique Araujo 5500<br> San Salvador<br>
