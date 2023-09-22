@@ -92,11 +92,11 @@
             <link rel="stylesheet" type="text/css" href="{{ asset('Baker/css/animate.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ asset('Baker/css/style.css') }}">
             <!-- =======================================================
-                                                                                                        Theme Name: Baker
-                                                                                                        Theme URL: https://bootstrapmade.com/baker-free-onepage-bootstrap-theme/
-                                                                                                        Author: BootstrapMade.com
-                                                                                                        Author URL: https://bootstrapmade.com
-                                                                                                      ======================================================= -->
+                                                                                                                Theme Name: Baker
+                                                                                                                Theme URL: https://bootstrapmade.com/baker-free-onepage-bootstrap-theme/
+                                                                                                                Author: BootstrapMade.com
+                                                                                                                Author URL: https://bootstrapmade.com
+                                                                                                              ======================================================= -->
 
             <style>
                 .banner-info {
@@ -341,8 +341,8 @@
                             class="mx-auto font-normal text-slate-500 dark:text-slate-400 2xl:mt-12 mt-6 uppercase text-sm text-center">
                             {{-- Already registered? --}}
                             <a href="signup-one.html" class="text-slate-900 dark:text-white font-medium hover:underline">
-                                <a class="nav-link" href="{{ url('register') }}"> <button
-                                        class="btn btn-secondary block w-full text-center">Registro</button>
+                                <a class="nav-link" href="{{ url('/') }}"> <button
+                                        class="btn btn-secondary block w-full text-center">Volver</button>
                                 </a>
                             </a>
                         </div>
