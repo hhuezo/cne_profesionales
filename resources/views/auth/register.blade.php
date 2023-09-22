@@ -106,7 +106,7 @@
         .card-title,
         .form-label {
             text-transform: none;
-        }        
+        }
     </style>
 </head>
 
@@ -125,7 +125,7 @@
                                 <div class="flex-1">
                                     <div class="card-title text-slate-900 dark:text-white">Registro</div>
                                 </div>
-                                <a href="{{ url('login') }}">
+                                <a href="{{ url('/') }}">
                                     <button class="btn btn-dark float-right">
                                         <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
                                         </iconify-icon>
@@ -183,7 +183,7 @@
 
                                     </div>
 
-                          
+
 
 
 
@@ -265,7 +265,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    
+
                                     <div class="input-area relative" id="otra_profesion" style="display: none">
                                         <label for="Telefono" class="form-label">Otra profesión</label>
                                         <input type="text" name="OtraProfesion" id="OtraProfesion"
