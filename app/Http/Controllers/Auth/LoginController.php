@@ -46,7 +46,7 @@ class LoginController extends Controller
     {
         $user->load('perfil');
         session(['perfil' => $user->perfil]);
-      
+
         if (isset(session('perfil')->NivelVerificacion) && session('perfil')->NivelVerificacion == 1) {
             /*$municipio = Municipio::find(session('perfil')->Municipio);
             session(['departamento' => $municipio->departamento]);
@@ -76,15 +76,13 @@ class LoginController extends Controller
 
 
 
-    public function showLoginForm(){
-        if(!session('id_pais'))
+    public function showLoginForm()
+    {
+        /*if(!session('id_pais'))
         {
             return Redirect::to('/');
-        }
-        return view('auth.login');
+        }*/
+        $paises = Pais::where('Activo', '=', 1)->get();
+        return view('auth.login', compact('paises'));
     }
-
-
-
-
 }
