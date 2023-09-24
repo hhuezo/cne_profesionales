@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
 
 class RegisterController extends Controller
 {
@@ -97,7 +99,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-  
+
         $this->validator($data)->validate();
 
         $usuario = User::create([
@@ -107,6 +109,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'active' => 1,
         ]);
+
+        // Generar token de verificación
+        $verificationToken = Str::random(40);
+        $usuario->remember_token = $verificationToken;
+        $usuario->save();
 
         $perfil = new Perfil();
         $perfil->Usuario = $usuario->id;
@@ -118,7 +125,7 @@ class RegisterController extends Controller
         $perfil->Direccion = $data['Direccion'];
         $perfil->Telefono = $data['Telefono'];
         $perfil->NivelVerificacion = 0;
- 
+
         $perfil->save();
 
         return $usuario;
@@ -131,7 +138,7 @@ class RegisterController extends Controller
         if(!session('id_pais'))
         {
             return Redirect::to('/');
-        }        
+        }
 
         $departamento_provincia = DepartamentoProvincia::where('Pais','=',session('id_pais'))->get();
         if(session('id_pais') == 130)
@@ -149,7 +156,7 @@ class RegisterController extends Controller
         $profesiones = Profesion::where('Activo','=',1)->get();
 
         $paises = Pais::get();
-      
+
         return view('auth.register', compact ('departamento_provincia', 'municipio_distrito',
         'distrito_corregimiento', 'entidades', 'tipos_certificados','paises','profesiones'));
     }
@@ -168,7 +175,7 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         $subject = 'Registro pendiente de verificación';
-        $content = 'Le informamos que su cuenta ha sido registrada exitosamente en nuestro sistema. Sin embargo, aún falta la verificación por parte de uno de nuestros administradores. Pronto recibirá un correo electrónico con instrucciones adicionales. Agradecemos su paciencia y comprensión.';
+        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=".route('usuarios.verify', $user->remember_token).">aquí</a>.";
         $recipientEmail = $request->email;
        // dd($recipientEmail);
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));

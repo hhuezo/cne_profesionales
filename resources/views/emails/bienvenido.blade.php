@@ -5,7 +5,7 @@
 </head>
 <body>
     <h3>Estimado,</h3>
-    <p>{{ $content }}</p>
+    <p>{!! $content !!}</p>
     <br>
     <p>Atentamente,</p>
     <br>

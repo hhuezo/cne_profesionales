@@ -81,6 +81,8 @@ Route::resource('seguridad/usuarios', UserController::class);
 Route::get('seguridad/usuarios/verificarUsuario/{id}', [UserController::class, 'verificarUsuario'])->name('usuarios.verificarUsuario');
 Route::post('seguridad/usuarios/usuarioVerificado/{id}', [UserController::class, 'usuarioVerificado'])->name('usuarios.usuarioVerificado');
 Route::post('seguridad/usuarios/add_profesion', [UserController::class, 'add_profesion']);
+Route::get('seguridad/usuarios/verify/{token}', [UserController::class,'verify'])->name('usuarios.verify');
+
 
 
 //acceso publico
