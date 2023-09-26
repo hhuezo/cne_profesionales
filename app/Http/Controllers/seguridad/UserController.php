@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers\seguridad;
 
+use Alert;
 use App\Http\Controllers\Controller;
 use App\Mail\VerificacionMail;
+use App\Models\catalogo\DepartamentoProvincia;
+use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
+use App\Models\catalogo\Perfil;
+use App\Models\catalogo\Profesion;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
-use Alert;
-use App\Models\catalogo\DepartamentoProvincia;
-use App\Models\catalogo\Distrito;
-use App\Models\catalogo\DistritoCorregimiento;
-use App\Models\catalogo\MunicipioDistrito;
-use App\Models\catalogo\Perfil;
-use App\Models\catalogo\Profesion;
 
 class UserController extends Controller
 {
@@ -34,17 +34,17 @@ class UserController extends Controller
     {
         $usuario = User::findOrFail($id);
 
-        $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito','=',$usuario->perfil->distrito_corregimiento->MunicipioDistrito)->get();
+        $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito', '=', $usuario->perfil->distrito_corregimiento->MunicipioDistrito)->get();
 
-        $municipios_distritos = MunicipioDistrito::where('Activo', 1)->where('DepartamentoProvincia','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia)->get();
-        $departamentos_provincia= DepartamentoProvincia::where('Pais','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais)->get();
- 
+        $municipios_distritos = MunicipioDistrito::where('Activo', 1)->where('DepartamentoProvincia', '=', $usuario->perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia)->get();
+        $departamentos_provincia = DepartamentoProvincia::where('Pais', '=', $usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais)->get();
+
         $pais = Pais::findOrFail($usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais);
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
-        $profesiones = Profesion::where('Activo','=',1)->get();
+        $profesiones = Profesion::where('Activo', '=', 1)->get();
         return view('seguridad.usuarios.verificar_usuarios', compact('usuario', 'pais', 'departamentos_provincia',
-         'municipios_distritos','distritos_corregimientos', 'entidades', 'tipos_certificados','profesiones'));
+            'municipios_distritos', 'distritos_corregimientos', 'entidades', 'tipos_certificados', 'profesiones'));
 
     }
 
@@ -55,11 +55,9 @@ class UserController extends Controller
         $usuario->perfil->NivelVerificacion = $request->input('estado');
         $usuario->perfil->update();
 
-        if($request->estado == 2)
-        {
+        if ($request->estado == 2) {
             $usuario->assignRole('solicitante');
         }
-        
 
         if ($usuario->perfil->NivelVerificacion == 1) {
             $subject = 'Necesitas actualizar tu información';
@@ -70,9 +68,34 @@ class UserController extends Controller
         $recipientEmail = $usuario->email;
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
 
-        Alert::success('Actualización','El registro ha sido actualizado correctamente');
+        Alert::success('Actualización', 'El registro ha sido actualizado correctamente')->showConfirmButton()->autoClose(20000);
 
         return Redirect::to('seguridad/usuarios');
+    }
+
+    public function verify($token)
+    {
+        $usuario = User::where('remember_token', $token)->first();
+
+        if (!$usuario) {
+            abort(404); // Token no válido
+        }
+
+        $usuario->perfil->NivelVerificacion = 2;
+        $usuario->perfil->update();
+        $usuario->assignRole('solicitante');
+
+        $usuario->remember_token = null;
+        $usuario->save();
+
+         // Iniciar sesión automáticamente
+            Auth::login($usuario);
+            $usuario->load('perfil');
+            session(['perfil' => $usuario->perfil]);
+
+            Alert::success('Actualización', 'Tu cuenta ha sido verificada.');
+
+            return Redirect::to('/home');
     }
 
     public function update(Request $request, $id)
@@ -98,9 +121,8 @@ class UserController extends Controller
         $perfil->OtraProfesion = $request->input('OtraProfesion');
         //if (auth()->user()->can('perfil_sin_verificar')) {
         $perfil->NivelVerificacion = 0;
-        session('perfil')->NivelVerificacion=0;
+        session('perfil')->NivelVerificacion = 0;
         //}
-      
 
         $perfil->update();
         Alert::success('Actualización', 'Sus datos han sido actualizados.');
@@ -124,7 +146,7 @@ class UserController extends Controller
         $perfil->save();
 
         alert()->success('La profesión ha sido agregada correctamente');
-        return back(); 
+        return back();
 
     }
 }

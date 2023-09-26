@@ -49,7 +49,7 @@
 
 
                                 <div class="relative">
-                                  
+
                                     <input type="text" name="OtraProfesion" id="OtraProfesion" disabled
                                     value="{{ $usuario->perfil->OtraProfesion }}" class="form-control !border-danger-500 !pr-12">
                                     <button type="button" data-bs-toggle="modal"
@@ -62,7 +62,7 @@
                                 </div>
 
 
-                                
+
                             </div>
                         @endif
 
@@ -129,22 +129,22 @@
 
 
 
-                        <div class="input-area relative">
+                        <!--    <div class="input-area relative">
                             <label for="observaciones" class="form-label">Observaciones</label>
                             <textarea id="observaciones" name="Observaciones" rows="5" class="form-control">Nos complace informarte que tu perfil ha sido verificado exitosamente.
                                 Ahora puedes disfrutar de todas las funcionalidades y beneficios de nuestra plataforma.
                                 ¡Gracias por tu paciencia y colaboración!</textarea>
-                        </div>
+                        </div>-->
 
 
 
                     </div>
                     <br>
                     <div style="text-align: right;">
-                        <button type="submit" name="estado" value="1"
+                     <!--      <button type="submit" name="estado" value="1"
                             class="btn inline-flex justify-center btn-warning">Enviar observaciones</button>
                         <button type="submit" name="estado" value="2"
-                            class="btn inline-flex justify-center btn-success">Verificar</button>
+                            class="btn inline-flex justify-center btn-success">Verificar</button>-->
                     </div>
 
 

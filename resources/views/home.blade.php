@@ -14,9 +14,7 @@
                     </header>
                     <div class="card-text h-full">
                         <p style="text-align: justify" class="text-sm font-Inter text-slate-600 dark:text-slate-300">
-                            Queremos informarte que tu perfil está pendiente de verificación por parte de nuestro equipo
-                            administrativo. Te pedimos paciencia mientras revisamos y validamos la información
-                            proporcionada.
+                            Queremos informarte que es necesario que verifiques tu perfil para poder continuar con el proceso. Pronto recibirás un correo de verificación en tu bandeja de entrada.
                         </p>
                         <br>
                         <p style="text-align: justify" class="text-sm font-Inter text-slate-600 dark:text-slate-300">
@@ -73,16 +71,16 @@
 
                                             <div class="input-area relative">
                                                 <label for="Nacionalidad" class="form-label">Pais de origen</label>
-        
+
                                                 <select name="Nacionalidad" class="form-control select2">
                                                     @foreach ($paises as $obj)
                                                         <option value="{{ $obj->Id }}"
                                                             {{ $usuario->perfil->Nacionalidad == $obj->Id ? 'selected' : '' }}>
                                                             {{ $obj->Nombre }}</option>
                                                     @endforeach
-        
+
                                                 </select>
-        
+
                                             </div>
 
                                             <div class="input-area">
@@ -94,13 +92,13 @@
                                                     @endforeach
                                                 </select>
                                             </div>
-                               
+
                                             <div class="input-area relative" id="otra_profesion" style="display: none">
                                                 <label for="Telefono" class="form-label">Otra profesión</label>
                                                 <input type="text" name="OtraProfesion" id="OtraProfesion"
                                                     value="{{ $usuario->perfil->OtraProfesion }}" class="form-control">
                                             </div>
-{{-- 
+{{--
                                             <div class="input-area relative">
                                                 <label for="Pais" class="form-label">Pais</label>
                                                 <input type="text" value="{{$pais->Nombre}}" class="form-control" disabled>
