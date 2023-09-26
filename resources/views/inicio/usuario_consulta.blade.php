@@ -302,4 +302,7 @@
         z-index: 100;
         /* Asegura que esté por encima de otros elementos */
     }
+    #shadow-host-companion {
+        display: none !important;
+    }
 </style>
