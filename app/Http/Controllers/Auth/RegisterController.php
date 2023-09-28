@@ -88,7 +88,7 @@ class RegisterController extends Controller
             'Direccion' => ['required'],
             'Profesion' => ['required'],
             //'Dui' => ['required'],
-        ] ,$messages);
+        ], $messages);
     }
 
     /**
@@ -129,36 +129,44 @@ class RegisterController extends Controller
         $perfil->save();
 
         return $usuario;
-
     }
 
     public function showRegistrationForm()
     {
 
-        if(!session('id_pais'))
+        /* if(!session('id_pais'))
         {
             return Redirect::to('/');
-        }
+        }*/
 
-        $departamento_provincia = DepartamentoProvincia::where('Pais','=',session('id_pais'))->get();
-        if(session('id_pais') == 130)
-        {
-            $municipio_distrito = MunicipioDistrito::where('Activo', '=',1)->where('DepartamentoProvincia','=', 1)->get();
-            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito','=', 1)->get();
-        }
-        else{
-            $municipio_distrito = MunicipioDistrito::where('Activo', '=',1)->where('DepartamentoProvincia','=', 15)->get();
-            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito','=', 45)->get();
+        $configuracion = ConfiguracionPais::first();
+
+        $pais = $configuracion->Pais;
+
+        $departamento_provincia = DepartamentoProvincia::where('Pais', '=', $pais)->get();
+        if ($pais == 130) {
+            $municipio_distrito = MunicipioDistrito::where('Activo', '=', 1)->where('DepartamentoProvincia', '=', 1)->get();
+            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito', '=', 1)->get();
+        } else {
+            $municipio_distrito = MunicipioDistrito::where('Activo', '=', 1)->where('DepartamentoProvincia', '=', 15)->get();
+            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito', '=', 45)->get();
         }
 
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
-        $profesiones = Profesion::where('Activo','=',1)->get();
+        $profesiones = Profesion::where('Activo', '=', 1)->get();
 
         $paises = Pais::get();
 
-        return view('auth.register', compact ('departamento_provincia', 'municipio_distrito',
-        'distrito_corregimiento', 'entidades', 'tipos_certificados','paises','profesiones'));
+        return view('auth.register', compact(
+            'departamento_provincia',
+            'municipio_distrito',
+            'distrito_corregimiento',
+            'entidades',
+            'tipos_certificados',
+            'paises',
+            'profesiones'
+        ));
     }
 
     /**
@@ -175,9 +183,9 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         $subject = 'Registro pendiente de verificación';
-        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=".route('usuarios.verify', $user->remember_token).">aquí</a>.";
+        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('usuarios.verify', $user->remember_token) . ">aquí</a>.";
         $recipientEmail = $request->email;
-       // dd($recipientEmail);
+        // dd($recipientEmail);
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
 
         if ($response = $this->registered($request, $user)) {
@@ -185,8 +193,8 @@ class RegisterController extends Controller
         }
 
         return $request->wantsJson()
-        ? new JsonResponse([], 201)
-        : redirect($this->redirectPath());
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     protected function registered(Request $request, $user)
@@ -196,5 +204,4 @@ class RegisterController extends Controller
 
         return redirect()->intended($this->redirectPath());
     }
-
 }
