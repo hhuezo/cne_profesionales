@@ -126,3 +126,9 @@ Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update'
 //catalogos
 
 Route::resource('catalogo/tipo_certificado', TipoCertificadoController::class);
+
+
+
+Route::get('/page-test', function () {
+    return view('test');
+});
