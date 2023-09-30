@@ -165,7 +165,8 @@ class RegisterController extends Controller
             'entidades',
             'tipos_certificados',
             'paises',
-            'profesiones'
+            'profesiones',
+            'pais'
         ));
     }
 

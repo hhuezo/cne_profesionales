@@ -11,13 +11,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/rt-plugins.css">
-    <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/rt-plugins.css') }}">
+    {{-- <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet"> 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="">
-    <link rel="stylesheet" href="assets/css/app.css">
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""> --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- START : Theme Config js-->
-    <script src="assets/js/settings.js" sync></script>
+    <script src="{{ asset('assets/js/settings.js') }}" sync></script>
     <!-- END : Theme Config js-->
 
     <style>
@@ -90,10 +90,10 @@
                                     <div class="input-area relative">
                                         <label for="Nacionalidad" class="form-label">Pais de origen</label>
 
-                                        <select name="Nacionalidad" class="form-control select2">
+                                        <select name="Nacionalidad" class="select2 form-control w-full mt-2 py-2">
                                             @foreach ($paises as $obj)
                                                 <option value="{{ $obj->Id }}"
-                                                    {{ session('id_pais') == $obj->Id ? 'selected' : '' }}>
+                                                    {{ $pais == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Nombre }}</option>
                                             @endforeach
 
@@ -216,10 +216,10 @@
 
 
     <!-- scripts -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
 
-    <script src="assets/js/rt-plugins.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 
 
     <script type="text/javascript">
