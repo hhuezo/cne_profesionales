@@ -2,15 +2,15 @@
 
 @section('contentScript')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-@if($snippet!=NULL)
+@if($snippet!=NULL) <!--Se verifica si existe ya un cambio-->
 @php
     $contenidoHtml = $snippet->html_content;
-$contenidoHtmlFormateado = str_replace("\n", "\\n", $contenidoHtml);
+$contenidoHtmlFormateado = str_replace("\n", "\\n", $contenidoHtml);//se eliminan saltos de de linea en el codigo html para evitar errores con grapesjs
 //dd($snippet->css_content);
 @endphp
 <script >
-    editor.setComponents('{!! $contenidoHtmlFormateado !!}');
-    editor.setStyle('{!! $snippet->css_content !!}');
+    editor.setComponents('{!! $contenidoHtmlFormateado !!}');//se carga html desde la bd en grapesjs
+    editor.setStyle('{!! $snippet->css_content !!}');//se carga css desde la bd grapesjs
     //editor.render();
 </script>
 @endif
@@ -29,14 +29,14 @@ $contenidoHtmlFormateado = str_replace("\n", "\\n", $contenidoHtml);
 
 
     document.getElementById('btn-guardar').addEventListener('click', function() {
-
+//guardar cambios en bd
         let html = editor.getHtml();
         let css = editor.getCss();
         //let components = editor.getComponents();
         //console.log(components);
 
         let parametros = {
-                        _token: $('meta[name="csrf-token"]').attr('content'), // Incluye el token CSRF
+                        _token: $('meta[name="csrf-token"]').attr('content'), // Incluye el token CSRF para no tener problemas con laravel
                         "html_content": html,
                         "css_content": css,
                         //"json_content":components,
