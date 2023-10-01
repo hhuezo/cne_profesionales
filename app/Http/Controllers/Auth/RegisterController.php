@@ -16,6 +16,7 @@ use App\Models\catalogo\TipoCertificado;
 use App\Models\configuracion\ConfiguracionPais;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\JsonResponse;
@@ -115,7 +116,28 @@ class RegisterController extends Controller
         $usuario->remember_token = $verificationToken;
         $usuario->save();
 
+
+       
+
         $perfil = new Perfil();
+
+
+        if ($data['FotoUrl']) {
+            try {
+                unlink(public_path("docs/") . $perfil->FotoUrl);
+            } catch (Exception $e) {
+                //return $e->getMessage();
+            }
+        }
+
+        if ($data['FotoUrl']) {
+            $file = $data['FotoUrl'];
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $perfil->FotoUrl = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+
         $perfil->Usuario = $usuario->id;
         $perfil->Pais = session('id_pais');
         $perfil->Nacionalidad = $data['Nacionalidad'];

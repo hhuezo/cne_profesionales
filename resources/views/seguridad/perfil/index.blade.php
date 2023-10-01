@@ -148,15 +148,27 @@
                                     @endif
 
 
-
-
-
-
-
-
-
-
-
+                                    @if ($perfil->FotoUrl)
+                                    <div class="input-area">
+                                        <label for="Dui" class="form-label">Adjuntar foto</label>
+                                        <div class="relative">
+                                            <input type="file" name="FotoUrl" class="form-control !pr-12">
+                                            <a href="{{ url('docs') }}/{{ $perfil->FotoUrl }}"
+                                                target="_blank">
+                                                <button type="button"
+                                                    class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
+                                                    <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                @else
+                                    <div class="input-area relative">
+                                        <label for="Dui" class="form-label">Adjuntar foto</label>
+                                        <input type="file" name="FotoUrl"
+                                            value="{{ $perfil->FotoUrl }}" class="form-control">
+                                    </div>
+                                @endif
 
 
 

@@ -23,7 +23,7 @@
 
     <input id="Pages" type="hidden" pages-data="">
     <input id="Languages" type="hidden" lang-data="{{ json_encode(config('lg.languages')) }}">
-    <div id="gjs" style="height:100%; overflow:hidden" class="gjs-editor-cont"></div>
+    <div id="gjs"  style="height:100%; overflow:hidden" class="gjs-editor-cont"></div>
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
 
@@ -42,26 +42,14 @@
 </body>
 
 <script type="text/javascript">
-    var editor = grapesjs.init({
-        // Tus opciones aquí...
-    });
-
-    // Escucha el evento 'component:selected'
-    editor.on('component:selected', function(component) {
-        // Comprueba si el componente seleccionado es un 'wrapper'
-        if (component.get('type') === 'wrapper') {
-            // Haz algo con el componente...
-            console.log('Has seleccionado un componente de tipo "wrapper"');
-        }
-    });
-
-
     document.getElementById('btn-guardar').addEventListener('click', function() {
-        // var gjsContent = document.getElementById('gjs').innerHTML;
-        // console.log(gjsContent);
-        //console.log("hola");
-        let tipo = componente.get('type');
-        console.log(tipo);
+        var contenido = document.querySelector('div[data-gjs-type="wrapper"]').innerHTML;
+        console.log(contenido);
+    });
+
+    document.getElementById('gjs').addEventListener('change', function() {
+        var contenido = document.querySelector('gjs').innerHTML;
+        console.log(contenido);
     });
 </script>
 
