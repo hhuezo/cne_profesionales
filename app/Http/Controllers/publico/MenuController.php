@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\publico;
 
 use App\Http\Controllers\Controller;
+use App\Models\catalogo\Pais;
+use App\Models\editor\Snippet;
+use Carbon\Carbon;
 
 class MenuController extends Controller
 {
@@ -21,8 +24,17 @@ class MenuController extends Controller
 
     public function menu_perfil()
     {
+        $paises = Pais::where('Activo', '=', 1)->get();
 
-        return view('inicio.perfil');
+        $dias = array("","Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+        $meses = array('', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+        $now = Carbon::now();
+        $dia = $dias[$now->format('N') + 0];
+        $mes = $meses[$now->format('m') + 0];
+        $fecha = $dia . ' ' . $now->format('d') . ' de ' . $mes . ' de ' . $now->format('Y');
+
+        $snippet=Snippet::orderBy('Id', 'desc')->first();
+        return view('inicio.perfil', compact('paises', 'fecha','snippet'));
     }
 
     public function menu_contenido_formativo()
