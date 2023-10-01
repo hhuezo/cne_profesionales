@@ -34,23 +34,12 @@
         </div>
         <div class="toast-body"></div>
     </div>
+    @include('sweetalert::alert')
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="{{ asset('/js/laravel-grapes.js') }}"></script>
 </body>
-
-<script type="text/javascript">
-    document.getElementById('btn-guardar').addEventListener('click', function() {
-        var contenido = document.querySelector('div[data-gjs-type="wrapper"]').innerHTML;
-        console.log(contenido);
-    });
-
-    document.getElementById('gjs').addEventListener('change', function() {
-        var contenido = document.querySelector('gjs').innerHTML;
-        console.log(contenido);
-    });
-</script>
-
+@yield('contentScript')
 </html>

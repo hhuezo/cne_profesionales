@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\catalogo\TipoCertificadoController;
 use App\Http\Controllers\ConfiguracionController;
+use App\Http\Controllers\editor\GrapesJSController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
@@ -122,6 +123,11 @@ Route::get('configuracion/pais', [ConfiguracionController::class, 'pais']);
 Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update']);
 
 
+//editor de paginas
+Route::get('editor/editor_grapesJS', [GrapesJSController::class, 'editor_grapesJS']);
+Route::post('editor/guardarPagina', [GrapesJSController::class, 'guardarPagina']);
+
+
 
 //catalogos
 
@@ -132,3 +138,6 @@ Route::resource('catalogo/tipo_certificado', TipoCertificadoController::class);
 Route::get('/page-test', function () {
     return view('test');
 });
+
+
+
