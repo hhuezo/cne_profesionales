@@ -124,6 +124,10 @@
                                     <a href="{{ url('configuracion/pais') }}">País</a>
                                 </li>
 
+                                <li>
+                                    <a href="{{ url('editor') }}">Editor de paginas</a>
+                                </li>
+
                             </ul>
                         </li>
                     @endcan

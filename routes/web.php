@@ -3,6 +3,7 @@
 use App\Http\Controllers\catalogo\TipoCertificadoController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\editor\GrapesJSController;
+use App\Http\Controllers\EditorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
@@ -127,7 +128,8 @@ Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update'
 Route::get('editor/editor_grapesJS', [GrapesJSController::class, 'editor_grapesJS']);
 Route::post('editor/guardarPagina', [GrapesJSController::class, 'guardarPagina']);
 
-
+Route::resource('editor', EditorController::class);
+Route::post('editor/guardarPagina/{id}', [EditorController::class, 'guardarPagina']);
 
 //catalogos
 
