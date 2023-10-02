@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+
+
+@extends('template')
+
+@section('contenido')
+<style>
+<?php echo $snippet->css_content; ?>
+</style>
+<?php echo $snippet->html_content; ?>
+ 
+@endsection
+
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -38,6 +50,7 @@
 </head>
 
 <body>
+
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="page d-flex align-items-center py-4">
         <div class="container d-flex justify-content-center justify-content-md-between">
@@ -306,4 +319,4 @@
     #shadow-host-companion {
         display: none !important;
     }
-</style>
+</style> --}}

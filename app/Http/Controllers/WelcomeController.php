@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\editor\Snippet;
 use App\Models\Pais;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -24,7 +25,9 @@ class WelcomeController extends Controller
         $mes = $meses[$now->format('m') + 0];
         $fecha = $dia . ' ' . $now->format('d') . ' de ' . $mes . ' de ' . $now->format('Y');
 
-        return view('welcome', compact('paises', 'fecha'));
+        $snippet = Snippet::findOrFail(2);
+
+        return view('welcome', compact('paises', 'fecha','snippet'));
     }
 
 

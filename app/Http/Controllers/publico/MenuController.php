@@ -12,41 +12,32 @@ class MenuController extends Controller
     //menu_inicio
     public function menu_flujo()
     {
-
-        return view('inicio.flujo');
+        $snippet = Snippet::findOrFail(3);
+        return view('inicio.flujo',compact('snippet'));
     }
 
     public function menu_requisitos()
     {
-
-        return view('inicio.requisitos');
+        $snippet = Snippet::findOrFail(4);
+        return view('inicio.requisitos',compact('snippet'));
     }
 
     public function menu_perfil()
     {
-        $paises = Pais::where('Activo', '=', 1)->get();
-
-        $dias = array("","Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
-        $meses = array('', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-        $now = Carbon::now();
-        $dia = $dias[$now->format('N') + 0];
-        $mes = $meses[$now->format('m') + 0];
-        $fecha = $dia . ' ' . $now->format('d') . ' de ' . $mes . ' de ' . $now->format('Y');
-
-        $snippet=Snippet::orderBy('Id', 'desc')->first();
-        return view('inicio.perfil', compact('paises', 'fecha','snippet'));
+        $snippet = Snippet::findOrFail(5);
+        return view('inicio.requisitos',compact('snippet'));
     }
 
     public function menu_contenido_formativo()
     {
-
-        return view('inicio.contenido_formativo');
+        $snippet = Snippet::findOrFail(6);
+        return view('inicio.contenido_formativo',compact('snippet'));
     }
 
     public function menu_unidades_formativas()
     {
-
-        return view('inicio.unidades_formativas');
+        $snippet = Snippet::findOrFail(7);
+        return view('inicio.unidades_formativas',compact('snippet'));
     }
 
     public function menu_flujo_proceso()
