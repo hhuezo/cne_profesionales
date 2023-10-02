@@ -179,26 +179,25 @@
                             </a>
                         </li>
                     @endcan
-                    @can('read catalogos')
-                    <li class="">
-                        <a href="#" class="navItem">
-                            <span class="flex items-center">
-                                <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list">
-                                </iconify-icon>
-                                {{-- <span>Verificar Usuarios</span>
-                            <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
-                                <span>Diseño de Paginas</span>
-                            </span>
-                            <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
-                        </a>
-                        <ul class="sidebar-submenu">
-                            <li>
-                                <a href="{{ url('editor/editor_grapesJS') }}">Editor GrapesJS</a>
-                            </li>
+                    {{-- @can('read catalogos')
+                        <li class="">
+                            <a href="#" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list">
+                                    </iconify-icon>
+                                
+                                    <span>Diseño de Paginas</span>
+                                </span>
+                                <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="{{ url('editor/editor_grapesJS') }}">Editor GrapesJS</a>
+                                </li>
 
-                        </ul>
-                    </li>
-                @endcan
+                            </ul>
+                        </li>
+                    @endcan --}}
 
                     <!-- Apps Area -->
                     {{-- <li class="sidebar-menu-title">APPS</li>
