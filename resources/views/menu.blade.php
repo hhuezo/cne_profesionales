@@ -123,7 +123,9 @@
                                 <li>
                                     <a href="{{ url('configuracion/pais') }}">País</a>
                                 </li>
-
+                                <li>
+                                    <a href="{{ url('configuracion/alcance') }}">Alcance</a>
+                                </li>
                                 <li>
                                     <a href="{{ url('editor') }}">Editor de paginas</a>
                                 </li>

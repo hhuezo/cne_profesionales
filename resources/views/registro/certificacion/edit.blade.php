@@ -63,38 +63,16 @@
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                                 <div class="input-area relative">
                                                     <label for="Descipcion" class="form-label">Descripción</label>
-                                                    <textarea class="form-control" name="Descripcion" required>{{ $certificacion->Descripcion }}</textarea>
+                                                    <textarea class="form-control" readonly name="Descripcion" required>{{ $certificacion->Descripcion }}</textarea>
                                                 </div>
                                                 <div class="input-area relative">
                                                     <label for="Alcance" class="form-label">Alcance</label>
-                                                    <textarea class="form-control" name="Alcance" required>{{ $certificacion->Alcance }}</textarea>
+                                                    <textarea class="form-control" readonly name="Alcance" required>{{ $certificacion->Alcance }}</textarea>
                                                 </div>
-
-                                                <div class="input-area relative">
-                                                    <label for="Numero" class="form-label">Número</label>
-                                                    <input type="text" name="Numero"
-                                                        value="{{ $certificacion->Numero }}" required class="form-control">
-                                                </div>
-
-
-                                                <div class="input-area">
-                                                    <label for="Nombre" class="form-label">Tipo certificado</label>
-                                                    <select name="TipoCertificado" required
-                                                        class="form-control !pr-12 select2">
-                                                        @foreach ($tipo_certificados as $obj)
-                                                            <option value="{{ $obj->Id }}"
-                                                                {{ $certificacion->TipoCertificado == $obj->Id ? 'selected' : '' }}>
-                                                                {{ $obj->Descripcion }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-
-                                                </div>
-
 
                                                 <div class="input-area">
                                                     <label for="Nombre" class="form-label">Entidad certificadora</label>
-                                                    <select name="EntidadCertificadora" id="EntidadCertificadora" required
+                                                    <select name="EntidadCertificadora" id="EntidadCertificadora" required disabled
                                                         class="form-control !pr-12 select2">
                                                         @foreach ($entidades as $obj)
                                                             <option value="{{ $obj->Id }}"
@@ -108,10 +86,34 @@
                                                 <div class="input-area relative" id="otra_entidad">
                                                     <label for="Nombre" class="form-label">Otra entidad
                                                         certificadora</label>
-                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required
+                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required disabled
                                                         value="{{ $certificacion->OtraEntidad }}" required
                                                         class="form-control">
                                                 </div>
+
+                                                <div class="input-area relative">
+                                                    <label for="Numero" class="form-label">Número</label>
+                                                    <input type="text" name="Numero"
+                                                        value="{{ $certificacion->Numero }}" required class="form-control">
+                                                </div>
+
+
+                                                {{-- <div class="input-area">
+                                                    <label for="Nombre" class="form-label">Tipo certificado</label>
+                                                    <select name="TipoCertificado" required
+                                                        class="form-control !pr-12 select2">
+                                                        @foreach ($tipo_certificados as $obj)
+                                                            <option value="{{ $obj->Id }}"
+                                                                {{ $certificacion->TipoCertificado == $obj->Id ? 'selected' : '' }}>
+                                                                {{ $obj->Descripcion }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+
+                                                </div> --}}
+
+
+                                               
 
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Fecha de vencimiento</label>
@@ -279,15 +281,7 @@
                 $("#OtraEntidad").val("");
             });
 
-            function validar() {
-                if ($("#EntidadCertificadora").val() == 1) {
-                    $("#otra_entidad").css("display", "block");
-                    $("#OtraEntidad").attr("required", true);
-                } else {
-                    $("#otra_entidad").css("display", "none");
-                    $("#OtraEntidad").attr("required", false);
-                }
-            }
+            
         });
     </script>
 

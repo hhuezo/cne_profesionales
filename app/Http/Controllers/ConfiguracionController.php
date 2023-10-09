@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\catalogo\Pais;
+use App\Models\configuracion\ConfiguracionAlcance;
 use App\Models\configuracion\ConfiguracionPais;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,9 @@ class ConfiguracionController extends Controller
      */
     public function pais()
     {
-        $paises = Pais::where('Activo','=',1)->get();
+        $paises = Pais::where('Activo', '=', 1)->get();
         $configuracion = ConfiguracionPais::first();
-        return view('configuracion.pais', compact('paises','configuracion' ));
+        return view('configuracion.pais', compact('paises', 'configuracion'));
     }
 
     /**
@@ -25,17 +26,25 @@ class ConfiguracionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function alcance()
     {
-        //
+        $configuracion = ConfiguracionAlcance::first();
+        return view('configuracion.alcance', compact('configuracion'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function alcance_update(Request $request)
+    {
+        $configuracion = ConfiguracionAlcance::findOrFail($request->Id);
+        $configuracion->Descripcion = $request->Descripcion;
+        $configuracion->Alcance = $request->Alcance;
+        $configuracion->update();
+
+        alert()->success('El registro ha sido modificado correctamente');
+        return back();
+    }
+
+
+
     public function pais_update(Request $request)
     {
         $configuracion = ConfiguracionPais::first();

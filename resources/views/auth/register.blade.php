@@ -1,3 +1,9 @@
+
+@extends('template')
+
+@section('contenido')
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="light">
 
@@ -23,6 +29,10 @@
         .form-label {
             text-transform: none;
         }
+
+        .form-label, .card-title{
+            text-align: left;
+        }
     </style>
 </head>
 
@@ -37,16 +47,16 @@
                     <div class="card">
                         <div class="card-body flex flex-col p-6">
                             <header
-                                class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                                class="flex items-center border-b border-slate-100 dark:border-slate-700">
                                 <div class="flex-1">
                                     <div class="card-title text-slate-900 dark:text-white">Registro</div>
                                 </div>
-                                <a href="{{ url('/') }}">
+                                {{-- <a href="{{ url('/') }}">
                                     <button class="btn btn-dark float-right">
                                         <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
                                         </iconify-icon>
                                     </button>
-                                </a>
+                                </a> --}}
                             </header>
 
                             @if (count($errors) > 0)
@@ -61,7 +71,7 @@
                             @endif
                             <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
-
+                                <br>
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                     <div class="input-area relative">
                                         <label for="Nombre" class="form-label">Nombre</label>
@@ -310,3 +320,4 @@
 </body>
 
 </html>
+@endsection

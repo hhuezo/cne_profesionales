@@ -57,6 +57,8 @@ class RolesAndPermissions extends Seeder
 
         $role = Role::findOrFail(1);
         $role->givePermissionTo( Permission::all() );*/
+
+        $role = Role::create( ['name' => 'consulta'] );
     }
     
 }

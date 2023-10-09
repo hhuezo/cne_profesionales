@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BusquedaController;
 use App\Http\Controllers\catalogo\TipoCertificadoController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\editor\GrapesJSController;
@@ -65,16 +66,26 @@ Route::post('seguridad/permission/update_permission', [PermissionController::cla
 
 Route::post('seguridad/usuario/link_role', [UsuarioController::class, 'link_role']);
 Route::post('seguridad/usuario/unlink_role', [UsuarioController::class, 'unlink_role']);
+
+Route::post('register_consulta', [UsuarioController::class, 'register_consulta']);
+Route::post('login_consulta', [UsuarioController::class, 'login_consulta']);
+
+
 Route::resource('seguridad/usuario', UsuarioController::class);
 Route::resource('seguridad/role', RoleController::class);
 Route::post('seguridad/role/unlink_permission', [RoleController::class, 'unlink_permission']);
 Route::post('seguridad/role/link_permission', [RoleController::class, 'link_permission']);
 
+
+
+Route::post('seguridad/perfil/documento', [PerfilController::class, 'documento']);
 Route::get('seguridad/perfil/get_municipio/{id}', [PerfilController::class, 'get_municipio']);
 Route::get('seguridad/perfil/get_distrito/{id}', [PerfilController::class, 'get_distrito']);
 Route::get('seguridad/perfil/cambio_clave', [PerfilController::class, 'cambio_clave']);
 Route::post('seguridad/perfil/cambio_clave_store', [PerfilController::class, 'cambio_clave_store']);
 Route::resource('seguridad/perfil', PerfilController::class);
+
+
 
 
 
@@ -100,7 +111,7 @@ Route::get('publico/menu_requisito_proyectos', [MenuController::class, 'menu_req
 Route::get('publico/menu_usuario_consulta', [MenuController::class, 'menu_usuario_consulta']);
 
 Route::resource('publico/directorio', DirectorioController::class);
-
+Route::resource('publico/busqueda', BusquedaController::class);
 
 
 
@@ -122,6 +133,9 @@ Route::resource('registro/proyecto', ProyectoController::class);
 
 Route::get('configuracion/pais', [ConfiguracionController::class, 'pais']);
 Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update']);
+
+Route::get('configuracion/alcance', [ConfiguracionController::class, 'alcance']);
+Route::post('configuracion/alcance', [ConfiguracionController::class, 'alcance_update']);
 
 
 //editor de paginas

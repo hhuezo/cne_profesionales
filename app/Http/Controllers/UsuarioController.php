@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -57,6 +58,52 @@ class UsuarioController extends Controller
         return redirect('seguridad/usuario/' . $user->id . '/edit');
     }
 
+    public function register_consulta(Request $request)
+    {
+        $messages = [
+            'password.required' => 'La contraseña es requerida',
+            'email.unique' => 'El correo ya existe en la base de datos',
+            'password.min' => 'Las claves debe tener al menos 8 caracteres',
+            'name.required' => 'El nombre es requerido',
+            'last_name.required' => 'El apellido es requerido',
+        ];
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8'], //, 'confirmed'      
+
+        ], $messages);
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->active = 1;
+        $user->save();
+
+        $user->assignRole('consulta');
+
+        Auth::login($user);
+        alert()->info('El registro ha sido modificado correctamente');
+        return back();
+    }
+
+    public function login_consulta(Request $request)
+    {
+        $credenciales = $request->only('email', 'password');
+
+        if (Auth::attempt($credenciales)) {
+            return back();
+        } else {
+           // alert()->error('Credenciales no válidas');
+            return back()->withErrors(['email' => 'Credenciales incorrectas']);
+        }
+    }
+
+    
 
 
     public function edit($id)

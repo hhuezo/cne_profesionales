@@ -7,6 +7,7 @@ use App\Models\catalogo\Departamento;
 use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\Distrito;
 use App\Models\catalogo\DistritoCorregimiento;
+use App\Models\catalogo\Documento;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Municipio;
 use App\Models\catalogo\MunicipioDistrito;
@@ -24,6 +25,8 @@ class PerfilController extends Controller
     public function index()
     {
         $perfil = Perfil::with('usuario')->where('Usuario', '=', auth()->user()->id)->first();
+
+        $documentos = Documento::where('Perfil','=',$perfil->Id)->get();
         
         $configuracion = ConfiguracionPais::first();
         $pais = Pais::findOrFail($configuracion->Pais);
@@ -44,7 +47,8 @@ class PerfilController extends Controller
       
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
-        return view('seguridad.perfil.index', compact('perfil', 'pais', 'departamento_provincia', 'municipios_distritos', 'distritos_corregimientos', 'entidades', 'tipos_certificados'));
+        return view('seguridad.perfil.index', compact('perfil', 'pais', 'departamento_provincia', 'municipios_distritos',
+         'distritos_corregimientos', 'entidades', 'tipos_certificados','documentos'));
     }
 
     public function create()
@@ -165,8 +169,21 @@ class PerfilController extends Controller
         return back();
     }
 
-    public function destroy($id)
-    {
-        //
+    public function documento(Request $request)
+    {   
+        $documento = new Documento();
+        if ($request->file('Archivo')) {
+            $file = $request->file('Archivo');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $documento->Url = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+        $documento->Perfil = $request->Perfil;
+        $documento->Descripcion = $request->Descripcion;
+        $documento->save();
+
+        alert()->success('El archivo hay sido agregado correctamente');
+        return back();
     }
 }
