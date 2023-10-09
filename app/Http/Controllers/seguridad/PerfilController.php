@@ -24,12 +24,14 @@ class PerfilController extends Controller
 {
     public function index()
     {
+       
         $perfil = Perfil::with('usuario')->where('Usuario', '=', auth()->user()->id)->first();
 
         $documentos = Documento::where('Perfil','=',$perfil->Id)->get();
-        
+       
         $configuracion = ConfiguracionPais::first();
-        $pais = Pais::findOrFail($configuracion->Pais);
+        $pais = Pais::findOrFail(137);
+        //dd($pais );
         $departamento_provincia = DepartamentoProvincia::where('Pais', '=', $configuracion->Pais)->get();
         if ($perfil->DistritoCorregimiento) {
             $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito', '=', $perfil->distrito_corregimiento->MunicipioDistrito)->get();
@@ -44,7 +46,7 @@ class PerfilController extends Controller
             }
         }
 
-      
+       
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
         return view('seguridad.perfil.index', compact('perfil', 'pais', 'departamento_provincia', 'municipios_distritos',

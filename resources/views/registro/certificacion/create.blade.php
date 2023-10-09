@@ -45,7 +45,7 @@
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                                 <div class="input-area relative">
                                                     <label for="Descipcion" class="form-label">Descripción</label>
-                                                    <textarea class="form-control" readonly name="Descripcion" required>{{ $alcance->Descripcion }}</textarea>
+                                                    <textarea class="form-control" name="Descripcion" required autofocus >{{ old('Descripcion') }}</textarea>
                                                 </div>
                                                 <div class="input-area relative">
                                                     <label for="Alcance" class="form-label">Alcance</label>
