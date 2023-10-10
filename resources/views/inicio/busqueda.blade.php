@@ -71,43 +71,43 @@
                                                   <table class="min-w-full divide-y divide-slate-100 table-fixed dark:divide-slate-700" id="data-table">
                                                     <thead class=" border-t border-slate-100 dark:border-slate-800">
                                                       <tr>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Id
                                                         </th>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Order
                                                         </th>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Customer
                                                         </th>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Date
                                                         </th>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Quantity
                                                         </th>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Amount
                                                         </th>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Status
                                                         </th>
-                      
+
                                                         <th scope="col" class=" table-th ">
                                                           Action
                                                         </th>
-                      
+
                                                       </tr>
                                                     </thead>
                                                     <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
-                      
+
                                                       <tr>
                                                         <td class="table-td">1</td>
                                                         <td class="table-td ">#951</td>
@@ -131,12 +131,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -168,7 +168,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">2</td>
                                                         <td class="table-td ">#238</td>
@@ -192,12 +192,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -229,7 +229,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">3</td>
                                                         <td class="table-td ">#339</td>
@@ -253,12 +253,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -290,7 +290,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">4</td>
                                                         <td class="table-td ">#365</td>
@@ -314,12 +314,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -351,7 +351,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">5</td>
                                                         <td class="table-td ">#513</td>
@@ -375,12 +375,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -412,7 +412,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">6</td>
                                                         <td class="table-td ">#534</td>
@@ -436,12 +436,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -473,7 +473,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">7</td>
                                                         <td class="table-td ">#77</td>
@@ -497,12 +497,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -534,7 +534,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">8</td>
                                                         <td class="table-td ">#238</td>
@@ -558,12 +558,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -595,7 +595,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">9</td>
                                                         <td class="table-td ">#886</td>
@@ -619,12 +619,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -656,7 +656,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">10</td>
                                                         <td class="table-td ">#3</td>
@@ -680,12 +680,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -717,7 +717,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">11</td>
                                                         <td class="table-td ">#198</td>
@@ -741,12 +741,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -778,7 +778,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">12</td>
                                                         <td class="table-td ">#829</td>
@@ -802,12 +802,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -839,7 +839,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">13</td>
                                                         <td class="table-td ">#595</td>
@@ -863,12 +863,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -900,7 +900,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">14</td>
                                                         <td class="table-td ">#374</td>
@@ -924,12 +924,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -961,7 +961,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">15</td>
                                                         <td class="table-td ">#32</td>
@@ -985,12 +985,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1022,7 +1022,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">16</td>
                                                         <td class="table-td ">#89</td>
@@ -1046,12 +1046,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1083,7 +1083,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">17</td>
                                                         <td class="table-td ">#912</td>
@@ -1107,12 +1107,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1144,7 +1144,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">18</td>
                                                         <td class="table-td ">#621</td>
@@ -1168,12 +1168,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1205,7 +1205,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">19</td>
                                                         <td class="table-td ">#459</td>
@@ -1229,12 +1229,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1266,7 +1266,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">20</td>
                                                         <td class="table-td ">#108</td>
@@ -1290,12 +1290,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1327,7 +1327,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">21</td>
                                                         <td class="table-td ">#492</td>
@@ -1351,12 +1351,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1388,7 +1388,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">22</td>
                                                         <td class="table-td ">#42</td>
@@ -1412,12 +1412,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1449,7 +1449,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">23</td>
                                                         <td class="table-td ">#841</td>
@@ -1473,12 +1473,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1510,7 +1510,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">24</td>
                                                         <td class="table-td ">#561</td>
@@ -1534,12 +1534,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1571,7 +1571,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">25</td>
                                                         <td class="table-td ">#720</td>
@@ -1595,12 +1595,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1632,7 +1632,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">26</td>
                                                         <td class="table-td ">#309</td>
@@ -1656,12 +1656,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1693,7 +1693,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">27</td>
                                                         <td class="table-td ">#24</td>
@@ -1717,12 +1717,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1754,7 +1754,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">28</td>
                                                         <td class="table-td ">#518</td>
@@ -1778,12 +1778,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1815,7 +1815,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">29</td>
                                                         <td class="table-td ">#98</td>
@@ -1839,12 +1839,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1876,7 +1876,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">30</td>
                                                         <td class="table-td ">#940</td>
@@ -1900,12 +1900,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1937,7 +1937,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">31</td>
                                                         <td class="table-td ">#925</td>
@@ -1961,12 +1961,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -1998,7 +1998,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">32</td>
                                                         <td class="table-td ">#122</td>
@@ -2022,12 +2022,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2059,7 +2059,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">33</td>
                                                         <td class="table-td ">#371</td>
@@ -2083,12 +2083,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2120,7 +2120,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">34</td>
                                                         <td class="table-td ">#296</td>
@@ -2144,12 +2144,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2181,7 +2181,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">35</td>
                                                         <td class="table-td ">#887</td>
@@ -2205,12 +2205,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2242,7 +2242,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">36</td>
                                                         <td class="table-td ">#30</td>
@@ -2266,12 +2266,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2303,7 +2303,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">37</td>
                                                         <td class="table-td ">#365</td>
@@ -2327,12 +2327,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2364,7 +2364,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">38</td>
                                                         <td class="table-td ">#649</td>
@@ -2388,12 +2388,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2425,7 +2425,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">39</td>
                                                         <td class="table-td ">#923</td>
@@ -2449,12 +2449,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2486,7 +2486,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">40</td>
                                                         <td class="table-td ">#423</td>
@@ -2510,12 +2510,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2547,7 +2547,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">41</td>
                                                         <td class="table-td ">#703</td>
@@ -2571,12 +2571,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2608,7 +2608,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">42</td>
                                                         <td class="table-td ">#792</td>
@@ -2632,12 +2632,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2669,7 +2669,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">43</td>
                                                         <td class="table-td ">#400</td>
@@ -2693,12 +2693,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2730,7 +2730,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">44</td>
                                                         <td class="table-td ">#718</td>
@@ -2754,12 +2754,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2791,7 +2791,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">45</td>
                                                         <td class="table-td ">#970</td>
@@ -2815,12 +2815,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2852,7 +2852,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">46</td>
                                                         <td class="table-td ">#786</td>
@@ -2876,12 +2876,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2913,7 +2913,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">47</td>
                                                         <td class="table-td ">#925</td>
@@ -2937,12 +2937,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -2974,7 +2974,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">48</td>
                                                         <td class="table-td ">#929</td>
@@ -2998,12 +2998,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-danger-500
                                                     bg-danger-500">
                                                             cancled
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -3035,7 +3035,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">49</td>
                                                         <td class="table-td ">#377</td>
@@ -3059,12 +3059,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-warning-500
                                                     bg-warning-500">
                                                             due
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -3096,7 +3096,7 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                       <tr>
                                                         <td class="table-td">50</td>
                                                         <td class="table-td ">#661</td>
@@ -3120,12 +3120,12 @@
                                                           </div>
                                                         </td>
                                                         <td class="table-td ">
-                      
+
                                                           <div class="inline-block px-3 min-w-[90px] text-center mx-auto py-1 rounded-[999px] bg-opacity-25 text-success-500
                                                     bg-success-500">
                                                             paid
                                                           </div>
-                      
+
                                                         </td>
                                                         <td class="table-td ">
                                                           <div>
@@ -3157,17 +3157,17 @@
                                                           </div>
                                                         </td>
                                                       </tr>
-                      
+
                                                     </tbody>
                                                   </table>
                                                 </div>
                                               </div>
-                                          
+
                                         </div>
                                         <!-- END: Todo Header -->
 
 
-                                        
+
                                     </div>
                                 </div>
 
@@ -3222,6 +3222,17 @@
                                             <div class="input-area relative">
                                                 <label for="largeInput" class="form-label">Password</label>
                                                 <input type="password" name="password" value="{{ old('password') }}" required
+                                                    class="form-control">
+                                            </div>
+
+                                            <div class="input-area relative">
+                                                <label for="Nombre" class="form-label">Sector</label>
+                                                <input type="text" name="sector" value="{{ old('sector') }}" required
+                                                    class="form-control">
+                                            </div>
+                                            <div class="input-area relative">
+                                                <label for="Apellido" class="form-label">Ocupación</label>
+                                                <input type="text" name="ocupacion" value="{{ old('ocupacion') }}" required
                                                     class="form-control">
                                             </div>
 
