@@ -14,9 +14,7 @@
                     </header>
                     <div class="card-text h-full">
                         <p style="text-align: justify" class="text-sm font-Inter text-slate-600 dark:text-slate-300">
-                            Queremos informarte que tu perfil está pendiente de verificación por parte de nuestro equipo
-                            administrativo. Te pedimos paciencia mientras revisamos y validamos la información
-                            proporcionada.
+                            Queremos informarte que es necesario que verifiques tu perfil para poder continuar con el proceso. Pronto recibirás un correo de verificación en tu bandeja de entrada.
                         </p>
                         <br>
                         <p style="text-align: justify" class="text-sm font-Inter text-slate-600 dark:text-slate-300">
@@ -53,111 +51,73 @@
                                             <div class="input-area relative">
                                                 <label for="Nombre" class="form-label">Nombre</label>
                                                 <input type="text" name="Nombre" id="Nombre"
-                                                    value="{{ auth()->user()->name }}" class="form-control">
+                                                    value="{{ $usuario->name }}" class="form-control">
                                             </div>
                                             <div class="input-area relative">
                                                 <label for="Apellido" class="form-label">Apellido</label>
                                                 <input type="text" name="Apellido" id="Apellido"
-                                                    value="{{ auth()->user()->last_name }}" class="form-control">
+                                                    value="{{ $usuario->last_name }}" class="form-control">
                                             </div>
                                             <div class="input-area relative">
                                                 <label for="Email" class="form-label">Email</label>
                                                 <input type="email" name="Email" id="Email"
-                                                    value="{{ auth()->user()->email }}" class="form-control">
+                                                    value="{{ $usuario->email }}" class="form-control">
                                             </div>
-                                            <div class="input-area relative">
+                                            {{-- <div class="input-area relative">
                                                 <label for="Dui" class="form-label">Dui</label>
-                                                <input type="text" name="Dui" id="Dui"
-                                                    value="{{ session('perfil')->Dui }}" class="form-control">
-                                            </div>
+                                                <input type="text" name="Dui" value="{{ $usuario->perfil->Dui }}"
+                                                    class="form-control">
+                                            </div> --}}
+
                                             <div class="input-area relative">
-                                                <label for="largeInput" class="form-label">Password</label>
-                                                <input type="password" name="Password" id="Password" class="form-control">
+                                                <label for="Nacionalidad" class="form-label">Pais de origen</label>
+
+                                                <select name="Nacionalidad" class="form-control select2">
+                                                    @foreach ($paises as $obj)
+                                                        <option value="{{ $obj->Id }}"
+                                                            {{ $usuario->perfil->Nacionalidad == $obj->Id ? 'selected' : '' }}>
+                                                            {{ $obj->Nombre }}</option>
+                                                    @endforeach
+
+                                                </select>
+
                                             </div>
+
                                             <div class="input-area">
                                                 <label for="Profesion" class="form-label">Profesión u oficio</label>
-                                                <select name="Profesion" id="Profesion" class="form-control">
-                                                    <option value="Ingeniero" class="dark:bg-slate-700"
-                                                        {{ old('Profesion') == session('perfil')->Profesion ? 'selected' : '' }}>
-                                                        Ingeniero</option>
-                                                    <option value="Profesión 2" class="dark:bg-slate-700"
-                                                        {{ old('Profesion') == session('perfil')->Profesion ? 'selected' : '' }}>
-                                                        Profesión 2</option>
-                                                    <option value="Profesión 3" class="dark:bg-slate-700"
-                                                        {{ old('Profesion') == session('perfil')->Profesion ? 'selected' : '' }}>
-                                                        Profesión 3</option>
-                                                    <option value="Profesión 4" class="dark:bg-slate-700"
-                                                        {{ old('Profesion') == session('perfil')->Profesion ? 'selected' : '' }}>
-                                                        Profesión 4</option>
+                                                <select class="form-control" name="Profesion" id="Profesion">
+                                                    <option value="0">Seleccione</option>
+                                                    @foreach ($profesiones as $obj)
+                                                        <option value="{{ $obj->Id }}"  {{ $usuario->perfil->Profesion == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
+
+                                            <div class="input-area relative" id="otra_profesion" style="display: none">
+                                                <label for="Telefono" class="form-label">Otra profesión</label>
+                                                <input type="text" name="OtraProfesion" id="OtraProfesion"
+                                                    value="{{ $usuario->perfil->OtraProfesion }}" class="form-control">
+                                            </div>
+{{--
                                             <div class="input-area relative">
-                                                <label for="Nacionalidad" class="form-label">Nacionalidad</label>
-                                                <select name="Nacionalidad" id="Nacionalidad" class="form-control">
-                                                    <option value="Salvadoreño" class="dark:bg-slate-700"
-                                                        {{ old('Nacionalidad') == session('perfil')->Nacionalidad ? 'selected' : '' }}>
-                                                        Salvadoreño</option>
-                                                    <option value="Panameño" class="dark:bg-slate-700"
-                                                        {{ old('Nacionalidad') == session('perfil')->Nacionalidad ? 'selected' : '' }}>
-                                                        Panameño</option>
-                                                    <option value="Nacionalidad 3" class="dark:bg-slate-700"
-                                                        {{ old('Nacionalidad') == session('perfil')->Nacionalidad ? 'selected' : '' }}>
-                                                        Nacionalidad 3</option>
-                                                    <option value="Nacionalidad 4" class="dark:bg-slate-700"
-                                                        {{ old('Nacionalidad') == session('perfil')->Nacionalidad ? 'selected' : '' }}>
-                                                        Nacionalidad 4</option>
-                                                </select>
-                                            </div>
+                                                <label for="Pais" class="form-label">Pais</label>
+                                                <input type="text" value="{{$pais->Nombre}}" class="form-control" disabled>
+                                            </div> --}}
                                             <div class="input-area relative">
                                                 <label for="Direccion" class="form-label">Dirección</label>
                                                 <input type="text" name="Direccion" id="Direccion"
-                                                    value="{{ session('perfil')->Direccion }}" class="form-control">
-                                            </div>
-                                            <div class="input-area relative">
-                                                <label for="Pais" class="form-label">Pais</label>
-                                                <select name="Pais" id="Pais" class="form-control">
-                                                    @foreach ($paises as $obj)
-                                                        @if (session('pais')->Id == $obj->Id)
-                                                            <option class="dark:bg-slate-700" value="{{ $obj->Id }}"
-                                                                selected>{{ $obj->Nombre }}</option>
-                                                        @else
-                                                            <option class="dark:bg-slate-700"
-                                                                value="{{ $obj->Id }}">
-                                                                {{ $obj->Nombre }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
+                                                    value="{{ $usuario->perfil->Direccion }}" class="form-control">
                                             </div>
                                             <div class="input-area relative">
                                                 <label for="Departamento" class="form-label">Departamento</label>
+
                                                 <select name="Departamento" id="Departamento" class="form-control">
-                                                    @foreach ($departamentos as $obj)
-                                                        @if (session('departamento')->Id == $obj->Id)
+                                                    @foreach ($departamentos_provincia as $obj)
+                                                        @if ($usuario->perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia == $obj->Id)
                                                             <option class="dark:bg-slate-700" value="{{ $obj->Id }}"
                                                                 selected>{{ $obj->Nombre }}</option>
                                                         @else
-                                                            <option class="dark:bg-slate-700"
-                                                                value="{{ $obj->Id }}">
-                                                                {{ $obj->Nombre }}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="input-area relative">
-                                                <label for="Municipio" class="form-label">Municipio</label>
-                                                <select name="Municipio" id="Municipio" class="form-control">
-                                                    @foreach ($municipios as $obj)
-                                                        <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                            {{ old('Municipio') == $obj->Id ? 'selected' : '' }}>
-                                                            {{ $obj->Nombre }}</option>
-                                                    @endforeach
-                                                    @foreach ($municipios as $obj)
-                                                        @if (session('perfil')->Municipio == $obj->Id)
-                                                            <option class="dark:bg-slate-700" value="{{ $obj->Id }}"
-                                                                selected>{{ $obj->Nombre }}</option>
-                                                        @else
-                                                            <option class="dark:bg-slate-700"
-                                                                value="{{ $obj->Id }}">
+                                                            <option class="dark:bg-slate-700" value="{{ $obj->Id }}">
                                                                 {{ $obj->Nombre }}</option>
                                                         @endif
                                                     @endforeach
@@ -166,15 +126,15 @@
                                             <div class="input-area relative">
                                                 <label for="Telefono" class="form-label">Telefono</label>
                                                 <input type="tel" name="Telefono" id="Telefono"
-                                                    value="{{ session('perfil')->Telefono }}" class="form-control">
+                                                    value="{{ $usuario->perfil->Telefono }}" class="form-control">
                                             </div>
+
                                             <div class="input-area relative">
-                                                <label for="EntidadCertificadora" class="form-label">Entidad
-                                                    Certificadora</label>
-                                                <select name="EntidadCertificadora" id="EntidadCertificadora"
-                                                    class="form-control">
-                                                    @foreach ($entidades as $obj)
-                                                        @if (session('perfil')->Certificador == $obj->Id)
+                                                <label for="Municipio" class="form-label">Municipio</label>
+                                                <select name="Municipio" id="Municipio" class="form-control">
+
+                                                    @foreach ($municipios_distritos as $obj)
+                                                        @if ($usuario->perfil->distrito_corregimiento->MunicipioDistrito == $obj->Id)
                                                             <option class="dark:bg-slate-700" value="{{ $obj->Id }}"
                                                                 selected>{{ $obj->Nombre }}</option>
                                                         @else
@@ -185,36 +145,25 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+
                                             <div class="input-area relative">
-                                                <label for="TipoCertificado" class="form-label">Tipo Certificado</label>
-                                                <select name="TipoCertificado" id="TipoCertificado" class="form-control">
-                                                    @foreach ($tipos_certificados as $obj)
-                                                        @if (session('perfil')->TipoOcupacionCertificada == $obj->Id)
+                                                <label for="Municipio" class="form-label">Distrito</label>
+                                                <select name="Distrito" id="Distrito" class="form-control">
+
+                                                    @foreach ($distritos_corregimientos as $obj)
+                                                    @if ($usuario->perfil->DistritoCorregimiento == $obj->Id)
                                                             <option class="dark:bg-slate-700" value="{{ $obj->Id }}"
-                                                                selected>{{ $obj->Descripcion }}</option>
+                                                                selected>{{ $obj->Nombre }}</option>
                                                         @else
                                                             <option class="dark:bg-slate-700"
                                                                 value="{{ $obj->Id }}">
-                                                                {{ $obj->Descripcion }}</option>
+                                                                {{ $obj->Nombre }}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="input-area relative">
-                                                <label for="NumeroCertificacion" class="form-label">Numero de
-                                                    Certificación</label>
-                                                <input type="text" name="NumeroCertificacion" id="NumeroCertificacion"
-                                                    value="{{ session('perfil')->NumeroCertificacion }}"
-                                                    class="form-control">
-                                            </div>
-                                            <div class="input-area relative">
-                                                <label for="VigenciaCertificacion" class="form-label">Vigencia de la
-                                                    Certificación</label>
-                                                <input type="date" name="VigenciaCertificacion"
-                                                    id="VigenciaCertificacion"
-                                                    value="{{ date('Y-m-d', strtotime(session('perfil')->VigenciaCertificacion)) }}"
-                                                    class="form-control">
-                                            </div>
+
+
 
 
                                         </div>
@@ -233,4 +182,62 @@
                 </div>
         @endif
     @endif
+
+
+    <!-- scripts -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            validar();
+            $("#Departamento").change(function() {
+                // var para la Departamento
+                var Departamento = $(this).val();
+
+                //funcionpara las municipios
+                $.get("{{ url('seguridad/perfil/get_municipio') }}" + '/' + Departamento, function(data) {
+                    //esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
+                    console.log(data);
+                    var _select = '<option value="">Seleccione</option>'
+                    for (var i = 0; i < data.length; i++)
+                        _select += '<option value="' + data[i].Id + '">' + data[i].Nombre +
+                        '</option>';
+
+                    $("#Municipio").html(_select);
+
+                });
+
+
+            });
+
+
+            //combo para municipios
+            $("#Municipio").change(function() {
+                var Municipio = $(this).val();
+                $.get("{{ url('seguridad/perfil/get_distrito') }}" + '/' + Municipio, function(data) {
+                    //console.log(data);
+                    var _select = ''
+                    for (var i = 0; i < data.length; i++)
+                        _select += '<option value="' + data[i].Id + '"  >' + data[i].Nombre +
+                        '</option>';
+
+                    $("#Distrito").html(_select);
+                });
+            });
+
+            $("#Profesion").change(function() {
+                validar();
+            });
+
+        });
+
+        function validar (){
+            if ($("#Profesion").val() == 1) {
+                $("#otra_profesion").css("display", "block");
+                $("#OtraProfesion").attr("required", true);
+            } else {
+                $("#otra_profesion").css("display", "none");
+                $("#OtraProfesion").attr("required", false);
+            }
+        };
+    </script>
 @endsection

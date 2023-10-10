@@ -3,22 +3,30 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\SendMail;
 use App\Mail\VerificacionMail;
-use App\Models\catalogo\Departamento;
+use App\Models\catalogo\DepartamentoProvincia;
+use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
-use App\Models\catalogo\Municipio;
+use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
+use App\Models\catalogo\Profesion;
 use App\Models\catalogo\TipoCertificado;
+use App\Models\configuracion\ConfiguracionPais;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
 
 class RegisterController extends Controller
 {
@@ -60,11 +68,28 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'password.required' => 'La contraseña es requerida',
+            'email.unique' => 'El correo ya existe en la base de datos',
+            'password.min' => 'Las claves debe tener al menos 8 caracteres',
+            'name.required' => 'El nombre es requerido',
+            'last_name.required' => 'El apellido es requerido',
+            'Nacionalidad.required' => 'La nacionalidad es requerida',
+            'Direccion.required' => 'El dirección es requerida',
+            'Profesion.required' => 'El profesión es requerida',
+            'Dui.required' => 'El DUI es requerido',
+        ];
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'password' => ['required', 'string', 'min:8'], //, 'confirmed'
+            'Nacionalidad' => ['required'],
+            'Direccion' => ['required'],
+            'Profesion' => ['required'],
+            //'Dui' => ['required'],
+        ], $messages);
     }
 
     /**
@@ -76,47 +101,95 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        $this->validator($data)->validate();
+
         $usuario = User::create([
-            'name' => $data['Nombre'],
-            'last_name' => $data['Apellido'],
-            'email' => $data['Email'],
-            'password' => Hash::make($data['Password']),
+            'name' => $data['name'],
+            'last_name' => $data['last_name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
             'active' => 1,
         ]);
 
+        // Generar token de verificación
+        $verificationToken = Str::random(40);
+        $usuario->remember_token = $verificationToken;
+        $usuario->save();
+
+
+       
+
         $perfil = new Perfil();
-        // Set the values from the validated data
+
+
+        if ($data['FotoUrl']) {
+            try {
+                unlink(public_path("docs/") . $perfil->FotoUrl);
+            } catch (Exception $e) {
+                //return $e->getMessage();
+            }
+        }
+
+        if ($data['FotoUrl']) {
+            $file = $data['FotoUrl'];
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $perfil->FotoUrl = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+
         $perfil->Usuario = $usuario->id;
-        $perfil->Dui = $data['Dui'];
-        //$perfil->DuiURL = $data ['DuiURL'];
-        $perfil->Profesion = $data['Profesion'];
-        //$perfil->TituloURL = $data['TituloURL'];
+        $perfil->Pais = session('id_pais');
         $perfil->Nacionalidad = $data['Nacionalidad'];
-        $perfil->Municipio = $data['Municipio'];
+        $perfil->OtraProfesion = $data['OtraProfesion'];
+        $perfil->Profesion = $data['Profesion'];
+        $perfil->DistritoCorregimiento = $data['Distrito'];
         $perfil->Direccion = $data['Direccion'];
         $perfil->Telefono = $data['Telefono'];
         $perfil->NivelVerificacion = 0;
-        $perfil->Certificador = $data['EntidadCertificadora'];
-        $perfil->TipoOcupacionCertificada = $data['TipoCertificado'];
-        $perfil->NumeroCertificacion = $data['NumeroCertificacion'];
-        //$perfil->LicenciaURL = $data['LicenciaURL'];
-        $perfil->VigenciaCertificacion = $data['VigenciaCertificacion'];
 
         $perfil->save();
 
         return $usuario;
-
     }
 
     public function showRegistrationForm()
     {
-        $paises = Pais::where('Activo', 1)->get();
-        $departamentos = Departamento::get();
-        $municipios = Municipio::where('Activo', 1)->get();
+
+        /* if(!session('id_pais'))
+        {
+            return Redirect::to('/');
+        }*/
+
+        $configuracion = ConfiguracionPais::first();
+
+        $pais = $configuracion->Pais;
+
+        $departamento_provincia = DepartamentoProvincia::where('Pais', '=', $pais)->get();
+        if ($pais == 130) {
+            $municipio_distrito = MunicipioDistrito::where('Activo', '=', 1)->where('DepartamentoProvincia', '=', 1)->get();
+            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito', '=', 1)->get();
+        } else {
+            $municipio_distrito = MunicipioDistrito::where('Activo', '=', 1)->where('DepartamentoProvincia', '=', 15)->get();
+            $distrito_corregimiento = DistritoCorregimiento::where('MunicipioDistrito', '=', 45)->get();
+        }
+
         $entidades = EntidadCertificadora::get();
         $tipos_certificados = TipoCertificado::get();
+        $profesiones = Profesion::where('Activo', '=', 1)->get();
 
-        return view('auth.register', compact('paises', 'departamentos', 'municipios', 'entidades', 'tipos_certificados'));
+        $paises = Pais::get();
+
+        return view('auth.register', compact(
+            'departamento_provincia',
+            'municipio_distrito',
+            'distrito_corregimiento',
+            'entidades',
+            'tipos_certificados',
+            'paises',
+            'profesiones',
+            'pais'
+        ));
     }
 
     /**
@@ -133,8 +206,9 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         $subject = 'Registro pendiente de verificación';
-        $content = 'Le informamos que su cuenta ha sido registrada exitosamente en nuestro sistema. Sin embargo, aún falta la verificación por parte de uno de nuestros administradores. Pronto recibirá un correo electrónico con instrucciones adicionales. Agradecemos su paciencia y comprensión.';
-        $recipientEmail = $request->Email;
+        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('usuarios.verify', $user->remember_token) . ">aquí</a>.";
+        $recipientEmail = $request->email;
+        // dd($recipientEmail);
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
 
         if ($response = $this->registered($request, $user)) {
@@ -142,8 +216,8 @@ class RegisterController extends Controller
         }
 
         return $request->wantsJson()
-        ? new JsonResponse([], 201)
-        : redirect($this->redirectPath());
+            ? new JsonResponse([], 201)
+            : redirect($this->redirectPath());
     }
 
     protected function registered(Request $request, $user)
@@ -153,5 +227,4 @@ class RegisterController extends Controller
 
         return redirect()->intended($this->redirectPath());
     }
-
 }

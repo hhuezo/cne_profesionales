@@ -2,7 +2,7 @@
 @section('contenido')
     <div class="card">
         <header class=" card-header noborder">
-            <h4 class="card-title">Usuarios Sin Verificar
+            <h4 class="card-title">Usuarios sin verificar
             </h4>
         </header>
         <div class="card-body px-6 pb-6">
@@ -23,7 +23,7 @@
                                     </th>
 
                                     <th scope="col" class=" table-th ">
-                                        Nacionalidad
+                                        País de origen
                                     </th>
 
                                     <th scope="col" class=" table-th ">
@@ -42,8 +42,13 @@
                                     <tr>
                                         <td class="table-td">{{$obj->email}}</td>
                                         <td class="table-td ">{{$obj->name.' '.$obj->last_name}}</td>
-                                        <td class="table-td ">{{$obj->perfil->Nacionalidad}}</td>
-                                        <td class="table-td ">{{$obj->perfil->Profesion}}</td>
+                                        <td class="table-td ">{{$obj->perfil->nacionalidad->Nombre}}</td>
+                                        @if ($obj->perfil->profesion)
+                                        <td class="table-td ">{{$obj->perfil->profesion->Nombre}}</td>
+                                        @else
+                                        <td class="table-td "></td>
+                                        @endif
+                                      
 
                                         </td>
                                         <td class="table-td ">
@@ -51,12 +56,12 @@
                                                 <a href="{{ route('usuarios.verificarUsuario', ['id' => $obj->id]) }}"><button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:eye"></iconify-icon>
                                                 </button></a>
-                                                <button class="action-btn" type="button">
+                                                {{-- <button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                 </button>
                                                 <button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:trash"></iconify-icon>
-                                                </button>
+                                                </button> --}}
                                             </div>
                                         </td>
                                     </tr>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\catalogo\Departamento;
-use App\Models\catalogo\EntidadCertificadora;
-use App\Models\catalogo\Municipio;
+
+use App\Models\catalogo\DepartamentoProvincia;
+use App\Models\catalogo\DistritoCorregimiento;
+
+use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
-use App\Models\catalogo\TipoCertificado;
-use Illuminate\Http\Request;
+use App\Models\catalogo\Profesion;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -28,20 +30,36 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $paises = Pais::where('Activo', 1)->get();
-        $departamentos = Departamento::get();
-        $municipios = Municipio::where('Activo', 1)->get();
-        $entidades = EntidadCertificadora::get();
-        $tipos_certificados = TipoCertificado::get();
-        //dd(session('perfil'),session('pais'),$paises);
+        
+        $usuario = User::findOrFail(auth()->user()->id);
+   
+        if ($usuario->perfil) {
+            $pais = Pais::findOrFail($usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais);
+            $distrito_corregimiento = DistritoCorregimiento::findOrFail($usuario->perfil->DistritoCorregimiento);
 
-        return view('home', compact('paises', 'departamentos', 'municipios', 'entidades', 'tipos_certificados'));
+            $distritos_corregimientos = DistritoCorregimiento::where('MunicipioDistrito','=',$usuario->perfil->distrito_corregimiento->MunicipioDistrito)->get();
+            $municipios_distritos = MunicipioDistrito::where('Activo', 1)->where('DepartamentoProvincia','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->DepartamentoProvincia)->get();
+            $departamentos_provincia= DepartamentoProvincia::where('Pais','=',$usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais)->get();
+     
+            $paises = Pais::get();
+            $profesiones = Profesion::get();
+
+
+            return view('home', compact(
+                'usuario',
+                'pais',
+                'departamentos_provincia',
+                'municipios_distritos',
+                'distritos_corregimientos','paises','profesiones'
+            ));
+        }
+        else{
+            return view('home');
+        }
     }
 
     public function test()
     {
         return view('test');
     }
-
-
 }

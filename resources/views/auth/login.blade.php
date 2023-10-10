@@ -71,6 +71,8 @@
     </div>
 </div> --}}
 
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -84,7 +86,7 @@
     <!-- END : Theme Config js-->
     @include('sweetalert::alert', ['cdn' => 'https://cdn.jsdelivr.net/npm/sweetalert2@9'])
     <div class="loginwrapper bg-cover bg-no-repeat bg-center" style="background-image: url(img/image.png);">
-    {{-- style="background-image: url(img/familia_dashboard.jpg);" --}}
+        {{-- style="background-image: url(img/familia_dashboard.jpg);" --}}
         <div class="lg-inner-column">
             <div class="left-columns lg:w-1/2 lg:block hidden">
                 <div class="logo-box-3">
@@ -103,6 +105,7 @@
                     </div>
                     <div class="text-center 2xl:mb-10 mb-5">
                         <h4 class="font-medium">Iniciar sesión</h4>
+
                         <div class="text-slate-500 dark:text-slate-400 text-base">
                             Inicie sesión con su cuenta
                         </div>
@@ -139,76 +142,77 @@
                             </div>
                         </div>
                         {{-- <div class="flex justify-between">
-                            <label class="flex items-center cursor-pointer">
-                                <input type="checkbox" class="hiddens">
-                                <span class="text-slate-500 dark:text-slate-400 text-sm leading-6 capitalize">Keep me signed
-                                    in</span>
-                            </label>
-                            <a class="text-sm text-slate-800 dark:text-slate-400 leading-6 font-medium"
-                                href="forget-password-one.html">Forgot
-                                Password?
-                            </a>
-                        </div> --}}
+                        <label class="flex items-center cursor-pointer">
+                            <input type="checkbox" class="hiddens">
+                            <span class="text-slate-500 dark:text-slate-400 text-sm leading-6 capitalize">Keep me signed
+                                in</span>
+                        </label>
+                        <a class="text-sm text-slate-800 dark:text-slate-400 leading-6 font-medium"
+                            href="forget-password-one.html">Forgot
+                            Password?
+                        </a>
+                    </div> --}}
                         <button class="btn btn-dark block w-full text-center">Iniciar sesión</button>
                     </form>
                     <!-- END: Login Form -->
                     <div class=" relative border-b-[#9AA2AF] border-opacity-[16%] border-b pt-6">
                         <div
                             class=" absolute inline-block bg-white dark:bg-slate-800 dark:text-slate-400 left-1/2 top-1/2 transform -translate-x-1/2
-                                px-4 min-w-max text-sm text-slate-500 dark:text-slate-400font-normal ">
+                            px-4 min-w-max text-sm text-slate-500 dark:text-slate-400font-normal ">
                             O {{-- Or continue with --}}
                         </div>
                     </div>
                     {{-- <div class="max-w-[242px] mx-auto mt-8 w-full">
 
-                        <!-- BEGIN: Social Log in Area -->
-                        <ul class="flex">
-                            <li class="flex-1">
-                                <a href="#"
-                                    class="inline-flex h-10 w-10 bg-[#1C9CEB] text-white text-2xl flex-col items-center justify-center rounded-full">
-                                    <img src="assets/images/icon/tw.svg" alt="">
-                                </a>
-                            </li>
-                            <li class="flex-1">
-                                <a href="#"
-                                    class="inline-flex h-10 w-10 bg-[#395599] text-white text-2xl flex-col items-center justify-center rounded-full">
-                                    <img src="assets/images/icon/fb.svg" alt="">
-                                </a>
-                            </li>
-                            <li class="flex-1">
-                                <a href="#"
-                                    class="inline-flex h-10 w-10 bg-[#0A63BC] text-white text-2xl flex-col items-center justify-center rounded-full">
-                                    <img src="assets/images/icon/in.svg" alt="">
-                                </a>
-                            </li>
-                            <li class="flex-1">
-                                <a href="#"
-                                    class="inline-flex h-10 w-10 bg-[#EA4335] text-white text-2xl flex-col items-center justify-center rounded-full">
-                                    <img src="assets/images/icon/gp.svg" alt="">
-                                </a>
-                            </li>
-                        </ul>
-                        <!-- END: Social Log In Area -->
-                    </div>  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a> --}}
+                    <!-- BEGIN: Social Log in Area -->
+                    <ul class="flex">
+                        <li class="flex-1">
+                            <a href="#"
+                                class="inline-flex h-10 w-10 bg-[#1C9CEB] text-white text-2xl flex-col items-center justify-center rounded-full">
+                                <img src="assets/images/icon/tw.svg" alt="">
+                            </a>
+                        </li>
+                        <li class="flex-1">
+                            <a href="#"
+                                class="inline-flex h-10 w-10 bg-[#395599] text-white text-2xl flex-col items-center justify-center rounded-full">
+                                <img src="assets/images/icon/fb.svg" alt="">
+                            </a>
+                        </li>
+                        <li class="flex-1">
+                            <a href="#"
+                                class="inline-flex h-10 w-10 bg-[#0A63BC] text-white text-2xl flex-col items-center justify-center rounded-full">
+                                <img src="assets/images/icon/in.svg" alt="">
+                            </a>
+                        </li>
+                        <li class="flex-1">
+                            <a href="#"
+                                class="inline-flex h-10 w-10 bg-[#EA4335] text-white text-2xl flex-col items-center justify-center rounded-full">
+                                <img src="assets/images/icon/gp.svg" alt="">
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- END: Social Log In Area -->
+                </div>  <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a> --}}
                     <div
                         class="mx-auto font-normal text-slate-500 dark:text-slate-400 2xl:mt-12 mt-6 uppercase text-sm text-center">
                         {{-- Already registered? --}}
                         <a href="signup-one.html" class="text-slate-900 dark:text-white font-medium hover:underline">
-                            <a class="nav-link" href="{{ url('register') }}"> Registro</a>
+                            <a class="nav-link" href="{{ url('/') }}"> <button
+                                    class="btn btn-secondary block w-full text-center">Volver</button>
+                            </a>
                         </a>
                     </div>
 
-                  
-                </div>
+
                 </div>
             </div>
-            {{-- <div class="auth-footer3 text-white py-5 px-5 text-xl w-full">
-                Unlock your Project performance
-            </div> --}}
         </div>
+        {{-- <div class="auth-footer3 text-white py-5 px-5 text-xl w-full">
+            Unlock your Project performance
+        </div> --}}
+    </div>
     </div>
     <!-- Core Js -->
     <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
     <script src="{{ asset('assets/js/app.js') }}"></script>
-@endsection

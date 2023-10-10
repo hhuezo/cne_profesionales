@@ -1,83 +1,7 @@
-<?php /*@extends('layouts.app')
-@section('content')
 
-    <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+@extends('template')
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-@endsection
-*/
-?>
+@section('contenido')
 
 
 <!DOCTYPE html>
@@ -93,14 +17,23 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/rt-plugins.css">
-    <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/rt-plugins.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- START : Theme Config js-->
-    <script src="assets/js/settings.js" sync></script>
+    <script src="{{ asset('assets/js/settings.js') }}" sync></script>
     <!-- END : Theme Config js-->
+
+    <style>
+        .card-title,
+        .form-label {
+            text-transform: none;
+        }
+
+        .form-label, .card-title{
+            text-align: left;
+        }
+    </style>
 </head>
 
 <body class=" font-inter skin-default">
@@ -114,132 +47,161 @@
                     <div class="card">
                         <div class="card-body flex flex-col p-6">
                             <header
-                                class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                                class="flex items-center border-b border-slate-100 dark:border-slate-700">
                                 <div class="flex-1">
                                     <div class="card-title text-slate-900 dark:text-white">Registro</div>
                                 </div>
-                                <a href="{{ url('login') }}">
+                                {{-- <a href="{{ url('/') }}">
                                     <button class="btn btn-dark float-right">
                                         <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
                                         </iconify-icon>
                                     </button>
-                                </a>
+                                </a> --}}
                             </header>
-                            <form method="POST" action="{{ route('register') }}">
-                                @csrf
 
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                                <br>
+                            @endif
+                            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                                @csrf
+                                <br>
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                     <div class="input-area relative">
                                         <label for="Nombre" class="form-label">Nombre</label>
-                                        <input type="text" name="Nombre" id="Nombre" class="form-control">
+                                        <input type="text" name="name" value="{{ old('name') }}" required
+                                            class="form-control">
                                     </div>
                                     <div class="input-area relative">
                                         <label for="Apellido" class="form-label">Apellido</label>
-                                        <input type="text" name="Apellido" id="Apellido" class="form-control">
+                                        <input type="text" name="last_name" value="{{ old('last_name') }}" required
+                                            class="form-control">
                                     </div>
                                     <div class="input-area relative">
                                         <label for="Email" class="form-label">Email</label>
-                                        <input type="email" name="Email" id="Email" class="form-control">
-                                    </div>
-                                    <div class="input-area relative">
-                                        <label for="Dui" class="form-label">Dui</label>
-                                        <input type="text" name="Dui" id="Dui" class="form-control">
+                                        <input type="email" name="email" value="{{ old('email') }}" required
+                                            class="form-control">
                                     </div>
                                     <div class="input-area relative">
                                         <label for="largeInput" class="form-label">Password</label>
-                                        <input type="password" name="Password" id="Password" class="form-control">
+                                        <input type="password" name="password" value="{{ old('password') }}" required
+                                            class="form-control">
                                     </div>
-                                    <div class="input-area">
-                                        <label for="Profesion" class="form-label">Profesión u oficio</label>
-                                        <select name="Profesion" id="Profesion" class="form-control">
-                                            <option value="Ingeniero" class="dark:bg-slate-700">Ingeniero</option>
-                                            <option value="Profesión 2" class="dark:bg-slate-700">Profesión 2</option>
-                                            <option value="Profesión 3" class="dark:bg-slate-700">Profesión 3</option>
-                                            <option value="Profesión 4" class="dark:bg-slate-700">Profesión 4</option>
-                                        </select>
-                                    </div>
+
+
                                     <div class="input-area relative">
-                                        <label for="Nacionalidad" class="form-label">Nacionalidad</label>
-                                        <select name="Nacionalidad" id="Nacionalidad" class="form-control">
-                                            <option value="Salvadoreño" class="dark:bg-slate-700">Salvadoreño</option>
-                                            <option value="Panameño" class="dark:bg-slate-700">Panameño</option>
-                                            <option value="Nacionalidad 3" class="dark:bg-slate-700">Nacionalidad 3
-                                            </option>
-                                            <option value="Nacionalidad 4" class="dark:bg-slate-700">Nacionalidad 4
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="input-area relative">
-                                        <label for="Direccion" class="form-label">Dirección</label>
-                                        <input type="text" name="Direccion" id="Direccion" class="form-control">
-                                    </div>
-                                    <div class="input-area relative">
-                                        <label for="Pais" class="form-label">Pais</label>
-                                        <select name="Pais" id="Pais" class="form-control">
+                                        <label for="Nacionalidad" class="form-label">Pais de origen</label>
+
+                                        <select name="Nacionalidad" class="select2 form-control w-full mt-2 py-2">
                                             @foreach ($paises as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('Pais') == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}
-                                                </option>
+                                                <option value="{{ $obj->Id }}"
+                                                    {{ $pais == $obj->Id ? 'selected' : '' }}>
+                                                    {{ $obj->Nombre }}</option>
                                             @endforeach
+
                                         </select>
+
                                     </div>
+
+
+
+
+
+
                                     <div class="input-area relative">
-                                        <label for="Departamento" class="form-label">Departamento</label>
+                                        @if ($pais == '130')
+                                            <!-- 130 El Salvador 137 Panama-->
+                                            <label for="Departamento" class="form-label">Departamento</label>
+                                        @else
+                                            <label for="Departamento" class="form-label">Provincia -
+                                                Comarca</label>
+                                        @endif
+
                                         <select name="Departamento" id="Departamento" class="form-control">
-                                            @foreach ($departamentos as $obj)
+                                            <option value="0">Seleccione</option>
+                                            @foreach ($departamento_provincia as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
                                                     {{ old('Departamento') == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
+
                                     <div class="input-area relative">
-                                        <label for="Municipio" class="form-label">Municipio</label>
+                                        <label for="Direccion" class="form-label">Dirección</label>
+                                        <input type="text" name="Direccion" value="{{ old('Direccion') }}"
+                                            class="form-control">
+                                    </div>
+
+
+                                    <div class="input-area relative">
+                                        @if ($pais == '130')
+                                            <!-- 130 El Salvador 137 Panama-->
+                                            <label for="Municipio" class="form-label">Municipio</label>
+                                        @else
+                                            <label for="Municipio" class="form-label">Distrito</label>
+                                        @endif
                                         <select name="Municipio" id="Municipio" class="form-control">
-                                            @foreach ($municipios as $obj)
+                                            <option value="0">Seleccione</option>
+                                            @foreach ($municipio_distrito as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
                                                     {{ old('Municipio') == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
+
                                     <div class="input-area relative">
                                         <label for="Telefono" class="form-label">Telefono</label>
-                                        <input type="tel" name="Telefono" id="Telefono" class="form-control">
+                                        <input type="tel" name="Telefono" id="Telefono"
+                                            value="{{ old('Telefono') }}" class="form-control">
                                     </div>
+
                                     <div class="input-area relative">
-                                        <label for="EntidadCertificadora" class="form-label">Entidad
-                                            Certificadora</label>
-                                        <select name="EntidadCertificadora" id="EntidadCertificadora"
-                                            class="form-control">
-                                            @foreach ($entidades as $obj)
+                                        @if ($pais == '130')
+                                            <!-- 130 El Salvador 137 Panama-->
+                                            <label for="Distrito" class="form-label">Distrito</label>
+                                        @else
+                                            <label for="Distrito" class="form-label">Corregimiento</label>
+                                        @endif
+
+                                        <select name="Distrito" id="Distrito" required class="form-control">
+                                            <option value="0">Seleccione</option>
+                                            @foreach ($distrito_corregimiento as $obj)
                                                 <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
+                                                    {{ old('Distrito') == $obj->Id ? 'selected' : '' }}>
                                                     {{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="input-area relative">
-                                        <label for="TipoCertificado" class="form-label">Tipo Certificado</label>
-                                        <select name="TipoCertificado" id="TipoCertificado" class="form-control">
-                                            @foreach ($tipos_certificados as $obj)
-                                                <option value="{{ $obj->Id }}" class="dark:bg-slate-700"
-                                                    {{ old('TipoCertificado') == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Descripcion }}</option>
+
+                                    <div class="input-area">
+                                        <label for="Profesion" class="form-label">Profesión u oficio</label>
+                                        <select class="form-control" name="Profesion" id="Profesion">
+                                            <option value="0">Seleccione</option>
+                                            @foreach ($profesiones as $obj)
+                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="input-area relative">
-                                        <label for="NumeroCertificacion" class="form-label">Numero de
-                                            Certificación</label>
-                                        <input type="text" name="NumeroCertificacion" id="NumeroCertificacion"
-                                            class="form-control">
+
+                                    <div class="input-area relative" id="otra_profesion" style="display: none">
+                                        <label for="Telefono" class="form-label">Otra profesión</label>
+                                        <input type="text" name="OtraProfesion" id="OtraProfesion"
+                                            value="{{ old('OtraProfesion') }}" class="form-control">
                                     </div>
-                                    <div class="input-area relative">
-                                        <label for="VigenciaCertificacion" class="form-label">Vigencia de la
-                                            Certificación</label>
-                                        <input type="date" name="VigenciaCertificacion" id="VigenciaCertificacion"
-                                            class="form-control">
+
+                                    <div class="input-area relative" id="FotoUrl">
+                                        <label for="Telefono" class="form-label">Adjuntar foto</label>
+                                        <input type="file" name="FotoUrl" required class="form-control">
                                     </div>
 
 
@@ -267,9 +229,95 @@
 
 
     <!-- scripts -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/rt-plugins.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="{{ asset('assets/js/jquery-3.6.0.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/rt-plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $("#Departamento").change(function() {
+                // var para la Departamento
+                const Departamento = $(this).val();
+                const DepartamentoText = $("#Departamento option:selected").text();
+
+                const myArray = DepartamentoText.split("-");
+                const codigoProvincia = myArray[0].trim();
+
+
+                //funcionpara las municipios
+                $.get("{{ url('seguridad/perfil/get_municipio') }}" + '/' + Departamento, function(data) {
+                    //esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
+                    console.log(data);
+                    var _select = '<option value="">Seleccione</option>'
+                    for (var i = 0; i < data.length; i++)
+                        _select += '<option value="' + data[i].Id + '">' + data[i].Nombre +
+                        '</option>';
+
+                    $("#Municipio").html(_select);
+
+                });
+
+
+                if (document.getElementById('codigoPais').value == '130') {
+                    $("#Dui").inputmask("99999999-9");
+                    $("#Telefono").inputmask("9999-9999");
+                } else {
+
+                    $("#Dui").inputmask(codigoProvincia + "9-999-9999");
+                    // if (Departamento == 26 || Departamento == 25 || Departamento == 28 || Departamento == 23){
+                    //     //Codigo de provincia de panama de dos digitos
+                    //     $("#Dui").inputmask("12-999-9999");
+                    // }else{
+                    //     //Codigo de provincia de panama de un digito
+                    //     $("#Dui").inputmask("8-999-9999");
+                    // }
+                }
+            });
+
+
+            //combo para municipios
+            $("#Municipio").change(function() {
+                var Municipio = $(this).val();
+                $.get("{{ url('seguridad/perfil/get_distrito') }}" + '/' + Municipio, function(data) {
+                    //console.log(data);
+                    var _select = ''
+                    for (var i = 0; i < data.length; i++)
+                        _select += '<option value="' + data[i].Id + '"  >' + data[i].Nombre +
+                        '</option>';
+
+                    $("#Distrito").html(_select);
+                });
+            });
+
+            //130 El Salvador, 137 Panama
+            if (document.getElementById('codigoPais').value == '130') {
+                //$("#Dui").inputmask("99999999-9");
+                $("#Telefono").inputmask("9999-9999");
+            } else {
+                //$("#Dui").inputmask("999-9999");
+                $("#Telefono").inputmask("9999-9999");
+            }
+
+
+
+        });
+
+        $("#Profesion").change(function() {
+            if ($(this).val() == 1) {
+                $("#otra_profesion").css("display", "block");
+                $("#OtraProfesion").attr("required", true);
+            } else {
+                $("#otra_profesion").css("display", "none");
+                $("#OtraProfesion").attr("required", false);
+            }
+            $("#OtraProfesion").val("");
+        });
+    </script>
+
 </body>
 
 </html>
+@endsection
