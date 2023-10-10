@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UsuarioController extends Controller
 {
@@ -43,7 +44,7 @@ class UsuarioController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'], //, 'confirmed'      
+            'password' => ['required', 'string', 'min:8'], //, 'confirmed'
 
         ], $messages);
 
@@ -72,15 +73,21 @@ class UsuarioController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8'], //, 'confirmed'      
+            'password' => ['required', 'string', 'min:8'], //, 'confirmed'
 
         ], $messages);
 
+
+         // Generar token de verificación
+         $verificationToken = Str::random(40);
         $user = new User();
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
+        $user->sector = $request->sector;
+        $user->ocupacion = $request->ocupacion;
         $user->password = Hash::make($request->password);
+        $user->remember_token = $verificationToken;
         $user->active = 1;
         $user->save();
 
@@ -103,7 +110,7 @@ class UsuarioController extends Controller
         }
     }
 
-    
+
 
 
     public function edit($id)
@@ -156,7 +163,7 @@ class UsuarioController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
-            //, ', 'unique:users''      
+            //, ', 'unique:users''
 
         ], $messages);
 
