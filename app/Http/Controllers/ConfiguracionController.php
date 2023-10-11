@@ -43,6 +43,11 @@ class ConfiguracionController extends Controller
         return back();
     }
 
+    public function getUrl($id)
+    {
+        return Pais::findOrFail($id);
+    }
+
 
 
     public function pais_update(Request $request)
@@ -51,6 +56,10 @@ class ConfiguracionController extends Controller
         $configuracion->Pais = $request->Pais;
         $configuracion->update();
 
+        
+        $pais = Pais::findOrFail($configuracion->Pais);
+        $pais->Url = $request->Url;
+        $pais->update();
         alert()->success('El registro ha sido modificado correctamente');
         return back();
     }

@@ -132,6 +132,7 @@ Route::resource('registro/proyecto', ProyectoController::class);
 //configuracion
 
 Route::get('configuracion/pais', [ConfiguracionController::class, 'pais']);
+Route::get('configuracion/getUrlpais/{id}', [ConfiguracionController::class, 'getUrl']);
 Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update']);
 
 Route::get('configuracion/alcance', [ConfiguracionController::class, 'alcance']);

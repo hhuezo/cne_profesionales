@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\Profesion;
 use Illuminate\Http\Request;
 
 class BusquedaController extends Controller
@@ -9,7 +11,9 @@ class BusquedaController extends Controller
 
     public function index()
     {
-        return view('inicio.busqueda');
+        $profesiones = Profesion::orderBy('Nombre')->get();
+        $entidades = EntidadCertificadora::orderBy('Nombre')->get();
+        return view('inicio.busqueda', compact('profesiones','entidades'));
     }
 
     /**

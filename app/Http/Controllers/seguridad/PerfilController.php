@@ -30,7 +30,7 @@ class PerfilController extends Controller
         $documentos = Documento::where('Perfil','=',$perfil->Id)->get();
        
         $configuracion = ConfiguracionPais::first();
-        $pais = Pais::findOrFail(137);
+        $pais = Pais::findOrFail(130);
         //dd($pais );
         $departamento_provincia = DepartamentoProvincia::where('Pais', '=', $configuracion->Pais)->get();
         if ($perfil->DistritoCorregimiento) {
