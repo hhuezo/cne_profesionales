@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\configuracion\ConfiguracionPais;
 use App\Models\editor\Snippet;
 use App\Models\Pais;
 use Illuminate\Http\Request;
@@ -17,17 +18,28 @@ class WelcomeController extends Controller
     public function index()
     {
         $paises = Pais::where('Activo', '=', 1)->get();
+        $configuracion = ConfiguracionPais::first();
 
-        $dias = array("", "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
-        $meses = array('', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-        $now = Carbon::now();
-        $dia = $dias[$now->format('N') + 0];
-        $mes = $meses[$now->format('m') + 0];
-        $fecha = $dia . ' ' . $now->format('d') . ' de ' . $mes . ' de ' . $now->format('Y');
 
+        $banderas = [];
+        $urls = [];
+        foreach($paises as $pais)
+        {
+            if($pais->Id != $configuracion->Pais)
+            {
+                array_push($banderas,$pais->Bandera);
+                array_push($urls,$pais->Url);
+            }
+
+        }
+
+        session(['array_bandera' => $banderas]);
+        session(['array_url' => $urls]);
+
+       // dd($banderas, $urls);
         $snippet = Snippet::findOrFail(2);
 
-        return view('welcome', compact('paises', 'fecha','snippet'));
+        return view('welcome', compact('paises', 'snippet'));
     }
 
 

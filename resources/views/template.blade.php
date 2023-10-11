@@ -50,10 +50,11 @@
             color: #ffff;
         }
 
-        .about{
+        .about {
             text-align: center;
         }
-        .aos-init{
+
+        .aos-init {
             margin-top: -70px;
         }
     </style>
@@ -61,7 +62,7 @@
     <?php
     $dias = ['', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
     $meses = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    
+
     $dia = $dias[date('N')];
     $mes = $meses[date('m') + 0];
     $fecha = $dia . ' ' . date('d') . ' de ' . $mes . ' de ' . date('Y');
@@ -102,7 +103,13 @@
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                @if (session('array_bandera'))
+                    @for ($i = 0; $i < count(session('array_bandera')); $i++)
+                        <a href="{{ session('array_url')[$i] }}" class="linkedin" target="_blank"><img
+                                style="width: 20px" src="{{ asset('img') }}/{{ session('array_bandera')[$i] }}"></a>
+                    @endfor
+                @endif
             </div>
         </div>
     </section>
@@ -130,7 +137,8 @@
 
             <nav id="navbar" class="navbar">
                 <ul class="text-center">
-                    <li class="dropdown"><a href="{{url('/')}}"><span>Inicio</span> <i class="bi bi-chevron-down"></i></a>
+                    <li class="dropdown"><a href="{{ url('/') }}"><span>Inicio</span> <i
+                                class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li class="dropdown"><a href="#"><span>Proceso de certificación</span> <i
                                         class="bi bi-chevron-right"></i></a>
@@ -238,8 +246,9 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown"><a href="{{url('publico/busqueda')}}"><span>Personas certificadas</span> </a>
-                      
+                    <li class="dropdown"><a href="{{ url('publico/busqueda') }}"><span>Personas certificadas</span>
+                        </a>
+
                     </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
