@@ -45,7 +45,7 @@
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                                 <div class="input-area relative">
                                                     <label for="Descipcion" class="form-label">Descripción</label>
-                                                    <textarea class="form-control" name="Descripcion" required autofocus >{{ old('Descripcion') }}</textarea>
+                                                    <textarea class="form-control" name="Descripcion" required autofocus readonly>{{ $alcance->Descripcion }}</textarea>
                                                 </div>
                                                 <div class="input-area relative">
                                                     <label for="Alcance" class="form-label">Alcance</label>
@@ -54,21 +54,21 @@
 
                                                 <div class="input-area">
                                                     <label for="Nombre" class="form-label">Entidad certificadora</label>
-                                                    <select name="EntidadCertificadora" id="EntidadCertificadora" required disabled
-                                                        class="form-control !pr-12 select2">                                                        
+                                                    <select name="EntidadCertificadora" id="EntidadCertificadora" required
+                                                        class="form-control !pr-12 select2">
                                                         @foreach ($entidades as $obj)
                                                             <option value="{{ $obj->Id }}"
-                                                                {{ old('EntidadCertificadora') == $obj->Id ? 'selected' : '' }}>
+                                                                {{  $obj->Id ==2 ? 'selected' : '' }}>
                                                                 {{ $obj->Nombre }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
 
-                                                <div class="input-area relative" id="otra_entidad">
+                                                <div class="input-area relative" id="div_otra_entidad">
                                                     <label for="Nombre" class="form-label">Otra entidad
                                                         certificadora</label>
-                                                    <input type="text" name="OtraEntidad" readonly id="OtraEntidad" required value="Organismo Salvadoreño de Normalización (OSN) "
+                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required value="Organismo Salvadoreño de Normalización (OSN) "
                                                         required class="form-control">
                                                 </div>
 
@@ -79,30 +79,16 @@
                                                 </div>
 
 
-                                                {{-- <div class="input-area">
-                                                    <label for="Nombre" class="form-label">Tipo certificado</label>
-                                                    <select name="TipoCertificado" required
-                                                        class="form-control !pr-12 select2">
-                                                        @foreach ($tipo_certificados as $obj)
-                                                            <option value="{{ $obj->Id }}"
-                                                                {{ old('TipoCertificado') == $obj->Id ? 'selected' : '' }}>
-                                                                {{ $obj->Descripcion }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-
-                                                </div> --}}
-
-
-                                            
-
-                                               
-
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Fecha de vencimiento</label>
                                                     <input type="date" name="FechaVencimiento" min="{{ date('Y-m-d') }}"
                                                         value="{{ old('FechaVencimiento') }}" required
                                                         class="form-control">
+                                                </div>
+
+                                                <div class="input-area relative">
+                                                    <label for="Nombre" class="form-label">Archivo</label>
+                                                    <input type="file" name="Archivo" required class="form-control">
                                                 </div>
 
 
@@ -140,15 +126,18 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $("#EntidadCertificadora").change(function() {               
+            $("#EntidadCertificadora").change(function() {
                 if($(this).val() == 1)
                 {
-                    $("#otra_entidad").css("display", "block");
+                    //console.log("otra");
+                    $("#div_otra_entidad").css("display", "block");
                     $("#OtraEntidad").attr("required", true);
                 }
                 else{
-                    $("#otra_entidad").css("display", "none");
+                    $("#div_otra_entidad").css("display", "none");
                     $("#OtraEntidad").attr("required", false);
+
+                    //console.log("no");
                 }
                 $("#OtraEntidad").val("");
             });

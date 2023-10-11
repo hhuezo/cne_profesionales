@@ -90,6 +90,18 @@ class CertificacionController extends Controller
         $certificacion->EntidadCertificadora = $request->EntidadCertificadora;
         $certificacion->OtraEntidad = $request->OtraEntidad;
 
+
+
+
+        if ($request->file('Archivo')) {
+            $file = $request->file('Archivo');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $certificacion->ImagenUrl = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+
+
         $certificacion->save();
 
         alert()->success('El registro ha sido creado correctamente');
@@ -154,8 +166,8 @@ class CertificacionController extends Controller
 
         $content = $request->Observacion;
         $recipientEmail = $certificacion->perfil->usuario->email;
-        Mail::to($recipientEmail)->send(new VerificacionMail("Certificación observada", $content));      
-       
+        Mail::to($recipientEmail)->send(new VerificacionMail("Certificación observada", $content));
+
         $certificacion->Estado = 3;
         $certificacion->update();
         alert()->success('El registro ha sido asignado correctamente');
@@ -173,7 +185,7 @@ class CertificacionController extends Controller
         $certificacion->Estado = 4;
         $certificacion->update();
         alert()->success('La certificación ha sido aprobada correctamente');
-        return back(); 
+        return back();
      }
 
     public function edit($id)
@@ -223,7 +235,15 @@ class CertificacionController extends Controller
         $certificacion->EntidadCertificadora = $request->EntidadCertificadora;
         $certificacion->OtraEntidad = $request->OtraEntidad;
 
-        $certificacion->save();    
+
+        if ($request->file('Archivo')) {
+            $file = $request->file('Archivo');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $certificacion->ImagenUrl = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+        $certificacion->save();
 
         alert()->success('El registro ha sido modificado correctamente');
         return back();
