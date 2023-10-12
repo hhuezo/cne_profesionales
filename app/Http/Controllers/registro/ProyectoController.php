@@ -5,6 +5,7 @@ namespace App\Http\Controllers\registro;
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
+use App\Models\configuracion\ConfiguracionPais;
 use App\Models\registro\Proyecto;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,8 +28,9 @@ class ProyectoController extends Controller
      */
     public function create()
     {
+        $configuracion = ConfiguracionPais::first();
         $paises = Pais::get();
-        return view('registro.proyecto.create', compact('paises'));
+        return view('registro.proyecto.create', compact('paises','configuracion'));
     }
 
     public function store(Request $request)

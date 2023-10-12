@@ -75,7 +75,7 @@
                                             <label for="largeInput" class="form-label">Pais</label>
                                             <select name="Pais" class="form-control select2">
                                                 @foreach ($paises as $obj)
-                                                    <option value="{{ $obj->Id }}" {{ old('Pais') == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
+                                                    <option value="{{ $obj->Id }}" {{ $configuracion->Pais == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

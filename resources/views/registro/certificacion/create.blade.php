@@ -58,7 +58,7 @@
                                                         class="form-control !pr-12 select2">
                                                         @foreach ($entidades as $obj)
                                                             <option value="{{ $obj->Id }}"
-                                                                {{  $obj->Id ==2 ? 'selected' : '' }}>
+                                                                {{  $obj->Id == old('EntidadCertificadora') ? 'selected' : '' }}>
                                                                 {{ $obj->Nombre }}
                                                             </option>
                                                         @endforeach
