@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+
+@extends('template')
+
+@section('contenido')
+<style>
+<?php echo $snippet->css_content; ?>
+</style>
+<?php echo $snippet->html_content; ?>
+ 
+@endsection
+
+
+{{-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -302,4 +314,4 @@
         z-index: 100;
         /* Asegura que esté por encima de otros elementos */
     }
-</style>
+</style> --}}

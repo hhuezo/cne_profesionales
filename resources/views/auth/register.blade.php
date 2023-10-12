@@ -1,3 +1,9 @@
+
+@extends('template')
+
+@section('contenido')
+
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="light">
 
@@ -12,9 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/rt-plugins.css') }}">
-    {{-- <link href="https://unpkg.com/aos@2.3.0/dist/aos.css" rel="stylesheet"> 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""> --}}
+
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- START : Theme Config js-->
     <script src="{{ asset('assets/js/settings.js') }}" sync></script>
@@ -24,6 +28,10 @@
         .card-title,
         .form-label {
             text-transform: none;
+        }
+
+        .form-label, .card-title{
+            text-align: left;
         }
     </style>
 </head>
@@ -39,16 +47,16 @@
                     <div class="card">
                         <div class="card-body flex flex-col p-6">
                             <header
-                                class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                                class="flex items-center border-b border-slate-100 dark:border-slate-700">
                                 <div class="flex-1">
                                     <div class="card-title text-slate-900 dark:text-white">Registro</div>
                                 </div>
-                                <a href="{{ url('/') }}">
+                                {{-- <a href="{{ url('/') }}">
                                     <button class="btn btn-dark float-right">
                                         <iconify-icon icon="icon-park-solid:back" style="color: white;" width="18">
                                         </iconify-icon>
                                     </button>
-                                </a>
+                                </a> --}}
                             </header>
 
                             @if (count($errors) > 0)
@@ -61,9 +69,9 @@
                                 </div>
                                 <br>
                             @endif
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                                 @csrf
-
+                                <br>
                                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                     <div class="input-area relative">
                                         <label for="Nombre" class="form-label">Nombre</label>
@@ -107,7 +115,7 @@
 
 
                                     <div class="input-area relative">
-                                        @if (session('id_pais') == '130')
+                                        @if ($pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Departamento" class="form-label">Departamento</label>
                                         @else
@@ -134,7 +142,7 @@
 
 
                                     <div class="input-area relative">
-                                        @if (session('id_pais') == '130')
+                                        @if ($pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Municipio" class="form-label">Municipio</label>
                                         @else
@@ -158,7 +166,7 @@
                                     </div>
 
                                     <div class="input-area relative">
-                                        @if (session('id_pais') == '130')
+                                        @if ($pais == '130')
                                             <!-- 130 El Salvador 137 Panama-->
                                             <label for="Distrito" class="form-label">Distrito</label>
                                         @else
@@ -189,6 +197,11 @@
                                         <label for="Telefono" class="form-label">Otra profesión</label>
                                         <input type="text" name="OtraProfesion" id="OtraProfesion"
                                             value="{{ old('OtraProfesion') }}" class="form-control">
+                                    </div>
+
+                                    <div class="input-area relative" id="FotoUrl">
+                                        <label for="Telefono" class="form-label">Adjuntar foto</label>
+                                        <input type="file" name="FotoUrl" required class="form-control">
                                     </div>
 
 
@@ -307,3 +320,4 @@
 </body>
 
 </html>
+@endsection

@@ -2,6 +2,7 @@
 
 namespace App\Models\configuracion;
 
+use App\Models\catalogo\Pais;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,4 +17,9 @@ class ConfiguracionPais extends Model
     protected $fillable = [
         'Pais'
     ];
+
+    public function pais()
+    {
+        return $this->belongsTo(Pais::class, 'Pais', 'Id');
+    }
 }

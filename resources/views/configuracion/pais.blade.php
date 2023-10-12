@@ -45,12 +45,20 @@
                                                 <div class="grid pt-4 pb-3 px-4">
                                                     <div class="input-area relative">
                                                         <label for="largeInput" class="form-label">País</label>
-                                                        <select class="form-control" name="Pais">
+                                                        <select class="form-control" name="Pais" id="Pais">
                                                             @foreach ($paises as $obj)
-                                                                <option value="{{ $obj->Id }}" {{$obj->Id == $configuracion->Pais ? 'selected':''}}  >{{ $obj->Nombre }}
+                                                                <option value="{{ $obj->Id }}"
+                                                                    {{ $obj->Id == $configuracion->Pais ? 'selected' : '' }}>
+                                                                    {{ $obj->Nombre }}
                                                                 </option>
                                                             @endforeach
                                                         </select>
+                                                    </div>
+                                                    <br>
+                                                    <div class="input-area relative">
+                                                        <label for="largeInput" class="form-label">Url</label>
+                                                        <input type="text" name="Url" id="Url" value="{{$configuracion->pais->Url}}"
+                                                            class="form-control">
                                                     </div>
 
 
@@ -72,8 +80,6 @@
                             </div>
 
 
-
-
                         </div>
                     </div>
 
@@ -82,4 +88,28 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Seleccionar el elemento con el id "Pais"
+            $("#Pais").change(function() {
+                // Obtener el texto seleccionado
+                var pais = $(this).val();
+                $.ajax({
+                    url:  "{{url('configuracion/getUrlpais')}}/"+pais, // La URL de tu endpoint Laravel
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        //console.log(response);
+                        $('#Url').val(response.Url);
+                    },
+                    error: function(error) {
+                        console.error('Error al obtener la URL del país:', error);
+                    }
+                });
+
+              
+            });
+        });
+    </script>
 @endsection

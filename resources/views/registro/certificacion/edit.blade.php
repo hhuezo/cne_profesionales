@@ -63,11 +63,32 @@
                                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
                                                 <div class="input-area relative">
                                                     <label for="Descipcion" class="form-label">Descripción</label>
-                                                    <textarea class="form-control" name="Descripcion" required>{{ $certificacion->Descripcion }}</textarea>
+                                                    <textarea class="form-control" name="Descripcion" readonly required>{{ $certificacion->Descripcion }}</textarea>
                                                 </div>
                                                 <div class="input-area relative">
                                                     <label for="Alcance" class="form-label">Alcance</label>
-                                                    <textarea class="form-control" name="Alcance" required>{{ $certificacion->Alcance }}</textarea>
+                                                    <textarea class="form-control" readonly name="Alcance" required>{{ $certificacion->Alcance }}</textarea>
+                                                </div>
+
+                                                <div class="input-area">
+                                                    <label for="Nombre" class="form-label">Entidad certificadora</label>
+                                                    <select name="EntidadCertificadora" id="EntidadCertificadora" required
+                                                         class="form-control !pr-12 select2">
+                                                        @foreach ($entidades as $obj)
+                                                            <option value="{{ $obj->Id }}"
+                                                                {{ $certificacion->EntidadCertificadora == $obj->Id ? 'selected' : '' }}>
+                                                                {{ $obj->Nombre }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="input-area relative" id="div_otra_entidad">
+                                                    <label for="Nombre" class="form-label">Otra entidad
+                                                        certificadora</label>
+                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required
+                                                         value="{{ $certificacion->OtraEntidad }}" required
+                                                        class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
@@ -77,7 +98,7 @@
                                                 </div>
 
 
-                                                <div class="input-area">
+                                                {{-- <div class="input-area">
                                                     <label for="Nombre" class="form-label">Tipo certificado</label>
                                                     <select name="TipoCertificado" required
                                                         class="form-control !pr-12 select2">
@@ -89,29 +110,10 @@
                                                         @endforeach
                                                     </select>
 
-                                                </div>
+                                                </div> --}}
 
 
-                                                <div class="input-area">
-                                                    <label for="Nombre" class="form-label">Entidad certificadora</label>
-                                                    <select name="EntidadCertificadora" id="EntidadCertificadora" required
-                                                        class="form-control !pr-12 select2">
-                                                        @foreach ($entidades as $obj)
-                                                            <option value="{{ $obj->Id }}"
-                                                                {{ $certificacion->EntidadCertificadora == $obj->Id ? 'selected' : '' }}>
-                                                                {{ $obj->Nombre }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
 
-                                                <div class="input-area relative" id="otra_entidad">
-                                                    <label for="Nombre" class="form-label">Otra entidad
-                                                        certificadora</label>
-                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required
-                                                        value="{{ $certificacion->OtraEntidad }}" required
-                                                        class="form-control">
-                                                </div>
 
                                                 <div class="input-area relative">
                                                     <label for="Nombre" class="form-label">Fecha de vencimiento</label>
@@ -119,6 +121,24 @@
                                                         value="{{ $certificacion->FechaVencimiento }}" required
                                                         class="form-control">
                                                 </div>
+
+                                                <div class="input-area">
+                                                    <label for="Archivo" class="form-label">Archivo</label>
+                                                    <div class="relative">
+                                                        <input type="file" name="Archivo" class="form-control">
+                                                        @if ($certificacion->ImagenUrl)
+                                                            <a href="{{ asset('docs') }}/{{ $certificacion->ImagenUrl }}"
+                                                                target="_blank">
+                                                                <button type="button"
+                                                                    class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
+                                                                    <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
+                                                                </button>
+                                                            </a>
+                                                        @endif
+
+                                                    </div>
+                                                </div>
+
 
 
 
@@ -183,7 +203,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                              11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>
@@ -234,7 +254,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                          11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                              11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>
@@ -271,24 +291,38 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
+            if (document.getElementById('EntidadCertificadora').value == 1) {
+                //console.log("otra");
+                $("#div_otra_entidad").css("display", "block");
+                $("#OtraEntidad").attr("required", true);
+            } else {
+                $("#div_otra_entidad").css("display", "none");
+                $("#OtraEntidad").attr("required", false);
 
-            validar();
+                //console.log("no");
+            }
 
             $("#EntidadCertificadora").change(function() {
                 validar();
                 $("#OtraEntidad").val("");
             });
 
-            function validar() {
-                if ($("#EntidadCertificadora").val() == 1) {
-                    $("#otra_entidad").css("display", "block");
-                    $("#OtraEntidad").attr("required", true);
-                } else {
-                    $("#otra_entidad").css("display", "none");
-                    $("#OtraEntidad").attr("required", false);
-                }
-            }
+
         });
+
+        function validar() {
+            if (document.getElementById('EntidadCertificadora').value == 1) {
+                //console.log("otra");
+                $("#div_otra_entidad").css("display", "block");
+                $("#OtraEntidad").attr("required", true);
+            } else {
+                $("#div_otra_entidad").css("display", "none");
+                $("#OtraEntidad").attr("required", false);
+
+                //console.log("no");
+            }
+            $("#OtraEntidad").val("");
+        }
     </script>
 
 @endsection

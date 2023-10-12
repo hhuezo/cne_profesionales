@@ -8,6 +8,7 @@ use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
+use App\Models\configuracion\ConfiguracionAlcance;
 use App\Models\registro\Certificacion;
 use App\Models\registro\CertificacionDetalle;
 use App\Models\registro\Proyecto;
@@ -37,7 +38,8 @@ class CertificacionController extends Controller
     {
         $entidades  = EntidadCertificadora::get();
         $tipo_certificados = TipoCertificado::get();
-        return view('registro.certificacion.create', compact('entidades', 'tipo_certificados'));
+        $alcance = ConfiguracionAlcance::first();
+        return view('registro.certificacion.create', compact('entidades', 'tipo_certificados','alcance'));
     }
 
     public function store(Request $request)
@@ -57,9 +59,9 @@ class CertificacionController extends Controller
             'Descripcion' => 'required',
             'Alcance' => 'required',
             'Numero' => 'required',
-            'TipoCertificado' => 'required',
+            //'TipoCertificado' => 'required',
             'FechaVencimiento' => 'required',
-            'EntidadCertificadora' => 'required',
+            //'EntidadCertificadora' => 'required',
         ], $messages);
 
 
@@ -82,11 +84,23 @@ class CertificacionController extends Controller
         $certificacion->Estado = 1;
 
         $certificacion->Alcance = $request->Alcance;
-        $certificacion->TipoCertificado = $request->TipoCertificado;
+        //$certificacion->TipoCertificado = $request->TipoCertificado;
         $certificacion->Numero = $request->Numero;
         $certificacion->FechaVencimiento = $request->FechaVencimiento;
         $certificacion->EntidadCertificadora = $request->EntidadCertificadora;
         $certificacion->OtraEntidad = $request->OtraEntidad;
+
+
+
+
+        if ($request->file('Archivo')) {
+            $file = $request->file('Archivo');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $certificacion->ImagenUrl = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+
 
         $certificacion->save();
 
@@ -152,8 +166,8 @@ class CertificacionController extends Controller
 
         $content = $request->Observacion;
         $recipientEmail = $certificacion->perfil->usuario->email;
-        Mail::to($recipientEmail)->send(new VerificacionMail("Certificación observada", $content));      
-       
+        Mail::to($recipientEmail)->send(new VerificacionMail("Certificación observada", $content));
+
         $certificacion->Estado = 3;
         $certificacion->update();
         alert()->success('El registro ha sido asignado correctamente');
@@ -171,7 +185,7 @@ class CertificacionController extends Controller
         $certificacion->Estado = 4;
         $certificacion->update();
         alert()->success('La certificación ha sido aprobada correctamente');
-        return back(); 
+        return back();
      }
 
     public function edit($id)
@@ -206,7 +220,7 @@ class CertificacionController extends Controller
             'Descripcion' => 'required',
             'Alcance' => 'required',
             'Numero' => 'required',
-            'TipoCertificado' => 'required',
+            //'TipoCertificado' => 'required',
             'FechaVencimiento' => 'required',
             'EntidadCertificadora' => 'required',
         ], $messages);
@@ -215,13 +229,21 @@ class CertificacionController extends Controller
         $certificacion = Certificacion::findOrFail($id);
         $certificacion->Descripcion = $request->Descripcion;
         $certificacion->Alcance = $request->Alcance;
-        $certificacion->TipoCertificado = $request->TipoCertificado;
+        //$certificacion->TipoCertificado = $request->TipoCertificado;
         $certificacion->Numero = $request->Numero;
         $certificacion->FechaVencimiento = $request->FechaVencimiento;
         $certificacion->EntidadCertificadora = $request->EntidadCertificadora;
         $certificacion->OtraEntidad = $request->OtraEntidad;
 
-        $certificacion->save();    
+
+        if ($request->file('Archivo')) {
+            $file = $request->file('Archivo');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $certificacion->ImagenUrl = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+        $certificacion->save();
 
         alert()->success('El registro ha sido modificado correctamente');
         return back();

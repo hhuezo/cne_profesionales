@@ -23,7 +23,7 @@
 
     <input id="Pages" type="hidden" pages-data="">
     <input id="Languages" type="hidden" lang-data="{{ json_encode(config('lg.languages')) }}">
-    <div id="gjs" style="height:100%; overflow:hidden" class="gjs-editor-cont"></div>
+    <div id="gjs"  style="height:100%; overflow:hidden" class="gjs-editor-cont"></div>
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
 

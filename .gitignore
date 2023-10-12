@@ -1,5 +1,6 @@
 /node_modules
 /public/hot
+/public/docs
 /public/storage
 /public/docs
 /storage/*.key
