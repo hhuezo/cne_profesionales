@@ -8,7 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\VerificacionMail;
 use Illuminate\Support\Str;
+use Alert;
+use Illuminate\Support\Facades\Redirect;
+
 
 class UsuarioController extends Controller
 {
@@ -87,14 +92,21 @@ class UsuarioController extends Controller
         $user->sector = $request->sector;
         $user->ocupacion = $request->ocupacion;
         $user->password = Hash::make($request->password);
-        $user->remember_token = $verificationToken;
+        $user->VerificationToken = $verificationToken;
         $user->active = 1;
         $user->save();
 
         $user->assignRole('consulta');
 
-        Auth::login($user);
-        alert()->info('El registro ha sido modificado correctamente');
+
+        $subject = 'Registro pendiente de verificación';
+        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('consulta.verify', $user->VerificationToken) . ">aquí</a>.";
+        $recipientEmail = $request->email;
+        // dd($recipientEmail);
+        Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
+
+        //Auth::login($user);
+        alert()->info('Necesita verificar su correo para continuar.');
         return back();
     }
 
@@ -103,11 +115,37 @@ class UsuarioController extends Controller
         $credenciales = $request->only('email', 'password');
 
         if (Auth::attempt($credenciales)) {
+            $user = Auth::user();
+            if($user->VerificationToken==null){
             return back();
+            }else{
+                Alert::error('ERROR', 'Necesita verificar su correo para continuar.');
+                Auth::logout(); // Cierra la sesión del usuario actual
+                return Redirect::to('publico/busqueda');
+            }
         } else {
            // alert()->error('Credenciales no válidas');
             return back()->withErrors(['email' => 'Credenciales incorrectas']);
         }
+    }
+
+    public function verify($token)
+    {
+        $usuario = User::where('VerificationToken', $token)->first();
+
+        if (!$usuario) {
+            abort(404); // Token no válido
+        }
+
+        $usuario->VerificationToken = null;
+        $usuario->save();
+
+         // Iniciar sesión automáticamente
+            Auth::login($usuario);
+
+            Alert::success('Actualización', 'Tu cuenta ha sido verificada.');
+
+            return Redirect::to('publico/busqueda');
     }
 
 

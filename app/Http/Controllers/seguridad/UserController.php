@@ -75,7 +75,7 @@ class UserController extends Controller
 
     public function verify($token)
     {
-        $usuario = User::where('remember_token', $token)->first();
+        $usuario = User::where('VerificationToken', $token)->first();
 
         if (!$usuario) {
             abort(404); // Token no válido
@@ -85,7 +85,7 @@ class UserController extends Controller
         $usuario->perfil->update();
         $usuario->assignRole('solicitante');
 
-        $usuario->remember_token = null;
+        $usuario->VerificationToken = null;
         $usuario->save();
 
          // Iniciar sesión automáticamente
