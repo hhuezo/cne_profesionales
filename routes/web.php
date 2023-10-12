@@ -69,6 +69,7 @@ Route::post('seguridad/usuario/unlink_role', [UsuarioController::class, 'unlink_
 
 Route::post('register_consulta', [UsuarioController::class, 'register_consulta']);
 Route::post('login_consulta', [UsuarioController::class, 'login_consulta']);
+Route::get('consulta/verify/{token}', [UsuarioController::class,'verify'])->name('consulta.verify');
 
 
 Route::resource('seguridad/usuario', UsuarioController::class);

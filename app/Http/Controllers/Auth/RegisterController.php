@@ -113,11 +113,11 @@ class RegisterController extends Controller
 
         // Generar token de verificación
         $verificationToken = Str::random(40);
-        $usuario->remember_token = $verificationToken;
+        $usuario->VerificationToken = $verificationToken;
         $usuario->save();
 
 
-       
+
 
         $perfil = new Perfil();
 
@@ -206,7 +206,7 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         $subject = 'Registro pendiente de verificación';
-        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('usuarios.verify', $user->remember_token) . ">aquí</a>.";
+        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('usuarios.verify', $user->VerificationToken) . ">aquí</a>.";
         $recipientEmail = $request->email;
         // dd($recipientEmail);
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
