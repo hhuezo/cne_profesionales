@@ -187,7 +187,7 @@
                                 <span class="flex items-center">
                                     <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list">
                                     </iconify-icon>
-                                
+
                                     <span>Diseño de Paginas</span>
                                 </span>
                                 <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
@@ -2482,5 +2482,14 @@
 
 
 </body>
+
+
+
+
+
+
+
+
+
 
 </html>

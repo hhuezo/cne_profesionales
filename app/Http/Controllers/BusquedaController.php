@@ -13,7 +13,9 @@ class BusquedaController extends Controller
     {
         $profesiones = Profesion::orderBy('Nombre')->get();
         $entidades = EntidadCertificadora::orderBy('Nombre')->get();
-        return view('inicio.busqueda', compact('profesiones','entidades'));
+        $sectores = ["Bancario","Industrial","Comercio","Industrial","Comercio y Servicios","Educación","Residencial ","Otros"];
+        $profesiones = Profesion::get();
+        return view('inicio.busqueda', compact('profesiones','entidades','sectores','profesiones'));
     }
 
     /**
