@@ -112,6 +112,7 @@ Route::get('publico/menu_requisito_proyectos', [MenuController::class, 'menu_req
 Route::get('publico/menu_usuario_consulta', [MenuController::class, 'menu_usuario_consulta']);
 
 Route::resource('publico/directorio', DirectorioController::class);
+Route::get('publico/busqueda/show', [BusquedaController::class,'busqueda']);
 Route::resource('publico/busqueda', BusquedaController::class);
 
 

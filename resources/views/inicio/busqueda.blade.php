@@ -40,9 +40,9 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
         <script>
             $(document).ready(function() {
-              $('#example').DataTable();
+                $('#example').DataTable();
             });
-          </script>
+        </script>
     </head>
 
     <body class=" font-inter skin-default">
@@ -61,517 +61,84 @@
                                                 <div class="card-title text-slate-900 dark:text-white">Busqueda</div>
                                             </div>
                                         </header>
-                                        <div class="card-text h-full space-y-4">
-                                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Desde</label>
-                                                    <input type="date" name="FechaInicio" class="form-control">
+                                        <form id="miFormulario">
+                                            <div class="card-text h-full space-y-4">
+                                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-7">
+                                                    <div class="input-area relative">
+                                                        <label for="Nombre" class="form-label">Desde</label>
+                                                        <input type="date" name="FechaInicio" id="FechaInicio"
+                                                            onblur="buscar()" class="form-control">
+                                                    </div>
+                                                    <div class="input-area relative">
+                                                        <label for="Nombre" class="form-label">Hasta</label>
+                                                        <input type="date" name="FechaFinal" id="FechaFinal"
+                                                            onblur="buscar()" class="form-control">
+                                                    </div>
+                                                    <div class="input-area relative">
+                                                        <label for="Nombre" class="form-label">Profesión</label>
+                                                        <select class="form-control select2" name="Profesion" id="Profesion"
+                                                            onchange="buscar()">
+                                                            <option value="">Seleccione</option>
+                                                            @foreach ($profesiones as $obj)
+                                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="input-area relative">
+                                                        <label for="Nombre" class="form-label">Entidad certificadora</label>
+                                                        <select class="form-control select2" name="EntidadCertificadora"
+                                                            id="EntidadCertificadora" onchange="buscar()">
+                                                            <option value="">Seleccione</option>
+                                                            @foreach ($entidades as $obj)
+                                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    {{-- <div class="input-area">
+                                                        <div class="relative">
+                                                            <input type="text" name="Texto" id="Texto" onblur="buscar()"  class="form-control !pr-9">
+                                                            <button type="button"
+                                                                class="absolute btn-dark right-0 top-1/2 -translate-y-1/2 w-9 h-full border-none flex items-center justify-center">
+                                                                <iconify-icon icon="heroicons-solid:search"></iconify-icon>
+                                                            </button>
+                                                        </div>
+                                                    </div> --}}
                                                 </div>
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Hasta</label>
-                                                    <input type="date" name="FechaFinal" class="form-control">
-                                                </div>
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Profesión</label>
-                                                    <select class="form-control select2" name="Profesion">
-                                                        <option value="">Seleccione</option>
-                                                        @foreach ($profesiones as $obj)
-                                                            <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Entidad certificadora</label>
-                                                    <select class="form-control select2" name="EntidadCertificadora">
-                                                        <option value="">Seleccione</option>
-                                                        @foreach ($entidades as $obj)
-                                                            <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="input-area" style="display: none">
-                                                    <div class="relative">
-                                                        <input type="text" class="form-control !pr-9">
-                                                        <button
-                                                            class="absolute btn-dark right-0 top-1/2 -translate-y-1/2 w-9 h-full border-none flex items-center justify-center">
-                                                            <iconify-icon icon="heroicons-solid:search"></iconify-icon>
-                                                        </button>
+
+
+
+
+
+
+                                                <div class="inline-block min-w-full align-middle">
+                                                    <br>
+                                                    <div class="overflow-hidden " id="div_busqueda">
+                                                        {{-- <table id="example" class="display" style="width:100%">
+                                                            <thead>
+                                                                <tr class="td-table" align="left">
+                                                                    <th>Nombre</th>
+                                                                    <th>Fecha vencimiento</th>
+                                                                    <th>Visualizar</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($certificaciones as $certificacion)
+                                                                    <tr align="left">
+                                                                        <td>{{ $certificacion->Nombre }}</td>
+                                                                        <td>{{ date('d/m/Y', strtotime($certificacion->FechaVencimiento)) }}
+                                                                        </td>
+                                                                        <td align="center"><iconify-icon
+                                                                                icon="heroicons-solid:eye"
+                                                                                width="24"></iconify-icon></td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table> --}}
                                                     </div>
                                                 </div>
+
                                             </div>
-
-
-
-
-
-
-                                            <div class="inline-block min-w-full align-middle">
-                                                <div class="overflow-hidden ">
-                                                    <table id="example" class="display" style="width:100%">
-                                                        <thead>
-                                                            <tr class="td-table">
-                                                                <th style="text-align: center">Nombre</th>
-
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Sofía Rodríguez Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Juan Martínez Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina García Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Alejandro Sánchez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Camila Torres Fernández</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Andrés Mendoza López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valeria Castro Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Javier Ruiz Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella Pérez Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lucas Díaz Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Paula Vargas Castro</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Nicolás López Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Martina Ramírez Sánchez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sebastián Herrera Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonella Díaz Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Eduardo Castro Ruiz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara Martínez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Gabriel Fernández López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Pérez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Mateo Soto Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Emilia Vargas Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tomás Silva Castro</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Díaz Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Francisco Ramírez Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Constanza López Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Matías Herrera Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sofía Torres Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Javier Martínez Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Catalina Ramírez Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Facundo Silva Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata López Castro</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Bruno Vargas Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonia Pérez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Agustín Díaz Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Castro Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lucas Ruiz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella López Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Nicolás Sánchez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Martina Martínez Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sebastián Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Florencia Herrera Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Juan Ramírez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valeria Vargas López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Alejandro Pérez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Camila Martínez Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Daniel Silva Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Martina Vargas Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Eduardo López Castro</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara Ramírez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tomás Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Pérez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Javier Martínez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Ramírez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Nicolás Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella Sánchez Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Mateo Herrera Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonella Castro Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Francisco Vargas López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sofía Pérez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lucas Martínez Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Silva Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Emilio López Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Constanza Díaz Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sebastián Ramírez Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Martina Herrera Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Facundo Castro López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valeria Vargas Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Martín Pérez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonia Martínez Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Ignacio Silva Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Bruno López Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Ramírez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Nicolás Vargas López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella Díaz Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Matías Pérez Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Silva Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Juan Martínez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sofía Ramírez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Alejandro Herrera Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valeria Pérez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tomás López Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella Vargas Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Facundo Herrera Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Castro Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lucas Pérez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonella Ramírez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Emilia Herrera Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Daniel Vargas Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara Silva Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sebastián López Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Díaz Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Francisco Ramírez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sofía Martínez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Mateo Herrera Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonia Pérez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Bruno Ramírez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella Vargas López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Díaz Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Martín Pérez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valeria Silva Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lucas Ramírez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara López Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Facundo Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonella Herrera Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tomás Vargas Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sofía Martínez Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Nicolás Pérez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Silva Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Javier Ramírez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Díaz Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Mateo Herrera Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Emilia Pérez Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lucas Silva Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valeria Ramírez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Facundo Vargas López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara Martínez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Bruno López Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Juan Pérez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Ramírez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Javier Silva Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina López Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Nicolás Herrera Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonia Pérez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Emilio Ramírez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Martina Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tomás Herrera López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valeria Pérez Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Lucas Vargas Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Isabella Ramírez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Bruno López Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara Martínez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Silva Pérez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sebastián Díaz Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina López Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Mateo Pérez Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonella Silva Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Francisco Ramírez Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sofía Vargas López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Emilia Herrera Martínez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Tomás Pérez Silva</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Clara Ramírez Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Facundo Díaz Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Valentina Martínez López</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Nicolás Silva Ramírez</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Antonella Vargas Díaz</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Bruno López Herrera</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Renata Pérez Vargas</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Javier Martínez Silva</td>
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                        </form>
                                         <!-- END: Todo Header -->
 
 
@@ -619,8 +186,8 @@
                                             </div>
                                             <div class="input-area relative">
                                                 <label for="Apellido" class="form-label">Apellido</label>
-                                                <input type="text" name="last_name" value="{{ old('last_name') }}"
-                                                    required class="form-control">
+                                                <input type="text" name="last_name" value="{{ old('last_name') }}" required
+                                                    class="form-control">
                                             </div>
                                             <div class="input-area relative">
                                                 <label for="Email" class="form-label">Email</label>
@@ -796,6 +363,10 @@
 
 
         <script>
+            $(document).ready(function() {
+                buscar();
+            });
+
             function show_register() {
                 $("#div_registro").show();
                 $("#div_login").hide();
@@ -804,6 +375,29 @@
             function show_login() {
                 $("#div_registro").hide();
                 $("#div_login").show();
+            }
+
+            function buscar() {
+                // Obtener los datos del formulario
+                var formData = $('#miFormulario').serialize();
+
+                console.log(formData);
+
+                // Enviar la solicitud AJAX
+                $.ajax({
+                    url: "{{ url('publico/busqueda/show') }}",
+                    type: 'GET',
+                    data: formData,
+                    success: function(response) {
+                        console.log(response);
+                        $('#div_busqueda').html(response);
+                        // Manejar la respuesta según sea necesario
+                    },
+                    error: function(error) {
+                        console.error(error);
+                        // Manejar el error según sea necesario
+                    }
+                });
             }
         </script>
 
