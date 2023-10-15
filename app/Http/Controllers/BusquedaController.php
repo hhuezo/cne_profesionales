@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Profesion;
 use App\Models\registro\Certificacion;
+use App\Models\registro\Proyecto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,15 +21,8 @@ class BusquedaController extends Controller
         $profesiones = Profesion::get();
         $fechaHoraActual = Carbon::now();
 
-        $certificaciones = DB::table('certificacion as c')
-            ->join('perfil as p', 'c.Perfil', '=', 'p.Id')
-            ->join('users as u', 'p.Usuario', '=', 'u.id')
-            ->leftJoin('profesion as pro', 'pro.Id', '=', 'p.Profesion')
-            ->leftJoin('entidad_certificadora as e', 'c.EntidadCertificadora', '=', 'e.Id')
-            ->select(DB::raw('CONCAT(u.name, " ", u.last_name) as Nombre'), 'c.FechaVencimiento', 'pro.Nombre as Profesion', 'e.Nombre as Entidad')
-            ->where('c.FechaVencimiento', '>', $fechaHoraActual->toDateTimeString())
-            ->get();
-        return view('inicio.busqueda', compact('certificaciones', 'profesiones', 'entidades', 'sectores', 'profesiones'));
+
+        return view('inicio.busqueda', compact( 'profesiones', 'entidades', 'sectores', 'profesiones'));
     }
 
 
@@ -54,7 +48,8 @@ class BusquedaController extends Controller
             $sql_entidad = " and e.Id = $request->EntidadCertificadora";
         }
 
-        $sql = "select CONCAT(u.name,' ',u.last_name) as Nombre, c.FechaVencimiento,pro.Nombre as Profesion, e.Nombre as Entidad  from certificacion c 
+        $sql = "select c.Id,CONCAT(u.name,' ',u.last_name) as Nombre, c.FechaVencimiento,pro.Nombre as Profesion, e.Nombre as Entidad,c.OtraEntidad
+        from certificacion c 
         inner join perfil p on c.Perfil = p.Id 
         inner join users u on p.Usuario = u.id
         left join profesion pro on pro.Id = p.Profesion
@@ -63,15 +58,10 @@ class BusquedaController extends Controller
         $sql_fechas  $sql_profesion  $sql_entidad ";
         $certificaciones = DB::select($sql);
 
-        return view('inicio.busqueda_show',compact('certificaciones'));
+        return view('inicio.busqueda_resultado',compact('certificaciones'));
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -90,23 +80,13 @@ class BusquedaController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $certificacion = Certificacion::findOrFail($id);
+        $proyectos = Proyecto::where('Perfil','=',$certificacion->Perfil)->get();
+        return view('inicio.busqueda_show', compact('certificacion','proyectos'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //

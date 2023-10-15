@@ -40,9 +40,17 @@
                                                     <td></td>
                                                 @endif
 
-                                                <td>{{ $obj->perfil->usuario->name }} {{ $obj->perfil->usuario->last_name }}
-                                                </td>
-                                                <td align="center">{{ $obj->perfil->NumeroDocumento }}</td>
+                                                @if ($obj->perfil)
+                                                    <td>{{ $obj->perfil->usuario->name }}
+                                                        {{ $obj->perfil->usuario->last_name }}</td>
+                                                        <td align="center">{{ $obj->perfil->NumeroDocumento }}</td>
+                                                @else
+                                                    <td></td>
+                                                    <td></td>
+                                                @endif
+
+
+                                               
                                                 <td>{{ $obj->Descripcion }}</td>
                                                 @if ($obj->Estado)
                                                     <td align="center">{{ $obj->estado->Nombre }}</td>
@@ -51,19 +59,20 @@
                                                 @endif
                                                 <td align="center">
                                                     @can('edit certificacion')
-                                                    <a href="{{ url('registro/certificacion') }}/{{ $obj->Id }}/edit">
-                                                        <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
-                                                            width="40"></iconify-icon>
-                                                    </a>
+                                                        <a href="{{ url('registro/certificacion') }}/{{ $obj->Id }}/edit">
+                                                            <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
+                                                                width="40"></iconify-icon>
+                                                        </a>
                                                     @endcan
-                                                   
+
 
                                                     @can('show certificacion')
-                                                    <a href="{{ url('registro/certificacion') }}/{{ $obj->Id }}">
-                                                        <iconify-icon icon="mdi:eye" style="color: #475569;" width="40"></iconify-icon>
-                                                    </a>
+                                                        <a href="{{ url('registro/certificacion') }}/{{ $obj->Id }}">
+                                                            <iconify-icon icon="mdi:eye" style="color: #475569;"
+                                                                width="40"></iconify-icon>
+                                                        </a>
                                                     @endcan
-                                                   
+
 
                                                 </td>
                                             </tr>

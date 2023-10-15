@@ -2,6 +2,7 @@
 
 namespace App\Models\registro;
 
+use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\EstadoCertificacion;
 use App\Models\catalogo\Perfil;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -24,6 +25,9 @@ class Certificacion extends Model
         'Administrador',
         'FechaActualizacion',
         'UsuarioActualizacion',
+        'EntidadCertificadora',
+        'OtraEntidad',
+        'ImagenUrl'
     ];
 
     public function perfil()
@@ -44,6 +48,11 @@ class Certificacion extends Model
     public function usuario_update()
     {
         return $this->belongsTo(User::class, 'UsuarioActualizacion', 'id');
+    }
+
+    public function entidad()
+    {
+        return $this->belongsTo(EntidadCertificadora::class, 'EntidadCertificadora', 'Id');
     }
 
 }

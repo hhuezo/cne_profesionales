@@ -97,7 +97,7 @@ class CertificacionController extends Controller
             $file = $request->file('Archivo');
             $id_file = uniqid();
             $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
-            $certificacion->ImagenUrl = $id_file . ' ' . $file->getClientOriginalName();
+            $certificacion->DocumentoUrl = $id_file . ' ' . $file->getClientOriginalName();
         }
 
 
@@ -240,7 +240,7 @@ class CertificacionController extends Controller
             $file = $request->file('Archivo');
             $id_file = uniqid();
             $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
-            $certificacion->ImagenUrl = $id_file . ' ' . $file->getClientOriginalName();
+            $certificacion->DocumentoUrl = $id_file . ' ' . $file->getClientOriginalName();
         }
 
         $certificacion->save();

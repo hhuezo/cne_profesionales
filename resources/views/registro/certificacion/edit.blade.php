@@ -126,8 +126,8 @@
                                                     <label for="Archivo" class="form-label">Archivo</label>
                                                     <div class="relative">
                                                         <input type="file" name="Archivo" class="form-control">
-                                                        @if ($certificacion->ImagenUrl)
-                                                            <a href="{{ asset('docs') }}/{{ $certificacion->ImagenUrl }}"
+                                                        @if ($certificacion->DocumentoUrl)
+                                                            <a href="{{ asset('docs') }}/{{ $certificacion->DocumentoUrl }}"
                                                                 target="_blank">
                                                                 <button type="button"
                                                                     class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">

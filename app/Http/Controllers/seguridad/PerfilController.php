@@ -125,41 +125,26 @@ class PerfilController extends Controller
 
         $perfil = Perfil::findOrFail($id);
         $perfil->NumeroDocumento = $request->NumeroDocumento;
-        // $perfil->Profesion = $request->Profesion;
-        // $perfil->Direccion = $request->Direccion;
-        // $perfil->DistritoCorregimiento = $request->Distrito;
-        // $perfil->Telefono = $request->Telefono;
-        if ($request->DocumentoURL) {
+
+        if ($request->FotoUrl) {
             try {
-                unlink(public_path("docs/") . $perfil->DocumentoURL);
+                unlink(public_path("docs/") . $perfil->FotoUrl);
             } catch (Exception $e) {
                 //return $e->getMessage();
             }
         }
 
 
-        if ($request->TituloURL) {
-            try {
-                unlink(public_path("docs/") . $perfil->TituloURL);
-            } catch (Exception $e) {
-                //return $e->getMessage();
-            }
-        }
 
-        if ($request->file('DocumentoURL')) {
-            $file = $request->file('DocumentoURL');
+        if ($request->file('FotoUrl')) {
+            $file = $request->file('FotoUrl');
             $id_file = uniqid();
             $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
-            $perfil->DocumentoURL = $id_file . ' ' . $file->getClientOriginalName();
+            $perfil->FotoUrl = $id_file . ' ' . $file->getClientOriginalName();
         }
 
 
-        if ($request->file('TituloURL')) {
-            $file = $request->file('TituloURL');
-            $id_file = uniqid();
-            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
-            $perfil->TituloURL = $id_file . ' ' . $file->getClientOriginalName();
-        }
+     
 
         $perfil->update();
 

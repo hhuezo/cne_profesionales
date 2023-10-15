@@ -385,7 +385,7 @@
 
                 // Enviar la solicitud AJAX
                 $.ajax({
-                    url: "{{ url('publico/busqueda/show') }}",
+                    url: "{{ url('publico/busqueda/resultado') }}",
                     type: 'GET',
                     data: formData,
                     success: function(response) {

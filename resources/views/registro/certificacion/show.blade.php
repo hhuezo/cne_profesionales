@@ -84,7 +84,7 @@
                                                         <div class="input-area relative">
                                                             <label for="Descipcion" class="form-label">Nombre</label>
                                                             <input type="text" name="Numero"
-                                                                value="{{ $perfil->usuario->name }}" disabled
+                                                                value="{{ $perfil->usuario->name }} {{ $perfil->usuario->last_name }}" disabled
                                                                 class="form-control">
                                                         </div>
                                                         <div class="input-area relative">
@@ -110,7 +110,7 @@
                                                         </div>
 
 
-                                                        <div class="input-area">
+                                                        {{-- <div class="input-area">
                                                             <label for="Nombre" class="form-label">Tipo
                                                                 certificado</label>
                                                             <select name="TipoCertificado" required disabled
@@ -123,7 +123,7 @@
                                                                 @endforeach
                                                             </select>
 
-                                                        </div>
+                                                        </div> --}}
 
 
                                                         <div class="input-area">
@@ -280,7 +280,7 @@
                                                             <label for="Nacionalidad"
                                                                 class="form-label">Nacionalidad</label>
                                                             <input type="text" name="Nacionalidad"
-                                                                value="{{ $perfil->nacionalidad->Nombre }}" disabled
+                                                                value="{{ $perfil->Nacionalidad }}" disabled
                                                                 class="form-control">
                                                         </div>
                                                         <div class="input-area relative">
