@@ -339,38 +339,40 @@
         <div class="footer-top page text-white">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-3 col-md-6 footer-contact">
-                        <img src="{{ asset('img/Logo_Gobierno.svg') }}" class="img-fluid"
-                            alt=""><br><br><br>
+                    <div class="col-lg-4 col-md-6 footer-contact">
+                      
                         <a href="https://maps.app.goo.gl/mnZjopCXPKfLNTYC9" class="text-white">
                             <p>
-                                Alameda Manuel Enrique Araujo 5500<br> San Salvador<br>
-                                El Salvador <br><br>
+                                Dirección General De Energía, Hidrocarburos Y Minas<br>
+                                87 Avenida Norte y Calle El Mirador Torre Futura Nivel 16
+                                Colonia Escalón, San Salvador.
+                                El Salvador, Centro América. <br><br>
                         </a>
-                        <strong>Telefono:</strong> +503 0000-0000<br>
-                        <strong>Correo:</strong> info@example.com<br>
+                        <strong>Telefono:</strong> 22346100<br>
+                        <strong>Correo:</strong> info@dgehm.gob.sv<br>
                         </p>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Enlaces Utiles</h4>
+                    <div class="col-lg-4 col-md-6 footer-links" align="center">
+                        <img src="{{ asset('img/Logo_Gobierno.svg') }}" class="img-fluid"
+                        alt=""><br><br><br>
+                        {{-- <h4>Enlaces Utiles</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Documentos</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Formularios</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Horarios</a></li>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Entidades</a></li>
-                        </ul>
+                        </ul> --}}
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links text-white">
-                        <h4>Redes Sociales</h4>
-                        <p>Lorem Ipsum</p>
+                    <div class="col-lg-4 col-md-6 footer-links text-white"  align="center">
+                        <p>Únete a nuestra comunidad</p>
                         <div class="social-links mt-3">
-                            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                            <a href="https://www.facebook.com/DGEHMSV" class="facebook"><i class="bx bxl-facebook"></i></a>
+                            <a href="https://www.instagram.com/dgehm_sv" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="https://twitter.com/DGEHMSV" class="twitter"><i class="bx bxl-twitter"></i></a>
+                            {{-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}
                         </div>
                     </div>
 

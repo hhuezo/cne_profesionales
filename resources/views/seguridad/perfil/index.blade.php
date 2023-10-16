@@ -103,6 +103,8 @@
                                             class="form-control">
                                     </div>
 
+
+
                                     <div class="input-area relative">
                                         <label for="Municipio" class="form-label">Municipio</label>
                                         <input type="text"
@@ -111,15 +113,26 @@
                                     </div>
 
                                     <div class="input-area relative">
-                                        <label for="Dui" class="form-label">Numero documento</label>
-                                        <input type="text" name="NumeroDocumento" value="{{ $perfil->NumeroDocumento }}"
-                                            class="form-control">
+                                        <label for="Telefono" class="form-label">Tipo documento</label>
+                                        <select name="TipoDocumento" class="form-control">
+                                            @foreach ($tipo_documentos as $tipo)
+                                                <option value="{{$tipo->Id}}" {{$tipo->Id==$perfil->TipoDocumento ? 'selected':''}}  >{{$tipo->Nombre}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
+
 
                                     <div class="input-area relative">
                                         <label for="Municipio" class="form-label">Distrito</label>
-                                        <input type="text" value="{{ $perfil->distrito_corregimiento->Nombre }}"
-                                            disabled class="form-control">
+                                        <input type="text" value="{{ $perfil->distrito_corregimiento->Nombre }}" disabled
+                                            class="form-control">
+                                    </div>
+
+
+                                    <div class="input-area relative">
+                                        <label for="Dui" class="form-label">Numero documento</label>
+                                        <input type="text" name="NumeroDocumento" value="{{ $perfil->NumeroDocumento }}"
+                                            class="form-control">
                                     </div>
 
 
@@ -174,7 +187,8 @@
                                 </div>
                                 <br>
                                 <div style="text-align: right;">
-                                    <button type="submit" class="btn inline-flex justify-center btn-dark">Guardar</button>
+                                    <button type="submit"
+                                        class="btn inline-flex justify-center btn-dark">Guardar</button>
                                 </div>
 
 
@@ -217,7 +231,7 @@
                                             <tr>
                                                 <td>{{ $obj->Descripcion }}</td>
                                                 <td align="center">
-                                                    <a href="{{url('docs')}}/{{$obj->Url}}" target="_blank">
+                                                    <a href="{{ url('docs') }}/{{ $obj->Url }}" target="_blank">
                                                         <iconify-icon icon="heroicons-solid:eye"
                                                             width="24"></iconify-icon>
                                                     </a>
@@ -263,7 +277,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                      11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>
