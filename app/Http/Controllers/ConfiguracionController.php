@@ -57,9 +57,9 @@ class ConfiguracionController extends Controller
         $configuracion->update();
 
         
-        $pais = Pais::findOrFail($configuracion->Pais);
-        $pais->Url = $request->Url;
-        $pais->update();
+        // $pais = Pais::findOrFail($configuracion->Pais);
+        // $pais->Url = $request->Url;
+        // $pais->update();
         alert()->success('El registro ha sido modificado correctamente');
         return back();
     }

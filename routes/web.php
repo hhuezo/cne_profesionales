@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BusquedaController;
+use App\Http\Controllers\catalogo\PaisController;
 use App\Http\Controllers\catalogo\TipoCertificadoController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\editor\GrapesJSController;
@@ -151,7 +152,7 @@ Route::post('editor/guardarPagina/{id}', [EditorController::class, 'guardarPagin
 //catalogos
 
 Route::resource('catalogo/tipo_certificado', TipoCertificadoController::class);
-
+Route::resource('catalogo/pais', PaisController::class);
 
 
 Route::get('/page-test', function () {

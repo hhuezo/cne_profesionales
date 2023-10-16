@@ -54,12 +54,12 @@
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                    <br>
+                                                    {{-- <br>
                                                     <div class="input-area relative">
                                                         <label for="largeInput" class="form-label">Url</label>
                                                         <input type="text" name="Url" id="Url" value="{{$configuracion->pais->Url}}"
                                                             class="form-control">
-                                                    </div>
+                                                    </div> --}}
 
 
                                                 </div>
