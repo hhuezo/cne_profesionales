@@ -12,6 +12,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\publico\DirectorioController;
 use App\Http\Controllers\publico\MenuController;
 use App\Http\Controllers\registro\CertificacionController;
+use App\Http\Controllers\registro\DocumentoController;
 use App\Http\Controllers\registro\ProyectoController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\seguridad\PerfilController;
@@ -129,7 +130,7 @@ Route::post('registro/certificacion/observar', [CertificacionController::class, 
 Route::post('registro/certificacion/aprobar', [CertificacionController::class, 'aprobar']);
 Route::resource('registro/certificacion', CertificacionController::class);
 Route::resource('registro/proyecto', ProyectoController::class);
-
+Route::resource('registro/documento', DocumentoController::class);
 
 
 //configuracion

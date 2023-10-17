@@ -104,7 +104,51 @@
                         </div>
                     </div>
 
-
+                    <div class="card">
+                        <div class="card-body flex flex-col p-6">
+                            <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                                <div class="flex-1">
+                                    <div class="card-title text-slate-900 dark:text-white">Documentos
+                                        <button class="btn btn-outline-dark float-right" type="button" data-bs-toggle="modal"
+                                            data-bs-target="#modal-documento">Agregar</button>
+                                    </div>
+                                </div>
+            
+                            </header>
+                            <div style=" margin-left:20px; margin-right:20px; ">
+                                <span class=" col-span-8  hidden"></span>
+                                <span class="  col-span-4 hidden"></span>
+                                <div class="inline-block min-w-full align-middle">
+                                    <div class="overflow-hidden " style=" margin-bottom:20px ">
+                                        <table id="myTable" class="display" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr class="td-table">
+                                                    <th style="text-align: center">Descripción</th>
+                                                    <th style="text-align: center">Opciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if ($documentos)
+                                                    @foreach ($documentos as $obj)
+                                                        <tr>
+                                                            <td>{{ $obj->Descripcion }}</td>
+                                                            <td align="center">
+                                                                <a href="{{ url('docs') }}/{{ $obj->Url }}" target="_blank">
+                                                                    <iconify-icon icon="heroicons-solid:eye"
+                                                                        width="24"></iconify-icon>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
+                                                @endif
+            
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

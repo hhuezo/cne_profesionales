@@ -1,6 +1,6 @@
 <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{ $obj->Id }}">
 
-    <form method="POST" action="{{ route('pais.destroy', $obj->Id) }}">
+    <form method="POST" action="{{ route('documento.destroy', $obj->Id) }}">
         @method('delete')
         @csrf
 
@@ -32,7 +32,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
-                  <button type="submit" class="btn inline-flex justify-center text-white bg-danger-500 float-right" style="margin-bottom: 15px">Accept</button>
+                  <button type="submit" class="btn inline-flex justify-center text-white bg-danger-500 float-right" style="margin-bottom: 15px">Aceptar</button>
                 </div>
               </div>
             </div>
