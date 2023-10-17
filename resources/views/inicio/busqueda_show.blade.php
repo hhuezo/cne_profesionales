@@ -45,6 +45,13 @@
                     "info": false, // Disable information display
                     "lengthChange": false
                 });
+
+                $('#myTableProyectos').DataTable({
+                    "paging": false, // Disable pagination
+                    "searching": false, // Disable search box
+                    "info": false, // Disable information display
+                    "lengthChange": false
+                });
             });
         </script>
 
@@ -98,14 +105,17 @@
                                 <!-- end profile box -->
                                 <div
                                     class="profile-info-500 md:flex md:text-start text-center flex-1 max-w-[516px] md:space-y-0 space-y-4">
+                                    @if ($certificacion->perfil->Telefono  && $certificacion->perfil->TelefonoPublico == 1 )
                                     <div class="flex-1">
                                         <div class="text-base text-slate-900 dark:text-slate-300 font-medium mb-1">
-                                            Documento
+                                            Teléfono
                                         </div>
                                         <div class="text-sm text-slate-600 font-light dark:text-slate-300">
-                                            {{ $certificacion->perfil->NumeroDocumento }}
+                                            {{ $certificacion->perfil->Telefono }}
                                         </div>
                                     </div>
+                                    @endif
+                                   
                                     <!-- end single -->
                                     <div class="flex-1">
                                         <div class="text-base text-slate-900 dark:text-slate-300 font-medium mb-1">
@@ -149,7 +159,7 @@
                                             <ul class="list space-y-8" align="left">
                                                 <li class="flex space-x-3 rtl:space-x-reverse">
                                                     <div class="flex-none text-2xl text-slate-600 dark:text-slate-300">
-                                                        <iconify-icon icon="heroicons:envelope"></iconify-icon>
+                                                        <iconify-icon icon="solar:document-linear"></iconify-icon>
                                                     </div>
                                                     <div class="flex-1">
                                                         <div
@@ -165,7 +175,7 @@
                                                 <!-- end single list -->
                                                 <li class="flex space-x-3 rtl:space-x-reverse">
                                                     <div class="flex-none text-2xl text-slate-600 dark:text-slate-300">
-                                                        <iconify-icon icon="heroicons:phone-arrow-up-right"></iconify-icon>
+                                                        <iconify-icon icon="fluent:document-28-regular"></iconify-icon>
                                                     </div>
                                                     <div class="flex-1">
                                                         <div
@@ -197,7 +207,7 @@
 
                                                 <li class="flex space-x-3 rtl:space-x-reverse">
                                                     <div class="flex-none text-2xl text-slate-600 dark:text-slate-300">
-                                                        <iconify-icon icon="heroicons:map"></iconify-icon>
+                                                        <iconify-icon icon="material-symbols:order-approve-outline"></iconify-icon>
                                                     </div>
                                                     <div class="flex-1">
                                                         <div
@@ -217,7 +227,7 @@
 
                                                 <li class="flex space-x-3 rtl:space-x-reverse">
                                                     <div class="flex-none text-2xl text-slate-600 dark:text-slate-300">
-                                                        <iconify-icon icon="heroicons:map"></iconify-icon>
+                                                        <iconify-icon icon="uiw:date"></iconify-icon>
                                                     </div>
                                                     <div class="flex-1">
                                                         <div
@@ -237,7 +247,7 @@
                                 <div class="lg:col-span-8 col-span-12">
                                     <div class="card ">
                                         <header class="card-header">
-                                            <h4 class="card-title">Proyectos
+                                            <h4 class="card-title">Documentos
                                             </h4>
 
                                             <a href="{{url('publico/busqueda')}}">
@@ -249,6 +259,53 @@
 
                                             <div class="overflow-hidden " style=" margin-bottom:20px ">
                                                 <table id="myTable" class="display" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr class="td-table" align="left">
+                                                            <th>Descripción</th>                                                          
+                                                            <th>Archivo</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if ($documentos->count() > 0)
+                                                            @foreach ($documentos as $obj)
+                                                                <tr align="left">
+                                                                    <td>{{ $obj->Descripcion }}</td>                                                                 
+                                                                    @if ($obj->Url)
+                                                                        <td align="center">
+                                                                            <a href="{{ asset('docs') }}/{{ $obj->Url }}"
+                                                                                target="_blank">
+                                                                                <iconify-icon icon="mdi:file"
+                                                                                    style="color: #475569;"
+                                                                                    width="40"></iconify-icon>
+                                                                            </a>
+                                                                        </td>
+                                                                    @else
+                                                                        <td align="center"></td>
+                                                                    @endif
+                                                                </tr>
+                                                                @include('registro.proyecto.modal')
+                                                            @endforeach
+                                                        @endif
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="card ">
+                                        <header class="card-header">
+                                            <h4 class="card-title">Proyectos
+                                            </h4>                                         
+                                        </header>
+                                        <div class="card-body">
+
+
+                                            <div class="overflow-hidden " style=" margin-bottom:20px ">
+                                                <table id="myTableProyectos" class="display" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr class="td-table" align="left">
                                                             <th>Descripción</th>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\catalogo\Documento;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Profesion;
 use App\Models\registro\Certificacion;
@@ -84,7 +85,8 @@ class BusquedaController extends Controller
     {
         $certificacion = Certificacion::findOrFail($id);
         $proyectos = Proyecto::where('Perfil','=',$certificacion->Perfil)->get();
-        return view('inicio.busqueda_show', compact('certificacion','proyectos'));
+        $documentos = Documento::where('Perfil','=',$certificacion->Perfil)->get();
+        return view('inicio.busqueda_show', compact('certificacion','proyectos','documentos'));
     }
 
     public function edit($id)

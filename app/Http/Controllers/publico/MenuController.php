@@ -42,25 +42,31 @@ class MenuController extends Controller
 
     public function menu_flujo_proceso()
     {
-
+        //8
         return view('inicio.flujo_proceso');
     }
 
     public function menu_requisito_registro()
     {
-
+        //9
         return view('inicio.requisito_registro');
     }
 
     public function menu_requisito_proyectos()
     {
-
+        //10
         return view('inicio.requisito_proyectos');
     }
 
     public function menu_usuario_consulta()
     {
-
+        //11
         return view('inicio.usuario_consulta');
+    }
+
+    public function menu_leyes()
+    {
+        //11
+        return view('inicio.leyes');
     }
 }

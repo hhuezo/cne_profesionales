@@ -16,6 +16,7 @@ class Documento extends Model
 
     protected $fillable = [
         'Url',
-        'Perfil'
+        'Perfil',
+        'Descripcion'
     ];
 }

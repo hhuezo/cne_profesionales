@@ -180,7 +180,7 @@
                                 <span class="flex items-center">
                                     <iconify-icon class=" nav-icon" icon="material-symbols:add-notes"
                                         style="color: white;"></iconify-icon>
-                                    <span>Proyectos</span>
+                                    <span>Proyectos realizados</span>
                                 </span>
                             </a>
                         </li>

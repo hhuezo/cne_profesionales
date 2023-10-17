@@ -1,5 +1,70 @@
 @extends ('menu')
 @section('contenido')
+
+    <style>
+        /* The switch - the box around the slider */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked+.slider {
+            background-color: #2196F3;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+        }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    </style>
     <div class="page-content">
         <div class="transition-all duration-150 container-fluid" id="page_layout">
             <div id="content_layout">
@@ -99,7 +164,7 @@
 
                                     <div class="input-area relative">
                                         <label for="Telefono" class="form-label">Telefono</label>
-                                        <input type="tel" name="Telefono" value="{{ $perfil->Telefono }}" disabled
+                                        <input type="tel" name="Telefono" value="{{ $perfil->Telefono }}"
                                             class="form-control">
                                     </div>
 
@@ -113,10 +178,22 @@
                                     </div>
 
                                     <div class="input-area relative">
+                                        <label for="Telefono" class="form-label">&nbsp;</label>
+                                        <label class="switch">
+                                            <input name="TelefonoPublico" type="checkbox" value="1" {{$perfil->TelefonoPublico == 1 ? 'checked':''}}>
+                                            <span class="slider round"></span>
+                                            
+                                        </label>  <strong>¿Desea hacer publico su número telefonico?</strong>
+                                    </div>
+
+
+                                    <div class="input-area relative">
                                         <label for="Telefono" class="form-label">Tipo documento</label>
                                         <select name="TipoDocumento" class="form-control">
                                             @foreach ($tipo_documentos as $tipo)
-                                                <option value="{{$tipo->Id}}" {{$tipo->Id==$perfil->TipoDocumento ? 'selected':''}}  >{{$tipo->Nombre}}</option>
+                                                <option value="{{ $tipo->Id }}"
+                                                    {{ $tipo->Id == $perfil->TipoDocumento ? 'selected' : '' }}>
+                                                    {{ $tipo->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -124,8 +201,8 @@
 
                                     <div class="input-area relative">
                                         <label for="Municipio" class="form-label">Distrito</label>
-                                        <input type="text" value="{{ $perfil->distrito_corregimiento->Nombre }}" disabled
-                                            class="form-control">
+                                        <input type="text" value="{{ $perfil->distrito_corregimiento->Nombre }}"
+                                            disabled class="form-control">
                                     </div>
 
 
@@ -277,7 +354,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                      11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                          11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>

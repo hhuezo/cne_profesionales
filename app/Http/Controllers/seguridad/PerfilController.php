@@ -132,6 +132,15 @@ class PerfilController extends Controller
         $perfil = Perfil::findOrFail($id);
         $perfil->NumeroDocumento = $request->NumeroDocumento;
         $perfil->TipoDocumento = $request->TipoDocumento;
+        $perfil->Telefono = $request->Telefono;
+        if($request->TelefonoPublico != null)
+        {
+            $perfil->TelefonoPublico = $request->TelefonoPublico;
+        } 
+        else{
+            $perfil->TelefonoPublico = 0;
+        }    
+        
 
         if ($request->FotoUrl) {
             try {

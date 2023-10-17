@@ -46,7 +46,7 @@
                                                     </a>
                                                 </td>
                                             </tr>
-                                            @include('catalogo.tipo_certificado.modal')
+                                       
                                         @endforeach
                                     @endif
 
