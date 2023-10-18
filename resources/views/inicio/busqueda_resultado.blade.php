@@ -15,6 +15,7 @@
             <th>Fecha vencimiento</th>
             <th>Profesión</th>
             <th>Entidad certificadora</th>
+            <th></th>
             <th>Visualizar</th>
         </tr>
     </thead>
@@ -30,7 +31,7 @@
                     @else
                         <td>{{ $certificacion->Entidad }}</td>
                     @endif
-
+                    <td>{{ $certificacion->EstadoId == 6  ? $certificacion->Estado : '' }}</td>
                     <td align="center">
                         <a href="{{ url('publico/busqueda') }}/{{ $certificacion->Id }}">
                             <iconify-icon icon="heroicons-solid:eye" width="24"></iconify-icon>

@@ -73,7 +73,7 @@
                                                 <div class="input-area">
                                                     <label for="Nombre" class="form-label">Entidad certificadora</label>
                                                     <select name="EntidadCertificadora" id="EntidadCertificadora" required
-                                                         class="form-control !pr-12 select2">
+                                                        class="form-control !pr-12 select2">
                                                         @foreach ($entidades as $obj)
                                                             <option value="{{ $obj->Id }}"
                                                                 {{ $certificacion->EntidadCertificadora == $obj->Id ? 'selected' : '' }}>
@@ -87,7 +87,7 @@
                                                     <label for="Nombre" class="form-label">Otra entidad
                                                         certificadora</label>
                                                     <input type="text" name="OtraEntidad" id="OtraEntidad" required
-                                                         value="{{ $certificacion->OtraEntidad }}" required
+                                                        value="{{ $certificacion->OtraEntidad }}" required
                                                         class="form-control">
                                                 </div>
 
@@ -98,19 +98,6 @@
                                                 </div>
 
 
-                                                {{-- <div class="input-area">
-                                                    <label for="Nombre" class="form-label">Tipo certificado</label>
-                                                    <select name="TipoCertificado" required
-                                                        class="form-control !pr-12 select2">
-                                                        @foreach ($tipo_certificados as $obj)
-                                                            <option value="{{ $obj->Id }}"
-                                                                {{ $certificacion->TipoCertificado == $obj->Id ? 'selected' : '' }}>
-                                                                {{ $obj->Descripcion }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-
-                                                </div> --}}
 
 
 
@@ -140,12 +127,24 @@
                                                 </div>
 
 
-
+                                                @if ($certificacion->Estado == 4 || $certificacion->Estado == 6)
+                                                    <div class="input-area">
+                                                        <label for="Nombre" class="form-label">Estado</label>
+                                                        <select name="Estado" required class="form-control !pr-12">
+                                                            @foreach ($estados as $obj)
+                                                                <option value="{{ $obj->Id }}"
+                                                                    {{ $certificacion->Estado == $obj->Id ? 'selected' : '' }}>
+                                                                    {{ $obj->Nombre }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                @endif
 
                                             </div>
                                             <br>
                                             <div style="text-align: right;">
-                                                @if ($certificacion->Estado == 1 || $certificacion->Estado == 3)
+                                                @if ($certificacion->Estado == 1 || $certificacion->Estado == 3 || $certificacion->Estado == 4 || $certificacion->Estado == 6)
                                                     <button type="submit"
                                                         class="btn inline-flex justify-center btn-dark">Guardar</button>
                                                 @endif
@@ -203,7 +202,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>
@@ -254,7 +253,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                              11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                              11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>
@@ -280,7 +279,7 @@
                         <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
                             <button type="submit"
                                 class="btn inline-flex justify-center text-white bg-black-500 float-right"
-                                style="margin-bottom: 15px">Accept</button>
+                                style="margin-bottom: 15px">Aceptar</button>
                         </div>
                     </div>
                 </div>

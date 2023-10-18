@@ -49,10 +49,12 @@ class BusquedaController extends Controller
             $sql_entidad = " and e.Id = $request->EntidadCertificadora";
         }
 
-        $sql = "select c.Id,CONCAT(u.name,' ',u.last_name) as Nombre, c.FechaVencimiento,pro.Nombre as Profesion, e.Nombre as Entidad,c.OtraEntidad
+        $sql = "select c.Id,CONCAT(u.name,' ',u.last_name) as Nombre, c.FechaVencimiento,pro.Nombre as Profesion, e.Nombre as Entidad,c.OtraEntidad,
+        estado.Nombre as Estado,estado.Id as EstadoId
         from certificacion c 
         inner join perfil p on c.Perfil = p.Id 
         inner join users u on p.Usuario = u.id
+        inner join certificacion_estado estado on c.Estado = estado.Id
         left join profesion pro on pro.Id = p.Profesion
         left join entidad_certificadora e on c.EntidadCertificadora = e.Id
         where (u.name like '%$texto%' or  u.last_name like '%$texto%')

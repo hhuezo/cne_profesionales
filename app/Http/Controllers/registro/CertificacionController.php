@@ -5,6 +5,7 @@ namespace App\Http\Controllers\registro;
 use App\Http\Controllers\Controller;
 use App\Mail\VerificacionMail;
 use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\EstadoCertificacion;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
@@ -39,7 +40,7 @@ class CertificacionController extends Controller
         $entidades  = EntidadCertificadora::get();
         $tipo_certificados = TipoCertificado::get();
         $alcance = ConfiguracionAlcance::first();
-        return view('registro.certificacion.create', compact('entidades', 'tipo_certificados','alcance'));
+        return view('registro.certificacion.create', compact('entidades', 'tipo_certificados', 'alcance'));
     }
 
     public function store(Request $request)
@@ -172,7 +173,6 @@ class CertificacionController extends Controller
         $certificacion->update();
         alert()->success('El registro ha sido asignado correctamente');
         return back();
-
     }
     public function aprobar(Request $request)
     {
@@ -186,19 +186,17 @@ class CertificacionController extends Controller
         $certificacion->update();
         alert()->success('La certificación ha sido aprobada correctamente');
         return back();
-     }
+    }
 
     public function edit($id)
     {
         $entidades  = EntidadCertificadora::get();
         $certificacion = Certificacion::findOrFail($id);
-
-        $tipo_certificados = TipoCertificado::get();
-
+        $estados = EstadoCertificacion::whereIn('Id', [4, 6])->get();
         //listar admin locales
         $role = Role::findOrFail(2);
         $adminitradores_locales = $role->user_has_role;
-        return view('registro.certificacion.edit', compact('certificacion', 'tipo_certificados',  'entidades', 'adminitradores_locales'));
+        return view('registro.certificacion.edit', compact('certificacion',  'entidades', 'adminitradores_locales', 'estados'));
     }
 
     public function update(Request $request, $id)
@@ -235,6 +233,9 @@ class CertificacionController extends Controller
         $certificacion->EntidadCertificadora = $request->EntidadCertificadora;
         $certificacion->OtraEntidad = $request->OtraEntidad;
 
+        if ($request->Estado) {
+            $certificacion->Estado = $request->Estado;
+        }
 
         if ($request->file('Archivo')) {
             $file = $request->file('Archivo');
@@ -263,7 +264,7 @@ class CertificacionController extends Controller
 
         $perfil = Perfil::findOrFail($certificacion->Perfil);
 
-        $proyectos = Proyecto::where('Perfil','=',$perfil->Id)->get();
+        $proyectos = Proyecto::where('Perfil', '=', $perfil->Id)->get();
 
 
         return view('registro.certificacion.show', compact(
@@ -271,7 +272,9 @@ class CertificacionController extends Controller
             'tipo_certificados',
             'entidades',
             'adminitradores_locales',
-            'paises','perfil','proyectos'
+            'paises',
+            'perfil',
+            'proyectos'
         ));
     }
 }
