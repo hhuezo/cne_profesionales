@@ -4,6 +4,7 @@ namespace App\Http\Controllers\catalogo;
 
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Pais;
+use App\Models\catalogo\TipoDocumento;
 use Illuminate\Http\Request;
 
 class PaisController extends Controller
@@ -24,14 +25,33 @@ class PaisController extends Controller
         //
     }
 
-    public function show($id)
+    public function attach_tipo(Request $request)
     {
-        //
+        $tipo_documento = new TipoDocumento();
+        $tipo_documento->Nombre  = $request->Nombre;
+        $tipo_documento->Pais  = $request->Pais;
+        $tipo_documento->save();
+
+
+        alert()->success('El registro ha sido agregado correctamente');
+        return back();
+    }
+
+    public function detach_tipo(Request $request)
+    {
+        $tipo_documento = TipoDocumento::findOrFail($request->Id);       
+        $tipo_documento->delete();
+
+
+        alert()->success('El registro ha sido eliminado correctamente');
+        return back();
     }
 
     public function edit($id)
     {
-        return view('catalogo.pais.edit', ['pais' => Pais::findOrFail($id)]);
+        $pais =Pais::findOrFail($id);
+        $tipo_documentos = TipoDocumento::where('Pais','=',$id)->get();
+        return view('catalogo.pais.edit', compact('pais','tipo_documentos'));
     }
 
 

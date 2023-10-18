@@ -89,7 +89,7 @@
                     <!-- Modal header -->
                     <div
                         class="flex items-center justify-between p-5 border-b rounded-t dark:border-slate-600 bg-black-500">
-                        <h3 class="text-xl font-medium text-white dark:text-white capitalize">
+                        <h3 class="text-xl font-medium text-white dark:text-white">
                             Nuevo documento
                         </h3>
                         <button type="button"

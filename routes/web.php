@@ -153,6 +153,8 @@ Route::post('editor/guardarPagina/{id}', [EditorController::class, 'guardarPagin
 //catalogos
 
 Route::resource('catalogo/tipo_certificado', TipoCertificadoController::class);
+Route::post('catalogo/pais/attach_tipo', [PaisController::class,'attach_tipo']);
+Route::post('catalogo/pais/detach_tipo', [PaisController::class,'detach_tipo']);
 Route::resource('catalogo/pais', PaisController::class);
 
 
