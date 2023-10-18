@@ -84,13 +84,21 @@ class UsuarioController extends Controller
 
 
          // Generar token de verificación
-         $verificationToken = Str::random(40);
+        $verificationToken = Str::random(40);
         $user = new User();
         $user->name = $request->name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
         $user->sector = $request->sector;
+        if($request->sector == 1)
+        {
+            $user->otro_sector = $request->OtroSector;
+        }
         $user->ocupacion = $request->ocupacion;
+        if($request->ocupacion == 1)
+        {
+            $user->otra_ocupacion = $request->OtraOcupacion;
+        }
         $user->password = Hash::make($request->password);
         $user->VerificationToken = $verificationToken;
         $user->active = 1;

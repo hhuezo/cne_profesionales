@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\catalogo\Documento;
 use App\Models\catalogo\EntidadCertificadora;
 use App\Models\catalogo\Profesion;
+use App\Models\catalogo\Sector;
 use App\Models\registro\Certificacion;
 use App\Models\registro\Proyecto;
 use Carbon\Carbon;
@@ -18,7 +19,7 @@ class BusquedaController extends Controller
     {
         $profesiones = Profesion::orderBy('Nombre')->get();
         $entidades = EntidadCertificadora::orderBy('Nombre')->get();
-        $sectores = ["Bancario", "Industrial", "Comercio", "Industrial", "Comercio y Servicios", "Educación", "Residencial ", "Otros"];
+        $sectores = Sector::where('Activo','=',1)->get();
         $profesiones = Profesion::get();
         $fechaHoraActual = Carbon::now();
 

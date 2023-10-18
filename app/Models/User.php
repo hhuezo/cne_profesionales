@@ -30,6 +30,10 @@ class User extends Authenticatable
         'active',
         'remember_token',
         'VerificationToken',
+        'sector',
+        'otro_sector',
+        'ocupacion',
+        'otra_ocupacion'
     ];
 
     /**

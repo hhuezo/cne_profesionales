@@ -113,27 +113,7 @@
                                                 <div class="inline-block min-w-full align-middle">
                                                     <br>
                                                     <div class="overflow-hidden " id="div_busqueda">
-                                                        {{-- <table id="example" class="display" style="width:100%">
-                                                            <thead>
-                                                                <tr class="td-table" align="left">
-                                                                    <th>Nombre</th>
-                                                                    <th>Fecha vencimiento</th>
-                                                                    <th>Visualizar</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @foreach ($certificaciones as $certificacion)
-                                                                    <tr align="left">
-                                                                        <td>{{ $certificacion->Nombre }}</td>
-                                                                        <td>{{ date('d/m/Y', strtotime($certificacion->FechaVencimiento)) }}
-                                                                        </td>
-                                                                        <td align="center"><iconify-icon
-                                                                                icon="heroicons-solid:eye"
-                                                                                width="24"></iconify-icon></td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table> --}}
+                                                       
                                                     </div>
                                                 </div>
 
@@ -202,19 +182,31 @@
 
                                             <div class="input-area relative">
                                                 <label for="Nombre" class="form-label">Sector</label>
-                                                <select class="form-control" name="sector">
+                                                <select class="form-control" name="sector" id="sector" required onchange="show_sector(this.value)">
+                                                    <option value="">Seleccione</option>
                                                     @foreach ($sectores as $obj)
-                                                        <option value="{{ $obj }}">{{ $obj }}</option>
+                                                        <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            <div class="input-area relative" id="div_sector" style="display: none">
+                                                <label for="Email" class="form-label">Otro sector</label>
+                                                <input type="text" name="OtroSector" id="OtroSector" value="" class="form-control">
+                                            </div>
+
                                             <div class="input-area relative">
                                                 <label for="Apellido" class="form-label">Ocupación</label>
-                                                <select class="form-control select2" name="ocupacion">
+                                                <select class="form-control select2" name="ocupacion" required onchange="show_ocupacion(this.value)">
+                                                    <option value="">Seleccione</option>
                                                     @foreach ($profesiones as $obj)
                                                         <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
                                                     @endforeach
                                                 </select>
+                                            </div>
+
+                                            <div class="input-area relative" id="div_ocupacion" style="display: none">
+                                                <label for="Email" class="form-label">Otra ocupacion</label>
+                                                <input type="text" name="OtraOcupacion" id="OtraOcupacion" value="" class="form-control">
                                             </div>
 
                                         </div>
@@ -366,6 +358,32 @@
             $(document).ready(function() {
                 buscar();
             });
+
+            function show_sector(valor)
+            {
+                if(valor == 1)
+                {
+                    $("#div_sector").show();
+                    $('#OtroSector').show().prop('required', true);
+                }
+                else{
+                    $("#div_sector").hide();
+                    $('#OtroSector').show().prop('required', false);
+                }
+            }
+
+            function show_ocupacion(valor)
+            {
+                if(valor == 1)
+                {
+                    $("#div_ocupacion").show();
+                    $('#OtraOcupacion').show().prop('required', true);
+                }
+                else{
+                    $("#div_ocupacion").hide();
+                    $('#OtraOcupacion').show().prop('required', false);
+                }
+            }
 
             function show_register() {
                 $("#div_registro").show();
