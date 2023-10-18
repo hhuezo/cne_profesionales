@@ -57,7 +57,7 @@ class BusquedaController extends Controller
         inner join certificacion_estado estado on c.Estado = estado.Id
         left join profesion pro on pro.Id = p.Profesion
         left join entidad_certificadora e on c.EntidadCertificadora = e.Id
-        where (u.name like '%$texto%' or  u.last_name like '%$texto%')
+        where (u.name like '%$texto%' or  u.last_name like '%$texto%') and estado.Id in (4,6)
         $sql_fechas  $sql_profesion  $sql_entidad ";
         $certificaciones = DB::select($sql);
 
