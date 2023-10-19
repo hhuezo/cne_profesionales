@@ -269,7 +269,7 @@
                         </a>
 
                     </li>
-                    <li class="dropdown"><a href="{{ url('publico/noticias') }}"><span>Noticias</span>
+                    <li class="dropdown"><a href="{{ url('publico/menu_noticias') }}"><span>Noticias</span>
                     </a>
 
                 </li>

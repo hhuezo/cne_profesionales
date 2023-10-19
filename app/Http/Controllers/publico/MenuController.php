@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\catalogo\Pais;
 use App\Models\editor\Snippet;
 use App\Models\editor\SnippetDocumento;
+use App\Models\editor\SnippetNoticia;
 use Carbon\Carbon;
 
 class MenuController extends Controller
@@ -67,5 +68,15 @@ class MenuController extends Controller
         $snippet = Snippet::findOrFail(11);
         $documentos = SnippetDocumento::where('Snippet','=',11)->get();
         return view('inicio.leyes',compact('snippet','documentos'));
+    }
+
+
+    public function menu_noticias()
+    {
+        //11
+        $snippet = Snippet::findOrFail(13);
+        $documentos = SnippetDocumento::where('Snippet','=',13)->get();
+        $noticias = SnippetNoticia::where('Snippet','=',13)->get();
+        return view('inicio.noticias',compact('snippet','documentos','noticias'));
     }
 }

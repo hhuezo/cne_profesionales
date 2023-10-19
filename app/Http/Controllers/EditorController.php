@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\editor\Snippet;
 use App\Models\editor\SnippetDocumento;
+use App\Models\editor\SnippetNoticia;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -71,6 +72,43 @@ class EditorController extends Controller
         return back();
 
     }
+
+
+    public function add_noticia(Request $request)
+    {
+        $noticia = new SnippetNoticia();
+        if ($request->file('Archivo')) {
+            $file = $request->file('Archivo');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $noticia->Url = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+        $noticia->Snippet = $request->Snippet;
+        $noticia->Titulo = $request->Titulo;
+        $noticia->Descripcion = $request->Descripcion;
+        $noticia->save();
+
+        alert()->success('El archivo hay sido agregado correctamente');
+        return back();
+    }
+
+    public function del_noticia(Request $request)
+    {
+        $noticia = SnippetNoticia::findOrFail($request->Id);
+
+        if ($noticia->Url) {
+            try {
+                unlink(public_path("docs/") . $noticia->Url);
+            } catch (Exception $e) {
+                //return $e->getMessage();
+            }
+        }
+        $noticia->delete();
+        alert()->success('El archivo hay sido eliminado correctamente');
+        return back();
+
+    }
     
     
 
@@ -93,7 +131,8 @@ class EditorController extends Controller
     {
         $snippet = Snippet::findOrFail($id);
         $documentos = SnippetDocumento::where('Snippet','=',$id)->get();
-        return view('editor.edit',compact('snippet','documentos'));
+        $noticias = SnippetNoticia::where('Snippet','=',$id)->get();
+        return view('editor.edit',compact('snippet','documentos','noticias'));
     }
 
     public function update(Request $request, $id)
