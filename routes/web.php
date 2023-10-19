@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\BusquedaController;
 use App\Http\Controllers\catalogo\PaisController;
+use App\Http\Controllers\catalogo\ProfesionController;
+use App\Http\Controllers\catalogo\SectorController;
 use App\Http\Controllers\catalogo\TipoCertificadoController;
 use App\Http\Controllers\ConfiguracionController;
 use App\Http\Controllers\editor\GrapesJSController;
@@ -162,6 +164,8 @@ Route::post('catalogo/pais/attach_tipo', [PaisController::class,'attach_tipo']);
 Route::post('catalogo/pais/detach_tipo', [PaisController::class,'detach_tipo']);
 Route::resource('catalogo/pais', PaisController::class);
 
+Route::resource('catalogo/sector', SectorController::class);
+Route::resource('catalogo/profesion', ProfesionController::class);
 
 Route::get('/page-test', function () {
     return view('test');

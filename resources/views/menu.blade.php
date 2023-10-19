@@ -153,9 +153,13 @@
                                 <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
                             </a>
                             <ul class="sidebar-submenu">
-                                {{-- <li>
-                                    <a href="{{ url('catalogo/tipo_certificado') }}">Tipos certificado</a>
-                                </li> --}}
+                                <li>
+                                    <a href="{{ url('catalogo/sector') }}">Sector</a>
+                                </li> 
+
+                                <li>
+                                    <a href="{{ url('catalogo/profesion') }}">Profesion</a>
+                                </li> 
 
                                 <li>
                                     <a href="{{ url('catalogo/pais') }}">Paises</a>
