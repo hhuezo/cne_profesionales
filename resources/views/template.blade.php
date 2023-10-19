@@ -269,6 +269,10 @@
                         </a>
 
                     </li>
+                    <li class="dropdown"><a href="{{ url('publico/noticias') }}"><span>Noticias</span>
+                    </a>
+
+                </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

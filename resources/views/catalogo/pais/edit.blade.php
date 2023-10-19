@@ -40,7 +40,8 @@
                                                 </ul>
                                             </div>
                                         @endif
-                                        <form method="POST" action="{{ route('pais.update', $pais->Id) }}" enctype="multipart/form-data">
+                                        <form method="POST" action="{{ route('pais.update', $pais->Id) }}"
+                                            enctype="multipart/form-data">
                                             @method('PUT')
                                             @csrf
 
@@ -55,7 +56,7 @@
                                                     <div class="input-area relative">
                                                         <label for="largeInput" class="form-label">url</label>
                                                         <input type="text" name="Url" value="{{ $pais->Url }}"
-                                                            required class="form-control">
+                                                             class="form-control">
                                                     </div>
 
                                                     <br>
@@ -75,7 +76,16 @@
                                                                 @endif
                                                             </a>
                                                         </div>
-                                                                                                             
+
+                                                    </div>
+                                                    <br>
+                                                    <div class="input-area relative">
+                                                        <label for="largeInput" class="form-label">Activo</label>
+                                                        @if ($pais->Activo == 1)
+                                                            <input name="Activo" type="checkbox" value="1" checked>
+                                                        @else
+                                                            <input name="Activo" type="checkbox"  >
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 <div style="text-align: right;">
@@ -84,7 +94,8 @@
                                                 </div>
 
                                                 <div align="center">
-                                                    <img src="" alt="Preview" id="imagePreview" style="display:none; max-width: 200px; max-height: 200px;">
+                                                    <img src="" alt="Preview" id="imagePreview"
+                                                        style="display:none; max-width: 200px; max-height: 200px;">
                                                 </div>
                                             </div>
                                         </form>
@@ -106,13 +117,15 @@
 
                     <div class="card">
                         <div class="card-body flex flex-col p-6">
-                            <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                            <header
+                                class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                                 <div class="flex-1">
                                     <div class="card-title text-slate-900 dark:text-white">Tipo documento
-                                        <button class="btn btn-outline-dark float-right" type="button" data-bs-toggle="modal" data-bs-target="#basic_modal">Agregar</button>
+                                        <button class="btn btn-outline-dark float-right" type="button"
+                                            data-bs-toggle="modal" data-bs-target="#basic_modal">Agregar</button>
                                     </div>
                                 </div>
-            
+
                             </header>
                             <div style=" margin-left:20px; margin-right:20px; ">
                                 <span class=" col-span-8  hidden"></span>
@@ -127,21 +140,22 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @if ($tipo_documentos   )
-                                                    @foreach ($tipo_documentos   as $obj)
+                                                @if ($tipo_documentos)
+                                                    @foreach ($tipo_documentos as $obj)
                                                         <tr>
                                                             <td>{{ $obj->Nombre }}</td>
                                                             <td align="center">
                                                                 <iconify-icon data-bs-toggle="modal"
-                                                                data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
-                                                                style="color: #475569;" width="40"></iconify-icon>
+                                                                    data-bs-target="#modal-delete-{{ $obj->Id }}"
+                                                                    icon="mdi:trash" style="color: #475569;"
+                                                                    width="40"></iconify-icon>
                                                                 </a>
                                                             </td>
                                                         </tr>
                                                         @include('catalogo.pais.modal')
                                                     @endforeach
                                                 @endif
-            
+
                                             </tbody>
                                         </table>
                                     </div>

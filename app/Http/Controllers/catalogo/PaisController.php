@@ -11,7 +11,7 @@ class PaisController extends Controller
 {
     public function index()
     {
-        $paises = Pais::orderBy('Activo','desc')->get();
+        $paises = Pais::orderBy('Activo', 'desc')->get();
         return view('catalogo.pais.index', compact('paises'));
     }
 
@@ -39,7 +39,7 @@ class PaisController extends Controller
 
     public function detach_tipo(Request $request)
     {
-        $tipo_documento = TipoDocumento::findOrFail($request->Id);       
+        $tipo_documento = TipoDocumento::findOrFail($request->Id);
         $tipo_documento->delete();
 
 
@@ -49,9 +49,9 @@ class PaisController extends Controller
 
     public function edit($id)
     {
-        $pais =Pais::findOrFail($id);
-        $tipo_documentos = TipoDocumento::where('Pais','=',$id)->get();
-        return view('catalogo.pais.edit', compact('pais','tipo_documentos'));
+        $pais = Pais::findOrFail($id);
+        $tipo_documentos = TipoDocumento::where('Pais', '=', $id)->get();
+        return view('catalogo.pais.edit', compact('pais', 'tipo_documentos'));
     }
 
 
@@ -60,7 +60,7 @@ class PaisController extends Controller
         $pais = Pais::findOrFail($id);
 
         if ($request->file('Bandera')) {
-            
+
             $file = $request->file('Bandera');
             $id_file = uniqid();
             $file->move(public_path("img/"), $id_file . ' ' . $file->getClientOriginalName());
@@ -68,11 +68,15 @@ class PaisController extends Controller
         }
 
         $pais->Url = $request->Url;
+        if ($request->Activo == null) {
+            $pais->Activo = 0;
+        } else {
+            $pais->Activo = 1;
+        }
         $pais->update();
 
         alert()->success('El registro ha sido modificado correctamente');
         return back();
-        
     }
 
     /**

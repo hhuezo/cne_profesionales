@@ -9,7 +9,7 @@
             <header class=" card-header noborder">
                 <h4 class="card-title">Paises
                 </h4>
-             
+
             </header>
             <div class="card">
                 <div style=" margin-left:20px; margin-right:20px; ">
@@ -23,6 +23,7 @@
                                         {{-- <th style="text-align: center">Id</th> --}}
                                         <th>Nombre</th>
                                         <th>Url</th>
+                                        <th>Activo</th>
                                         <th style="text-align: center">Opciones</th>
                                     </tr>
                                 </thead>
@@ -33,11 +34,18 @@
                                                 {{-- <td align="center">{{ $obj->Id }}</td> --}}
                                                 <td>{{ $obj->Nombre }}</td>
                                                 <td>{{ $obj->Url }}</td>
+                                                @if ($obj->Activo == 1)
+                                                    <td align="center"><input type="checkbox" checked></td>
+                                                @else
+                                                    <td align="center"><input type="checkbox"></td>
+                                                @endif
+
                                                 <td align="center">
-                                                    <a href="{{url('catalogo/pais')}}/{{$obj->Id}}/edit">
-                                                    <iconify-icon icon="mdi:pencil-box" style="color: #475569;" width="40"></iconify-icon>
+                                                    <a href="{{ url('catalogo/pais') }}/{{ $obj->Id }}/edit">
+                                                        <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
+                                                            width="40"></iconify-icon>
                                                     </a>
-                                                 
+
                                                 </td>
                                             </tr>
                                         @endforeach
