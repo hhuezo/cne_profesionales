@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\catalogo\Pais;
 use App\Models\configuracion\ConfiguracionAlcance;
 use App\Models\configuracion\ConfiguracionPais;
+use App\Models\configuracion\ConfiguracionSmtp;
 use Illuminate\Http\Request;
 
 class ConfiguracionController extends Controller
@@ -43,6 +44,30 @@ class ConfiguracionController extends Controller
         return back();
     }
 
+
+
+    public function correo()
+    {
+        $configuracion = ConfiguracionSmtp::first();
+        return view('configuracion.correo', compact('configuracion'));
+    }
+
+    public function correo_update(Request $request)
+    {
+        $configuracion = ConfiguracionSmtp::findOrFail($request->Id);
+        $configuracion->smtp_host = $request->smtp_host;
+        $configuracion->smtp_port = $request->smtp_port;
+        $configuracion->smtp_username = $request->smtp_username;
+        $configuracion->smtp_password = $request->smtp_password;
+        $configuracion->from_address = $request->from_address;
+        $configuracion->update();
+
+        alert()->success('El registro ha sido modificado correctamente');
+        return back();
+    }
+
+
+
     public function getUrl($id)
     {
         return Pais::findOrFail($id);
@@ -56,7 +81,7 @@ class ConfiguracionController extends Controller
         $configuracion->Pais = $request->Pais;
         $configuracion->update();
 
-        
+
         // $pais = Pais::findOrFail($configuracion->Pais);
         // $pais->Url = $request->Url;
         // $pais->update();

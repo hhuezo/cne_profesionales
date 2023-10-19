@@ -107,6 +107,7 @@ Route::get('publico/menu_requisitos', [MenuController::class, 'menu_requisitos']
 Route::get('publico/menu_perfil', [MenuController::class, 'menu_perfil']);
 Route::get('publico/menu_contenido_formativo', [MenuController::class, 'menu_contenido_formativo']);
 Route::get('publico/menu_unidades_formativas', [MenuController::class, 'menu_unidades_formativas']);
+Route::get('publico/menu_leyes', [MenuController::class, 'menu_leyes']);
 
 Route::get('publico/menu_flujo_proceso', [MenuController::class, 'menu_flujo_proceso']);
 Route::get('publico/menu_requisito_registro', [MenuController::class, 'menu_requisito_registro']);
@@ -142,6 +143,9 @@ Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update'
 Route::get('configuracion/alcance', [ConfiguracionController::class, 'alcance']);
 Route::post('configuracion/alcance', [ConfiguracionController::class, 'alcance_update']);
 
+Route::get('configuracion/correo', [ConfiguracionController::class, 'correo']);
+Route::post('configuracion/correo', [ConfiguracionController::class, 'correo_update']);
+
 
 //editor de paginas
 Route::get('editor/editor_grapesJS', [GrapesJSController::class, 'editor_grapesJS']);
@@ -149,7 +153,8 @@ Route::post('editor/guardarPagina', [GrapesJSController::class, 'guardarPagina']
 
 Route::resource('editor', EditorController::class);
 Route::post('editor/guardarPagina/{id}', [EditorController::class, 'guardarPagina']);
-
+Route::post('editor/add_documento', [EditorController::class, 'add_documento']);
+Route::post('editor/del_documento', [EditorController::class, 'del_documento']);
 //catalogos
 
 Route::resource('catalogo/tipo_certificado', TipoCertificadoController::class);

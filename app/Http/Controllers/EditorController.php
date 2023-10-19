@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\editor\Snippet;
+use App\Models\editor\SnippetDocumento;
+use Exception;
 use Illuminate\Http\Request;
 
 class EditorController extends Controller
@@ -35,6 +37,43 @@ class EditorController extends Controller
         return view('editor.show',compact('snippet'));
     }
 
+    public function add_documento(Request $request)
+    {
+        $documento = new SnippetDocumento();
+        if ($request->file('Archivo')) {
+            $file = $request->file('Archivo');
+            $id_file = uniqid();
+            $file->move(public_path("docs/"), $id_file . ' ' . $file->getClientOriginalName());
+            $documento->Url = $id_file . ' ' . $file->getClientOriginalName();
+        }
+
+        $documento->Snippet = $request->Snippet;
+        $documento->Descripcion = $request->Descripcion;
+        $documento->save();
+
+        alert()->success('El archivo hay sido agregado correctamente');
+        return back();
+    }
+
+    public function del_documento(Request $request)
+    {
+        $documento = SnippetDocumento::findOrFail($request->Id);
+
+        if ($documento->Url) {
+            try {
+                unlink(public_path("docs/") . $documento->Url);
+            } catch (Exception $e) {
+                //return $e->getMessage();
+            }
+        }
+        $documento->delete();
+        alert()->success('El archivo hay sido eliminado correctamente');
+        return back();
+
+    }
+    
+    
+
 
     public function guardarPagina(Request $request,$id )
     {
@@ -53,7 +92,8 @@ class EditorController extends Controller
     public function edit($id)
     {
         $snippet = Snippet::findOrFail($id);
-        return view('editor.edit',compact('snippet'));
+        $documentos = SnippetDocumento::where('Snippet','=',$id)->get();
+        return view('editor.edit',compact('snippet','documentos'));
     }
 
     public function update(Request $request, $id)

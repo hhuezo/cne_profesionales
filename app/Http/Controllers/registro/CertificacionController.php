@@ -11,13 +11,14 @@ use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\configuracion\ConfiguracionAlcance;
 use App\Models\registro\Certificacion;
-use App\Models\registro\CertificacionDetalle;
+use App\Models\configuracion\ConfiguracionSmtp;
 use App\Models\registro\Proyecto;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
 
 class CertificacionController extends Controller
 {
@@ -118,7 +119,16 @@ class CertificacionController extends Controller
 
         $content = "La certificación ha sido enviada para la aprobación de parte de los administradores";
         $recipientEmail = auth()->user()->email;
-        //$recipientEmail = "hulexgsa@gmail.com";
+
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
+
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]);    
         Mail::to($recipientEmail)->send(new VerificacionMail("Certificación enviada", $content));
 
         alert()->success('El registro ha sido enviado correctamente');
@@ -135,6 +145,17 @@ class CertificacionController extends Controller
 
         $content = "Una certificación ha sido asignada favor consultar en los registros";
         $recipientEmail = $user->email;
+
+
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]);  
+
+
         Mail::to($recipientEmail)->send(new VerificacionMail("Certificación asignada", $content));
 
         alert()->success('El registro ha sido asignado correctamente');
@@ -167,6 +188,17 @@ class CertificacionController extends Controller
 
         $content = $request->Observacion;
         $recipientEmail = $certificacion->perfil->usuario->email;
+
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]);  
+
+
+
         Mail::to($recipientEmail)->send(new VerificacionMail("Certificación observada", $content));
 
         $certificacion->Estado = 3;
@@ -180,6 +212,19 @@ class CertificacionController extends Controller
 
         $content = "Se le informa que su certificación ha sido aprobada";
         $recipientEmail = $certificacion->perfil->usuario->email;
+
+
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]);  
+
+
+
+
         Mail::to($recipientEmail)->send(new VerificacionMail("Certificación aprobada", $content));
 
         $certificacion->Estado = 4;

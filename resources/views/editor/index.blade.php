@@ -45,8 +45,7 @@
                                                             width="40"></iconify-icon>
                                                     </a>
                                                 </td>
-                                            </tr>
-                                       
+                                            </tr>                                           
                                         @endforeach
                                     @endif
 

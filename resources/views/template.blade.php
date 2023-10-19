@@ -202,14 +202,14 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown"><a href="#">Directorio especialista certificados<i
+                            {{-- <li class="dropdown"><a href="#">Directorio especialista certificados<i
                                         class="bi bi-chevron-right"></i></a>
                                 <ul>
                                     <li><a href="{{ url('publico/menu_usuario_consulta') }}">Registro de usuario de
                                             consulta</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="dropdown"><a href="#">Documentos técnicos<i class="bi bi-chevron-right"></i></a>
@@ -217,7 +217,7 @@
                             <li class="dropdown"><a href="">Marco normatico<i
                                         class="bi bi-chevron-right"></i></a>
                                 <ul>
-                                    <li><a href="">Leyes</a></li>
+                                    <li><a href="{{ url('publico/menu_leyes') }}">Leyes</a></li>
                                     <li><a href="">Reglamentos ténicos</a></li>
                                 </ul>
                             </li>

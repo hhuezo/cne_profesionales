@@ -5,6 +5,7 @@ namespace App\Http\Controllers\publico;
 use App\Http\Controllers\Controller;
 use App\Models\catalogo\Pais;
 use App\Models\editor\Snippet;
+use App\Models\editor\SnippetDocumento;
 use Carbon\Carbon;
 
 class MenuController extends Controller
@@ -58,15 +59,13 @@ class MenuController extends Controller
         return view('inicio.requisito_proyectos');
     }
 
-    public function menu_usuario_consulta()
-    {
-        //11
-        return view('inicio.usuario_consulta');
-    }
+    
 
     public function menu_leyes()
     {
         //11
-        return view('inicio.leyes');
+        $snippet = Snippet::findOrFail(11);
+        $documentos = SnippetDocumento::where('Snippet','=',11)->get();
+        return view('inicio.leyes',compact('snippet','documentos'));
     }
 }
