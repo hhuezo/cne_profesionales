@@ -23,8 +23,8 @@ class BusquedaController extends Controller
         $profesiones = Profesion::get();
         $fechaHoraActual = Carbon::now();
 
-
-        return view('inicio.busqueda', compact( 'profesiones', 'entidades', 'sectores', 'profesiones'));
+        return view('inicio.busqueda', compact( 'profesiones',
+         'entidades', 'sectores', 'profesiones'));
     }
 
 
@@ -89,7 +89,8 @@ class BusquedaController extends Controller
         $certificacion = Certificacion::findOrFail($id);
         $proyectos = Proyecto::where('Perfil','=',$certificacion->Perfil)->get();
         $documentos = Documento::where('Perfil','=',$certificacion->Perfil)->get();
-        return view('inicio.busqueda_show', compact('certificacion','proyectos','documentos'));
+        return view('inicio.busqueda_show', compact('certificacion',
+        'proyectos','documentos'));
     }
 
     public function edit($id)

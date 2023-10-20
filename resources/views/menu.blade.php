@@ -134,6 +134,10 @@
                                     <a href="{{ url('configuracion/correo') }}">Correo</a>
                                 </li>
 
+                                <li>
+                                    <a href="{{ url('publico/menu') }}">Menús</a>
+                                </li>
+
                             </ul>
                         </li>
                     @endcan

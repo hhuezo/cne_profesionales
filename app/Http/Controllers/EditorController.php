@@ -26,6 +26,12 @@ class EditorController extends Controller
     {
         $snippet = new Snippet();
         $snippet->nombre = $request->nombre;
+        $snippet->html_content = '<section id="services" class="services">
+        <div data-aos="fade-up" class="container"><div class="section-title"><h2 id="i25l"></h2><h3 id="in3d">
+        <span id="iqso" draggable="true" data-highlightable="1">'.$request->nombre.'</span></h3>        
+        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
+        vitae autem.</p></div></div></section>';
+        $snippet->css_content = '* { box-sizing: border-box; } body {margin: 0;}';
         $snippet->save();
 
         alert()->success('El registro ha sido creado correctamente');

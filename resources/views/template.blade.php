@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>BizLand Bootstrap Template - Index</title>
+    <title>DGEHM</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="{{ asset('template/img/favicon.png') }} " rel="icon">
-    <link href="{{ asset('template/img/apple-touch-icon.png') }} " rel="apple-touch-icon">
+    <link href="{{ asset('img/el_salvador.png') }} " rel="icon">
+    <link href="{{ asset('img/el_salvador.png') }} " rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link
@@ -57,6 +57,12 @@
         .aos-init {
             margin-top: -70px;
         }
+        
+        .container {
+            max-width: 960px;
+        }
+
+      
     </style>
 
     <?php
@@ -80,21 +86,21 @@
                 <i><a href="#">{{ $fecha }}</a></i>
 
                 @if (auth()->check())
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit">
-                        <i class="d-flex align-items-center ms-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-person-rolodex" viewBox="0 0 16 16">
-                                <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-                                <path
-                                    d="M1 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h.5a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h.5a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6.707L6 1.293A1 1 0 0 0 5.293 1H1Zm0 1h4.293L6 2.707A1 1 0 0 0 6.707 3H15v10h-.085a1.5 1.5 0 0 0-2.4-.63C11.885 11.223 10.554 10 8 10c-2.555 0-3.886 1.224-4.514 2.37a1.5 1.5 0 0 0-2.4.63H1V2Z" />
-                            </svg>
-                            &nbsp &nbsp
-                        Cerrar sesión</button>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">
+                            <i class="d-flex align-items-center ms-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-person-rolodex" viewBox="0 0 16 16">
+                                    <path d="M8 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                    <path
+                                        d="M1 1a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h.5a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5.5.5 0 0 1 1 0 .5.5 0 0 0 .5.5h.5a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H6.707L6 1.293A1 1 0 0 0 5.293 1H1Zm0 1h4.293L6 2.707A1 1 0 0 0 6.707 3H15v10h-.085a1.5 1.5 0 0 0-2.4-.63C11.885 11.223 10.554 10 8 10c-2.555 0-3.886 1.224-4.514 2.37a1.5 1.5 0 0 0-2.4.63H1V2Z" />
+                                </svg>
+                                &nbsp &nbsp
+                                Cerrar sesión</button>
                         </i>
-                </form>
-                    @else
+                    </form>
+                @else
                     <a href="{{ url('login') }}">
                         <i class="d-flex align-items-center ms-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -146,137 +152,7 @@
     <!-- ======= Header ======= -->
     <header id="header" class="d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
-
-            {{-- <h1 class="logo">&nbsp; </h1> --}}
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
-
-
-
-
-            <nav id="navbar" class="navbar">
-                <ul class="text-center">
-                    <li class="dropdown"><a href="{{ url('/') }}"><span>Inicio</span> <i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown"><a href="#"><span>Proceso de certificación</span> <i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="{{ url('publico/menu_flujo') }}">Flujo del proceso o pasos</a></li>
-                                    <li><a href="{{ url('publico/menu_requisitos') }}">Requisito para la
-                                            certificación</a></li>
-                                    <li><a href="{{ url('publico/menu_perfil') }}">Perfil del profesional</a></li>
-                                    <li><a href="{{ url('publico/menu_contenido_formativo') }}">Contenido
-                                            formativo</a>
-                                    </li>
-                                    <li><a href="{{ url('publico/menu_unidades_formativas') }}">Unidades
-                                            formativas</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Organismos certificadores <i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">n1</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a class="scrollto" href="#">Registros<i
-                                class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li class="dropdown"><a href="#"><span>Instrucciones para el registro de
-                                        certif.</span> <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li>
-                                    <li><a href="{{ url('publico/menu_flujo_proceso') }}">Flujo del proceso o
-                                            pasos</a>
-                                    </li>
-                                    <li>
-                                    <li><a href="{{ url('publico/menu_requisito_registro') }}">Requisitos para el
-                                            registro</a>
-                                    </li>
-                                    <li>
-                                    <li><a href="{{ url('publico/menu_requisito_proyectos') }}">Registro de
-                                            proyectos</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            {{-- <li class="dropdown"><a href="#">Directorio especialista certificados<i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="{{ url('publico/menu_usuario_consulta') }}">Registro de usuario de
-                                            consulta</a>
-                                    </li>
-                                </ul>
-                            </li> --}}
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#">Documentos técnicos<i class="bi bi-chevron-right"></i></a>
-                        <ul>
-                            <li class="dropdown"><a href="">Marco normatico<i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="{{ url('publico/menu_leyes') }}">Leyes</a></li>
-                                    <li><a href="">Reglamentos ténicos</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="">PRESENTACIONES<i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="">n1</a></li>
-                                    <li><a href="">n2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="">Manuales<i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="">n1</a></li>
-                                    <li><a href="">n2</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="">Encuestas de consumo e.<i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="">Sectorial</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="">Estudios <i class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="">Alumbrado público</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown"><a href="#"><span>Contactenos</span> <i
-                                class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li class="dropdown"><a href="#"><span>Consulta de procesos</span> <i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Ingresar campos</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#"><span>Preguntas frecuente</span> <i
-                                        class="bi bi-chevron-right"></i></a>
-                                <ul>
-                                    <li><a href="#">Ingresar campos</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown"><a href="{{ url('publico/busqueda') }}"><span>Personas certificadas</span>
-                        </a>
-
-                    </li>
-                    <li class="dropdown"><a href="{{ url('publico/menu_noticias') }}"><span>Noticias</span>
-                    </a>
-
-                </li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav><!-- .navbar -->
-
+            <x-menu />
         </div>
     </header><!-- End Header -->
 
@@ -344,7 +220,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 footer-contact">
-                      
+
                         <a href="https://maps.app.goo.gl/mnZjopCXPKfLNTYC9" class="text-white">
                             <p>
                                 Dirección General De Energía, Hidrocarburos Y Minas<br>
@@ -359,7 +235,7 @@
 
                     <div class="col-lg-4 col-md-6 footer-links" align="center">
                         <img src="{{ asset('img/Logo_Gobierno.svg') }}" class="img-fluid"
-                        alt=""><br><br><br>
+                            alt=""><br><br><br>
                         {{-- <h4>Enlaces Utiles</h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="#">Documentos</a></li>
@@ -369,11 +245,13 @@
                         </ul> --}}
                     </div>
 
-                    <div class="col-lg-4 col-md-6 footer-links text-white"  align="center">
+                    <div class="col-lg-4 col-md-6 footer-links text-white" align="center">
                         <p>Únete a nuestra comunidad</p>
                         <div class="social-links mt-3">
-                            <a href="https://www.facebook.com/DGEHMSV" class="facebook"><i class="bx bxl-facebook"></i></a>
-                            <a href="https://www.instagram.com/dgehm_sv" class="instagram"><i class="bx bxl-instagram"></i></a>
+                            <a href="https://www.facebook.com/DGEHMSV" class="facebook"><i
+                                    class="bx bxl-facebook"></i></a>
+                            <a href="https://www.instagram.com/dgehm_sv" class="instagram"><i
+                                    class="bx bxl-instagram"></i></a>
                             <a href="https://twitter.com/DGEHMSV" class="twitter"><i class="bx bxl-twitter"></i></a>
                             {{-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
                             <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}

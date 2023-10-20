@@ -104,18 +104,13 @@ Route::get('seguridad/usuarios/verify/{token}', [UserController::class,'verify']
 
 
 //acceso publico
-Route::get('publico/menu_flujo', [MenuController::class, 'menu_flujo']);
-Route::get('publico/menu_requisitos', [MenuController::class, 'menu_requisitos']);
-Route::get('publico/menu_perfil', [MenuController::class, 'menu_perfil']);
-Route::get('publico/menu_contenido_formativo', [MenuController::class, 'menu_contenido_formativo']);
-Route::get('publico/menu_unidades_formativas', [MenuController::class, 'menu_unidades_formativas']);
-Route::get('publico/menu_leyes', [MenuController::class, 'menu_leyes']);
-Route::get('publico/menu_noticias', [MenuController::class, 'menu_noticias']);
+Route::post('publico/sub_menu', [MenuController::class, 'store_sub_menu']);
+Route::resource('publico/menu', MenuController::class);
+Route::get('publico/pagina/{id}', [MenuController::class, 'page_menu']);
+//Route::get('publico/menu', [MenuController::class, 'menu']);
+//Route::post('publico/menu', [MenuController::class, 'store']);
 
-Route::get('publico/menu_flujo_proceso', [MenuController::class, 'menu_flujo_proceso']);
-Route::get('publico/menu_requisito_registro', [MenuController::class, 'menu_requisito_registro']);
-Route::get('publico/menu_requisito_proyectos', [MenuController::class, 'menu_requisito_proyectos']);
-Route::get('publico/menu_usuario_consulta', [MenuController::class, 'menu_usuario_consulta']);
+
 
 Route::resource('publico/directorio', DirectorioController::class);
 Route::get('publico/busqueda/resultado', [BusquedaController::class,'busqueda']);

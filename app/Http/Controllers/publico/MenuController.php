@@ -3,80 +3,91 @@
 namespace App\Http\Controllers\publico;
 
 use App\Http\Controllers\Controller;
-use App\Models\catalogo\Pais;
+use App\Models\configuracion\Menu;
 use App\Models\editor\Snippet;
 use App\Models\editor\SnippetDocumento;
 use App\Models\editor\SnippetNoticia;
-use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
-    //menu_inicio
-    public function menu_flujo()
+    public function index()
     {
-        $snippet = Snippet::findOrFail(3);
-        return view('inicio.flujo',compact('snippet'));
+        $menus = Menu::where('Antesesora','=',null)->get();
+        $snippets = Snippet::where('Id','>',2)->get();
+        return view('catalogo.menu.index',compact('menus','snippets'));
     }
 
-    public function menu_requisitos()
-    {
-        $snippet = Snippet::findOrFail(4);
-        return view('inicio.requisitos',compact('snippet'));
-    }
+     //menu_inicio
+     public function store(Request $request)
+     {
+         $menu = new Menu();
+         $menu->Descripcion = $request->Descripcion;
+         if($request->Snippet)
+         {
+            $menu->Snippet = $request->Snippet;
+         }
+         $menu->save();
+         alert()->success('El registro ha sido creado correctamente');
+         return back();         
+     }
 
-    public function menu_perfil()
-    {
-        $snippet = Snippet::findOrFail(5);
-        return view('inicio.requisitos',compact('snippet'));
-    }
+     public function store_sub_menu(Request $request)
+     {
+         $menu = new Menu();
+         $menu->Descripcion = $request->Descripcion;
+         $menu->Antesesora = $request->Antesesora;
+         if($request->Snippet)
+         {
+            $menu->Snippet = $request->Snippet;
+         }
+         $menu->save();
+         alert()->success('El registro ha sido creado correctamente');
+         return back();         
+     }
 
-    public function menu_contenido_formativo()
-    {
-        $snippet = Snippet::findOrFail(6);
-        return view('inicio.contenido_formativo',compact('snippet'));
-    }
+     
 
-    public function menu_unidades_formativas()
-    {
-        $snippet = Snippet::findOrFail(7);
-        return view('inicio.unidades_formativas',compact('snippet'));
-    }
+     public function edit($id)
+     {
+        $menu = Menu::findOrFail($id);
+        $sub_menus = Menu::where('Antesesora','=',$id)->get();
+        $snippets = Snippet::where('Id','>',2)->get();
+        return view('catalogo.menu.edit',compact('menu','snippets','sub_menus'));
+     }
 
-    public function menu_flujo_proceso()
-    {
-        //8
-        return view('inicio.flujo_proceso');
-    }
 
-    public function menu_requisito_registro()
-    {
-        //9
-        return view('inicio.requisito_registro');
-    }
+     public function update(Request $request,$id)
+     {
+        $menu = Menu::findOrFail($id);
+        $menu->Descripcion = $request->Descripcion;
+        if($request->Snippet)
+        {
+           $menu->Snippet = $request->Snippet;
+        }
+        $menu->update();
+        alert()->success('El registro ha sido modificado correctamente');
+        return back();  
+     }
 
-    public function menu_requisito_proyectos()
+
+     public function destroy($id)
+     {
+         $menu = Menu::findOrFail($id);
+         $menu->delete();
+         alert()->info('El registro ha sido eliminado correctamente');
+         return back();
+     }
+
+    public function page_menu($id)
     {
-        //10
-        return view('inicio.requisito_proyectos');
+        $snippet = Snippet::findOrFail($id);
+        $documentos = SnippetDocumento::where('Snippet','=',$id)->get();
+        $noticias = SnippetNoticia::where('Snippet','=',$id)->get();
+        return view('inicio.index',compact('snippet','documentos',
+        'noticias'));
+
     }
 
     
-
-    public function menu_leyes()
-    {
-        //11
-        $snippet = Snippet::findOrFail(11);
-        $documentos = SnippetDocumento::where('Snippet','=',11)->get();
-        return view('inicio.leyes',compact('snippet','documentos'));
-    }
-
-
-    public function menu_noticias()
-    {
-        //11
-        $snippet = Snippet::findOrFail(13);
-        $documentos = SnippetDocumento::where('Snippet','=',13)->get();
-        $noticias = SnippetNoticia::where('Snippet','=',13)->get();
-        return view('inicio.noticias',compact('snippet','documentos','noticias'));
-    }
 }
