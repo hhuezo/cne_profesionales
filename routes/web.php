@@ -11,7 +11,6 @@ use App\Http\Controllers\EditorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\publico\DirectorioController;
 use App\Http\Controllers\publico\MenuController;
 use App\Http\Controllers\registro\CertificacionController;
 use App\Http\Controllers\registro\DocumentoController;
@@ -41,7 +40,6 @@ Route::get('/', function () {
 
 Route::get('/', [WelcomeController::class, 'index']);
 Route::get('select_pais/{id}', [WelcomeController::class, 'show']);
-//Route::get('login', [WelcomeController::class, 'show']);
 
 Route::get('login', [Auth\LoginController::class, 'showLoginForm']);
 Route::post('login', [Auth\Logincontroller::class, 'login']);
@@ -107,12 +105,9 @@ Route::get('seguridad/usuarios/verify/{token}', [UserController::class,'verify']
 Route::post('publico/sub_menu', [MenuController::class, 'store_sub_menu']);
 Route::resource('publico/menu', MenuController::class);
 Route::get('publico/pagina/{id}', [MenuController::class, 'page_menu']);
-//Route::get('publico/menu', [MenuController::class, 'menu']);
-//Route::post('publico/menu', [MenuController::class, 'store']);
 
 
 
-Route::resource('publico/directorio', DirectorioController::class);
 Route::get('publico/busqueda/resultado', [BusquedaController::class,'busqueda']);
 Route::resource('publico/busqueda', BusquedaController::class);
 
