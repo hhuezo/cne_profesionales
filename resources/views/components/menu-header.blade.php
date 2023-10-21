@@ -57,9 +57,9 @@
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
                 @can('edit menu')
-                    <a href="#" class="twitter" onclick="mostrarModalTexto(5,'{{ $configuracion->Facebook }}')"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="facebook" onclick="mostrarModalTexto(6,'{{ $configuracion->Instagram }}')"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="instagram" onclick="mostrarModalTexto(7,'{{ $configuracion->Twitter }}')"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="twitter" onclick="mostrarModalTexto(5,'{{ $configuracion->Facebook }}')"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="facebook" onclick="mostrarModalTexto(6,'{{ $configuracion->Instagram }}')"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="instagram" onclick="mostrarModalTexto(7,'{{ $configuracion->Twitter }}')"><i class="bi bi-twitter"></i></a>
                 @endcan
                 @if (session('array_bandera'))
                     @for ($i = 0; $i < count(session('array_bandera')); $i++)
