@@ -29,13 +29,6 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('template/css/style.css') }} " rel="stylesheet">
 
-    <!-- =======================================================
-  * Template Name: BizLand
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 
     <style>
         .page {
@@ -57,12 +50,10 @@
         .aos-init {
             margin-top: -70px;
         }
-        
+
         .container {
             max-width: 960px;
         }
-
-      
     </style>
 
     <?php
@@ -139,22 +130,10 @@
         </div>
     </section>
 
-    <header id="header" class="d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-between py-4">
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="#" class="logo logos"><img src="{{ asset('img/Para_web.png') }}" alt=""></a>
-            <a href="#" class="logo logos"><img src="{{ asset('img/image15.jpeg') }}" alt=""></a>
-            <a href="#" class="logo logos"><img src="{{ asset('img/image16.jpeg') }}" alt=""></a>
-            <a href="#" class="logo logos"><img src="{{ asset('img/image17.png') }}" alt=""></a>
-        </div>
-    </header><!-- End Header -->
+    <x-menu-header />
 
-    <!-- ======= Header ======= -->
-    <header id="header" class="d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-between">
-            <x-menu />
-        </div>
-    </header><!-- End Header -->
+    <x-menu />
+
 
 
 

@@ -115,20 +115,6 @@ class PerfilController extends Controller
 
     public function update(Request $request, $id)
     {
-        // $messages = [
-        //     'name.required' => 'El nombre es requerido',
-        //     'last_name.required' => 'El apellido es requerido',
-        // ];
-
-        // $request->validate([
-        //     'name' => 'required',
-        //     'last_name' => 'required',
-        //     'last_name' => 'required',
-        // ], $messages);
-
-
-
-
         $perfil = Perfil::findOrFail($id);
         $perfil->NumeroDocumento = $request->NumeroDocumento;
         $perfil->TipoDocumento = $request->TipoDocumento;
@@ -164,10 +150,6 @@ class PerfilController extends Controller
 
         $perfil->update();
 
-        // $user = User::findOrFail($perfil->Usuario);
-        // $user->name = $request->name;
-        // $user->last_name = $request->last_name;
-        // $user->update();
         alert()->success('La información ha sido actualizada correctamente');
         return back();
     }

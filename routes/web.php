@@ -11,6 +11,7 @@ use App\Http\Controllers\EditorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\publico\HeaderController;
 use App\Http\Controllers\publico\MenuController;
 use App\Http\Controllers\registro\CertificacionController;
 use App\Http\Controllers\registro\DocumentoController;
@@ -57,11 +58,7 @@ Route::get('/proyectos', function () {
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
 Route::get('/test', [HomeController::class, 'test'])->name('test');
-
-
-
 
 Route::resource('seguridad/permission', PermissionController::class);
 Route::post('seguridad/permission/update_permission', [PermissionController::class, 'update_permission']);
@@ -108,6 +105,7 @@ Route::get('publico/pagina/{id}', [MenuController::class, 'page_menu']);
 
 
 
+
 Route::get('publico/busqueda/resultado', [BusquedaController::class,'busqueda']);
 Route::resource('publico/busqueda', BusquedaController::class);
 
@@ -140,6 +138,10 @@ Route::get('configuracion/correo', [ConfiguracionController::class, 'correo']);
 Route::post('configuracion/correo', [ConfiguracionController::class, 'correo_update']);
 
 
+Route::post('configuracion/header_image', [HeaderController::class, 'update_image']);
+Route::post('configuracion/text', [HeaderController::class, 'update_text']);
+
+
 //editor de paginas
 Route::get('editor/editor_grapesJS', [GrapesJSController::class, 'editor_grapesJS']);
 Route::post('editor/guardarPagina', [GrapesJSController::class, 'guardarPagina']);
@@ -159,6 +161,9 @@ Route::resource('catalogo/pais', PaisController::class);
 
 Route::resource('catalogo/sector', SectorController::class);
 Route::resource('catalogo/profesion', ProfesionController::class);
+
+
+
 
 Route::get('/page-test', function () {
     return view('test');
