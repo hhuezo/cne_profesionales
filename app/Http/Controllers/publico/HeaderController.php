@@ -111,6 +111,46 @@ class HeaderController extends Controller
         alert()->info('El logo ha sido actualizado correctamente');
         return back();
     }
+    public function update_text(Request $request)
+    {
 
+        $configuracion = HeaderFooter::first();
+        if($request->Opcion == 1)
+        {
+            $configuracion->Institucion = $request->Texto;
+        }
+        else if($request->Opcion == 2)
+        {
+            $configuracion->Direccion = $request->Texto;
+        }
+
+        else if($request->Opcion == 3)
+        {
+            $configuracion->Telefono = $request->Texto;
+        }
+
+        else if($request->Opcion == 4)
+        {
+            $configuracion->Correo = $request->Texto;
+        }
+        else if($request->Opcion == 5)
+        {
+            $configuracion->Facebook = $request->Texto;
+        }
+
+        else if($request->Opcion == 6)
+        {
+            $configuracion->Instagram = $request->Texto;
+        }
+        else if($request->Opcion == 7)
+        {
+            $configuracion->Twitter = $request->Texto;
+        }
+
+
+        $configuracion->update();
+        alert()->info('El texto ha sido actualizado correctamente');
+        return back();
+    }
     
 }

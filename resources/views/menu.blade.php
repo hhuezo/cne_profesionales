@@ -51,7 +51,7 @@
             <div id="bodyOverlay"
                 class="w-screen h-screen fixed top-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm z-10 hidden"></div>
             <div class="logo-segment">
-                <a class="flex items-center" href="index.html">
+                <a class="flex items-center" href="{{url('/')}}">
                     <img src="{{ asset('assets/images/logo/logo-c.svg') }}" class="black_logo" alt="logo">
                     <img src="{{ asset('assets/images/logo/logo-c-white.svg') }}" class="white_logo" alt="logo">
                     <span
