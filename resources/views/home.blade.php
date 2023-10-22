@@ -1,8 +1,6 @@
 @extends('menu')
 @section('contenido')
-    @php
-        //dd(auth()->user()->name,session('perfil')->Dui,auth()->user(),session('perfil'));
-    @endphp
+
     @if (isset(session('perfil')->NivelVerificacion))
         @if (session('perfil')->NivelVerificacion == 0)
             <div class="card ">
@@ -14,7 +12,8 @@
                     </header>
                     <div class="card-text h-full">
                         <p style="text-align: justify" class="text-sm font-Inter text-slate-600 dark:text-slate-300">
-                            Queremos informarte que es necesario que verifiques tu perfil para poder continuar con el proceso. Pronto recibirás un correo de verificación en tu bandeja de entrada.
+                            Queremos informarte que es necesario que verifiques tu perfil para poder continuar con el
+                            proceso. Pronto recibirás un correo de verificación en tu bandeja de entrada.
                         </p>
                         <br>
                         <p style="text-align: justify" class="text-sm font-Inter text-slate-600 dark:text-slate-300">
@@ -88,7 +87,9 @@
                                                 <select class="form-control" name="Profesion" id="Profesion">
                                                     <option value="0">Seleccione</option>
                                                     @foreach ($profesiones as $obj)
-                                                        <option value="{{ $obj->Id }}"  {{ $usuario->perfil->Profesion == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
+                                                        <option value="{{ $obj->Id }}"
+                                                            {{ $usuario->perfil->Profesion == $obj->Id ? 'selected' : '' }}>
+                                                            {{ $obj->Nombre }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -98,11 +99,6 @@
                                                 <input type="text" name="OtraProfesion" id="OtraProfesion"
                                                     value="{{ $usuario->perfil->OtraProfesion }}" class="form-control">
                                             </div>
-{{--
-                                            <div class="input-area relative">
-                                                <label for="Pais" class="form-label">Pais</label>
-                                                <input type="text" value="{{$pais->Nombre}}" class="form-control" disabled>
-                                            </div> --}}
                                             <div class="input-area relative">
                                                 <label for="Direccion" class="form-label">Dirección</label>
                                                 <input type="text" name="Direccion" id="Direccion"
@@ -151,7 +147,7 @@
                                                 <select name="Distrito" id="Distrito" class="form-control">
 
                                                     @foreach ($distritos_corregimientos as $obj)
-                                                    @if ($usuario->perfil->DistritoCorregimiento == $obj->Id)
+                                                        @if ($usuario->perfil->DistritoCorregimiento == $obj->Id)
                                                             <option class="dark:bg-slate-700" value="{{ $obj->Id }}"
                                                                 selected>{{ $obj->Nombre }}</option>
                                                         @else
@@ -181,63 +177,190 @@
                     </div>
                 </div>
         @endif
+
+
+
+        <!-- scripts -->
+        <script src="assets/js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                validar();
+                $("#Departamento").change(function() {
+                    // var para la Departamento
+                    var Departamento = $(this).val();
+
+                    //funcionpara las municipios
+                    $.get("{{ url('seguridad/perfil/get_municipio') }}" + '/' + Departamento, function(data) {
+                        //esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
+                        console.log(data);
+                        var _select = '<option value="">Seleccione</option>'
+                        for (var i = 0; i < data.length; i++)
+                            _select += '<option value="' + data[i].Id + '">' + data[i].Nombre +
+                            '</option>';
+
+                        $("#Municipio").html(_select);
+
+                    });
+
+
+                });
+
+
+                //combo para municipios
+                $("#Municipio").change(function() {
+                    var Municipio = $(this).val();
+                    $.get("{{ url('seguridad/perfil/get_distrito') }}" + '/' + Municipio, function(data) {
+                        //console.log(data);
+                        var _select = ''
+                        for (var i = 0; i < data.length; i++)
+                            _select += '<option value="' + data[i].Id + '"  >' + data[i].Nombre +
+                            '</option>';
+
+                        $("#Distrito").html(_select);
+                    });
+                });
+
+                $("#Profesion").change(function() {
+                    validar();
+                });
+
+            });
+
+            function validar() {
+                if ($("#Profesion").val() == 1) {
+                    $("#otra_profesion").css("display", "block");
+                    $("#OtraProfesion").attr("required", true);
+                } else {
+                    $("#otra_profesion").css("display", "none");
+                    $("#OtraProfesion").attr("required", false);
+                }
+            };
+        </script>
     @endif
 
 
-    <!-- scripts -->
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-            validar();
-            $("#Departamento").change(function() {
-                // var para la Departamento
-                var Departamento = $(this).val();
-
-                //funcionpara las municipios
-                $.get("{{ url('seguridad/perfil/get_municipio') }}" + '/' + Departamento, function(data) {
-                    //esta el la peticion get, la cual se divide en tres partes. ruta,variables y funcion
-                    console.log(data);
-                    var _select = '<option value="">Seleccione</option>'
-                    for (var i = 0; i < data.length; i++)
-                        _select += '<option value="' + data[i].Id + '">' + data[i].Nombre +
-                        '</option>';
-
-                    $("#Municipio").html(_select);
-
-                });
 
 
+    @can('dashboard')
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <div class="grid grid-cols-2 gap-6">
+
+            <div class="card">
+                <div class="card-body flex flex-col p-6">
+                    <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                        <div class="flex-1">
+                            <div class="card-title text-slate-900 dark:text-white">Top de busqueda por profesiones</div>
+                        </div>
+                    </header>
+                    <div class="card-text h-full ">
+                        <canvas id="profesionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body flex flex-col p-6">
+                    <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                        <div class="flex-1">
+                            <div class="card-title text-slate-900 dark:text-white">Top de busqueda por entidad certificadora
+                            </div>
+                        </div>
+                    </header>
+                    <div class="card-text h-full">
+                        <canvas id="entidadChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body flex flex-col p-6">
+                    <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                        <div class="flex-1">
+                            <div class="card-title text-slate-900 dark:text-white">Top de busqueda por perfil
+                            </div>
+                        </div>
+                    </header>
+                    <div class="card-text h-full">
+                        <canvas id="perfilesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <script>
+            //chart profesiones
+            const ctx = document.getElementById('profesionChart');
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: @json($profesionesArray),
+                    datasets: [{
+                        label: '',
+                        data: @json($profesionesConteoArray),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
             });
 
 
-            //combo para municipios
-            $("#Municipio").change(function() {
-                var Municipio = $(this).val();
-                $.get("{{ url('seguridad/perfil/get_distrito') }}" + '/' + Municipio, function(data) {
-                    //console.log(data);
-                    var _select = ''
-                    for (var i = 0; i < data.length; i++)
-                        _select += '<option value="' + data[i].Id + '"  >' + data[i].Nombre +
-                        '</option>';
+            //chart profesiones
+            const ctx2 = document.getElementById('entidadChart');
 
-                    $("#Distrito").html(_select);
-                });
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: @json($entidadesArray),
+                    datasets: [{
+                        label: '',
+                        data: @json($entidadesConteoArray),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
             });
 
-            $("#Profesion").change(function() {
-                validar();
+
+            //chart profesiones
+            const ctx3 = document.getElementById('perfilesChart');
+
+            new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: @json($perfilesArray),
+                    datasets: [{
+                        label: '',
+                        data: @json($perfilesConteoArray),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
             });
+        </script>
+    @endcan
 
-        });
 
-        function validar (){
-            if ($("#Profesion").val() == 1) {
-                $("#otra_profesion").css("display", "block");
-                $("#OtraProfesion").attr("required", true);
-            } else {
-                $("#otra_profesion").css("display", "none");
-                $("#OtraProfesion").attr("required", false);
-            }
-        };
-    </script>
+
 @endsection

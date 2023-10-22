@@ -51,7 +51,7 @@
             <div id="bodyOverlay"
                 class="w-screen h-screen fixed top-0 bg-slate-900 bg-opacity-50 backdrop-blur-sm z-10 hidden"></div>
             <div class="logo-segment">
-                <a class="flex items-center" href="{{url('/')}}">
+                <a class="flex items-center" href="{{ url('/') }}">
                     <img src="{{ asset('assets/images/logo/logo-c.svg') }}" class="black_logo" alt="logo">
                     <img src="{{ asset('assets/images/logo/logo-c-white.svg') }}" class="white_logo" alt="logo">
                     <span
@@ -77,6 +77,15 @@
                 id="sidebar_menus">
 
                 <ul class="sidebar-menu">
+                    <li>
+                        <a href="{{ url('home') }}" class="navItem">
+                            <span class="flex items-center">
+
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:home"></iconify-icon>
+                                <span>Home</span>
+                            </span>
+                        </a>
+                    </li>
                     @can('edit users')
                         <li class="">
                             <a href="#" class="navItem">
@@ -163,11 +172,11 @@
                             <ul class="sidebar-submenu">
                                 <li>
                                     <a href="{{ url('catalogo/sector') }}">Sector</a>
-                                </li> 
+                                </li>
 
                                 <li>
                                     <a href="{{ url('catalogo/profesion') }}">Profesion</a>
-                                </li> 
+                                </li>
 
                                 <li>
                                     <a href="{{ url('catalogo/pais') }}">Paises</a>
@@ -410,7 +419,7 @@
                                         class="leading-none bg-transparent relative text-xl top-[2px] text-slate-900 dark:text-white"
                                         icon="heroicons-outline:menu-alt-3"></iconify-icon>
                                 </button>
-                               
+
 
                             </div>
                             <!-- end vertcial -->
@@ -1625,9 +1634,9 @@
                             <div
                                 class="nav-tools flex items-center lg:space-x-5 space-x-3 rtl:space-x-reverse leading-0">
 
-                              
 
-                               
+
+
 
                                 <!-- END: Notification Dropdown -->
 
