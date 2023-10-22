@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\catalogo\Documento;
 use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\Perfil;
 use App\Models\catalogo\Profesion;
 use App\Models\catalogo\Sector;
+use App\Models\registro\BusquedaHistorial;
 use App\Models\registro\Certificacion;
 use App\Models\registro\Proyecto;
 use Carbon\Carbon;
@@ -43,11 +45,29 @@ class BusquedaController extends Controller
         $sql_profesion = "";
         if ($request->Profesion) {
             $sql_profesion = " and pro.Id = $request->Profesion";
+
+            //guardando historial 
+            if($request->Profesion > 1)
+            {
+                $historial = new BusquedaHistorial();
+                $historial->Tipo = 2;
+                $historial->Profesion = $request->Profesion;
+                $historial->save();
+            }
         }
 
         $sql_entidad = "";
         if ($request->EntidadCertificadora) {
             $sql_entidad = " and e.Id = $request->EntidadCertificadora";
+
+             //guardando historial 
+             if($request->EntidadCertificadora > 1)
+             {
+                 $historial = new BusquedaHistorial();
+                 $historial->EntidadCertificadora = $request->EntidadCertificadora;
+                 $historial->Tipo = 3;
+                 $historial->save();
+             }
         }
 
         $sql = "select c.Id,CONCAT(u.name,' ',u.last_name) as Nombre, c.FechaVencimiento,pro.Nombre as Profesion, e.Nombre as Entidad,c.OtraEntidad,
@@ -87,6 +107,13 @@ class BusquedaController extends Controller
     public function show($id)
     {
         $certificacion = Certificacion::findOrFail($id);
+
+        //guardando historial
+        $historial = new BusquedaHistorial();
+        $historial->Perfil = $certificacion->Perfil;
+        $historial->Tipo = 1;
+        $historial->save();
+
         $proyectos = Proyecto::where('Perfil','=',$certificacion->Perfil)->get();
         $documentos = Documento::where('Perfil','=',$certificacion->Perfil)->get();
         return view('inicio.busqueda_show', compact('certificacion',

@@ -12,7 +12,7 @@
                 "bDestroy": true
             });
         });
-        </script>
+    </script>
 
 
     <div class="grid grid-cols-12 gap-5 mb-5">
@@ -83,143 +83,7 @@
                                 </div>
 
 
-                                <div>
-                                    <div class="grid grid-cols-12 gap-5">
-
-                                        <div class="xl:col-span-6 col-span-12 lg:col-span-6">
-                                            <div class="card-header">
-                                                <h4 class="card-title">Archivos</h4>
-                                                <div>
-                                                    <button class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-documento">Agregar</button>
-                                                </div>
-                                            </div>
-                                            <div class="card-body p-6">
-
-                                                <!-- BEGIN: Files Card -->
-
-
-                                                <ul class="divide-y divide-slate-100 dark:divide-slate-700">
-
-                                                    @foreach ($documentos as $obj)
-                                                        <li class="block py-[8px]">
-                                                            <div class="flex space-x-2 rtl:space-x-reverse">
-                                                                <div class="flex-1 flex space-x-2 rtl:space-x-reverse">
-                                                                    <div class="flex-none">
-                                                                        <div class="h-8 w-8">
-                                                                            <img src={{ asset('assets/images/icon/pdf-1.svg') }}
-                                                                                alt=""
-                                                                                class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="flex-1">
-                                                                        <span
-                                                                            class="block text-slate-600 text-sm dark:text-slate-300">
-                                                                            {{ $obj->Descripcion }}
-                                                                        </span>
-                                                                        <span
-                                                                            class="block font-normal text-xs text-slate-500 mt-1">
-
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="flex-none">
-                                                                    <a href="{{ asset('docs') }}/{{ $obj->Url }}"
-                                                                        target="blank">
-                                                                        <button type="button"
-                                                                            class="text-xs text-slate-900 dark:text-white">
-                                                                            <iconify-icon icon="mdi:eye"
-                                                                                width="40"></iconify-icon>
-                                                                        </button>
-                                                                    </a>
-                                                                </div>
-                                                                <div class="flex-none">
-                                                                    <iconify-icon data-bs-toggle="modal"
-                                                                        data-bs-target="#modal-delete-{{ $obj->Id }}"
-                                                                        icon="mdi:trash" style="color: #475569;"
-                                                                        width="40"></iconify-icon>
-                                                                </div>
-
-
-                                                            </div>
-                                                        </li>
-                                                        @include('editor.modal')
-                                                    @endforeach
-
-
-
-                                                </ul>
-                                                <!-- END: FIles Card -->
-                                            </div>
-                                        </div>
-
-
-
-
-                                        <div class="xl:col-span-6 col-span-12 lg:col-span-6">
-                                            <div class="card-header">
-                                                <h4 class="card-title">Noticias</h4>
-                                                <div>
-                                                    <button class="btn btn-dark btn-sm" data-bs-toggle="modal"
-                                                        data-bs-target="#modal-noticia">Agregar</button>
-                                                </div>
-                                            </div>
-                                            <div class="card-body p-6">
-
-                                                <!-- BEGIN: Files Card -->
-
-
-                                                <ul class="divide-y divide-slate-100 dark:divide-slate-700">
-                                                    @if ($noticias->count() > 0)
-                                                    <table id="myTable" class="display" cellspacing="0" width="100%">
-                                                        <thead>
-                                                            <tr class="td-table">
-                                                                <th style="text-align: center">Id</th>
-                                                                <th>Título</th>
-                                                                <th>Descripción</th>
-                                                                <th style="text-align: center">Opciones</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                           
-                                                                @foreach ($noticias as $obj)
-                                                                    <tr>
-                                                                        <td align="center">{{ $obj->Id }}</td>
-                                                                        <td>{{ $obj->Titulo }}</td>
-                                                                        <td>{{ $obj->Descripcion }}</td>
-                                                                        <td align="center">
-                                                                            <a href="{{ asset('docs') }}/{{ $obj->Url }}"
-                                                                                target="blank">
-                                                                                <button type="button"
-                                                                                    class="text-xs text-slate-900 dark:text-white">
-                                                                                    <iconify-icon icon="mdi:eye"
-                                                                                        width="40"></iconify-icon>
-                                                                                </button>
-                                                                            </a>
-                                                                            &nbsp;&nbsp;
-                                                                            <iconify-icon data-bs-toggle="modal"
-                                                                                data-bs-target="#modal-delete-{{ $obj->Id }}"
-                                                                                icon="mdi:trash" style="color: #475569;"
-                                                                                width="40"></iconify-icon>
-
-                                                                        </td>
-                                                                    </tr>
-                                                                    @include('editor.modal_noticia')
-                                                                @endforeach
-                                                           
-
-                                                        </tbody>
-                                                    </table>
-
-                                                    @endif
-
-
-                                                </ul>
-                                                <!-- END: FIles Card -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            
 
                             </div>
 
@@ -234,6 +98,171 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+    <div class="card">
+        <div class="card-body flex flex-col p-6">
+            <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+                <div class="flex-1">
+                    <div class="card-title text-slate-900 dark:text-white">Opciones</div>
+                </div>
+            </header>
+            <div class="card-text h-full ">
+                <div>
+                    <ul class="nav nav-tabs flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4"
+                        id="tabs-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <a href="#tabs-home"
+                                class="nav-link w-full block font-medium text-sm font-Inter leading-tight capitalize border-x-0 border-t-0 border-b border-transparent px-4 pb-2 my-2 hover:border-transparent focus:border-transparent active dark:text-slate-300"
+                                id="tabs-home-tab" data-bs-toggle="pill" data-bs-target="#tabs-home" role="tab"
+                                aria-controls="tabs-home" aria-selected="true">Archivos</a>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <a href="#tabs-profile"
+                                class="nav-link w-full block font-medium text-sm font-Inter leading-tight capitalize border-x-0 border-t-0 border-b border-transparent px-4 pb-2 my-2 hover:border-transparent focus:border-transparent dark:text-slate-300"
+                                id="tabs-profile-tab" data-bs-toggle="pill" data-bs-target="#tabs-profile"
+                                role="tab" aria-controls="tabs-profile" aria-selected="false">Noticias</a>
+                        </li>
+                       
+                    </ul>
+                    <div class="tab-content" id="tabs-tabContent">
+                        <div class="tab-pane fade show active" id="tabs-home" role="tabpanel"
+                            aria-labelledby="tabs-home-tab">
+
+                            <div class="card-header">
+                                <h4 class="card-title">Archivos</h4>
+                                <div>
+                                    <button class="btn btn-dark btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modal-documento">Agregar</button>
+                                </div>
+                            </div>
+                            <div class="card-body p-6">
+
+                                @foreach ($documentos as $obj)
+                                    <li class="block py-[8px]">
+                                        <div class="flex space-x-2 rtl:space-x-reverse">
+                                            <div class="flex-1 flex space-x-2 rtl:space-x-reverse">
+                                                <div class="flex-none">
+                                                    <div class="h-8 w-8">
+                                                        <img src={{ asset('assets/images/icon/pdf-1.svg') }}
+                                                            alt=""
+                                                            class="block w-full h-full object-cover rounded-full border hover:border-white border-transparent">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <span class="block text-slate-600 text-sm dark:text-slate-300">
+                                                        Fecha creación {{ date('d/m/Y', strtotime($obj->FechaCreacion)) }}
+                                                    </span>
+                                                    <span class="block font-normal text-xs text-slate-500 mt-1">
+
+                                                    </span>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <span class="block text-slate-600 text-sm dark:text-slate-300">
+                                                       Fecha modificación {{ date('d/m/Y', strtotime($obj->FechaModificacion)) }}
+                                                    </span>
+                                                    <span class="block font-normal text-xs text-slate-500 mt-1">
+
+                                                    </span>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <span class="block text-slate-600 text-sm dark:text-slate-300">
+                                                        {{ $obj->Descripcion }}
+                                                    </span>
+                                                    <span class="block font-normal text-xs text-slate-500 mt-1">
+
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="flex-none">
+                                                <a href="{{ asset('docs') }}/{{ $obj->Url }}" target="blank">
+                                                    <button type="button" class="text-xs text-slate-900 dark:text-white">
+                                                        <iconify-icon icon="mdi:eye" width="40"></iconify-icon>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <div class="flex-none">
+                                                <iconify-icon data-bs-toggle="modal"
+                                                    data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
+                                                    style="color: #475569;" width="40"></iconify-icon>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    @include('editor.modal')
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="tabs-profile" role="tabpanel" aria-labelledby="tabs-profile-tab">
+                            <div class="card-header">
+                                <h4 class="card-title">Noticias</h4>
+                                <div>
+                                    <button class="btn btn-dark btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#modal-noticia">Agregar</button>
+                                </div>
+                            </div>
+                            <div class="card-body p-6">
+
+                                @if ($noticias->count() > 0)
+                                <table id="myTable" class="display" cellspacing="0"
+                                    width="100%">
+                                    <thead>
+                                        <tr class="td-table">
+                                            <th style="text-align: center">Id</th>
+                                            <th style="text-align: center">Fecha creación</th>
+                                            <th style="text-align: center">Fecha modificación</th>
+                                            <th>Título</th>
+                                            <th>Descripción</th>
+                                            <th style="text-align: center">Opciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach ($noticias as $obj)
+                                            <tr>
+                                                <td align="center">{{ $obj->Id }}</td>
+                                                <td>{{ date('d/m/Y', strtotime($obj->FechaCreacion)) }}</td>
+                                                <td>{{ date('d/m/Y', strtotime($obj->FechaModificacion)) }}</td>
+                                                <td>{{ $obj->Titulo }}</td>
+                                                <td>{{ substr( $obj->Descripcion,0,200) }}....</td>
+                                                <td align="center">
+                                                    <a href="{{ asset('docs') }}/{{ $obj->Url }}"
+                                                        target="blank">
+                                                        <button type="button"
+                                                            class="text-xs text-slate-900 dark:text-white">
+                                                            <iconify-icon icon="mdi:eye"
+                                                                width="40"></iconify-icon>
+                                                        </button>
+                                                    </a>
+                                                    &nbsp;&nbsp;
+                                                    <iconify-icon data-bs-toggle="modal"
+                                                        data-bs-target="#modal-delete-{{ $obj->Id }}"
+                                                        icon="mdi:trash" style="color: #475569;"
+                                                        width="40"></iconify-icon>
+
+                                                </td>
+                                            </tr>
+                                            @include('editor.modal_noticia')
+                                        @endforeach
+
+
+                                    </tbody>
+                                </table>
+                            @endif
+                            </div>
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
@@ -261,7 +290,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                                      11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>
@@ -320,7 +349,7 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd"
                                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                                                              11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Close modal</span>

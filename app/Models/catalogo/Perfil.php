@@ -35,6 +35,7 @@ class Perfil extends Model
         'VigenciaCertificacion',
         'created_at',
         'updated_at',
+        'Conteo'
     ];
 
     public function usuario()
