@@ -35,6 +35,7 @@ class HomeController extends Controller
 
         $usuario = User::findOrFail(auth()->user()->id);
 
+       
         if ($usuario->perfil) {
             $pais = Pais::findOrFail($usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais);
             $distrito_corregimiento = DistritoCorregimiento::findOrFail($usuario->perfil->DistritoCorregimiento);
@@ -87,7 +88,12 @@ class HomeController extends Controller
 
             return view('home', compact('profesionesArray', 'profesionesConteoArray','entidadesArray',
             'entidadesConteoArray','perfilesArray','perfilesConteoArray'));
-        } else {
+        } 
+        else if($usuario->hasRole('consulta'))
+        {
+            return redirect('publico/busqueda/');
+        }
+        else {
             return view('home');
         }
     }
