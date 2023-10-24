@@ -175,7 +175,7 @@ class RegisterController extends Controller
         }
 
         $entidades = EntidadCertificadora::get();
-        $tipos_certificados = TipoCertificado::get();
+        //$tipos_certificados = TipoCertificado::get();
         $profesiones = Profesion::where('Activo', '=', 1)->get();
 
         $paises = Pais::get();
@@ -185,7 +185,7 @@ class RegisterController extends Controller
             'municipio_distrito',
             'distrito_corregimiento',
             'entidades',
-            'tipos_certificados',
+           // 'tipos_certificados',
             'paises',
             'profesiones',
             'pais'
