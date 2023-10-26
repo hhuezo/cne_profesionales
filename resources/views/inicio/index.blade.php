@@ -52,9 +52,10 @@
                             data-aos-delay="200">
                             <a href="{{ url('docs') }}/{{ $obj->Url }}" target="_blank">
                                 <div class="icon-box col-12">
+                                    <h5 align="left">@if($obj->FechaModificacion) {{ date('d/m/Y', strtotime($obj->FechaModificacion)) }} @endif</h5>
                                     <h4><a href="">{{ $obj->Titulo }}</a></h4>
                                     <img src="{{ asset('docs') }}/{{ $obj->Url }}" class="img-responsive">
-                                    
+
                                     <p style="text-align: justify;">{{ $obj->Descripcion }}</p>
                                 </div>
                             </a>
