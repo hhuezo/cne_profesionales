@@ -147,9 +147,7 @@
                                     <a href="{{ url('publico/menu') }}">Menús</a>
                                 </li>
 
-                                <li>
-                                    <a href="{{ url('configuracion/header_image') }}">Header footer</a>
-                                </li>
+
 
                             </ul>
                         </li>
