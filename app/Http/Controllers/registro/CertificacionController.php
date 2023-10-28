@@ -146,7 +146,7 @@ class CertificacionController extends Controller
         $content = "Una certificación ha sido asignada favor consultar en los registros";
         $recipientEmail = $user->email;
 
-
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
         config([
             'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
             'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
@@ -189,6 +189,7 @@ class CertificacionController extends Controller
         $content = $request->Observacion;
         $recipientEmail = $certificacion->perfil->usuario->email;
 
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
         config([
             'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
             'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
@@ -213,7 +214,7 @@ class CertificacionController extends Controller
         $content = "Se le informa que su certificación ha sido aprobada";
         $recipientEmail = $certificacion->perfil->usuario->email;
 
-
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
         config([
             'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
             'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,

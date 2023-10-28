@@ -199,6 +199,23 @@
                                             value="{{ old('OtraProfesion') }}" class="form-control">
                                     </div>
 
+
+                                    <div class="input-area">
+                                        <label for="Profesion" class="form-label">Lugar de formación en eficiencia energética</label>
+                                        <select class="form-control" name="LugarFormacion" id="LugarFormacion">
+                                            <option value="0">Seleccione</option>
+                                            @foreach ($lugares_formacion as $obj)
+                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="input-area relative" id="otro_lugar_formacion" style="display: none">
+                                        <label for="Telefono" class="form-label">Otra lugar de formación</label>
+                                        <input type="text" name="OtroLugarFormacion" id="OtroLugarFormacion"
+                                            value="{{ old('OtroLugarFormacion') }}" class="form-control">
+                                    </div>
+
                                     <div class="input-area relative" id="FotoUrl">
                                         <label for="Telefono" class="form-label">Adjuntar foto</label>
                                         <input type="file" name="FotoUrl" required class="form-control">
@@ -314,6 +331,17 @@
                 $("#OtraProfesion").attr("required", false);
             }
             $("#OtraProfesion").val("");
+        });
+
+        $("#LugarFormacion").change(function() {
+            if ($(this).val() == 1) {
+                $("#otro_lugar_formacion").css("display", "block");
+                $("#OtroLugarFormacion").attr("required", true);
+            } else {
+                $("#otro_lugar_formacion").css("display", "none");
+                $("#OtroLugarFormacion").attr("required", false);
+            }
+            $("#OtroLugarFormacion").val("");
         });
     </script>
 

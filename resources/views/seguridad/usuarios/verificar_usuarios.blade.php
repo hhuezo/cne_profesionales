@@ -154,9 +154,7 @@
     </div>
 
 
-    <div id="modal-profesion"
-    class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-    aria-hidden="true" role="dialog" tabindex="-1">
+    <div id="modal-profesion"    class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"    aria-hidden="true" role="dialog" tabindex="-1">
 
     <form method="POST" action="{{ url('seguridad/usuarios/add_profesion') }}">
         @csrf

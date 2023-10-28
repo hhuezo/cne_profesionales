@@ -8,11 +8,11 @@ use App\Mail\VerificacionMail;
 use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\LugarFormacion;
 use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
 use App\Models\catalogo\Profesion;
-use App\Models\catalogo\TipoCertificado;
 use App\Models\configuracion\ConfiguracionPais;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -23,7 +23,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Redirect;
+use App\Models\configuracion\ConfiguracionSmtp;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -147,6 +147,8 @@ class RegisterController extends Controller
         $perfil->Direccion = $data['Direccion'];
         $perfil->Telefono = $data['Telefono'];
         $perfil->NivelVerificacion = 0;
+        $perfil->LugarFormacion = $data['LugarFormacion'];
+        $perfil->OtroLugarFormacion = $data['OtroLugarFormacion'];
 
         $perfil->save();
 
@@ -180,15 +182,17 @@ class RegisterController extends Controller
 
         $paises = Pais::get();
 
+        $lugares_formacion = LugarFormacion::where('Activo','=',1)->get();
+
         return view('auth.register', compact(
             'departamento_provincia',
             'municipio_distrito',
             'distrito_corregimiento',
             'entidades',
-           // 'tipos_certificados',
             'paises',
             'profesiones',
-            'pais'
+            'pais',
+            'lugares_formacion'
         ));
     }
 
@@ -208,6 +212,15 @@ class RegisterController extends Controller
         $subject = 'Registro pendiente de verificación';
         $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('usuarios.verify', $user->VerificationToken) . ">aquí</a>.";
         $recipientEmail = $request->email;
+
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]); 
         // dd($recipientEmail);
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
 

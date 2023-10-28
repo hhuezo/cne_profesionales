@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\configuracion\ConfiguracionSmtp;
 
 class UserController extends Controller
 {
@@ -41,10 +42,9 @@ class UserController extends Controller
 
         $pais = Pais::findOrFail($usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais);
         $entidades = EntidadCertificadora::get();
-        $tipos_certificados = TipoCertificado::get();
         $profesiones = Profesion::where('Activo', '=', 1)->get();
         return view('seguridad.usuarios.verificar_usuarios', compact('usuario', 'pais', 'departamentos_provincia',
-            'municipios_distritos', 'distritos_corregimientos', 'entidades', 'tipos_certificados', 'profesiones'));
+            'municipios_distritos', 'distritos_corregimientos', 'entidades', 'profesiones'));
 
     }
 
@@ -66,6 +66,18 @@ class UserController extends Controller
         }
         $content = $request->Observaciones;
         $recipientEmail = $usuario->email;
+
+
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]);  
+
+
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
 
         Alert::success('Actualización', 'El registro ha sido actualizado correctamente')->showConfirmButton()->autoClose(20000);
@@ -130,6 +142,18 @@ class UserController extends Controller
         $subject = 'Actualización de datos';
         $content = 'Le informamos que sus datos han sido actualizados exitosamente en nuestro sistema. Sin embargo, aún falta la verificación por parte de uno de nuestros administradores. Pronto recibirá un correo electrónico con instrucciones adicionales. Agradecemos su paciencia y comprensión.';
         $recipientEmail = $request->Email;
+
+
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]);  
+
+
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
         return back();
     }

@@ -13,6 +13,7 @@ use App\Mail\VerificacionMail;
 use Illuminate\Support\Str;
 use Alert;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\configuracion\ConfiguracionSmtp;
 
 
 class UsuarioController extends Controller
@@ -110,6 +111,18 @@ class UsuarioController extends Controller
         $subject = 'Registro pendiente de verificación';
         $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('consulta.verify', $user->VerificationToken) . ">aquí</a>.";
         $recipientEmail = $request->email;
+
+        
+        $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
+        config([
+            'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
+            'mail.mailers.smtp.port' => $configuracionSmtp->smtp_port,
+            'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
+            'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
+            'mail.from.address' => $configuracionSmtp->from_address,
+        ]); 
+
+
         // dd($recipientEmail);
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
 
