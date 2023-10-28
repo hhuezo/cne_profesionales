@@ -19,6 +19,11 @@ use App\Models\configuracion\ConfiguracionSmtp;
 class UsuarioController extends Controller
 {
 
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
+
     public function index()
     {
 
@@ -112,7 +117,7 @@ class UsuarioController extends Controller
         $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('consulta.verify', $user->VerificationToken) . ">aquí</a>.";
         $recipientEmail = $request->email;
 
-        
+
         $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
         config([
             'mail.mailers.smtp.host' => $configuracionSmtp->smtp_host,
@@ -120,7 +125,7 @@ class UsuarioController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
-        ]); 
+        ]);
 
 
         // dd($recipientEmail);

@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class EditorController extends Controller
 {
+
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
+
     public function index()
     {
         $snippets = Snippet::get();
@@ -28,7 +34,7 @@ class EditorController extends Controller
         $snippet->nombre = $request->nombre;
         $snippet->html_content = '<section id="services" class="services">
         <div data-aos="fade-up" class="container"><div class="section-title"><h2 id="i25l"></h2><h3 id="in3d">
-        <span id="iqso" draggable="true" data-highlightable="1">'.$request->nombre.'</span></h3>        
+        <span id="iqso" draggable="true" data-highlightable="1">'.$request->nombre.'</span></h3>
         <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque
         vitae autem.</p></div></div></section>';
         $snippet->css_content = '* { box-sizing: border-box; } body {margin: 0;}';
@@ -115,13 +121,13 @@ class EditorController extends Controller
         return back();
 
     }
-    
-    
+
+
 
 
     public function guardarPagina(Request $request,$id )
     {
-         // Crear un nuevo snippet en la base de datos  
+         // Crear un nuevo snippet en la base de datos
          $snippet = Snippet::findOrFail($id);
          $snippet->html_content = $request->input('html_content');
          $snippet->css_content = $request->input('css_content');

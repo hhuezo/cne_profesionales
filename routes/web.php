@@ -163,7 +163,7 @@ Route::resource('catalogo/pais', PaisController::class);
 
 Route::resource('catalogo/sector', SectorController::class);
 Route::resource('catalogo/profesion', ProfesionController::class);
-
+Route::resource('catalogo/lugar_formacion', ProfesionController::class);
 
 
 

@@ -177,6 +177,10 @@
                                 </li>
 
                                 <li>
+                                    <a href="{{ url('catalogo/lugar_formacion') }}">Lugares formación</a>
+                                </li>
+
+                                <li>
                                     <a href="{{ url('catalogo/pais') }}">Paises</a>
                                 </li>
 

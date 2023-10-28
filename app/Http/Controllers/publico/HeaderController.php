@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 
 class HeaderController extends Controller
 {
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
     public function update_image(Request $request)
     {
         //dd($request->Opcion);
@@ -152,5 +156,5 @@ class HeaderController extends Controller
         alert()->info('El texto ha sido actualizado correctamente');
         return back();
     }
-    
+
 }

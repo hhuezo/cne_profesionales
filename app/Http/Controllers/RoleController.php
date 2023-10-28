@@ -10,6 +10,10 @@ use Spatie\Permission\Models\Role as ModelsRole;
 
 class RoleController extends Controller
 {
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
 
     public function index()
     {
@@ -53,7 +57,7 @@ class RoleController extends Controller
 
     public function unlink_permission(Request $request)
     {
-        
+
         $role = ModelsRole::findOrFail($request->role_id);
         $permission = ModelsPermission::findOrFail($request->permission_id);
         $role->revokePermissionTo($permission->name);

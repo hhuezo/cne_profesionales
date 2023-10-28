@@ -9,19 +9,20 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class PermissionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
+
     public function index()
     {
         $permissions = Permission::get();
         return view('seguridad.permission.index', compact('permissions'));
     }
 
-   
-    
+
+
     public function update_permission(Request $request)
     {
         $permission = ModelsPermission::findOrFail($request->id);

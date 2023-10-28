@@ -10,6 +10,11 @@ use Carbon\Carbon;
 
 class GrapesJSController extends Controller
 {
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
+
     public function editor_grapesJS()
     {
         $snippet=Snippet::orderBy('Id', 'desc')->first();

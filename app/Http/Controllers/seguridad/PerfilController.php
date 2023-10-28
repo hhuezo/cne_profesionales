@@ -20,6 +20,10 @@ use Illuminate\Support\Facades\Hash;
 
 class PerfilController extends Controller
 {
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
     public function index()
     {
 
@@ -122,11 +126,11 @@ class PerfilController extends Controller
         if($request->TelefonoPublico != null)
         {
             $perfil->TelefonoPublico = $request->TelefonoPublico;
-        } 
+        }
         else{
             $perfil->TelefonoPublico = 0;
-        }    
-        
+        }
+
 
         if ($request->FotoUrl) {
             try {

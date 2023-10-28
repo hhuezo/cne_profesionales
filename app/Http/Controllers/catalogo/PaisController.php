@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class PaisController extends Controller
 {
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
+
     public function index()
     {
         $paises = Pais::orderBy('Activo', 'desc')->get();

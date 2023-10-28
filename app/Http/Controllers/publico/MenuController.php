@@ -11,6 +11,10 @@ use Illuminate\Http\Request;
 
 class MenuController extends Controller
 {
+    public function __construct()
+    {
+          $this->middleware('auth');
+    }
     public function index()
     {
         $menus = Menu::where('Antesesora','=',null)->get();
@@ -29,7 +33,7 @@ class MenuController extends Controller
          }
          $menu->save();
          alert()->success('El registro ha sido creado correctamente');
-         return back();         
+         return back();
      }
 
      public function store_sub_menu(Request $request)
@@ -43,10 +47,10 @@ class MenuController extends Controller
          }
          $menu->save();
          alert()->success('El registro ha sido creado correctamente');
-         return back();         
+         return back();
      }
 
-     
+
 
      public function edit($id)
      {
@@ -67,7 +71,7 @@ class MenuController extends Controller
         }
         $menu->update();
         alert()->success('El registro ha sido modificado correctamente');
-        return back();  
+        return back();
      }
 
 
@@ -89,5 +93,5 @@ class MenuController extends Controller
 
     }
 
-    
+
 }
