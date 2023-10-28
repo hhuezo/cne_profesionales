@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
                                     @endif
-                                   
+
                                     <!-- end single -->
                                     <div class="flex-1">
                                         <div class="text-base text-slate-900 dark:text-slate-300 font-medium mb-1">
@@ -145,8 +145,8 @@
                                             <h4 class="card-title">Certificación</h4>
 
                                             @if ($certificacion->DocumentoUrl)
-                                                <a href="{{ asset('docs') }}/{{ $certificacion->DocumentoUrl }}"
-                                                    target="_blank">
+                                            <a href="{{ url('publico/busqueda/show_file/') }}/{{ $certificacion->Id }}"  target="_blank">
+                                               {{--  <a href="{{ asset('docs') }}/{{ $certificacion->DocumentoUrl }}"  target="_blank">--}}
                                                     <div class="btn btn-secondary float-right">
                                                         <iconify-icon icon="teenyicons:pdf-solid"
                                                             width="24"></iconify-icon>
@@ -261,7 +261,7 @@
                                                 <table id="myTable" class="display" cellspacing="0" width="100%">
                                                     <thead>
                                                         <tr class="td-table" align="left">
-                                                            <th>Descripción</th>                                                          
+                                                            <th>Descripción</th>
                                                             <th>Archivo</th>
                                                         </tr>
                                                     </thead>
@@ -269,7 +269,7 @@
                                                         @if ($documentos->count() > 0)
                                                             @foreach ($documentos as $obj)
                                                                 <tr align="left">
-                                                                    <td>{{ $obj->Descripcion }}</td>                                                                 
+                                                                    <td>{{ $obj->Descripcion }}</td>
                                                                     @if ($obj->Url)
                                                                         <td align="center">
                                                                             <a href="{{ asset('docs') }}/{{ $obj->Url }}"
@@ -299,7 +299,7 @@
                                     <div class="card ">
                                         <header class="card-header">
                                             <h4 class="card-title">Proyectos
-                                            </h4>                                         
+                                            </h4>
                                         </header>
                                         <div class="card-body">
 

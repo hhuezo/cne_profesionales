@@ -107,7 +107,7 @@ Route::get('publico/pagina/{id}', [MenuController::class, 'page_menu']);
 
 
 
-
+Route::get('publico/busqueda/show_file/{id}', [BusquedaController::class,'show_file']);
 Route::get('publico/busqueda/resultado', [BusquedaController::class,'busqueda']);
 Route::resource('publico/busqueda', BusquedaController::class);
 

@@ -46,7 +46,7 @@ class BusquedaController extends Controller
         if ($request->Profesion) {
             $sql_profesion = " and pro.Id = $request->Profesion";
 
-            //guardando historial 
+            //guardando historial
             if($request->Profesion > 1)
             {
                 $historial = new BusquedaHistorial();
@@ -60,7 +60,7 @@ class BusquedaController extends Controller
         if ($request->EntidadCertificadora) {
             $sql_entidad = " and e.Id = $request->EntidadCertificadora";
 
-             //guardando historial 
+             //guardando historial
              if($request->EntidadCertificadora > 1)
              {
                  $historial = new BusquedaHistorial();
@@ -72,8 +72,8 @@ class BusquedaController extends Controller
 
         $sql = "select c.Id,CONCAT(u.name,' ',u.last_name) as Nombre, c.FechaVencimiento,pro.Nombre as Profesion, e.Nombre as Entidad,c.OtraEntidad,
         estado.Nombre as Estado,estado.Id as EstadoId
-        from certificacion c 
-        inner join perfil p on c.Perfil = p.Id 
+        from certificacion c
+        inner join perfil p on c.Perfil = p.Id
         inner join users u on p.Usuario = u.id
         inner join certificacion_estado estado on c.Estado = estado.Id
         left join profesion pro on pro.Id = p.Profesion
@@ -83,7 +83,7 @@ class BusquedaController extends Controller
         $certificaciones = DB::select($sql);
 
         return view('inicio.busqueda_resultado',compact('certificaciones'));
-        
+
     }
 
     public function create()
@@ -118,6 +118,12 @@ class BusquedaController extends Controller
         $documentos = Documento::where('Perfil','=',$certificacion->Perfil)->get();
         return view('inicio.busqueda_show', compact('certificacion',
         'proyectos','documentos'));
+    }
+
+    public function show_file($id)
+    {
+        $certificacion = Certificacion::findOrFail($id);
+        return view('inicio.busqueda_show_file', compact('certificacion'));
     }
 
     public function edit($id)
