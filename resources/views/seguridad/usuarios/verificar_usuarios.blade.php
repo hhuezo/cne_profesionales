@@ -30,15 +30,17 @@
                         </div>
                         <div class="input-area relative">
                             <label for="Nacionalidad" class="form-label">Nacionalidad</label>
-                            <input type="text" name="Nacionalidad" value="{{ $usuario->perfil->nacionalidad->Nombre }}" disabled
-                                class="form-control">
+                            <input type="text" name="Nacionalidad" value="{{ $usuario->perfil->nacionalidad->Nombre }}"
+                                disabled class="form-control">
                         </div>
 
                         <div class="input-area">
                             <label for="Profesion" class="form-label">Profesión u oficio</label>
-                            <select name="Profesion"  id="Profesion" class="form-control" disabled>
+                            <select name="Profesion" id="Profesion" class="form-control" disabled>
                                 @foreach ($profesiones as $obj)
-                                    <option value="{{ $obj->Id }}"  {{ $usuario->perfil->Profesion == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
+                                    <option value="{{ $obj->Id }}"
+                                        {{ $usuario->perfil->Profesion == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -51,12 +53,11 @@
                                 <div class="relative">
 
                                     <input type="text" name="OtraProfesion" id="OtraProfesion" disabled
-                                    value="{{ $usuario->perfil->OtraProfesion }}" class="form-control !border-danger-500 !pr-12">
-                                    <button type="button" data-bs-toggle="modal"
-                                        data-bs-target="#modal-profesion"
+                                        value="{{ $usuario->perfil->OtraProfesion }}"
+                                        class="form-control !border-danger-500 !pr-12">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-profesion"
                                         class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
-                                        <iconify-icon icon="mdi:pencil-box"
-                                            style="color: #475569;"
+                                        <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
                                             width="40"></iconify-icon>
                                     </button>
                                 </div>
@@ -65,6 +66,44 @@
 
                             </div>
                         @endif
+
+
+
+
+                        <div class="input-area">
+                            <label for="Profesion" class="form-label">Lugar de formación en eficiencia energética</label>
+                            <select name="LugarFormacion" id="LugarFormacion" class="form-control" disabled>
+                                @foreach ($lugares_formacion as $obj)
+                                    <option value="{{ $obj->Id }}"
+                                        {{ $usuario->perfil->LugarFormacion == $obj->Id ? 'selected' : '' }}>
+                                        {{ $obj->Nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        @if ($usuario->perfil->LugarFormacion == 1)
+                            <div class="input-area relative" id="otra_lugar_profesion">
+                                <label for="Telefono" class="form-label">Otra lugar de formación</label>
+
+
+                                <div class="relative">
+
+                                    <input type="text" name="OtraLugarFormacion" id="OtraLugarFormacion" disabled
+                                        value="{{ $usuario->perfil->OtroLugarFormacion }}"
+                                        class="form-control !border-danger-500 !pr-12">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#modal-lugar-formacion"
+                                        class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
+                                        <iconify-icon icon="mdi:pencil-box" style="color: #475569;"
+                                            width="40"></iconify-icon>
+                                    </button>
+                                </div>
+
+
+
+                            </div>
+                        @endif
+
 
                         <div class="input-area relative">
                             <label for="Direccion" class="form-label">Dirección</label>
@@ -130,21 +169,21 @@
 
 
                         <!--    <div class="input-area relative">
-                            <label for="observaciones" class="form-label">Observaciones</label>
-                            <textarea id="observaciones" name="Observaciones" rows="5" class="form-control">Nos complace informarte que tu perfil ha sido verificado exitosamente.
+                                        <label for="observaciones" class="form-label">Observaciones</label>
+                                        <textarea id="observaciones" name="Observaciones" rows="5" class="form-control">Nos complace informarte que tu perfil ha sido verificado exitosamente.
                                 Ahora puedes disfrutar de todas las funcionalidades y beneficios de nuestra plataforma.
                                 ¡Gracias por tu paciencia y colaboración!</textarea>
-                        </div>-->
+                                    </div>-->
 
 
 
                     </div>
                     <br>
                     <div style="text-align: right;">
-                     <!--      <button type="submit" name="estado" value="1"
-                            class="btn inline-flex justify-center btn-warning">Enviar observaciones</button>
-                        <button type="submit" name="estado" value="2"
-                            class="btn inline-flex justify-center btn-success">Verificar</button>-->
+                        <!--      <button type="submit" name="estado" value="1"
+                                        class="btn inline-flex justify-center btn-warning">Enviar observaciones</button>
+                                    <button type="submit" name="estado" value="2"
+                                        class="btn inline-flex justify-center btn-success">Verificar</button>-->
                     </div>
 
 
@@ -154,58 +193,114 @@
     </div>
 
 
-    <div id="modal-profesion"    class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"    aria-hidden="true" role="dialog" tabindex="-1">
+    <div id="modal-profesion"
+        class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        aria-hidden="true" role="dialog" tabindex="-1">
 
-    <form method="POST" action="{{ url('seguridad/usuarios/add_profesion') }}">
-        @csrf
-        <div class="modal-dialog relative w-auto pointer-events-none">
-            <div
-                class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding
+        <form method="POST" action="{{ url('seguridad/usuarios/add_profesion') }}">
+            @csrf
+            <div class="modal-dialog relative w-auto pointer-events-none">
+                <div
+                    class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding
               rounded-md outline-none text-current">
-                <div class="relative bg-white rounded-lg shadow dark:bg-slate-700">
-                    <!-- Modal header -->
-                    <div
-                        class="flex items-center justify-between p-5 border-b rounded-t dark:border-slate-600 bg-black-500">
-                        <h3 class="text-base font-medium text-white dark:text-white">
-                            Agregar profesión
-                        </h3>
-                        <button type="button"
-                            class="text-slate-400 bg-transparent hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center
+                    <div class="relative bg-white rounded-lg shadow dark:bg-slate-700">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-center justify-between p-5 border-b rounded-t dark:border-slate-600 bg-black-500">
+                            <h3 class="text-base font-medium text-white dark:text-white">
+                                Agregar profesión
+                            </h3>
+                            <button type="button"
+                                class="text-slate-400 bg-transparent hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center
                           dark:hover:bg-slate-600 dark:hover:text-white"
-                            data-bs-dismiss="modal">
-                            <svg aria-hidden="true" class="w-5 h-5" fill="#ffffff" viewbox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                  11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                    clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="p-6 space-y-4">
-                        <input type="hidden" name="Perfil" value="{{ $usuario->perfil->Id }}">
-                        <div class="input-area relative">
-                            <label for="Administrador" class="form-label">Nombre</label>
-                            <input type="text" name="Nombre" required value="{{$usuario->perfil->OtraProfesion }}"
-                                class="form-control">
+                                data-bs-dismiss="modal">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="#ffffff" viewbox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
+                                              11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
                         </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-4">
+                            <input type="hidden" name="Perfil" value="{{ $usuario->perfil->Id }}">
+                            <div class="input-area relative">
+                                <label for="Administrador" class="form-label">Nombre</label>
+                                <input type="text" name="Nombre" required
+                                    value="{{ $usuario->perfil->OtraProfesion }}" class="form-control">
+                            </div>
 
 
-                    </div>
-                    <!-- Modal footer -->
-                    <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
-                        <button type="submit"
-                            class="btn inline-flex justify-center text-white bg-black-500 float-right"
-                            style="margin-bottom: 15px">Aceptar</button>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
+                            <button type="submit"
+                                class="btn inline-flex justify-center text-white bg-black-500 float-right"
+                                style="margin-bottom: 15px">Aceptar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
 
-</div>
+    </div>
+
+    <div id="modal-lugar-formacion"
+        class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        aria-hidden="true" role="dialog" tabindex="-1">
+
+        <form method="POST" action="{{ url('seguridad/usuarios/add_lugar_formacion') }}">
+            @csrf
+            <div class="modal-dialog relative w-auto pointer-events-none">
+                <div
+                    class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding
+          rounded-md outline-none text-current">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-slate-700">
+                        <!-- Modal header -->
+                        <div
+                            class="flex items-center justify-between p-5 border-b rounded-t dark:border-slate-600 bg-black-500">
+                            <h3 class="text-base font-medium text-white dark:text-white">
+                                Agregar lugar de formación
+                            </h3>
+                            <button type="button"
+                                class="text-slate-400 bg-transparent hover:text-slate-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center
+                      dark:hover:bg-slate-600 dark:hover:text-white"
+                                data-bs-dismiss="modal">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="#ffffff" viewbox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
+                                          11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-6 space-y-4">
+                            <input type="hidden" name="Perfil" value="{{ $usuario->perfil->Id }}">
+                            <div class="input-area relative">
+                                <label for="Administrador" class="form-label">Nombre</label>
+                                <input type="text" name="Nombre" required
+                                    value="{{ $usuario->perfil->OtroLugarFormacion }}" class="form-control">
+                            </div>
+
+
+                        </div>
+                        <!-- Modal footer -->
+                        <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
+                            <button type="submit"
+                                class="btn inline-flex justify-center text-white bg-black-500 float-right"
+                                style="margin-bottom: 15px">Aceptar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
 
     <script type="text/javascript">
         $(document).ready(function() {

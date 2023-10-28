@@ -8,6 +8,7 @@ use App\Mail\VerificacionMail;
 use App\Models\catalogo\DepartamentoProvincia;
 use App\Models\catalogo\DistritoCorregimiento;
 use App\Models\catalogo\EntidadCertificadora;
+use App\Models\catalogo\LugarFormacion;
 use App\Models\catalogo\MunicipioDistrito;
 use App\Models\catalogo\Pais;
 use App\Models\catalogo\Perfil;
@@ -43,8 +44,9 @@ class UserController extends Controller
         $pais = Pais::findOrFail($usuario->perfil->distrito_corregimiento->municipio_distrito->departamento_provincia->Pais);
         $entidades = EntidadCertificadora::get();
         $profesiones = Profesion::where('Activo', '=', 1)->get();
+        $lugares_formacion = LugarFormacion::where('Activo','=',1)->get();
         return view('seguridad.usuarios.verificar_usuarios', compact('usuario', 'pais', 'departamentos_provincia',
-            'municipios_distritos', 'distritos_corregimientos', 'entidades', 'profesiones'));
+            'municipios_distritos', 'distritos_corregimientos', 'entidades', 'profesiones','lugares_formacion'));
 
     }
 
@@ -75,7 +77,7 @@ class UserController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
-        ]);  
+        ]);
 
 
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
@@ -151,7 +153,7 @@ class UserController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
-        ]);  
+        ]);
 
 
         Mail::to($recipientEmail)->send(new VerificacionMail($subject, $content));
@@ -167,10 +169,30 @@ class UserController extends Controller
 
         $perfil = Perfil::findOrFail($request->Perfil);
         $perfil->Profesion = $profesion->Id;
+        $perfil->OtraProfesion = "";
         $perfil->save();
 
         alert()->success('La profesión ha sido agregada correctamente');
         return back();
 
     }
+
+    public function add_lugar_formacion(Request $request)
+    {
+
+        $lugar_formacion = new LugarFormacion();
+        $lugar_formacion->Nombre = $request->Nombre;
+        $lugar_formacion->save();
+
+        $perfil = Perfil::findOrFail($request->Perfil);
+        $perfil->LugarFormacion = $lugar_formacion->Id;
+        $perfil->OtroLugarFormacion = "";
+        $perfil->save();
+
+        alert()->success('La profesión ha sido agregada correctamente');
+        return back();
+
+    }
+
+
 }
