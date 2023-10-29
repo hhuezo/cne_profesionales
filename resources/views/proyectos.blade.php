@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <title>Dashcode - HTML Template</title>
-    <link rel="icon" type="image/png" href="assets/images/logo/favicon.svg">
+    <title>DGEHM</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/el_salvador.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -68,7 +68,7 @@
                                         <label for="largeInput" class="form-label">Fecha final</label>
                                         <input type="date" class="form-control">
                                     </div>
-                                  
+
                                     <div class="input-area relative">
                                         <label for="largeInput" class="form-label">Recomendaciones</label>
                                         <input type="password" class="form-control">
@@ -77,15 +77,15 @@
                                         <label for="largeInput" class="form-label">Imagen</label>
                                         <input type="file" class="form-control">
                                     </div>
-                                 
-                                  
-                                  
+
+
+
                                 </div>
                                 <div style="text-align: right;">
                                     <button class="btn inline-flex justify-center btn-dark">Aceptar</button>
                                 </div>
-                                
-                                
+
+
                             </form>
                         </div>
                     </div>

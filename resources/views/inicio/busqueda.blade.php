@@ -8,8 +8,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <title>Dashcode - HTML Template</title>
-        <link rel="icon" type="image/png" href="assets/images/logo/favicon.svg">
+        <title>DGEHM</title>
+        <link rel="icon" type="image/png" href="{{ asset('img/el_salvador.png') }}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -113,7 +113,7 @@
                                                 <div class="inline-block min-w-full align-middle">
                                                     <br>
                                                     <div class="overflow-hidden " id="div_busqueda">
-                                                       
+
                                                     </div>
                                                 </div>
 

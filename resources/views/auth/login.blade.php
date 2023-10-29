@@ -99,8 +99,7 @@
                 <div class="auth-box-3">
                     <div class="mobile-logo text-center mb-6 lg:hidden block">
                         <a heref="index.html">
-                            <img src="assets/images/logo/logo.svg" alt="" class="mb-10 dark_logo">
-                            <img src="assets/images/logo/logo-white.svg" alt="" class="mb-10 white_logo">
+                            <link rel="icon" type="image/png" href="{{ asset('img/el_salvador.png') }}">
                         </a>
                     </div>
                     <div class="text-center 2xl:mb-10 mb-5">
