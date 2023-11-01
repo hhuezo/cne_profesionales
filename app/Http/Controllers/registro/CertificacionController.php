@@ -39,9 +39,9 @@ class CertificacionController extends Controller
     public function create()
     {
         $entidades  = EntidadCertificadora::get();
-        $tipo_certificados = TipoCertificado::get();
+        //$tipo_certificados = TipoCertificado::get();
         $alcance = ConfiguracionAlcance::first();
-        return view('registro.certificacion.create', compact('entidades', 'tipo_certificados', 'alcance'));
+        return view('registro.certificacion.create', compact('entidades',  'alcance'));
     }
 
     public function store(Request $request)
@@ -128,7 +128,7 @@ class CertificacionController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
-        ]);    
+        ]);
         Mail::to($recipientEmail)->send(new VerificacionMail("Certificación enviada", $content));
 
         alert()->success('El registro ha sido enviado correctamente');
@@ -153,7 +153,7 @@ class CertificacionController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
-        ]);  
+        ]);
 
 
         Mail::to($recipientEmail)->send(new VerificacionMail("Certificación asignada", $content));
@@ -196,7 +196,7 @@ class CertificacionController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
-        ]);  
+        ]);
 
 
 
@@ -221,7 +221,7 @@ class CertificacionController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
-        ]);  
+        ]);
 
 
 
@@ -299,7 +299,7 @@ class CertificacionController extends Controller
     public function show($id)
     {
         $certificacion = Certificacion::findOrFail($id);
-        $tipo_certificados = TipoCertificado::get();
+       // $tipo_certificados = TipoCertificado::get();
         $entidades  = EntidadCertificadora::get();
 
         $paises = Pais::get();
@@ -315,7 +315,6 @@ class CertificacionController extends Controller
 
         return view('registro.certificacion.show', compact(
             'certificacion',
-            'tipo_certificados',
             'entidades',
             'adminitradores_locales',
             'paises',
