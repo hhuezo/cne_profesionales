@@ -49,7 +49,7 @@
                                                         style="color: #1769aa;" width="40"></iconify-icon>
                                                 </td>
                                             </tr>
-                                            @include('seguridad.permission.modal')
+                                            @include('seguridad.usuario.modal_delete')
                                         @endforeach
                                     @endif
 
@@ -159,7 +159,7 @@
         </div>
     </div>
 
-  
+
     <script type="text/javascript">
         function modal_edit(id, name) {
             //alert(id);

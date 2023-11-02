@@ -261,6 +261,9 @@ class UsuarioController extends Controller
 
     public function destroy($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $usuario->delete();
+        alert()->success('El registro ha sido eliminado correctamente');
+        return back();
     }
 }
