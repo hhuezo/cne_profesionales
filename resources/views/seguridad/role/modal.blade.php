@@ -41,7 +41,7 @@
                     <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
                         <button type="submit"
                             class="btn inline-flex justify-center text-white bg-danger-500 float-right"
-                            style="margin-bottom: 15px">Accept</button>
+                            style="margin-bottom: 15px">Aceptar</button>
                     </div>
                 </div>
             </div>
