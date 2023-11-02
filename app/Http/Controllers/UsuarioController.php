@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\VerificacionMail;
 use Illuminate\Support\Str;
 use Alert;
+use App\Models\catalogo\Perfil;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\configuracion\ConfiguracionSmtp;
 
@@ -261,6 +262,11 @@ class UsuarioController extends Controller
 
     public function destroy($id)
     {
+        $perfil = Perfil::where('Usuario','=',$id)->first();
+        if($perfil)
+        {
+            $perfil->delete();
+        }
         $usuario = User::findOrFail($id);
         $usuario->delete();
         alert()->success('El registro ha sido eliminado correctamente');

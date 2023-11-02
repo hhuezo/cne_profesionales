@@ -278,20 +278,6 @@
                 });
 
 
-                if (document.getElementById('codigoPais').value == '130') {
-                    $("#Dui").inputmask("99999999-9");
-                    $("#Telefono").inputmask("9999-9999");
-                } else {
-
-                    $("#Dui").inputmask(codigoProvincia + "9-999-9999");
-                    // if (Departamento == 26 || Departamento == 25 || Departamento == 28 || Departamento == 23){
-                    //     //Codigo de provincia de panama de dos digitos
-                    //     $("#Dui").inputmask("12-999-9999");
-                    // }else{
-                    //     //Codigo de provincia de panama de un digito
-                    //     $("#Dui").inputmask("8-999-9999");
-                    // }
-                }
             });
 
 
@@ -308,16 +294,6 @@
                     $("#Distrito").html(_select);
                 });
             });
-
-            //130 El Salvador, 137 Panama
-            if (document.getElementById('codigoPais').value == '130') {
-                //$("#Dui").inputmask("99999999-9");
-                $("#Telefono").inputmask("9999-9999");
-            } else {
-                //$("#Dui").inputmask("999-9999");
-                $("#Telefono").inputmask("9999-9999");
-            }
-
 
 
         });
