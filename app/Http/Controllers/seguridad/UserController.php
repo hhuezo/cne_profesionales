@@ -77,6 +77,8 @@ class UserController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
+            'mail.mailers.smtp.encryption' => $configuracionSmtp->smtp_encryption,
+            'mail.from.name' => $configuracionSmtp->smtp_from_name,
         ]);
 
 
@@ -153,6 +155,8 @@ class UserController extends Controller
             'mail.mailers.smtp.username' => $configuracionSmtp->smtp_username,
             'mail.mailers.smtp.password' => $configuracionSmtp->smtp_password,
             'mail.from.address' => $configuracionSmtp->from_address,
+            'mail.mailers.smtp.encryption' => $configuracionSmtp->smtp_encryption,
+            'mail.from.name' => $configuracionSmtp->smtp_from_name,
         ]);
 
 
