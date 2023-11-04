@@ -107,7 +107,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                       {{-- <li>
                             <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                                 <span class="flex items-center">
 
@@ -115,7 +115,7 @@
                                     <span>Verificar Usuarios</span>
                                 </span>
                             </a>
-                        </li>
+                        </li>--}}
 
                         <li class="">
                             <a href="#" class="navItem">
