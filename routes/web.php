@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BusquedaController;
+use App\Http\Controllers\catalogo\LugarFormacionController;
 use App\Http\Controllers\catalogo\PaisController;
 use App\Http\Controllers\catalogo\ProfesionController;
 use App\Http\Controllers\catalogo\SectorController;
@@ -22,7 +23,6 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\WelcomeController;
 
 use App\Http\Controllers\seguridad\UserController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -163,7 +163,7 @@ Route::resource('catalogo/pais', PaisController::class);
 
 Route::resource('catalogo/sector', SectorController::class);
 Route::resource('catalogo/profesion', ProfesionController::class);
-Route::resource('catalogo/lugar_formacion', ProfesionController::class);
+Route::resource('catalogo/lugar_formacion', LugarFormacionController::class);
 
 
 
