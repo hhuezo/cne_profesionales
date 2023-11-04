@@ -59,6 +59,8 @@ class ConfiguracionController extends Controller
         $configuracion->smtp_username = $request->smtp_username;
         $configuracion->smtp_password = $request->smtp_password;
         $configuracion->from_address = $request->from_address;
+        $configuracion->smtp_encryption = $request->smtp_encryption;
+        $configuracion->smtp_from_name = $request->smtp_from_name;
         $configuracion->update();
 
         alert()->success('El registro ha sido modificado correctamente');

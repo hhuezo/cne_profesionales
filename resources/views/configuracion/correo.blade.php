@@ -60,8 +60,17 @@
 
 
                                                 <div class="input-area relative">
-                                                    <label for="Descipcion" class="form-label">Destinatario</label>
+                                                    <label for="Descipcion" class="form-label">Correo destinatario</label>
                                                     <input type="text" name="from_address" value="{{ $configuracion->from_address }}"   class="form-control" required>
+                                                </div>
+                                                <div class="input-area relative">
+                                                    <label for="Descipcion" class="form-label">Nombre destinatario</label>
+                                                    <input type="text" name="smtp_from_name" value="{{ $configuracion->smtp_from_name }}"   class="form-control" required>
+                                                </div>
+
+                                                <div class="input-area relative">
+                                                    <label for="Descipcion" class="form-label">Cifrado</label>
+                                                    <input type="text" name="smtp_encryption" value="{{ $configuracion->smtp_encryption }}"   class="form-control" required>
                                                 </div>
                                             </div>
                                             <br>
