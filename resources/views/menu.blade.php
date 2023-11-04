@@ -107,7 +107,7 @@
                                 </li>
                             </ul>
                         </li>
-                       {{-- <li>
+                        {{-- <li>
                             <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                                 <span class="flex items-center">
 
@@ -115,8 +115,45 @@
                                     <span>Verificar Usuarios</span>
                                 </span>
                             </a>
-                        </li>--}}
+                        </li> --}}
+                    @endcan
 
+
+
+                    @can('read catalogos')
+                        <li class="">
+                            <a href="#" class="navItem">
+                                <span class="flex items-center">
+                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list">
+                                    </iconify-icon>
+                                    {{-- <span>Verificar Usuarios</span>
+                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
+                                    <span>Catalogos</span>
+                                </span>
+                                <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="{{ url('catalogo/sector') }}">Sector</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ url('catalogo/profesion') }}">Profesión</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ url('catalogo/lugar_formacion') }}">Lugares formación</a>
+                                </li>
+
+                                <li>
+                                    <a href="{{ url('catalogo/pais') }}">Paises</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    @endcan
+
+                    @can('edit users')
                         <li class="">
                             <a href="#" class="navItem">
                                 <span class="flex items-center">
@@ -153,48 +190,13 @@
                         </li>
                     @endcan
 
-
-
-                    @can('read catalogos')
-                        <li class="">
-                            <a href="#" class="navItem">
-                                <span class="flex items-center">
-                                    <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list">
-                                    </iconify-icon>
-                                    {{-- <span>Verificar Usuarios</span>
-                                <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon> --}}
-                                    <span>Catalogos</span>
-                                </span>
-                                <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
-                            </a>
-                            <ul class="sidebar-submenu">
-                                <li>
-                                    <a href="{{ url('catalogo/sector') }}">Sector</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ url('catalogo/profesion') }}">Profesion</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ url('catalogo/lugar_formacion') }}">Lugares formación</a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ url('catalogo/pais') }}">Paises</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    @endcan
-
                     @can('read certificacion')
                         <li>
                             <a href="{{ url('registro/certificacion') }}" class="navItem">
                                 <span class="flex items-center">
 
                                     <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
-                                    <span>Certificacion</span>
+                                    <span>Certificación</span>
                                 </span>
                             </a>
                         </li>
