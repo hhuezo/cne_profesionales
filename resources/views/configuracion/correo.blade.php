@@ -70,7 +70,11 @@
 
                                                 <div class="input-area relative">
                                                     <label for="Descipcion" class="form-label">Cifrado</label>
-                                                    <input type="text" name="smtp_encryption" value="{{ $configuracion->smtp_encryption }}"   class="form-control" required>
+                                                    <select name="smtp_encryption" class="form-control">
+                                                        <option value="SSL" {{$configuracion->smtp_encryption == 'SSL' ? 'selected':''}}>SSL</option>
+                                                        <option value="TLS" {{$configuracion->smtp_encryption == 'TLS' ? 'selected':''}}>TLS</option>
+                                                        <option value="PGP" {{$configuracion->smtp_encryption == 'PGP' ? 'selected':''}}>PGP</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <br>
