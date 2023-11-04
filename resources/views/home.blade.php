@@ -256,12 +256,12 @@
 
                                 <div class="input-area relative">
                                     <label for="largeInput" class="form-label">Desde</label>
-                                    <input type="date" name="FechaInicio" id="FechaInicio" value="{{ isset($_GET["FechaInicio"]) ? $_GET["FechaInicio"] : '' }}" onchange="enviar()" required class="form-control">
+                                    <input type="date" name="FechaInicio" id="FechaInicio" value="{{ $fecha_inicio }}" onchange="enviar()" required class="form-control">
                                 </div>
 
                                 <div class="input-area relative">
                                     <label for="largeInput" class="form-label">Hasta</label>
-                                    <input type="date" name="FechaFinal" id="FechaFinal" value="{{ isset($_GET["FechaFinal"]) ? $_GET["FechaFinal"] : '' }}" onchange="enviar()" placeholder="Hasta" required
+                                    <input type="date" name="FechaFinal" id="FechaFinal" value="{{ $fecha_final }}" onchange="enviar()" placeholder="Hasta" required
                                         class="form-control">
                                 </div>
 

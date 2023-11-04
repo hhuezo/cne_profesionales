@@ -14,6 +14,7 @@ use App\Models\registro\BusquedaHistorial;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -67,55 +68,60 @@ class HomeController extends Controller
             if ($request->FechaInicio && $request->FechaFinal) {
                 $fecha_inicio = $request->FechaInicio;
                 $fecha_final = $request->FechaFinal;
+            } else {
+                // Obtener la fecha actual en formato 'Y-m-d'
+                $fecha_final = Carbon::now()->format('Y-m-d');
+
+                // Obtener la fecha que estaba un mes atrás en formato 'Y-m-d'
+                $fecha_inicio = Carbon::now()->subMonth()->format('Y-m-d');
             }
 
             if ($request->FechaInicio && $request->FechaFinal) {
                 $profesiones = BusquedaHistorial::join('profesion', 'profesion.Id', '=', 'busqueda_historial.Profesion')
-                ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'profesion.Nombre as Profesion')
-                ->whereBetween('Fecha', [$fecha_inicio,$fecha_final])
-                ->where('Profesion', '<>', null)->take(10)
-                ->groupBy('profesion.Id')
-                ->get();
+                    ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'profesion.Nombre as Profesion')
+                    ->whereBetween('Fecha', [$fecha_inicio, $fecha_final])
+                    ->where('Profesion', '<>', null)->take(10)
+                    ->groupBy('profesion.Id')
+                    ->get();
 
 
                 $entidades = BusquedaHistorial::join('entidad_certificadora', 'entidad_certificadora.Id', '=', 'busqueda_historial.EntidadCertificadora')
-                ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'entidad_certificadora.Nombre as Entidad')
-                ->where('EntidadCertificadora', '<>', null)->take(10)
-                ->whereBetween('Fecha', [$fecha_inicio,$fecha_final])
-                ->groupBy('entidad_certificadora.Id')
-                ->get();
+                    ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'entidad_certificadora.Nombre as Entidad')
+                    ->where('EntidadCertificadora', '<>', null)->take(10)
+                    ->whereBetween('Fecha', [$fecha_inicio, $fecha_final])
+                    ->groupBy('entidad_certificadora.Id')
+                    ->get();
 
                 $perfiles = BusquedaHistorial::join('perfil', 'perfil.Id', '=', 'busqueda_historial.Perfil')
-                ->join('users', 'users.id', '=', 'perfil.Usuario')
-                ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'),  DB::raw('concat(users.name , " " , users.last_name) as Nombre'))
-                ->where('Perfil', '<>', null)->take(10)
-                ->whereBetween('Fecha', [$fecha_inicio,$fecha_final])
-                ->groupBy('perfil.Id')
-                ->get();
+                    ->join('users', 'users.id', '=', 'perfil.Usuario')
+                    ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'),  DB::raw('concat(users.name , " " , users.last_name) as Nombre'))
+                    ->where('Perfil', '<>', null)->take(10)
+                    ->whereBetween('Fecha', [$fecha_inicio, $fecha_final])
+                    ->groupBy('perfil.Id')
+                    ->get();
 
-                $visitas = BusquedaHistorial::where('Tipo','=',4)->whereBetween('Fecha', [$fecha_inicio,$fecha_final])->count();
-            }
-            else{
+                $visitas = BusquedaHistorial::where('Tipo', '=', 4)->whereBetween('Fecha', [$fecha_inicio, $fecha_final])->count();
+            } else {
                 $profesiones = BusquedaHistorial::join('profesion', 'profesion.Id', '=', 'busqueda_historial.Profesion')
-                ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'profesion.Nombre as Profesion')
-                ->where('Profesion', '<>', null)->take(10)
-                ->groupBy('profesion.Id')
-                ->get();
+                    ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'profesion.Nombre as Profesion')
+                    ->where('Profesion', '<>', null)->take(10)
+                    ->groupBy('profesion.Id')
+                    ->get();
 
                 $entidades = BusquedaHistorial::join('entidad_certificadora', 'entidad_certificadora.Id', '=', 'busqueda_historial.EntidadCertificadora')
-                ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'entidad_certificadora.Nombre as Entidad')
-                ->where('EntidadCertificadora', '<>', null)->take(10)
-                ->groupBy('entidad_certificadora.Id')
-                ->get();
+                    ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'), 'entidad_certificadora.Nombre as Entidad')
+                    ->where('EntidadCertificadora', '<>', null)->take(10)
+                    ->groupBy('entidad_certificadora.Id')
+                    ->get();
 
                 $perfiles = BusquedaHistorial::join('perfil', 'perfil.Id', '=', 'busqueda_historial.Perfil')
-                ->join('users', 'users.id', '=', 'perfil.Usuario')
-                ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'),  DB::raw('concat(users.name , " " , users.last_name) as Nombre'))
-                ->where('Perfil', '<>', null)->take(10)
-                ->groupBy('perfil.Id')
-                ->get();
+                    ->join('users', 'users.id', '=', 'perfil.Usuario')
+                    ->select(DB::raw('ifnull(count(busqueda_historial.Id),0) as Conteo'),  DB::raw('concat(users.name , " " , users.last_name) as Nombre'))
+                    ->where('Perfil', '<>', null)->take(10)
+                    ->groupBy('perfil.Id')
+                    ->get();
 
-                $visitas = BusquedaHistorial::where('Tipo','=',4)->count();
+                $visitas = BusquedaHistorial::where('Tipo', '=', 4)->count();
             }
 
             $profesionales = Perfil::count();
@@ -140,7 +146,9 @@ class HomeController extends Controller
                 'perfilesArray',
                 'perfilesConteoArray',
                 'visitas',
-                'profesionales'
+                'profesionales',
+                'fecha_inicio',
+                'fecha_final'
             ));
         } else if ($usuario->hasRole('consulta')) {
             return redirect('publico/busqueda/');
