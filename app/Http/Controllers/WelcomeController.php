@@ -7,6 +7,7 @@ use App\Models\configuracion\ConfiguracionPais;
 use App\Models\configuracion\Menu;
 use App\Models\editor\Snippet;
 use App\Models\Pais;
+use App\Models\registro\BusquedaHistorial;
 use App\Models\registro\Certificacion;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -38,10 +39,14 @@ class WelcomeController extends Controller
         session(['array_url' => $urls]);
 
         // dd($banderas, $urls);
-        $snippet = Snippet::findOrFail(2);  
+        $snippet = Snippet::findOrFail(2);
 
         $menus = Menu::where('Antesesora', '=', null)->get();
         $sub_menus = Menu::where('Antesesora', '<>', null)->get();
+
+        $historial = new BusquedaHistorial();
+        $historial->Tipo = 4;
+        $historial->save();
 
         return view('welcome', compact('paises', 'snippet', 'menus', 'sub_menus'));
     }

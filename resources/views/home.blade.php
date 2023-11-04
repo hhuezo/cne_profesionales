@@ -248,6 +248,95 @@
 
             <div class="card">
                 <div class="card-body flex flex-col p-6">
+
+                    <div class="card-text h-full ">
+                        <form id="form_data" method="GET" action="{{ url('home') }}">
+                            <div class="grid grid-cols-2 gap-6">
+
+
+                                <div class="input-area relative">
+                                    <label for="largeInput" class="form-label">Desde</label>
+                                    <input type="date" name="FechaInicio" id="FechaInicio" value="{{ isset($_GET["FechaInicio"]) ? $_GET["FechaInicio"] : '' }}" onchange="enviar()" required class="form-control">
+                                </div>
+
+                                <div class="input-area relative">
+                                    <label for="largeInput" class="form-label">Hasta</label>
+                                    <input type="date" name="FechaFinal" id="FechaFinal" value="{{ isset($_GET["FechaFinal"]) ? $_GET["FechaFinal"] : '' }}" onchange="enviar()" placeholder="Hasta" required
+                                        class="form-control">
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    <script>
+                        $(document).ready(function() {
+
+
+                        });
+
+                        function enviar() {
+                                if (document.getElementById('FechaInicio').value != '' && document.getElementById('FechaFinal').value != '') {
+                                    $('#form_data').submit();
+                                }
+                            }
+                    </script>
+
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body flex flex-col p-6">
+
+                    <div class="card-text h-full ">
+                        <div class="grid md:grid-cols-2 col-span-1 gap-4">
+
+                            <!-- BEGIN: Group Chart2 -->
+
+
+                            <div class="py-[18px] px-4 rounded-[6px] bg-[#E5F9FF] dark:bg-slate-900	 ">
+                              <div class="flex items-center space-x-6 rtl:space-x-reverse">
+                                <div class="flex-none">
+                                  <div id="wline1"></div>
+                                </div>
+                                <div class="flex-1">
+                                  <div class="text-slate-800 dark:text-slate-300 text-sm mb-1 font-medium">
+                                    Total de visitas
+                                  </div>
+                                  <div class="text-slate-900 dark:text-white text-lg font-medium">
+                                    {{$visitas}}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="py-[18px] px-4 rounded-[6px] bg-[#FFEDE5] dark:bg-slate-900	 ">
+                              <div class="flex items-center space-x-6 rtl:space-x-reverse">
+                                <div class="flex-none">
+                                  <div id="wline2"></div>
+                                </div>
+                                <div class="flex-1">
+                                  <div class="text-slate-800 dark:text-slate-300 text-sm mb-1 font-medium">
+                                    Profesionales registrados
+                                  </div>
+                                  <div class="text-slate-900 dark:text-white text-lg font-medium">
+                                    {{$profesionales}}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+
+                            <!-- END: Group Chart2 -->
+                          </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body flex flex-col p-6">
                     <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                         <div class="flex-1">
                             <div class="card-title text-slate-900 dark:text-white">Top de busqueda por profesiones</div>
