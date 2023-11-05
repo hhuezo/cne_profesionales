@@ -5,7 +5,7 @@
 
     <div class="card">
         <header class=" card-header noborder">
-            <h4 class="card-title">sectores
+            <h4 class="card-title">Listado de sectores
             </h4>
             <a href="{{ url('catalogo/sector/create') }}">
                 <button class="btn btn-outline-dark">Nuevo</button>
