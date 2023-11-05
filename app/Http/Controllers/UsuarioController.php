@@ -25,7 +25,7 @@ class UsuarioController extends Controller
     public function index()
     {
 
-        $sql =  "select id,name,last_name,email, (SELECT GROUP_CONCAT(r.name SEPARATOR ', ') FROM roles r JOIN model_has_roles m ON r.id = m.role_id
+        $sql =  "select id,name,last_name,email,active, (SELECT GROUP_CONCAT(r.name SEPARATOR ', ') FROM roles r JOIN model_has_roles m ON r.id = m.role_id
                 where m.model_id = users.id  GROUP BY m.model_id  ) as roles from users";
 
         $usuarios = DB::select($sql);
@@ -267,14 +267,24 @@ class UsuarioController extends Controller
 
     public function destroy($id)
     {
-        $perfil = Perfil::where('Usuario','=',$id)->first();
-        if($perfil)
-        {
-            $perfil->delete();
-        }
+        // $perfil = Perfil::where('Usuario','=',$id)->first();
+        // if($perfil)
+        // {
+        //     $perfil->delete();
+        // }
         $usuario = User::findOrFail($id);
-        $usuario->delete();
-        alert()->success('El registro ha sido eliminado correctamente');
+        $usuario->active=0;
+        $usuario->update();
+        alert()->success('El registro ha sido dehabilitado correctamente');
+        return back();
+    }
+
+    public function active(Request $request)
+    {
+        $usuario = User::findOrFail($request->id);
+        $usuario->active=1;
+        $usuario->update();
+        alert()->success('El registro ha sido activado correctamente');
         return back();
     }
 }

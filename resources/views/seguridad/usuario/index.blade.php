@@ -9,8 +9,8 @@
             <header class=" card-header noborder">
                 <h4 class="card-title">Listado de usuarios
                 </h4>
-                <a href="{{url('seguridad/usuario/create')}}">
-                <button class="btn btn-outline-dark" >Nuevo</button>
+                <a href="{{ url('seguridad/usuario/create') }}">
+                    <button class="btn btn-outline-dark">Nuevo</button>
                 </a>
             </header>
             <div class="card">
@@ -26,6 +26,7 @@
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Rol</th>
+                                        <th>Activo</th>
                                         <th style="text-align: center">Opciones</th>
                                     </tr>
                                 </thead>
@@ -38,18 +39,31 @@
                                                 <td>{{ $obj->email }}</td>
                                                 <td>{{ $obj->roles }}</td>
                                                 <td align="center">
-                                                    <a href="{{url('seguridad/usuario')}}/{{$obj->id}}/edit">
-                                                    <iconify-icon icon="mdi:pencil-box"
-                                                        style="color: #1769aa;" width="40"></iconify-icon>
+                                                    <input type="checkbox" {{ $obj->active == 1 ? 'checked' : '' }}>
+                                                </td>
+                                                <td align="center">
+                                                    <a href="{{ url('seguridad/usuario') }}/{{ $obj->id }}/edit">
+                                                        <iconify-icon icon="mdi:pencil-box" style="color: #1769aa;"
+                                                            width="40"></iconify-icon>
                                                     </a>
 
                                                     &nbsp;&nbsp;
-                                                    <iconify-icon data-bs-toggle="modal"
-                                                        data-bs-target="#modal-delete-{{ $obj->id }}" icon="mdi:trash"
-                                                        style="color: #1769aa;" width="40"></iconify-icon>
+                                                    @if ($obj->active == 1)
+                                                        <iconify-icon data-bs-toggle="modal"
+                                                            data-bs-target="#modal-delete-{{ $obj->id }}"
+                                                            icon="mdi:trash" style="color: #1769aa;"
+                                                            width="40"></iconify-icon>
+                                                    @else
+                                                        <iconify-icon data-bs-toggle="modal"
+                                                            data-bs-target="#modal-active-{{ $obj->id }}"
+                                                            icon="fontisto:checkbox-active" style="color: #1769aa;"
+                                                            width="30"></iconify-icon>
+                                                    @endif
+
                                                 </td>
                                             </tr>
                                             @include('seguridad.usuario.modal_delete')
+                                            @include('seguridad.usuario.modal_active')
                                         @endforeach
                                     @endif
 
@@ -82,9 +96,8 @@
                                     data-bs-dismiss="modal">
                                     <svg aria-hidden="true" class="w-5 h-5" fill="#ffffff" viewbox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
-                                        <path fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                                    11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
+                                        11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                             clip-rule="evenodd"></path>
                                     </svg>
                                     <span class="sr-only">Nuevo permiso</span>
@@ -131,9 +144,8 @@
                                 data-bs-dismiss="modal">
                                 <svg aria-hidden="true" class="w-5 h-5" fill="#ffffff" viewbox="0 0 20 20"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
-                            11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10
+                                11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
                                         clip-rule="evenodd"></path>
                                 </svg>
                                 <span class="sr-only">Nuevo permiso</span>

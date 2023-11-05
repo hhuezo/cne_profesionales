@@ -65,6 +65,7 @@ Route::post('seguridad/permission/update_permission', [PermissionController::cla
 
 Route::post('seguridad/usuario/link_role', [UsuarioController::class, 'link_role']);
 Route::post('seguridad/usuario/unlink_role', [UsuarioController::class, 'unlink_role']);
+Route::post('seguridad/usuario/active', [UsuarioController::class, 'active']);
 
 Route::post('register_consulta', [UsuarioController::class, 'register_consulta']);
 Route::post('login_consulta', [UsuarioController::class, 'login_consulta']);
