@@ -22,7 +22,7 @@
                             <div
                                 class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
                                 <button style="margin-bottom: 15px"
-                                    class="btn inline-flex justify-center btn-dark ml-28 float-right">Submit</button>
+                                    class="btn inline-flex justify-center btn-dark ml-28 float-right">Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -43,7 +43,7 @@
                         <div class="card-title text-slate-900 dark:text-white">Agregar permiso</div>
                     </div>
                 </header>
-                <div class="card-text h-full ">                     
+                <div class="card-text h-full ">
                     <form action="{{ url('seguridad/role/link_permission') }}" method="POST" class="space-y-4">
                         @csrf
                         <div class="input-area relative pl-28">
@@ -58,14 +58,14 @@
 
                         <div class=" items-center p-6 space-x-2 border-t border-slate-200 rounded-b dark:border-slate-600">
                             <button style="margin-bottom: 15px"
-                                class="btn inline-flex justify-center btn-dark ml-28 float-right">Submit</button>
+                                class="btn inline-flex justify-center btn-dark ml-28 float-right">Guardar</button>
                         </div>
                     </form>
                 </div>
 
 
 
-              
+
 
                 <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                     <div class="flex-1">
