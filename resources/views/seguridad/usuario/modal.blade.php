@@ -26,7 +26,7 @@
                 <!-- Modal body -->
                 <div class="p-6 space-y-4">
                   <h6 class="text-base text-slate-900 dark:text-white leading-6">
-                    Confirme si desea desactivar el registro
+                    Confirme si desea Eliminar el Registro
                   </h6>
 
                 </div>
