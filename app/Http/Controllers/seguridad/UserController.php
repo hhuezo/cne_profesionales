@@ -25,11 +25,10 @@ class UserController extends Controller
 {
     public function index()
     {
-        $usuarios_sin_verificar = User::where('active', 1)->whereHas('perfil', function ($query) {
-            $query->where('NivelVerificacion', 0);
-        })->get();
+        $usuarios = User::where('active', 1)->whereHas('perfil')->get();
 
-        return view('seguridad.usuarios.index', compact('usuarios_sin_verificar'));
+
+        return view('seguridad.usuarios.index', compact('usuarios'));
     }
 
     public function verificarUsuario($id)

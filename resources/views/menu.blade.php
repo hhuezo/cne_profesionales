@@ -107,15 +107,15 @@
                                 </li> --}}
                             </ul>
                         </li>
-                        {{-- <li>
+                        <li>
                             <a href="{{ url('seguridad/usuarios') }}" class="navItem">
                                 <span class="flex items-center">
 
                                     <iconify-icon class=" nav-icon" icon="heroicons-outline:user"></iconify-icon>
-                                    <span>Verificar Usuarios</span>
+                                    <span>Información de perfil</span>
                                 </span>
                             </a>
-                        </li> --}}
+                        </li>
                     @endcan
 
 

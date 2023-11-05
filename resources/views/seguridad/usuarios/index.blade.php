@@ -2,7 +2,7 @@
 @section('contenido')
     <div class="card">
         <header class=" card-header noborder">
-            <h4 class="card-title">Usuarios sin verificar
+            <h4 class="card-title">Perfiles
             </h4>
         </header>
         <div class="card-body px-6 pb-6">
@@ -21,16 +21,16 @@
                                     <th scope="col" class=" table-th ">
                                         Nombre Completo
                                     </th>
-
-                                    <th scope="col" class=" table-th ">
-                                        País de origen
-                                    </th>
-
                                     <th scope="col" class=" table-th ">
                                         Profesion
                                     </th>
 
+                                    <th scope="col" class=" table-th ">
+                                        Otra profesion
+                                    </th>
 
+                                    <th scope="col" class=" table-th ">Lugar de formación</th>
+                                    <th scope="col" class=" table-th ">Otro lugar de formación</th>
                                     <th scope="col" class=" table-th ">
                                         Acciones
                                     </th>
@@ -38,24 +38,32 @@
 
                             </thead>
                             <tbody class="bg-white divide-y divide-slate-100 dark:bg-slate-800 dark:divide-slate-700">
-                                @foreach ($usuarios_sin_verificar as $obj)
+                                @foreach ($usuarios as $obj)
                                     <tr>
-                                        <td class="table-td">{{$obj->email}}</td>
-                                        <td class="table-td ">{{$obj->name.' '.$obj->last_name}}</td>
-                                        <td class="table-td ">{{$obj->perfil->nacionalidad->Nombre}}</td>
+                                        <td class="table-td">{{ $obj->email }}</td>
+                                        <td class="table-td ">{{ $obj->name . ' ' . $obj->last_name }}</td>
+
                                         @if ($obj->perfil->profesion)
-                                        <td class="table-td ">{{$obj->perfil->profesion->Nombre}}</td>
+                                            <td class="table-td ">{{ $obj->perfil->profesion->Nombre }}</td>
                                         @else
-                                        <td class="table-td "></td>
+                                            <td class="table-td "></td>
                                         @endif
-                                      
+
 
                                         </td>
+                                        <td class="table-td ">{{ $obj->perfil->OtraProfesion }}</td>
+                                        @if ($obj->perfil->lugar_formacion)
+                                            <td class="table-td ">{{ $obj->perfil->lugar_formacion->Nombre }}</td>
+                                        @else
+                                            <td class="table-td "></td>
+                                        @endif
+                                        <td class="table-td ">{{ $obj->perfil->OtroLugarFormacion }}</td>
                                         <td class="table-td ">
                                             <div class="flex space-x-3 rtl:space-x-reverse">
-                                                <a href="{{ route('usuarios.verificarUsuario', ['id' => $obj->id]) }}"><button class="action-btn" type="button">
-                                                    <iconify-icon icon="heroicons:eye"></iconify-icon>
-                                                </button></a>
+                                                <a href="{{ route('usuarios.verificarUsuario', ['id' => $obj->id]) }}"><button
+                                                        class="action-btn" type="button">
+                                                        <iconify-icon icon="heroicons:eye"></iconify-icon>
+                                                    </button></a>
                                                 {{-- <button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
                                                 </button>
