@@ -142,15 +142,21 @@ class UsuarioController extends Controller
 
         if (Auth::attempt($credenciales)) {
             $user = Auth::user();
-            if($user->VerificationToken==null){
-            return back();
-            }else{
-                Alert::error('ERROR', 'Necesita verificar su correo para continuar.');
+
+            if ($user->active === 1) {
+                if ($user->VerificationToken == null) {
+                    return back();
+                } else {
+                    Alert::error('ERROR', 'Necesita verificar su correo para continuar.');
+                    Auth::logout(); // Cierra la sesión del usuario actual
+                    return Redirect::to('publico/busqueda');
+                }
+            } else {
                 Auth::logout(); // Cierra la sesión del usuario actual
-                return Redirect::to('publico/busqueda');
+                return back()->withErrors(['email' => 'Credenciales incorrectas']);
+                //return Redirect::to('publico/busqueda')->with('error', 'Su cuenta no está activa.');
             }
         } else {
-           // alert()->error('Credenciales no válidas');
             return back()->withErrors(['email' => 'Credenciales incorrectas']);
         }
     }
