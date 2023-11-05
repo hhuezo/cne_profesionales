@@ -35,7 +35,7 @@
     <div>&nbsp;</div>
 
 
-    <div class="grid xl:grid-cols-2 grid-cols-1 gap-6">
+    <div class="grid xl:grid-cols-1 grid-cols-1 gap-6">
         <div class="card">
             <div class="card-body flex flex-col p-6">
                 <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
