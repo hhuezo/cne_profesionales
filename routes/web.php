@@ -162,6 +162,10 @@ Route::post('catalogo/pais/attach_tipo', [PaisController::class,'attach_tipo']);
 Route::post('catalogo/pais/detach_tipo', [PaisController::class,'detach_tipo']);
 Route::resource('catalogo/pais', PaisController::class);
 
+Route::post('catalogo/sector/active', [SectorController::class, 'active']);
+Route::post('catalogo/profesion/active', [ProfesionController::class, 'active']);
+Route::post('catalogo/lugar_formacion/active', [LugarFormacionController::class, 'active']);
+
 Route::resource('catalogo/sector', SectorController::class);
 Route::resource('catalogo/profesion', ProfesionController::class);
 Route::resource('catalogo/lugar_formacion', LugarFormacionController::class);

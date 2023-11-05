@@ -5,7 +5,7 @@
 
     <div class="card">
         <header class=" card-header noborder">
-            <h4 class="card-title">Profesiones
+            <h4 class="card-title">Listado de  profesiones
             </h4>
             <a href="{{ url('catalogo/profesion/create') }}">
                 <button class="btn btn-outline-dark">Nuevo</button>
@@ -23,6 +23,7 @@
 
                                     <td style="text-align: center">Id</td>
                                     <td style="text-align: center">Nombre</td>
+                                    <td style="text-align: center">Activo</td>
                                     <td style="text-align: center">opciones</td>
 
                                 </tr>
@@ -30,20 +31,32 @@
                             <tbody>
                                 @if ($profesiones->count() > 0)
                                     @foreach ($profesiones as $obj)
-                                        <tr>
-                                            <td align="center">{{ $obj->Id }}</td>
-                                            <td>{{ $obj->Nombre }}</td>
-                                            <td align="center">
-                                                <a href="{{ url('catalogo/profesion') }}/{{ $obj->Id }}/edit">
-                                                    <iconify-icon icon="mdi:pencil-box" width="40"></iconify-icon>
-                                                </a>
-                                                &nbsp;&nbsp;
-                                                <iconify-icon data-bs-toggle="modal"
-                                                    data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
-                                                    width="40"></iconify-icon>
-                                            </td>
-                                        </tr>
-                                        @include('catalogo.profesion.modal')
+                                    <tr>
+                                        <td align="center">{{ $obj->Id }}</td>
+                                        <td>{{ $obj->Nombre }}</td>
+                                        <td align="center"><input type="checkbox" {{$obj->Activo == 1 ? 'checked':''}}></td>
+                                        <td align="center">
+                                            <a href="{{ url('catalogo/profesion') }}/{{ $obj->Id }}/edit">
+                                                <iconify-icon icon="mdi:pencil-box" width="40"></iconify-icon>
+                                            </a>
+                                            &nbsp;&nbsp;
+
+                                            @if ($obj->Activo == 1)
+                                            <iconify-icon data-bs-toggle="modal"
+                                            data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
+                                            width="40"></iconify-icon>
+                                            @else
+                                            <iconify-icon data-bs-toggle="modal"
+                                            data-bs-target="#modal-active-{{ $obj->Id }}"
+                                            icon="fontisto:checkbox-active" style="color: #1769aa;"
+                                            width="30"></iconify-icon>
+                                            @endif
+
+                                        </td>
+                                    </tr>
+
+                                    @include('catalogo.profesion.modal')
+                                    @include('catalogo.profesion.modal_active')
                                     @endforeach
                                 @endif
                                 </thead>

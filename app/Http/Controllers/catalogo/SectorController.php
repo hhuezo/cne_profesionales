@@ -15,7 +15,7 @@ class SectorController extends Controller
 
     public function index()
     {
-        $sectores = Sector::where('Activo','=',1)->get();
+        $sectores = Sector::get();
         return view('catalogo.sector.index', compact('sectores'));
     }
 
@@ -62,6 +62,16 @@ class SectorController extends Controller
         $sector->update();
 
         alert()->success('El registro ha sido desactivado correctamente');
+        return back();
+    }
+
+    public function active(Request $request)
+    {
+        $sector = Sector::findOrFail($request->id);
+        $sector->Activo = 1;
+        $sector->update();
+
+        alert()->success('El registro ha sido activado correctamente');
         return back();
     }
 }

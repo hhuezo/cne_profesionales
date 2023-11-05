@@ -15,7 +15,7 @@ class LugarFormacionController extends Controller
 
     public function index()
     {
-        $lugar_formaciones = LugarFormacion::where('Activo','=',1)->get();
+        $lugar_formaciones = LugarFormacion::get();
         return view('catalogo.lugar_formacion.index', compact('lugar_formaciones'));
     }
 
@@ -62,6 +62,16 @@ class LugarFormacionController extends Controller
         $lugar_formacion->update();
 
         alert()->success('El registro ha sido desactivado correctamente');
+        return back();
+    }
+
+    public function active(Request $request)
+    {
+        $sector = LugarFormacion::findOrFail($request->id);
+        $sector->Activo = 1;
+        $sector->update();
+
+        alert()->success('El registro ha sido activado correctamente');
         return back();
     }
 }

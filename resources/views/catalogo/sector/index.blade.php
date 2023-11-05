@@ -23,6 +23,7 @@
 
                                     <td style="text-align: center">Id</td>
                                     <td style="text-align: center">Nombre</td>
+                                    <td style="text-align: center">Activo</td>
                                     <td style="text-align: center">opciones</td>
 
                                 </tr>
@@ -33,17 +34,29 @@
                                         <tr>
                                             <td align="center">{{ $obj->Id }}</td>
                                             <td>{{ $obj->Nombre }}</td>
+                                            <td align="center"><input type="checkbox" {{$obj->Activo == 1 ? 'checked':''}}></td>
                                             <td align="center">
                                                 <a href="{{ url('catalogo/sector') }}/{{ $obj->Id }}/edit">
                                                     <iconify-icon icon="mdi:pencil-box" width="40"></iconify-icon>
                                                 </a>
                                                 &nbsp;&nbsp;
+
+                                                @if ($obj->Activo == 1)
                                                 <iconify-icon data-bs-toggle="modal"
-                                                    data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
-                                                    width="40"></iconify-icon>
+                                                data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
+                                                width="40"></iconify-icon>
+                                                @else
+                                                <iconify-icon data-bs-toggle="modal"
+                                                data-bs-target="#modal-active-{{ $obj->Id }}"
+                                                icon="fontisto:checkbox-active" style="color: #1769aa;"
+                                                width="30"></iconify-icon>
+                                                @endif
+
                                             </td>
                                         </tr>
+
                                         @include('catalogo.sector.modal')
+                                        @include('catalogo.sector.modal_active')
                                     @endforeach
                                 @endif
                                 </thead>

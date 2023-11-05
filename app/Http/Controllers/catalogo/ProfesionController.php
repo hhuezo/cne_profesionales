@@ -15,7 +15,7 @@ class ProfesionController extends Controller
 
     public function index()
     {
-        $profesiones = Profesion::where('Activo','=',1)->get();
+        $profesiones = Profesion::get();
         return view('catalogo.profesion.index', compact('profesiones'));
     }
 
@@ -62,6 +62,16 @@ class ProfesionController extends Controller
         $profesion->update();
 
         alert()->success('El registro ha sido desactivado correctamente');
+        return back();
+    }
+
+    public function active(Request $request)
+    {
+        $sector = Profesion::findOrFail($request->id);
+        $sector->Activo = 1;
+        $sector->update();
+
+        alert()->success('El registro ha sido activado correctamente');
         return back();
     }
 }
