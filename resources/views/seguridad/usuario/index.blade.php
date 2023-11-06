@@ -26,6 +26,10 @@
                                         <th>Nombre</th>
                                         <th>Email</th>
                                         <th>Rol</th>
+                                        <th>Profesión</th>
+                                        <th>Otra profesión</th>
+                                        <th>Sector</th>
+                                        <th>Otro sector</th>
                                         <th>Activo</th>
                                         <th style="text-align: center">Opciones</th>
                                     </tr>
@@ -38,6 +42,10 @@
                                                 <td>{{ $obj->name }} {{ $obj->last_name }}</td>
                                                 <td>{{ $obj->email }}</td>
                                                 <td>{{ $obj->roles }}</td>
+                                                <td>{{ $obj->ocupacion }}</td>
+                                                <td>{{ $obj->otra_ocupacion }}</td>
+                                                <td>{{ $obj->sector }}</td>
+                                                <td>{{ $obj->otro_sector }}</td>
                                                 <td align="center">
                                                     <input type="checkbox" {{ $obj->active == 1 ? 'checked' : '' }}>
                                                 </td>

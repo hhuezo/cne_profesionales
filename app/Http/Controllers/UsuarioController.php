@@ -25,8 +25,12 @@ class UsuarioController extends Controller
     public function index()
     {
 
-        $sql =  "select id,name,last_name,email,active, (SELECT GROUP_CONCAT(r.name SEPARATOR ', ') FROM roles r JOIN model_has_roles m ON r.id = m.role_id
-                where m.model_id = users.id  GROUP BY m.model_id  ) as roles from users";
+        $sql =  "select users.id,name,last_name,email,active,profesion.Nombre as ocupacion, otra_ocupacion,sector.Nombre as sector, otro_sector,  (SELECT GROUP_CONCAT(r.name SEPARATOR ', ') FROM roles r
+                JOIN model_has_roles m ON r.id = m.role_id
+                where m.model_id = users.id  GROUP BY m.model_id  ) as roles from users
+                left join profesion on profesion.Id = users.ocupacion
+                left join sector on sector.Id = users.sector
+                ";
 
         $usuarios = DB::select($sql);
 

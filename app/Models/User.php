@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\catalogo\Perfil;
+use App\Models\catalogo\Profesion;
+use App\Models\catalogo\Sector;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -58,6 +60,16 @@ class User extends Authenticatable
     public function perfil()
     {
         return $this->hasOne(Perfil::class, 'Usuario');
+    }
+
+    public function profesion()
+    {
+        return $this->hasOne(Profesion::class, 'ocupacion');
+    }
+
+    public function sector()
+    {
+        return $this->hasOne(Sector::class, 'sector');
     }
 
     public function user_has_role()
