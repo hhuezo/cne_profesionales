@@ -173,7 +173,7 @@
                                     <a href="{{ url('configuracion/alcance') }}">Alcance</a>
                                 </li>
                                 <li>
-                                    <a href="{{ url('editor') }}">Editor de paginas</a>
+                                    <a href="{{ url('editor') }}">Editor de páginas</a>
                                 </li>
 
                                 <li>

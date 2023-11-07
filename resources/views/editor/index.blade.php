@@ -7,7 +7,7 @@
     <div class=" space-y-5">
         <div class="card">
             <header class=" card-header noborder">
-                <h4 class="card-title">Paginas
+                <h4 class="card-title">Páginas
                 </h4>
                 <a href="{{ url('editor/create') }}">
                     <button class="btn btn-dark">Nuevo</button>
@@ -40,12 +40,12 @@
                                                     </a>
                                                     &nbsp;&nbsp;
                                                     <a href="{{ url('editor') }}/{{ $obj->Id }}" target="_blank">
-                                                        <iconify-icon   
+                                                        <iconify-icon
                                                             icon="ph:file-html" style="color: #475569;"
                                                             width="40"></iconify-icon>
                                                     </a>
                                                 </td>
-                                            </tr>                                           
+                                            </tr>
                                         @endforeach
                                     @endif
 

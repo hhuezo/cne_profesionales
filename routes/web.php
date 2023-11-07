@@ -72,6 +72,10 @@ Route::post('login_consulta', [UsuarioController::class, 'login_consulta']);
 Route::get('consulta/verify/{token}', [UsuarioController::class,'verify'])->name('consulta.verify');
 
 
+
+Route::post('seguridad/usuario/add_sector', [UsuarioController::class, 'add_sector']);
+Route::post('seguridad/usuario/add_profesion', [UsuarioController::class, 'add_profesion']);
+
 Route::resource('seguridad/usuario', UsuarioController::class);
 Route::resource('seguridad/role', RoleController::class);
 Route::post('seguridad/role/unlink_permission', [RoleController::class, 'unlink_permission']);
@@ -165,6 +169,8 @@ Route::resource('catalogo/pais', PaisController::class);
 Route::post('catalogo/sector/active', [SectorController::class, 'active']);
 Route::post('catalogo/profesion/active', [ProfesionController::class, 'active']);
 Route::post('catalogo/lugar_formacion/active', [LugarFormacionController::class, 'active']);
+
+
 
 Route::resource('catalogo/sector', SectorController::class);
 Route::resource('catalogo/profesion', ProfesionController::class);

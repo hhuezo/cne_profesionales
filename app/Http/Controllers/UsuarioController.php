@@ -13,6 +13,8 @@ use App\Mail\VerificacionMail;
 use Illuminate\Support\Str;
 use Alert;
 use App\Models\catalogo\Perfil;
+use App\Models\catalogo\Profesion;
+use App\Models\catalogo\Sector;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\configuracion\ConfiguracionSmtp;
 
@@ -192,8 +194,9 @@ class UsuarioController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::get();
         $roles_actuales = $user->user_has_role;
-
-        return view('seguridad.usuario.edit', compact('user', 'roles', 'roles_actuales'));
+        $profesiones = Profesion::where('Activo','=',1)->get();
+        $sectores = Sector::where('Activo','=',1)->get();
+        return view('seguridad.usuario.edit', compact('user', 'roles', 'roles_actuales','profesiones','sectores'));
     }
 
     public function link_role(Request $request)
@@ -289,6 +292,37 @@ class UsuarioController extends Controller
         $usuario->active=1;
         $usuario->update();
         alert()->success('El registro ha sido activado correctamente');
+        return back();
+    }
+
+
+    public function add_profesion(Request $request)
+    {
+        $profesion = new Profesion();
+        $profesion->Nombre = $request->Nombre;
+        $profesion->save();
+
+        $user = User::findOrFail($request->id);
+        $user->ocupacion = $profesion->Id;
+        $user->otra_ocupacion = "";
+        $user->save();
+
+        alert()->success('La profesión ha sido agregada correctamente');
+        return back();
+    }
+
+    public function add_sector(Request $request)
+    {
+        $sector = new Sector();
+        $sector->Nombre = $request->Nombre;
+        $sector->save();
+
+        $user = User::findOrFail($request->id);
+        $user->sector = $sector->Id;
+        $user->otro_sector = "";
+        $user->save();
+
+        alert()->success('El sector ha sido agregado correctamente');
         return back();
     }
 }
