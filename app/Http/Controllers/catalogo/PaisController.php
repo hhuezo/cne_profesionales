@@ -35,7 +35,13 @@ class PaisController extends Controller
         $tipo_documento = new TipoDocumento();
         $tipo_documento->Nombre  = $request->Nombre;
         $tipo_documento->Pais  = $request->Pais;
+        if($request->Predeterminado)
+        {
+            $tipo_documento->Predeterminado = 1;
+        }
         $tipo_documento->save();
+
+        TipoDocumento::where('Id','<>',$tipo_documento ->Id)->update(['Predeterminado' => 0]);
 
 
         alert()->success('El registro ha sido agregado correctamente');

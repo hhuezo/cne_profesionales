@@ -136,6 +136,7 @@
                                             <thead>
                                                 <tr class="td-table">
                                                     <th style="text-align: center">Descripción</th>
+                                                    <th style="text-align: center">Predeterminado</th>
                                                     <th style="text-align: center">Opciones</th>
                                                 </tr>
                                             </thead>
@@ -144,6 +145,7 @@
                                                     @foreach ($tipo_documentos as $obj)
                                                         <tr>
                                                             <td>{{ $obj->Nombre }}</td>
+                                                            <td align="center"><input type="checkbox" {{$obj->Predeterminado == 1 ? 'checked':''}} ></td>
                                                             <td align="center">
                                                                 <iconify-icon data-bs-toggle="modal"
                                                                     data-bs-target="#modal-delete-{{ $obj->Id }}"
@@ -208,6 +210,11 @@
                                 <input type="hidden" name="Pais" value="{{ $pais->Id }}" class="form-control">
                                 <label for="largeInput" class="form-label">Nombre</label>
                                 <input type="text" name="Nombre" required class="form-control">
+                            </div>
+
+                            <div class="input-area relative">
+                                <label for="largeInput" class="form-label">Predeterminado</label>
+                                <input type="checkbox" value="1" name="Predeterminado">
                             </div>
 
                         </div>

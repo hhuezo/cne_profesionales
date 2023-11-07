@@ -17,5 +17,6 @@ class TipoDocumento extends Model
         'Nombre',
         'Activo',
         'Pais',
+        'Predeterminado',
     ];
 }
