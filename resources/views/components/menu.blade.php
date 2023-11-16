@@ -11,10 +11,12 @@
                                 <ul>
                                     @foreach ($sub_menus as $sub_menu)
                                         @if ($sub_menu->Antesesora == $menu->Id)
-                                            <li class="dropdown"><a
-                                                    href="{{ $sub_menu->Snippet != null ? url('publico/pagina') . '/' . $sub_menu->Snippet : '' }}"><span>{{ $sub_menu->Descripcion }}
-                                                    </span></a>
-                                            </li>
+                                            <a
+                                                href="{{ $sub_menu->Snippet != null ? url('publico/pagina') . '/' . $sub_menu->Snippet : '' }}">
+                                                <li class="dropdown" style="text-align: left"><span>{{ $sub_menu->Descripcion }}
+                                                    </span>
+                                                </li>
+                                            </a>
                                         @endif
                                     @endforeach
                                 </ul>
