@@ -13,6 +13,7 @@ use App\Models\catalogo\Perfil;
 use App\Models\catalogo\TipoCertificado;
 use App\Models\catalogo\TipoDocumento;
 use App\Models\configuracion\ConfiguracionPais;
+use App\Models\registro\Proyecto;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Exception;
@@ -59,6 +60,18 @@ class PerfilController extends Controller
             'documentos'
         ));
     }
+
+
+    public function show($id)
+    {
+        $perfil = Perfil::where('Usuario','=',$id)->first();
+        $proyectos = Proyecto::where('Perfil', '=', $perfil->Id)->get();
+        $documentos = Documento::where('Perfil', '=', $perfil->Id)->get();
+
+        $tipo_documentos = TipoDocumento::get();
+        return view('seguridad.perfil.show', compact('perfil','proyectos','documentos','tipo_documentos'));
+    }
+
 
     public function create()
     {
@@ -107,11 +120,6 @@ class PerfilController extends Controller
     public function get_distrito($id)
     {
         return DistritoCorregimiento::where('MunicipioDistrito', '=', $id)->get();
-    }
-
-    public function edit($id)
-    {
-        //
     }
 
     public function update(Request $request, $id)

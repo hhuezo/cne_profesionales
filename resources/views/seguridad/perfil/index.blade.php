@@ -114,43 +114,13 @@
                                             disabled name="Profesion">
                                     </div>
 
-                                    {{-- 
-                                    @if ($perfil->TituloURL)
-                                        <div class="input-area">
-                                            <label for="Dui" class="form-label">Adjuntar título</label>
-                                            <div class="relative">
-                                                <input type="file" name="TituloURL" class="form-control !pr-12">
-                                                <a href="{{ url('docs') }}/{{ $perfil->TituloURL }}" target="_blank">
-                                                    <button type="button"
-                                                        class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
-                                                        <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="input-area relative">
-                                            <label for="Dui" class="form-label">Adjuntar titulo</label>
-                                            <input type="file" name="TituloURL" value="{{ $perfil->TituloURL }}"
-                                                class="form-control">
-                                        </div>
-                                    @endif --}}
 
-
-                                    {{-- <div class="input-area relative">
-                                        <label for="Nacionalidad" class="form-label">País de origen</label>
-                                        <input type="text" name="Nacionalidad" value="{{ $perfil->nacionalidad->Nombre }}" disabled
-                                            class="form-control">
-                                    </div> --}}
                                     <div class="input-area relative">
                                         <label for="Direccion" class="form-label">Dirección</label>
                                         <input type="text" name="Direccion" value="{{ $perfil->Direccion }}" disabled
                                             class="form-control">
                                     </div>
-                                    {{-- <div class="input-area relative">
-                                        <label for="Pais" class="form-label">Pais</label>
-                                        <input type="text" value="{{ $pais->Nombre }}" disabled class="form-control">
-                                    </div> --}}
+
 
 
 
@@ -182,7 +152,7 @@
                                         <label class="switch">
                                             <input name="TelefonoPublico" type="checkbox" value="1" {{$perfil->TelefonoPublico == 1 ? 'checked':''}}>
                                             <span class="slider round"></span>
-                                            
+
                                         </label>  <strong>¿Desea hacer publico su número telefonico?</strong>
                                     </div>
 
@@ -214,28 +184,6 @@
 
 
 
-
-                                    {{-- @if ($perfil->DocumentoURL)
-                                        <div class="input-area">
-                                            <label for="Dui" class="form-label">Adjuntar documento</label>
-                                            <div class="relative">
-                                                <input type="file" name="DocumentoURL" class="form-control !pr-12">
-                                                <a href="{{ url('docs') }}/{{ $perfil->DocumentoURL }}"
-                                                    target="_blank">
-                                                    <button type="button"
-                                                        class="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-full border-l border-l-slate-200 dark:border-l-slate-700 flex items-center justify-center">
-                                                        <iconify-icon icon="heroicons-solid:eye"></iconify-icon>
-                                                    </button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    @else
-                                        <div class="input-area relative">
-                                            <label for="Dui" class="form-label">Adjuntar documento</label>
-                                            <input type="file" name="DocumentoURL"
-                                                value="{{ $perfil->DocumentoURL }}" class="form-control">
-                                        </div>
-                                    @endif --}}
 
 
                                     @if ($perfil->FotoUrl)

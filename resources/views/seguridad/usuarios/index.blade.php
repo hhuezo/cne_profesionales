@@ -60,14 +60,14 @@
                                         <td class="table-td ">{{ $obj->perfil->OtroLugarFormacion }}</td>
                                         <td class="table-td ">
                                             <div class="flex space-x-3 rtl:space-x-reverse">
-                                                <a href="{{ route('usuarios.verificarUsuario', ['id' => $obj->id]) }}"><button
-                                                        class="action-btn" type="button">
-                                                        <iconify-icon icon="heroicons:eye"></iconify-icon>
-                                                    </button></a>
-                                                {{-- <button class="action-btn" type="button">
-                                                    <iconify-icon icon="heroicons:pencil-square"></iconify-icon>
-                                                </button>
-                                                <button class="action-btn" type="button">
+                                                <a href="{{ route('usuarios.verificarUsuario', ['id' => $obj->id]) }}">
+                                                    <iconify-icon icon="mdi:eye" width="40"></iconify-icon>
+                                                </a>
+                                                &nbsp;&nbsp;
+                                                <a href="{{ url('seguridad/perfil') }}/{{ $obj->id }}">
+                                                    <iconify-icon icon="majesticons:user" width="40"></iconify-icon>
+                                                </a>
+                                               {{--   <button class="action-btn" type="button">
                                                     <iconify-icon icon="heroicons:trash"></iconify-icon>
                                                 </button> --}}
                                             </div>
