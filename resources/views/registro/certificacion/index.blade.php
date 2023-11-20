@@ -9,9 +9,12 @@
             <header class=" card-header noborder">
                 <h4 class="card-title">Certificaciones
                 </h4>
-                <a href="{{ url('registro/certificacion/create') }}">
-                    <button class="btn btn-dark">Nuevo</button>
-                </a>
+                @can('create certificacion')
+                    <a href="{{ url('registro/certificacion/create') }}">
+                        <button class="btn btn-dark">Nuevo</button>
+                    </a>
+                @endcan
+
             </header>
             <div class="card">
                 <div style=" margin-left:20px; margin-right:20px; ">
@@ -43,14 +46,14 @@
                                                 @if ($obj->perfil)
                                                     <td>{{ $obj->perfil->usuario->name }}
                                                         {{ $obj->perfil->usuario->last_name }}</td>
-                                                        <td align="center">{{ $obj->perfil->NumeroDocumento }}</td>
+                                                    <td align="center">{{ $obj->perfil->NumeroDocumento }}</td>
                                                 @else
                                                     <td></td>
                                                     <td></td>
                                                 @endif
 
 
-                                               
+
                                                 <td>{{ $obj->Descripcion }}</td>
                                                 @if ($obj->Estado)
                                                     <td align="center">{{ $obj->estado->Nombre }}</td>
