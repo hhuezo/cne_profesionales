@@ -74,6 +74,7 @@
                                                         <option value="SSL" {{$configuracion->smtp_encryption == 'SSL' ? 'selected':''}}>SSL</option>
                                                         <option value="TLS" {{$configuracion->smtp_encryption == 'TLS' ? 'selected':''}}>TLS</option>
                                                         <option value="PGP" {{$configuracion->smtp_encryption == 'PGP' ? 'selected':''}}>PGP</option>
+                                                        <option value="PGP" {{$configuracion->smtp_encryption == 'NONE' ? 'selected':''}}>NONE</option>
                                                     </select>
                                                 </div>
                                             </div>
