@@ -276,13 +276,13 @@
                                                         @endif
 
 
-                                                        <div class="input-area relative">
+                                                        {{-- <div class="input-area relative">
                                                             <label for="Nacionalidad"
                                                                 class="form-label">Nacionalidad</label>
                                                             <input type="text" name="Nacionalidad"
                                                                 value="{{ $perfil->Nacionalidad }}" disabled
                                                                 class="form-control">
-                                                        </div>
+                                                        </div> --}}
                                                         <div class="input-area relative">
                                                             <label for="Direccion" class="form-label">Dirección</label>
                                                             <input type="text" name="Direccion"
