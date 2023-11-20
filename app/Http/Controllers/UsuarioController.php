@@ -118,7 +118,7 @@ class UsuarioController extends Controller
 
 
         $subject = 'Registro pendiente de verificación';
-        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('consulta.verify', $user->VerificationToken) . ">aquí</a>.";
+        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . url('/').'/consulta/verify/'. $user->VerificationToken  . ">aquí</a>.";
         $recipientEmail = $request->email;
 
 
