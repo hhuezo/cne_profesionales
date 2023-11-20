@@ -169,7 +169,10 @@ class UsuarioController extends Controller
 
     public function verify($token)
     {
+
         $usuario = User::where('VerificationToken', $token)->first();
+
+        dd($usuario,$token);
 
         if (!$usuario) {
             abort(404); // Token no válido
