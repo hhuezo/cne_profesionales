@@ -137,9 +137,10 @@ class RegisterController extends Controller
             $perfil->FotoUrl = $id_file . ' ' . $file->getClientOriginalName();
         }
 
+        $configuracion = ConfiguracionPais::first();
 
         $perfil->Usuario = $usuario->id;
-        $perfil->Pais = session('id_pais');
+        $perfil->Pais = $configuracion->Pais;
         $perfil->Nacionalidad = $data['Nacionalidad'];
         $perfil->OtraProfesion = $data['OtraProfesion'];
         $perfil->Profesion = $data['Profesion'];
