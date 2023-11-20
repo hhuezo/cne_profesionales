@@ -210,7 +210,7 @@ class RegisterController extends Controller
         $this->guard()->login($user);
 
         $subject = 'Registro pendiente de verificación';
-        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" . route('usuarios.verify', $user->VerificationToken) . ">aquí</a>.";
+        $content = "¡Gracias por registrarte! Por favor, verifica tu cuenta haciendo clic <a href=" .url('/').'usuarios.verify/'. $user->VerificationToken . ">aquí</a>.";
         $recipientEmail = $request->email;
 
         $configuracionSmtp = ConfiguracionSmtp::first(); // Supongamos que solo hay una configuración en la base de datos
