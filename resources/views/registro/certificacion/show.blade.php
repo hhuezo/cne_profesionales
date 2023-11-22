@@ -12,13 +12,11 @@
                                 Certificación
 
                                 @can('asignar certificacion')
-                                    @if ($certificacion->EntidadCertificadora != 1)
                                         <button type="button" data-bs-toggle="modal" data-bs-target="#modal-asignar"
                                             class="btn btn-dark btn-sm float-right">
                                             {{ $certificacion->Administrador == null ? 'Asignar' : 'Reasignar' }}
-
                                         </button>
-                                    @endif
+
                                 @endcan
                             </div>
                         </div>

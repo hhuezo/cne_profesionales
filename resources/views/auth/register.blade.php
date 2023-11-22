@@ -96,16 +96,9 @@
 
 
                                     <div class="input-area relative">
-                                        <label for="Nacionalidad" class="form-label">Pais de origen</label>
-
-                                        <select name="Nacionalidad" class="select2 form-control w-full mt-2 py-2">
-                                            @foreach ($paises as $obj)
-                                                <option value="{{ $obj->Id }}"
-                                                    {{ $pais == $obj->Id ? 'selected' : '' }}>
-                                                    {{ $obj->Nombre }}</option>
-                                            @endforeach
-
-                                        </select>
+                                        <label for="Nacionalidad" class="form-label">Nacionalidad</label>
+                                        <input type="text" name="Nacionalidad" value="{{ old('Nacionalidad') }}" required
+                                        class="form-control">
 
                                     </div>
 
@@ -188,7 +181,7 @@
                                         <select class="form-control" name="Profesion" id="Profesion">
                                             <option value="0">Seleccione</option>
                                             @foreach ($profesiones as $obj)
-                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
+                                                <option value="{{ $obj->Id }}" {{ old('Profesion') == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -205,7 +198,7 @@
                                         <select class="form-control" name="LugarFormacion" id="LugarFormacion">
                                             <option value="0">Seleccione</option>
                                             @foreach ($lugares_formacion as $obj)
-                                                <option value="{{ $obj->Id }}">{{ $obj->Nombre }}</option>
+                                                <option value="{{ $obj->Id }}" {{ old('LugarFormacion') == $obj->Id ? 'selected' : '' }}>{{ $obj->Nombre }}</option>
                                             @endforeach
                                         </select>
                                     </div>
