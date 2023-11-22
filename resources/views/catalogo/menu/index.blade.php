@@ -47,7 +47,7 @@
                                                     width="40"></iconify-icon>
                                             </td>
                                         </tr>
-                                        @include('catalogo.sector.modal')
+                                        @include('catalogo.menu.modal')
                                     @endforeach
                                 @endif
                                 </thead>
