@@ -272,7 +272,7 @@
                                                                     <td>{{ $obj->Descripcion }}</td>
                                                                     @if ($obj->Url)
                                                                         <td align="center">
-                                                                            <a href="{{ asset('docs') }}/{{ $obj->Url }}"
+                                                                            <a href="{{ route('busqueda.mostrar_pdf', ['url' => $obj->Url]) }}"
                                                                                 target="_blank">
                                                                                 <iconify-icon icon="mdi:file"
                                                                                     style="color: #475569;"

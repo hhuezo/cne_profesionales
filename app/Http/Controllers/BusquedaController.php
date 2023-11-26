@@ -126,6 +126,12 @@ class BusquedaController extends Controller
         return view('inicio.busqueda_show_file', compact('certificacion'));
     }
 
+    public function mostrar_pdf($url)
+    {
+        //dd(asset('docs').'/'.$url);
+        return view('inicio.pdf_viewer', compact('url'));
+    }
+
     public function edit($id)
     {
         //
