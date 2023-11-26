@@ -160,7 +160,7 @@
 
             // Deshabilitar la impresión
         $(document).keydown(function(e) {
-            if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.charCode === 16)) {
+            if ((e.ctrlKey || e.metaKey) && (e.key === 'P' || e.key === 'p' || e.charCode === 16)) {
                 e.preventDefault();
                 e.stopPropagation();
             }
