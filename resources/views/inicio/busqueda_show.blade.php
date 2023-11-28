@@ -145,8 +145,7 @@
                                             <h4 class="card-title">Certificación</h4>
 
                                             @if ($certificacion->DocumentoUrl)
-                                            <a href="{{ url('publico/busqueda/show_file/') }}/{{ $certificacion->Id }}"  target="_blank">
-                                               {{--  <a href="{{ asset('docs') }}/{{ $certificacion->DocumentoUrl }}"  target="_blank">--}}
+                                            <a href="{{ route('busqueda.mostrar_pdf', ['url' => $certificacion->DocumentoUrl  ]) }}"  target="_blank">
                                                     <div class="btn btn-secondary float-right">
                                                         <iconify-icon icon="teenyicons:pdf-solid"
                                                             width="24"></iconify-icon>
@@ -330,8 +329,8 @@
 
                                                                     @if ($obj->ImagenUrl)
                                                                         <td align="center">
-                                                                            <a href="{{ asset('docs') }}/{{ $obj->ImagenUrl }}"
-                                                                                target="_blank">
+                                                                            <a href="{{ route('busqueda.mostrar_pdf', ['url' =>  $obj->ImagenUrl ]) }}"  target="_blank">
+                                                                            {{-- <a href="{{ asset('docs') }}/{{ $obj->ImagenUrl }}" target="_blank"> --}}
                                                                                 <iconify-icon icon="mdi:file"
                                                                                     style="color: #475569;"
                                                                                     width="40"></iconify-icon>
