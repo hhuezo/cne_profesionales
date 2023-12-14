@@ -7,7 +7,7 @@
     <div class=" space-y-5">
         <div class="card">
             <header class=" card-header noborder">
-                <h4 class="card-title">Proyectos
+                <h4 class="card-title">Documentos
                 </h4>
                 <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#basic_modal">Nuevo</button>
 

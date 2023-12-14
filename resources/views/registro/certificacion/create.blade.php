@@ -58,18 +58,22 @@
                                                         class="form-control !pr-12 select2">
                                                         @foreach ($entidades as $obj)
                                                             <option value="{{ $obj->Id }}"
-                                                                {{  $obj->Id == old('EntidadCertificadora') ? 'selected' : '' }}>
+                                                                @if (old('EntidadCertificadora'))
+                                                                    {{  $obj->Id == old('EntidadCertificadora') ? 'selected' : '' }}
+                                                                @else
+                                                                {{  $obj->Id == 2 ? 'selected' : '' }}
+                                                                @endif
+                                                                >
                                                                 {{ $obj->Nombre }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
 
-                                                <div class="input-area relative" id="div_otra_entidad">
+                                                <div class="input-area relative" id="div_otra_entidad" style="display: none">
                                                     <label for="Nombre" class="form-label">Otra entidad
                                                         certificadora</label>
-                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required value="Organismo Salvadoreño de Normalización (OSN) "
-                                                        required class="form-control">
+                                                    <input type="text" name="OtraEntidad" id="OtraEntidad" required class="form-control">
                                                 </div>
 
                                                 <div class="input-area relative">
@@ -142,6 +146,11 @@
                 $("#OtraEntidad").val("");
             });
         });
+
+        function loadEntidad()
+        {
+
+        }
     </script>
 
 @endsection
