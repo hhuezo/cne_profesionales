@@ -24,7 +24,7 @@
             @foreach ($certificaciones as $certificacion)
                 <tr align="left">
                     <td>{{ $certificacion->Nombre }}</td>
-                    <td>{{ date('d/m/Y', strtotime($certificacion->FechaVencimiento)) }}</td>
+                    <td>{{ $certificacion->FechaVencimiento ? date('d/m/Y', strtotime($certificacion->FechaVencimiento)):'' }}</td>
                     <td>{{ $certificacion->Profesion }}</td>
                     @if ($certificacion->OtraEntidad)
                         <td>{{ $certificacion->OtraEntidad }}</td>
@@ -33,9 +33,12 @@
                     @endif
                     <td>{{ $certificacion->EstadoId == 6  ? $certificacion->Estado : '' }}</td>
                     <td align="center">
+                        @if ($certificacion->EstadoId != 6 )
                         <a href="{{ url('publico/busqueda') }}/{{ $certificacion->Id }}">
                             <iconify-icon icon="heroicons-solid:eye" width="24"></iconify-icon>
                         </a>
+                        @endif
+
                     </td>
                 </tr>
             @endforeach

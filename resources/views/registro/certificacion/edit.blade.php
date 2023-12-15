@@ -110,9 +110,9 @@
                                                 </div>
 
                                                 <div class="input-area">
-                                                    <label for="Archivo" class="form-label">Archivo</label>
+                                                    <label for="Archivo" class="form-label">Archivo (pdf)</label>
                                                     <div class="relative">
-                                                        <input type="file" name="Archivo" class="form-control">
+                                                        <input type="file" name="Archivo" accept=".pdf" class="form-control">
                                                         @if ($certificacion->DocumentoUrl)
                                                             <a href="{{ asset('docs') }}/{{ $certificacion->DocumentoUrl }}"
                                                                 target="_blank">

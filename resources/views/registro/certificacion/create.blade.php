@@ -91,8 +91,8 @@
                                                 </div>
 
                                                 <div class="input-area relative">
-                                                    <label for="Nombre" class="form-label">Archivo</label>
-                                                    <input type="file" name="Archivo" required class="form-control">
+                                                    <label for="Nombre" class="form-label">Archivo (pdf)</label>
+                                                    <input type="file" name="Archivo" accept=".pdf" required class="form-control">
                                                 </div>
 
 
