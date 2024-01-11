@@ -183,7 +183,9 @@
                                 <li>
                                     <a href="{{ url('publico/menu') }}">Menús</a>
                                 </li>
-
+                                <li>
+                                    <a href="{{ url('configuracion/reset_database') }}">Reset base de datos</a>
+                                </li>
 
 
                             </ul>
