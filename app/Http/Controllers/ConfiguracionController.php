@@ -123,7 +123,11 @@ class ConfiguracionController extends Controller
 
     public function reset_database()
     {
+        return view('reset_data_base.index');
+    }
 
+    public function update_database()
+    {
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
         DB::table('busqueda_historial')->truncate();
         DB::table('certificacion')->truncate();
@@ -154,6 +158,8 @@ class ConfiguracionController extends Controller
         DB::table('sector')->where('Id', '>', 1)->delete();
         DB::table('tipo_certificado')->truncate();
         DB::table('users')->where('Id', '>', 1)->delete();
-        //DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        alert()->success('La base de datos ha sido reiniciada correctamente');
+        return back();
     }
 }

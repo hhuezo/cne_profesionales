@@ -40,12 +40,16 @@
                                                     </a>
                                                     &nbsp;&nbsp;
                                                     <a href="{{ url('editor') }}/{{ $obj->Id }}" target="_blank">
-                                                        <iconify-icon
-                                                            icon="ph:file-html" style="color: #475569;"
+                                                        <iconify-icon icon="ph:file-html" style="color: #475569;"
                                                             width="40"></iconify-icon>
                                                     </a>
+
+                                                    <iconify-icon data-bs-toggle="modal"
+                                                        data-bs-target="#modal-delete-{{ $obj->Id }}" icon="mdi:trash"
+                                                        width="40"></iconify-icon>
                                                 </td>
                                             </tr>
+                                            @include('editor.modal')
                                         @endforeach
                                     @endif
 

@@ -1,7 +1,8 @@
 <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
     aria-hidden="true" role="dialog" tabindex="-1" id="modal-delete-{{ $obj->Id }}">
 
-    <form method="POST" action="{{ url('editor/del_documento') }}">
+    <form method="POST" action="{{ route('editor.destroy', $obj->Id) }}">
+        @method('delete')
         @csrf
         <div class="modal-dialog relative w-auto pointer-events-none">
             <div
@@ -31,7 +32,7 @@
                     <!-- Modal body -->
                     <div class="p-6 space-y-4">
                         <h6 class="text-base text-slate-900 dark:text-white leading-6">
-                            <input type="hidden" name="Id" value="{{$obj->Id}}">
+                            <input type="hidden" name="Id" value="{{ $obj->Id }}">
                             Confirme si desea eliminar el registro
                         </h6>
 

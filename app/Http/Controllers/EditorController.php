@@ -159,6 +159,10 @@ class EditorController extends Controller
 
     public function destroy($id)
     {
-        //
+        $snippet = Snippet::findOrFail($id);
+        $snippet->delete();
+
+        alert()->success('El registro ha sido creado correctamente');
+        return back();
     }
 }
