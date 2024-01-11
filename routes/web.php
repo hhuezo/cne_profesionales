@@ -135,7 +135,7 @@ Route::resource('registro/documento', DocumentoController::class);
 
 
 //configuracion
-
+Route::get('configuracion/reset_database', [ConfiguracionController::class, 'reset_database']);
 Route::get('configuracion/pais', [ConfiguracionController::class, 'pais']);
 Route::get('configuracion/getUrlpais/{id}', [ConfiguracionController::class, 'getUrl']);
 Route::post('configuracion/pais', [ConfiguracionController::class, 'pais_update']);

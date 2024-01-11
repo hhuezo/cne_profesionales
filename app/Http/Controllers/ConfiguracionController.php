@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\catalogo\Documento;
 use App\Models\catalogo\Pais;
+use App\Models\catalogo\Perfil;
 use App\Models\configuracion\ConfiguracionAlcance;
 use App\Models\configuracion\ConfiguracionPais;
 use App\Models\configuracion\ConfiguracionSmtp;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ConfiguracionController extends Controller
 {
     public function __construct()
     {
-          $this->middleware('auth');
+        $this->middleware('auth');
     }
     public function pais()
     {
@@ -21,11 +25,6 @@ class ConfiguracionController extends Controller
         return view('configuracion.pais', compact('paises', 'configuracion'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function alcance()
     {
         $configuracion = ConfiguracionAlcance::first();
@@ -112,26 +111,49 @@ class ConfiguracionController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    public function reset_database()
+    {
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::table('busqueda_historial')->truncate();
+        DB::table('certificacion')->truncate();
+        DB::table('certificacion')->truncate();
+
+        $documentos = Documento::get();
+        foreach ($documentos as $documento) {
+            try {
+                unlink(public_path("docs/") . $documento->Url);
+            } catch (Exception $e) {
+            }
+        }
+        DB::table('documento')->truncate();
+        DB::table('entidad_certificadora')->where('Id', '>', 1)->delete();
+
+        $perfiles = Perfil::get();
+        foreach($perfiles as $perfil)
+        {
+            try {
+                unlink(public_path("docs/") . $perfil->DocumentoURL);
+            } catch (Exception $e) {
+            }
+        }
+
+        DB::table('perfil')->truncate();
+        DB::table('lugar_formacion')->where('Id', '>', 1)->delete();
+        DB::table('proyecto')->truncate();
+        DB::table('sector')->where('Id', '>', 1)->delete();
+        DB::table('tipo_certificado')->truncate();
+        DB::table('users')->where('Id', '>', 1)->delete();
+        //DB::statement('SET FOREIGN_KEY_CHECKS=1');
     }
 }
